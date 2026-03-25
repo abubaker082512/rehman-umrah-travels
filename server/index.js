@@ -1,18 +1,29 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
+const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Initialize Supabase
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
+// Attach supabase to req
+app.use((req, res, next) => {
+  req.supabase = supabase;
+  next();
+});
+
 // Routes
 app.get('/', (req, res) => {
-  res.send('Rehman Umrah & Travels API is running...');
+  res.send('Rehman Umrah & Travels API (Supabase) is running...');
 });
 
 // Admin Auth
@@ -20,11 +31,6 @@ app.use('/api/auth', require('./routes/authRoutes'));
 
 // Packages
 app.use('/api/packages', require('./routes/packageRoutes'));
-
-// Database Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/rehman-umrah')
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log('MongoDB Connection Error:', err));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

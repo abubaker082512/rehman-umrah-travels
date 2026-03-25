@@ -66,12 +66,12 @@ const AdminDashboard = () => {
 
       <div className="grid grid-cols-1 gap-4">
         {packages.map(pkg => (
-          <div key={pkg._id} className="bg-white p-4 rounded-lg shadow flex justify-between items-center">
+          <div key={pkg.id} className="bg-white p-4 rounded-lg shadow flex justify-between items-center">
             <div>
               <h3 className="font-bold">{pkg.title}</h3>
               <p className="text-sm text-outline">{pkg.category} • PKR {pkg.price}</p>
             </div>
-            <button onClick={() => handleDelete(pkg._id)} className="bg-red-500 text-white px-4 py-2 rounded text-sm">Delete</button>
+            <button onClick={() => handleDelete(pkg.id)} className="bg-red-500 text-white px-4 py-2 rounded text-sm">Delete</button>
           </div>
         ))}
       </div>

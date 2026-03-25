@@ -61,7 +61,7 @@ const Packages = () => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 {packages.length > 0 ? packages.map((pkg) => (
-                  <div key={pkg._id} className="bg-surface-container-lowest editorial-shadow rounded-xl overflow-hidden flex flex-col group">
+                  <div key={pkg.id} className="bg-surface-container-lowest editorial-shadow rounded-xl overflow-hidden flex flex-col group">
                     <div className="relative h-72 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={pkg.imageUrl || "https://lh3.googleusercontent.com/aida-public/AB6AXuAdBRKj372X3XEdAkE-8DFUWUG3imKQ3ac1b9USL1W0C7BBcveBszqF8mJwUnrjm_5pqskUDnrMUG5yx4QEV-eq5AZXw1KY6sy0X29rpzsJ0PgTNtzNIKD6UJk5_i92ULJFJC4ETiDGG5sBM3I5psHDr_G9s4mWI7IBISEwh_FOp8XWve3y6kl_TDJzu-I1o55kkiAvkMjUJOG_qFJqigRHzs8XXys3tPtXSAhE7XP1c17NsdmgiYoT9NlK4oiCiDUJZtS4VqPVr2_y"} alt={pkg.title} />
                       <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded">{pkg.category}</div>
@@ -86,7 +86,7 @@ const Packages = () => {
                         </div>
                       </div>
                       <div className="mt-auto grid grid-cols-2 gap-4">
-                        <Link to={`/package/${pkg._id}`} className="py-3 bg-[#CD9933]/10 text-[#CD9933] text-center font-bold rounded-md hover:bg-[#CD9933]/20 transition-colors border border-[#CD9933]/20 text-sm">View Details</Link>
+                        <Link to={`/package/${pkg.id}`} className="py-3 bg-[#CD9933]/10 text-[#CD9933] text-center font-bold rounded-md hover:bg-[#CD9933]/20 transition-colors border border-[#CD9933]/20 text-sm">View Details</Link>
                         <button className="py-3 bg-[#013334] text-white font-bold rounded-md hover:bg-primary transition-colors text-sm">Book Now</button>
                       </div>
                     </div>
