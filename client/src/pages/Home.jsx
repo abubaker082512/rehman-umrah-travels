@@ -110,7 +110,59 @@ const Home = () => {
             </div>
           </div>
           {/* 3 Star */}
-          {/* ... Add other package cards similarly ... */}
+          <div className="bg-surface-container-low group cursor-pointer border rounded-xl overflow-hidden">
+            <div className="relative h-64 overflow-hidden">
+              <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgeIqrjd4iZZprHhl6dvsS6TlHxSPpsRmm2Q4eJ0zVcfSsCDiAzFs_uTdG6viogBc4vtlsa9ul1Nk18k6JBhkP-xeMEttf2BqJ1jOG8pQ7cnBf6Ao3WlNsQPFRlNK9j0rbGdGfbKOnG3rdjzGKSfNDY5wKpvPKQTepPxMwUq1cLbg-SxCK5TQ5rRrkARlzPWy_VGIQZQUGsTi_0CoUUzDbyZHY6No-V79Ao-q62kF8A-wSQe15IlpAbZe8_-0Ezat1qZmyvj1c8ZAL" alt="3 Star" />
+              <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">3 Star</div>
+            </div>
+            <div className="p-6">
+              <h3 className="font-notoSerif text-xl font-bold text-primary mb-2">3 Star Comfort</h3>
+              <p className="text-outline text-sm mb-4">Emaar Elite (Makkah) • 15 Days</p>
+              <div className="flex items-center justify-between mt-6">
+                <div>
+                  <span className="block text-xs text-outline">Starting from</span>
+                  <span className="text-xl font-extrabold text-[#CD9933]">PKR 225,000</span>
+                </div>
+                <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+          </div>
+          {/* 4 Star */}
+          <div className="bg-surface-container-low group cursor-pointer border rounded-xl overflow-hidden">
+            <div className="relative h-64 overflow-hidden">
+              <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeKAHUE-PrOvKyjvjA04CL1jr6-62S2Gq4OvwV7zH1lF0mlQjEH7m1ZghycTUjRSVtzOY5suj3gVo-PrLaXmzs2tiIW_cYJr-NSNa5pH_qsN7H7frVEt78dEk6MhB2J8Uj-Q6hheong-lQY2BU3RxegAaq6Na8Zwccq_7Zr1ZDRzOEpbEtIn9Q5EYOtLqjMcX5SNtiZrfZ4GWoCX7gId6_Df31VjHmy08Fi8IbzJqwShYHYNoTk4A1tdg-YSEzWH5ct9SdGFD2b2sQ" alt="4 Star" />
+              <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">4 Star</div>
+            </div>
+            <div className="p-6">
+              <h3 className="font-notoSerif text-xl font-bold text-primary mb-2">Premium Experience</h3>
+              <p className="text-outline text-sm mb-4">Pullman ZamZam (Makkah) • 14 Days</p>
+              <div className="flex items-center justify-between mt-6">
+                <div>
+                  <span className="block text-xs text-outline">Starting from</span>
+                  <span className="text-xl font-extrabold text-[#CD9933]">PKR 295,000</span>
+                </div>
+                <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+          </div>
+          {/* 5 Star */}
+          <div className="bg-surface-container-low group cursor-pointer border rounded-xl overflow-hidden">
+            <div className="relative h-64 overflow-hidden">
+              <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1TFYjcNCU1jatQI4D8YLqCDfuhWfk0cT0dMGoRBMfve9VV0lv0YzvCp9dIMEq-a05foGyu6nL0GphRF9kWJmOOUJoKETJpCojoqxl5XPI7FK5iE3wLkyS0ey_5yC3zsz96FsqZGofrd-XWR16bcukQBkRotmsfTZaX-xmFrjfUhi7Zazqb_BXhe8zYK74QxEmECK8vJaAXdzHQmhvAW-KyDZXPkR43tt1afbIF6YM7PBCOBBy-l6TuMWtejlRDSj5vmKIidlF72YJ" alt="Luxury" />
+              <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">Luxury</div>
+            </div>
+            <div className="p-6">
+              <h3 className="font-notoSerif text-xl font-bold text-primary mb-2">5 Star Luxury</h3>
+              <p className="text-outline text-sm mb-4">Fairmont Clock Tower • 10 Days</p>
+              <div className="flex items-center justify-between mt-6">
+                <div>
+                  <span className="block text-xs text-outline">Starting from</span>
+                  <span className="text-xl font-extrabold text-[#CD9933]">PKR 450,000</span>
+                </div>
+                <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -138,6 +190,20 @@ const Home = () => {
                   <h4 className="font-bold text-white font-manrope">Haram Proximity</h4>
                   <p className="text-white/60 text-sm leading-relaxed">Specially selected hotels within walking distance of the holy sites.</p>
                 </div>
+                <div className="space-y-4">
+                  <div className="text-[#CD9933] bg-white/5 w-14 h-14 flex items-center justify-center rounded-lg">
+                    <span className="material-symbols-outlined text-3xl">support_agent</span>
+                  </div>
+                  <h4 className="font-bold text-white font-manrope">24/7 Support</h4>
+                  <p className="text-white/60 text-sm leading-relaxed">Our dedicated ground staff in Makkah and Medina are always available.</p>
+                </div>
+                <div className="space-y-4">
+                  <div className="text-[#CD9933] bg-white/5 w-14 h-14 flex items-center justify-center rounded-lg">
+                    <span className="material-symbols-outlined text-3xl">groups</span>
+                  </div>
+                  <h4 className="font-bold text-white font-manrope">Experienced Guides</h4>
+                  <p className="text-white/60 text-sm leading-relaxed">Scholarly guides to assist you with religious rituals and Ziarat.</p>
+                </div>
               </div>
             </div>
             <div className="relative">
@@ -146,6 +212,130 @@ const Home = () => {
                 <span className="block text-5xl font-bold text-white mb-2">25+</span>
                 <span className="text-white/80 font-bold tracking-widest uppercase text-xs">Years of Excellence</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* International Tours */}
+      <section className="py-24 px-8 max-w-screen-2xl mx-auto overflow-hidden">
+        <div className="mb-16 text-center max-w-2xl mx-auto">
+          <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Beyond Borders</h6>
+          <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-primary">Discover the World</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Turkey */}
+          <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
+            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo34TNKnDfPALrJLu5UciOIr7LARLN_xMd56yq9UtN280tkvjiEnxN3TtX2PclWHifVh-nu8QV_2cBRDHQyvPmPzZGIZNdK59dTjZS_Z7zyQnU3g6H9XtU6VzrOpldicf7vIybJnfw64PVqTVsjONncJK9U_xFuHg1W1wWMoj67jRKKTctsOdONWmyphd-lo0jqhdNTCIXpryZF3G0yfAhu2sIiRgcLLrXo2593SUcftSq5rTTctJCZOjzrrlvn1FRx-ijiWOD06Kn" alt="Turkey" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
+            <div className="absolute bottom-8 left-8 right-8 text-white">
+              <h3 className="font-notoSerif text-2xl font-bold mb-2">Turkey</h3>
+              <p className="text-sm text-white/70 mb-4">Istanbul, Cappadocia, Antalya</p>
+              <span className="inline-block border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-widest">Explore Tour</span>
+            </div>
+          </div>
+          {/* Dubai */}
+          <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
+            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUQYOVnZnCAbJnFrX1nyML3VQoCv0DXi5Irz0Y73qxzjrCnv9Fjfew89pvxdv8ZCASmG7JXvm6ivVtlWSDgDNl6WD5Qkh9yA9ePoYhW5-2lqFxEm_UD-gdv3y855ixx1a4TNrQKs_YDGiCBrtJNtbyqSVu-OpnZy8NM7Q_OjK_9-EAJxvTxySJdH3PL-NHtQ5wCIWYnxE88P2f-rJ9uHs3kO3HDAd20k7SpB0jq8u4Sn1BDaHihQy3xKayJDzjSbhMkeSgMrymfb39" alt="Dubai" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
+            <div className="absolute bottom-8 left-8 right-8 text-white">
+              <h3 className="font-notoSerif text-2xl font-bold mb-2">Dubai</h3>
+              <p className="text-sm text-white/70 mb-4">City Sights & Desert Safari</p>
+              <span className="inline-block border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-widest">Explore Tour</span>
+            </div>
+          </div>
+          {/* Malaysia */}
+          <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
+            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3zaexyac9JYbgc7JJW579-lS9WPkAgTeUI7Z4f5Gl08eeqwiSxGeYnsEo-duQ9zPlj4ciIjAaAHQxZpJWRSzi7QTPiBvQTt5PnQL360TdVEtcUe8-A1xE2f5tRkgQevJB0FH9BEKMxS9GfArHkUk1mmMGLjWSTTIINCUnMLvlQIt-niCyleGQ6NoGhUF9wsVc4M84ENHV6AyrYG2HEoJD3DrsDsNwuv-5k4zPqoMOXRMxOHGoe_2H7qk6_JElzjsy7uAvRdhWRfDf" alt="Malaysia" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
+            <div className="absolute bottom-8 left-8 right-8 text-white">
+              <h3 className="font-notoSerif text-2xl font-bold mb-2">Malaysia</h3>
+              <p className="text-sm text-white/70 mb-4">Kuala Lumpur & Genting</p>
+              <span className="inline-block border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-widest">Explore Tour</span>
+            </div>
+          </div>
+          {/* Europe */}
+          <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
+            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv-MVsZqKBwhFPBQ8VFiq3TU0N5EnqlsYH2DbJRB5qbT_Cq8D2o6SSJOfghgRCyIin6rAX9gA_gYojLbuUrx53KQNs5-IEFKUuQCSPDJADWJ4WR-wdlDFUu341hUW3bpPXn5i_22fhWnEfLqshrlO64tuM__-1f54SpwlxVe2bQGSh0jdBOS_x6jW2ttrKZoyb_W-fAUeq6l6DZazJ7KXpOFW-pVOA24jVsXFRRGsk7z2EjtSS0-inrhXqDyByLzKRQqLQX-m_UhJv" alt="Europe" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
+            <div className="absolute bottom-8 left-8 right-8 text-white">
+              <h3 className="font-notoSerif text-2xl font-bold mb-2">Europe</h3>
+              <p className="text-sm text-white/70 mb-4">Paris, Swiss, Rome</p>
+              <span className="inline-block border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-widest">Explore Tour</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 bg-surface-container-high px-8">
+        <div className="max-w-screen-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Client Feedback</h6>
+            <h2 className="font-notoSerif text-4xl font-bold text-primary">Voices of Gratitude</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-xl editorial-shadow">
+              <div className="flex gap-1 text-[#CD9933] mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                ))}
+              </div>
+              <p className="italic text-primary mb-8 leading-relaxed font-manrope">"Our Umrah journey with Rehman Travels was flawless. From the visa process to the hotels being so close to the Haram, everything was perfectly managed. May Allah reward them."</p>
+              <div className="flex items-center gap-4">
+                <img className="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFTFEGBCE5jXj6eM278TP2Ax109ogHPCfKt81ueziR3aYr7jMI04ENRCcJ4Vat5FMphSQMJq3NRdl6DUVSdm8nFooEXYlNGQI9_C-5B213ukaJ9Xj7hmEwYW6AVrwzbiywDR_z2CJefQ6hr6aFsVuYYVv5gR2huLiFxsi9Lb67BKod9sXjic742wH_Fn6ZYyp0h6ui-0gv-aNCzmnupdBLzGxeHzlxAg7MlFO_-ufV_NafC8G0jsnsNHvpAjTtcvlHuf-l48cgZVBe" alt="Customer" />
+                <div>
+                  <span className="block font-bold text-primary">Ahmed Raza</span>
+                  <span className="text-xs text-outline uppercase">Karachi</span>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-xl editorial-shadow">
+              <div className="flex gap-1 text-[#CD9933] mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                ))}
+              </div>
+              <p className="italic text-primary mb-8 leading-relaxed font-manrope">"I booked the Turkey tour for my family. The guide was incredibly knowledgeable and the itinerary wasn't rushed. A truly premium experience from start to finish."</p>
+              <div className="flex items-center gap-4">
+                <img className="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYtBIK6gOk0mhtUl3IJw77r0t3KrPVBPzAB2jnlOFTw40N4dbTdNmMDE-o-U8B7NWRqYLJNQVU00R33NODc6-fQFpF_qS3HQ4Ns1jC3YE4UsVumzicObLswfujvAFvLEH0Y9sx8n-BgUJ3hw65lY6AVs22E27ixYB22eQgfF83wfON4Jmx6jrz8Mn1yAnrvpejNzMf0C5Hj_tA6fi78-r_1Q3QD5P1SQ7vY77p_Ao0y4L0T5GIOcS2hdFZFPs7IrUJSgzroNNbUpRq" alt="Customer" />
+                <div>
+                  <span className="block font-bold text-primary">Saba Khan</span>
+                  <span className="text-xs text-outline uppercase">Lahore</span>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-xl editorial-shadow">
+              <div className="flex gap-1 text-[#CD9933] mb-6">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                ))}
+              </div>
+              <p className="italic text-primary mb-8 leading-relaxed font-manrope">"The ground staff in Makkah were like family. They helped us with our elderly parents during Tawaaf. I highly recommend Rehman Travels for their compassion."</p>
+              <div className="flex items-center gap-4">
+                <img className="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc5pUsNWCfg7tO9-yhbEhsmWLR3vQg8yhvrq9qB4GvnXb1unZaqrw0qOK-Hwi5u-JfvnYT0g1z0MtYppgRxP5iDR0XwPBCjXfWvQt0MPJwuIuJQPWqJLmAgYZYdnwi8iF415-FVPbgwE9pf8ASPKktSBaff--XmTPWezqEMdYXTyH94z6ov_Hillp9mm9rt9JPL-SAz8nvhrPKEMWuos3DBXCq-RAHeGlShRxei8Zj44aC41yTkVxlgBdbJTd6PS2-karlMjwZHSxh" alt="Customer" />
+                <div>
+                  <span className="block font-bold text-primary">Dr. Mohammad Ali</span>
+                  <span className="text-xs text-outline uppercase">Islamabad</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 px-8">
+        <div className="max-w-5xl mx-auto bg-[#013334] rounded-3xl p-12 lg:p-24 relative overflow-hidden text-center">
+          <div className="absolute inset-0 opacity-10 pointer-events-none">
+            <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzZl7ucwK5x4LN8TYbepMGi6zw8pXI9uM1IenCObm9eIDWV8U9g4t27p9DX455ME3p-LHXGymUsXBQzH4U1TlrZ8H3YEz78O69LkPrLt1NclC-XuXCxPrFm_2NDmixqQ3Cl3Bxbm2LMhvKoM-nAiokbr-I_0Q9k5656xbSpsNXu1kkcOytXqTSiaifP-ZQTWUzyKrIb9E5Zd3f5_x5_h2jVoVzylYIAIwKFlT_SETc8Sf3HujmmwyD5_vabrzwSEHSDJjxdxQHw5ns" alt="Silk Pattern" />
+          </div>
+          <div className="relative z-10">
+            <h2 className="font-notoSerif text-4xl lg:text-6xl font-bold text-white mb-8">Book Your Umrah Journey Today</h2>
+            <p className="text-white/70 text-lg mb-12 max-w-2xl mx-auto">Contact our travel consultants today to get a personalized quote for your spiritual or leisure travel needs.</p>
+            <div className="flex flex-wrap justify-center gap-6">
+              <button className="bg-[#CD9933] text-white px-10 py-4 rounded-md font-bold text-lg hover:scale-105 transition-all">Get a Quote</button>
+              <button className="bg-white/10 text-white border border-white/20 px-10 py-4 rounded-md font-bold text-lg backdrop-blur-md hover:bg-white/20 transition-all">Contact Us</button>
             </div>
           </div>
         </div>

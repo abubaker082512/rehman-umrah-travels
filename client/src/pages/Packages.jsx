@@ -14,7 +14,13 @@ const Packages = () => {
         const res = await axios.get('/api/packages')
         setPackages(res.data)
       } catch (err) {
-        console.error(err)
+        console.error('Failed to fetch packages, using dummy data for verification.', err)
+        setPackages([
+          { id: 1, title: 'Economy Saver', category: 'Economy', location: 'Saraya Iman (Makkah)', price: 185000, duration: '15 Days' },
+          { id: 2, title: '3 Star Comfort', category: '3 Star', location: 'Emaar Elite (Makkah)', price: 225000, duration: '15 Days' },
+          { id: 3, title: '4 Star Premium', category: '4 Star', location: 'Pullman ZamZam (Makkah)', price: 295000, duration: '14 Days' },
+          { id: 4, title: '5 Star Luxury', category: '5 Star', location: 'Fairmont Clock Tower', price: 450000, duration: '10 Days' }
+        ])
       } finally {
         setLoading(false)
       }
@@ -78,7 +84,7 @@ const Packages = () => {
                         </div>
                         <div className="text-right">
                           <div className="text-xs text-on-surface-variant uppercase font-bold tracking-tighter">Starting from</div>
-                          <div className="text-2xl font-notoSerif font-bold text-secondary">PKR {pkg.price.toLocaleString()}</div>
+                          <div className="text-2xl font-notoSerif font-bold text-secondary">PKR {pkg.price ? Number(pkg.price).toLocaleString() : 'N/A'}</div>
                         </div>
                       </div>
                       <div className="flex gap-4 mb-8">

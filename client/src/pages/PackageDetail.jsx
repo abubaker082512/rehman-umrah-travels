@@ -84,10 +84,82 @@ const PackageDetail = () => {
                   <div className="flex flex-col md:flex-row gap-8 items-center bg-surface-container-lowest p-6 rounded-xl editorial-shadow">
                     <img className="w-full md:w-64 h-48 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1OLKkdBZ3EeqXXVHssUEB0VLG6ldeYaU6CeQKf32v7DhdxLPfXHwZgFw0L0SIfFbEW-E2ZPeCmWolwPc_H4eGwMY6AGBIlc9iE6QtlnAwClvChfGJ2WFxpHV3Wvl4-O5pzXpJrEqFrrNvdGX4YZ42rTQZtp6Xxg4XGSNpu0rjTO_ml8iusR25IJ7SzuoYoHsJIsXadQR82HujxI-MAn7l2lmossX-0yHiTzCwnz0O3PnvewQ-Oj4I7NFvdXM_ctpezHicx3LxQx4c" alt="Hotel" />
                     <div className="flex-grow text-left">
-                      <p className="text-secondary text-xs font-bold uppercase tracking-widest mb-1 text-left">Makkah Mukarramah</p>
-                      <h4 className="font-notoSerif text-2xl mb-2 text-left">Pullman Zamzam Makkah</h4>
-                      <p className="text-outline text-sm leading-relaxed mb-4 text-left">Experience unrivaled proximity and luxury.</p>
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <p className="text-secondary text-xs font-bold uppercase tracking-widest mb-1 text-left">Madinah Munawwarah</p>
+                          <h4 className="font-notoSerif text-2xl mb-2 text-left">Anwar Al Madinah Movenpick</h4>
+                        </div>
+                        <div className="bg-surface-container text-xs px-2 py-1 rounded font-bold">Step to Masjid Nabawi</div>
+                      </div>
+                      <p className="text-outline text-sm leading-relaxed mb-4 text-left">Centrally located in the heart of the Madinah shopping district, this hotel provides direct access to the Ladies' Entrance of the Holy Mosque.</p>
+                      <div className="flex gap-4">
+                        <span className="flex items-center gap-1 text-xs font-bold"><span className="material-symbols-outlined text-sm">ac_unit</span> Central AC</span>
+                        <span className="flex items-center gap-1 text-xs font-bold"><span className="material-symbols-outlined text-sm">room_service</span> 24/7 Support</span>
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Services Checklist */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+                <div>
+                  <h3 className="font-notoSerif text-xl mb-6 text-left">What's Included</h3>
+                  <ul className="space-y-4">
+                    <li className="flex items-center gap-3 text-sm text-left">
+                      <span className="material-symbols-outlined text-secondary text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                      Electronic Umrah Visa Processing
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-left">
+                      <span className="material-symbols-outlined text-secondary text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                      Round-trip International Flights
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-left">
+                      <span className="material-symbols-outlined text-secondary text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                      VIP Private Ground Transportation
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-left">
+                      <span className="material-symbols-outlined text-secondary text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                      Guided Ziyarat in Makkah & Madinah
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-notoSerif text-xl mb-6 text-left">Not Included</h3>
+                  <ul className="space-y-4 text-left">
+                    <li className="flex items-center gap-3 text-sm text-outline text-left">
+                      <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
+                      Personal shopping & extra meals
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-outline text-left">
+                      <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
+                      Travel and health insurance
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Itinerary Timeline */}
+              <div className="text-left">
+                <h2 className="font-notoSerif text-3xl mb-12 text-left">Journey Itinerary</h2>
+                <div className="relative pl-8 border-l-2 border-dashed border-secondary/30 ml-4 space-y-12">
+                  <div className="relative text-left">
+                    <div className="absolute -left-[41px] top-0 w-4 h-4 bg-secondary rounded-full ring-4 ring-secondary/20"></div>
+                    <p className="text-secondary font-bold text-xs uppercase mb-1 text-left">Day 01</p>
+                    <h4 className="font-notoSerif text-lg mb-2 text-left">Arrival & Makkah Check-in</h4>
+                    <p className="text-outline text-sm leading-relaxed text-left">Arrival at Jeddah Airport, VIP transfer to Makkah. Perform Umrah under guidance.</p>
+                  </div>
+                  <div className="relative text-left">
+                    <div className="absolute -left-[41px] top-0 w-4 h-4 bg-secondary rounded-full ring-4 ring-secondary/20"></div>
+                    <p className="text-secondary font-bold text-xs uppercase mb-1 text-left">Day 02 - 05</p>
+                    <h4 className="font-notoSerif text-lg mb-2 text-left">Makkah Devotion & Ziyarat</h4>
+                    <p className="text-outline text-sm leading-relaxed text-left">Daily prayers in Haram. Day 3 includes guided Ziyarat to Mina, Arafat, and Muzdalifah.</p>
+                  </div>
+                  <div className="relative text-left">
+                    <div className="absolute -left-[41px] top-0 w-4 h-4 bg-[#CD9933] rounded-full ring-4 ring-[#CD9933]/20"></div>
+                    <p className="text-secondary font-bold text-xs uppercase mb-1 text-left">Day 10</p>
+                    <h4 className="font-notoSerif text-lg mb-2 text-left">Final Departure</h4>
+                    <p className="text-outline text-sm leading-relaxed text-left">Final prayers at Masjid Nabawi. Private transfer to Madinah Airport.</p>
                   </div>
                 </div>
               </div>
@@ -95,12 +167,43 @@ const PackageDetail = () => {
 
             {/* Right Column: Booking Form */}
             <div className="lg:col-span-4">
-              <div className="sticky top-32 bg-surface-container-lowest p-8 rounded-xl editorial-shadow border border-outline-variant/10">
-                <h3 className="font-notoSerif text-2xl mb-2 text-center">Plan Your Journey</h3>
-                <form className="space-y-6">
-                  {/* Form fields here */}
+              <div className="sticky top-32 bg-surface-container-lowest p-8 rounded-xl editorial-shadow border border-outline-variant/10 text-left">
+                <div className="text-center mb-8">
+                  <h3 className="font-notoSerif text-2xl mb-2">Plan Your Journey</h3>
+                  <p className="text-outline text-xs">Fill the form below, and our spiritual consultant will contact you within 24 hours.</p>
+                </div>
+                <form className="space-y-6 text-left">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1 text-left">Full Name</label>
+                    <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 transition-colors py-2 text-sm text-left" placeholder="Enter your name" type="text" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1 text-left">Phone Number</label>
+                    <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 transition-colors py-2 text-sm text-left" placeholder="+92 XXXXX XXXXX" type="tel" />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-left">
+                      <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1 text-left">City</label>
+                      <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 transition-colors py-2 text-sm text-left" placeholder="e.g. Lahore" type="text" />
+                    </div>
+                    <div className="text-left">
+                      <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1 text-left">Travelers</label>
+                      <select className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 transition-colors py-2 text-sm appearance-none text-left">
+                        <option>01 Person</option>
+                        <option selected>02 Persons</option>
+                        <option>04+ Persons</option>
+                      </select>
+                    </div>
+                  </div>
                   <button className="w-full bg-gradient-to-r from-secondary to-[#f6bd54] text-white py-4 rounded-md font-bold text-sm tracking-widest uppercase shadow-lg shadow-secondary/20 hover:scale-[1.02] transition-transform" type="submit">Send Inquiry</button>
                 </form>
+                <div className="mt-8 pt-8 border-t border-outline-variant/20 text-center">
+                  <p className="text-xs text-outline mb-4">Or connect instantly via</p>
+                  <a className="inline-flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors" href="#">
+                    <span className="material-symbols-outlined">chat</span>
+                    WhatsApp Support
+                  </a>
+                </div>
               </div>
             </div>
           </div>
