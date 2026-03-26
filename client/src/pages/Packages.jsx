@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Packages = () => {
   const [packages, setPackages] = useState([])
@@ -10,7 +11,7 @@ const Packages = () => {
   useEffect(() => {
     const fetchPackages = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/packages')
+        const res = await axios.get('/api/packages')
         setPackages(res.data)
       } catch (err) {
         console.error(err)

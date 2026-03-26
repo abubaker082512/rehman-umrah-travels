@@ -14,7 +14,7 @@ const AdminDashboard = () => {
 
   const fetchPackages = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/packages')
+      const res = await axios.get('/api/packages')
       setPackages(res.data)
     } catch (err) {
       console.error(err)
@@ -24,7 +24,7 @@ const AdminDashboard = () => {
   const handleAddPackage = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('http://localhost:5000/api/packages', newPackage)
+      await axios.post('/api/packages', newPackage)
       setNewPackage({ title: '', description: '', price: '', category: 'Economy', duration: '', location: '', imageUrl: '' })
       fetchPackages()
     } catch (err) {
@@ -34,7 +34,7 @@ const AdminDashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/packages/${id}`)
+      await axios.delete(`/api/packages/${id}`)
       fetchPackages()
     } catch (err) {
       console.error(err)
