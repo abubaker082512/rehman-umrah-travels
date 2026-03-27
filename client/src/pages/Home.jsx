@@ -92,8 +92,8 @@ const Home = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Economy */}
-          <div className="bg-surface-container-low group cursor-pointer">
-            <div className="relative h-64 overflow-hidden rounded-t-xl lg:rounded-tr-none">
+          <div className="bg-surface-container-low group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1">
+            <div className="relative h-64 overflow-hidden">
               <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4Q8F_FtsvuFZGVJy2M4mCNPoPdVIucrb-qLz9KMrRnHu2y4jEomHtxH3XbUIIyVb7fx_R8ZKzpO6JLW8a6r4u3ZLuupgq0zzie6njk5Tfw4CBH4smAeMF-b77uxEfjcwrfE0bWG20icpPBH2u6gYRsM9m3qcQKyoCWfFKdTlc4W1zTDVSW_X8tKo7HpcqPSaj9bPBqhdRYe8qu6UWesjRMAZC1_LwgtnBhuYiFBjcxkTV8czsNli9D9lT7GLzq0jlRAJJ2hm4V7JG" alt="Economy" />
               <div className="absolute top-4 left-4 bg-[#013334] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">Economy</div>
             </div>
@@ -110,7 +110,7 @@ const Home = () => {
             </div>
           </div>
           {/* 3 Star */}
-          <div className="bg-surface-container-low group cursor-pointer border rounded-xl overflow-hidden">
+          <div className="bg-surface-container-low group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1">
             <div className="relative h-64 overflow-hidden">
               <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgeIqrjd4iZZprHhl6dvsS6TlHxSPpsRmm2Q4eJ0zVcfSsCDiAzFs_uTdG6viogBc4vtlsa9ul1Nk18k6JBhkP-xeMEttf2BqJ1jOG8pQ7cnBf6Ao3WlNsQPFRlNK9j0rbGdGfbKOnG3rdjzGKSfNDY5wKpvPKQTepPxMwUq1cLbg-SxCK5TQ5rRrkARlzPWy_VGIQZQUGsTi_0CoUUzDbyZHY6No-V79Ao-q62kF8A-wSQe15IlpAbZe8_-0Ezat1qZmyvj1c8ZAL" alt="3 Star" />
               <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">3 Star</div>
@@ -128,7 +128,7 @@ const Home = () => {
             </div>
           </div>
           {/* 4 Star */}
-          <div className="bg-surface-container-low group cursor-pointer border rounded-xl overflow-hidden">
+          <div className="bg-surface-container-low group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1">
             <div className="relative h-64 overflow-hidden">
               <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeKAHUE-PrOvKyjvjA04CL1jr6-62S2Gq4OvwV7zH1lF0mlQjEH7m1ZghycTUjRSVtzOY5suj3gVo-PrLaXmzs2tiIW_cYJr-NSNa5pH_qsN7H7frVEt78dEk6MhB2J8Uj-Q6hheong-lQY2BU3RxegAaq6Na8Zwccq_7Zr1ZDRzOEpbEtIn9Q5EYOtLqjMcX5SNtiZrfZ4GWoCX7gId6_Df31VjHmy08Fi8IbzJqwShYHYNoTk4A1tdg-YSEzWH5ct9SdGFD2b2sQ" alt="4 Star" />
               <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">4 Star</div>
@@ -146,7 +146,7 @@ const Home = () => {
             </div>
           </div>
           {/* 5 Star */}
-          <div className="bg-surface-container-low group cursor-pointer border rounded-xl overflow-hidden">
+          <div className="bg-surface-container-low group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1">
             <div className="relative h-64 overflow-hidden">
               <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1TFYjcNCU1jatQI4D8YLqCDfuhWfk0cT0dMGoRBMfve9VV0lv0YzvCp9dIMEq-a05foGyu6nL0GphRF9kWJmOOUJoKETJpCojoqxl5XPI7FK5iE3wLkyS0ey_5yC3zsz96FsqZGofrd-XWR16bcukQBkRotmsfTZaX-xmFrjfUhi7Zazqb_BXhe8zYK74QxEmECK8vJaAXdzHQmhvAW-KyDZXPkR43tt1afbIF6YM7PBCOBBy-l6TuMWtejlRDSj5vmKIidlF72YJ" alt="Luxury" />
               <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">Luxury</div>
