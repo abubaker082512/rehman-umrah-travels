@@ -1,8 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams, Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import axios from 'axios'
 
 const PackageDetail = () => {
+  const { id } = useParams()
+  const [pkg, setPkg] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    setLoading(true)
+    axios.get(`/api/packages/${id}`)
+      .then(res => {
+        setPkg(res.data)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error('Error fetching package details:', err)
+        setError('Failed to load package details. It may have been removed.')
+        setLoading(false)
+      })
+  }, [id])
+
+  if (loading) {
+    return (
+      <div className="bg-surface font-manrope text-on-surface min-h-screen flex items-center justify-center">
+        <Navbar />
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-[#CD9933] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="font-notoSerif text-xl text-primary">Loading Package Details...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !pkg) {
+    return (
+      <div className="bg-surface font-manrope text-on-surface min-h-screen flex flex-col items-center justify-center">
+        <Navbar />
+        <div className="text-center mt-24">
+          <span className="material-symbols-outlined text-6xl text-error mb-4 block">error</span>
+          <h2 className="font-notoSerif text-3xl text-primary mb-4">{error || 'Package Not Found'}</h2>
+          <Link to="/packages" className="bg-[#CD9933] text-white px-8 py-3 rounded font-bold uppercase tracking-widest text-sm inline-block mt-4">Browse All Packages</Link>
+        </div>
+      </div>
+    )
+  }
+
+  const price = typeof pkg.price === 'number' ? pkg.price : (parseFloat(String(pkg.price).replace(/[^0-9.]/g, '')) || 0)
+  const hotelName = pkg.hotel_name || pkg.hotelName || pkg.location || 'Premium Hotel'
+  const distance = pkg.distance_from_haram || pkg.distanceFromHaram || 'Steps to Haram'
+
   return (
     <div className="bg-surface font-manrope text-on-surface">
       <Navbar />
@@ -13,29 +63,29 @@ const PackageDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
             <div className="lg:col-span-8">
               <div className="flex items-center gap-4 mb-4">
-                <span className="bg-secondary-container/20 text-secondary font-bold text-xs tracking-widest uppercase px-3 py-1 rounded">Premium Collection</span>
+                <span className="bg-secondary-container/20 text-secondary font-bold text-xs tracking-widest uppercase px-3 py-1 rounded">{pkg.category || 'Premium Collection'}</span>
                 <div className="flex text-[#CD9933]">
-                  {[1, 2, 3, 4, 5].map(i => (
+                  {Array.from({ length: pkg.stars || 5 }).map((_, i) => (
                     <span key={i} className="material-symbols-outlined text-sm" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
                   ))}
                 </div>
               </div>
-              <h1 className="font-notoSerif text-5xl md:text-7xl text-primary leading-tight tracking-tight">10 Days Premium<br/><span className="text-[#CD9933]">Umrah Journey</span></h1>
+              <h1 className="font-notoSerif text-5xl md:text-7xl text-primary leading-tight tracking-tight">{pkg.title || 'Umrah Journey'}</h1>
             </div>
             <div className="lg:col-span-4 lg:text-right">
               <p className="text-outline font-medium mb-2">Starting from</p>
-              <div className="font-notoSerif text-4xl text-primary">PKR 485,000 <span className="text-lg font-manrope text-outline font-normal">/ person</span></div>
+              <div className="font-notoSerif text-4xl text-primary">PKR {price.toLocaleString()} <span className="text-lg font-manrope text-outline font-normal">/ person</span></div>
             </div>
           </div>
 
           {/* Asymmetric Gallery */}
           <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-10 gap-4 h-[600px]">
             <div className="md:col-span-2 lg:col-span-5 rounded-xl overflow-hidden relative group">
-              <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_umMwNrlCdZQQHw-gkNmIlvZ1RKy4ljfjZeHztDWu0Wgt9uTVwcC8SCXvvdKqtiQ8v5oNtA7grwHPXPG15OXDFYiqHvhKUVG17-erSKGUK7O2pmJY9mWZ8iyijELGBy-NB61ei7aEg5jsvtpBXbL0ND3vwZ9Ne6f9J7_W6D_0YJrVDA7ESbokU67XJ37dAjbcdx3wsCdGyi4dHRNDLRtl1twWIlv-M0rr3r0kY69jtOec16g7y6ZNh513s3PPjOvnH00dJr_aRChe" alt="Makkah" />
+              <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={pkg.image_url || pkg.image || "https://lh3.googleusercontent.com/aida-public/AB6AXuC_umMwNrlCdZQQHw-gkNmIlvZ1RKy4ljfjZeHztDWu0Wgt9uTVwcC8SCXvvdKqtiQ8v5oNtA7grwHPXPG15OXDFYiqHvhKUVG17-erSKGUK7O2pmJY9mWZ8iyijELGBy-NB61ei7aEg5jsvtpBXbL0ND3vwZ9Ne6f9J7_W6D_0YJrVDA7ESbokU67XJ37dAjbcdx3wsCdGyi4dHRNDLRtl1twWIlv-M0rr3r0kY69jtOec16g7y6ZNh513s3PPjOvnH00dJr_aRChe"} alt={pkg.title} />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
               <div className="absolute bottom-6 left-6 text-white text-left">
-                <p className="font-notoSerif text-2xl text-left">Makkah Al-Mukarramah</p>
-                <p className="text-sm text-white/80 text-left">5 Nights Stay</p>
+                <p className="font-notoSerif text-2xl text-left">{pkg.location || 'Makkah Al-Mukarramah'}</p>
+                <p className="text-sm text-white/80 text-left">{pkg.duration || 'Full Stay'}</p>
               </div>
             </div>
             <div className="md:col-span-2 lg:col-span-3 rounded-xl overflow-hidden relative group">
@@ -67,17 +117,26 @@ const PackageDetail = () => {
             <div className="lg:col-span-8 space-y-24">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
-                  <span className="material-symbols-outlined text-secondary text-3xl mb-4 text-left">calendar_today</span>
+                  <span className="material-symbols-outlined text-secondary text-3xl mb-4 text-left block">calendar_today</span>
                   <h3 className="font-notoSerif text-lg mb-1 text-left">Duration</h3>
-                  <p className="text-outline text-sm text-left">10 Days / 9 Nights</p>
+                  <p className="text-outline text-sm text-left">{pkg.duration || 'Custom'}</p>
                 </div>
-                {/* ... other detail boxes ... */}
+                <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+                  <span className="material-symbols-outlined text-secondary text-3xl mb-4 text-left block">hotel</span>
+                  <h3 className="font-notoSerif text-lg mb-1 text-left">Accommodation</h3>
+                  <p className="text-outline text-sm text-left">{pkg.category || 'Premium'}</p>
+                </div>
+                <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+                  <span className="material-symbols-outlined text-secondary text-3xl mb-4 text-left block">flight</span>
+                  <h3 className="font-notoSerif text-lg mb-1 text-left">Flight</h3>
+                  <p className="text-outline text-sm text-left">{pkg.airline || 'Included'}</p>
+                </div>
               </div>
               
               {/* Hotel Info */}
               <div>
                 <h2 className="font-notoSerif text-3xl mb-12 flex items-center gap-4 text-left">
-                  Premium Accommodations
+                  {pkg.category === '5 Star' ? 'Premium Accommodations' : 'Comfortable Stays'}
                   <span className="h-px flex-grow bg-outline-variant/30"></span>
                 </h2>
                 <div className="space-y-12">
@@ -86,12 +145,12 @@ const PackageDetail = () => {
                     <div className="flex-grow text-left">
                       <div className="flex justify-between items-start">
                         <div>
-                          <p className="text-secondary text-xs font-bold uppercase tracking-widest mb-1 text-left">Madinah Munawwarah</p>
-                          <h4 className="font-notoSerif text-2xl mb-2 text-left">Anwar Al Madinah Movenpick</h4>
+                          <p className="text-secondary text-xs font-bold uppercase tracking-widest mb-1 text-left">Makkah & Madinah</p>
+                          <h4 className="font-notoSerif text-2xl mb-2 text-left">{hotelName}</h4>
                         </div>
-                        <div className="bg-surface-container text-xs px-2 py-1 rounded font-bold">Step to Masjid Nabawi</div>
+                        <div className="bg-surface-container text-xs px-2 py-1 rounded font-bold">{distance}</div>
                       </div>
-                      <p className="text-outline text-sm leading-relaxed mb-4 text-left">Centrally located in the heart of the Madinah shopping district, this hotel provides direct access to the Ladies' Entrance of the Holy Mosque.</p>
+                      <p className="text-outline text-sm leading-relaxed mb-4 text-left">{pkg.description || 'Centrally located accommodations for your spiritual journey.'}</p>
                       <div className="flex gap-4">
                         <span className="flex items-center gap-1 text-xs font-bold"><span className="material-symbols-outlined text-sm">ac_unit</span> Central AC</span>
                         <span className="flex items-center gap-1 text-xs font-bold"><span className="material-symbols-outlined text-sm">room_service</span> 24/7 Support</span>
@@ -106,22 +165,12 @@ const PackageDetail = () => {
                 <div>
                   <h3 className="font-notoSerif text-xl mb-6 text-left">What's Included</h3>
                   <ul className="space-y-4">
-                    <li className="flex items-center gap-3 text-sm text-left">
-                      <span className="material-symbols-outlined text-secondary text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                      Electronic Umrah Visa Processing
-                    </li>
-                    <li className="flex items-center gap-3 text-sm text-left">
-                      <span className="material-symbols-outlined text-secondary text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                      Round-trip International Flights
-                    </li>
-                    <li className="flex items-center gap-3 text-sm text-left">
-                      <span className="material-symbols-outlined text-secondary text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                      VIP Private Ground Transportation
-                    </li>
-                    <li className="flex items-center gap-3 text-sm text-left">
-                      <span className="material-symbols-outlined text-secondary text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                      Guided Ziyarat in Makkah & Madinah
-                    </li>
+                    {(pkg.includes || ['Visa Processing', 'Flights', 'Ground Transport', 'Guided Tours']).map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-3 text-sm text-left">
+                        <span className="material-symbols-outlined text-secondary text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                        {item}
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <div>
@@ -135,34 +184,33 @@ const PackageDetail = () => {
                       <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
                       Travel and health insurance
                     </li>
+                    <li className="flex items-center gap-3 text-sm text-outline text-left">
+                      <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
+                      Excess baggage fees
+                    </li>
                   </ul>
                 </div>
               </div>
 
               {/* Itinerary Timeline */}
-              <div className="text-left">
-                <h2 className="font-notoSerif text-3xl mb-12 text-left">Journey Itinerary</h2>
-                <div className="relative pl-8 border-l-2 border-dashed border-secondary/30 ml-4 space-y-12">
-                  <div className="relative text-left">
-                    <div className="absolute -left-[41px] top-0 w-4 h-4 bg-secondary rounded-full ring-4 ring-secondary/20"></div>
-                    <p className="text-secondary font-bold text-xs uppercase mb-1 text-left">Day 01</p>
-                    <h4 className="font-notoSerif text-lg mb-2 text-left">Arrival & Makkah Check-in</h4>
-                    <p className="text-outline text-sm leading-relaxed text-left">Arrival at Jeddah Airport, VIP transfer to Makkah. Perform Umrah under guidance.</p>
-                  </div>
-                  <div className="relative text-left">
-                    <div className="absolute -left-[41px] top-0 w-4 h-4 bg-secondary rounded-full ring-4 ring-secondary/20"></div>
-                    <p className="text-secondary font-bold text-xs uppercase mb-1 text-left">Day 02 - 05</p>
-                    <h4 className="font-notoSerif text-lg mb-2 text-left">Makkah Devotion & Ziyarat</h4>
-                    <p className="text-outline text-sm leading-relaxed text-left">Daily prayers in Haram. Day 3 includes guided Ziyarat to Mina, Arafat, and Muzdalifah.</p>
-                  </div>
-                  <div className="relative text-left">
-                    <div className="absolute -left-[41px] top-0 w-4 h-4 bg-[#CD9933] rounded-full ring-4 ring-[#CD9933]/20"></div>
-                    <p className="text-secondary font-bold text-xs uppercase mb-1 text-left">Day 10</p>
-                    <h4 className="font-notoSerif text-lg mb-2 text-left">Final Departure</h4>
-                    <p className="text-outline text-sm leading-relaxed text-left">Final prayers at Masjid Nabawi. Private transfer to Madinah Airport.</p>
+              {pkg.itinerary && pkg.itinerary.length > 0 && (
+                <div className="text-left">
+                  <h2 className="font-notoSerif text-3xl mb-12 text-left">Journey Itinerary</h2>
+                  <div className="relative pl-8 border-l-2 border-dashed border-secondary/30 ml-4 space-y-12">
+                    {pkg.itinerary.map((step, idx) => {
+                      const isLast = idx === pkg.itinerary.length - 1;
+                      return (
+                        <div key={idx} className="relative text-left">
+                          <div className={`absolute -left-[41px] top-0 w-4 h-4 rounded-full ring-4 ${isLast ? 'bg-[#CD9933] ring-[#CD9933]/20' : 'bg-secondary ring-secondary/20'}`}></div>
+                          <p className="text-secondary font-bold text-xs uppercase mb-1 text-left">{step.day}</p>
+                          <h4 className="font-notoSerif text-lg mb-2 text-left">{step.title}</h4>
+                          <p className="text-outline text-sm leading-relaxed text-left">{step.description}</p>
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Right Column: Booking Form */}
