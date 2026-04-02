@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
+import EditorialHero from '../components/EditorialHero'
 
 const staticPackages = [
   {
@@ -106,6 +107,12 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <EditorialHero
+        bgImage="https://lh3.googleusercontent.com/aida-public/AB6AXuBubkTzEiGLq9ecV5_P_POI2om-XGLtBdG4UhZ6Z2FTNoko77ZP0hrzDRjD1aq1xPF-psQ32LnNFxg5sr3ZK0lrA7GhF4a595_Mgjp4euDQqJzGNNOMK2lPWFL6tklR8Q5zp3ootIYqJ-zH4z2AJTQgItEet4mbPUh2a-2NMMX7DqqaMpz4LVQkMc_2Mhd5Xlaw5dikwbzDN1ckBtHfsFsVohx7APcLJLU0OSBcS_E6dfIgQwo_aIUkSmIgk_cNCfeXZpd20jDUPAvp"
+        title="Our Spiritual Journey"
+        subtitle="A legacy of service, built on the foundation of faith and the honor of serving Allah's guests."
+      />
 
       {/* Quick Package Search */}
       <div className="relative z-20 max-w-6xl mx-auto -mt-24 px-4">
