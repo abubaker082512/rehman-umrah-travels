@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import logo from '../assets/Rehman Travel & Tours Logo.png'
+import logo from '../assets/Rehman Travel Logo.png'
 
 const Navbar = ({ isVersion2 = false }) => {
   const links = [
