@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { createClient } from '@supabase/supabase-js'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
+
+// Supabase client for image uploads
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+const supabase = (supabaseUrl && supabaseKey) ? createClient(supabaseUrl, supabaseKey) : null
 
 const tabs = [
   { id: 'packages', label: 'Umrah Packages', icon: 'mosque' },
@@ -11,6 +17,71 @@ const tabs = [
   { id: 'gallery', label: 'Gallery', icon: 'photo_library' },
   { id: 'blog', label: 'Blog', icon: 'article' },
 ]
+
+// Image Upload Component
+const ImageUpload = ({ value, onChange, label = 'Image' }) => {
+  const [uploading, setUploading] = useState(false)
+  const [preview, setPreview] = useState(value)
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+
+    if (supabase) {
+      // Upload to Supabase Storage
+      setUploading(true)
+      const fileExt = file.name.split('.').pop()
+      const fileName = `${Date.now()}.${fileExt}`
+      const { data, error } = await supabase.storage
+        .from('uploads')
+        .upload(fileName, file)
+
+      if (error) {
+        alert('Upload failed: ' + error.message)
+        setUploading(false)
+        return
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('uploads')
+        .getPublicUrl(data.path)
+
+      onChange(publicUrl)
+      setPreview(publicUrl)
+      setUploading(false)
+    } else {
+      // Fallback: convert to base64 data URL for preview
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        const dataUrl = reader.result
+        onChange(dataUrl)
+        setPreview(dataUrl)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  return (
+    <div className="space-y-2">
+      <label className="block text-xs font-bold uppercase tracking-widest text-outline">{label}</label>
+      <div className="flex items-center gap-4">
+        <label className="flex-1 flex items-center gap-2 bg-surface border-0 border-b border-outline-variant focus-within:border-[#CD9933] py-2 px-1 cursor-pointer">
+          <span className="material-symbols-outlined text-outline text-sm">cloud_upload</span>
+          <span className="text-sm text-on-surface-variant truncate flex-1">
+            {uploading ? 'Uploading...' : 'Choose file'}
+          </span>
+          <input type="file" accept="image/*" onChange={handleFileChange} disabled={uploading} className="hidden" />
+        </label>
+        {preview && (
+          <img src={preview} alt="Preview" className="w-12 h-12 object-cover rounded-lg border border-outline-variant" />
+        )}
+      </div>
+      {value && !value.startsWith('data:') && (
+        <input className="w-full bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-xs text-on-surface-variant" value={value} onChange={e => onChange(e.target.value)} placeholder="Or paste image URL" />
+      )}
+    </div>
+  )
+}
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('packages')
@@ -71,7 +142,10 @@ const AdminDashboard = () => {
   const handleAddPackage = async (e) => {
     e.preventDefault()
     try {
-      await axios.post(`${API_BASE}/api/packages`, packageForm, {
+      await axios.post(`${API_BASE}/api/packages`, {
+        ...packageForm,
+        price: parseFloat(packageForm.price) || 0
+      }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       setPackageForm({ title: '', description: '', price: '', category: 'Economy', duration: '', location: '', hotel_name: '', distance_from_haram: '', image_url: '', airline: '', stars: 4, badge: '' })
@@ -128,6 +202,22 @@ const AdminDashboard = () => {
               </button>
             ))}
           </nav>
+
+          {/* Supabase Status */}
+          <div className="mt-8 p-4 bg-surface-container-low rounded-lg">
+            <p className="text-xs font-bold text-outline uppercase tracking-widest mb-2">Storage</p>
+            {supabase ? (
+              <p className="text-xs text-green-600 flex items-center gap-1">
+                <span className="material-symbols-outlined text-sm">cloud_done</span>
+                Supabase Connected
+              </p>
+            ) : (
+              <p className="text-xs text-orange-500 flex items-center gap-1">
+                <span className="material-symbols-outlined text-sm">warning</span>
+                Base64 Mode
+              </p>
+            )}
+          </div>
         </aside>
 
         {/* Main Content */}
@@ -156,7 +246,16 @@ const AdminDashboard = () => {
                     <option>December</option>
                   </select>
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Airline" value={packageForm.airline} onChange={e => setPackageForm({...packageForm, airline: e.target.value})} />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Image URL" value={packageForm.image_url} onChange={e => setPackageForm({...packageForm, image_url: e.target.value})} />
+                  
+                  {/* Image Upload */}
+                  <div className="md:col-span-2">
+                    <ImageUpload 
+                      value={packageForm.image_url} 
+                      onChange={(val) => setPackageForm({...packageForm, image_url: val})}
+                      label="Package Image"
+                    />
+                  </div>
+
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Badge (e.g., Best Seller)" value={packageForm.badge} onChange={e => setPackageForm({...packageForm, badge: e.target.value})} />
                   <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Description" rows={3} value={packageForm.description} onChange={e => setPackageForm({...packageForm, description: e.target.value})} required />
                   <button type="submit" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Add Package</button>
@@ -177,7 +276,7 @@ const AdminDashboard = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {packages.map(pkg => (
                       <div key={pkg.id} className="bg-surface-container-lowest p-4 rounded-lg editorial-shadow flex gap-4">
-                        <img src={pkg.image_url || pkg.image} alt={pkg.title} className="w-24 h-24 object-cover rounded-lg" />
+                        <img src={pkg.image_url || 'https://via.placeholder.com/96'} alt={pkg.title} className="w-24 h-24 object-cover rounded-lg" />
                         <div className="flex-1">
                           <h4 className="font-bold text-primary">{pkg.title}</h4>
                           <p className="text-sm text-on-surface-variant">{pkg.category} • {pkg.duration}</p>
@@ -201,13 +300,22 @@ const AdminDashboard = () => {
               <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
                 <h3 className="font-notoSerif text-xl font-bold mb-6">Add New Tour</h3>
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Tour Title (e.g., Turkey Tour)" />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Subtitle (e.g., Istanbul, Cappadocia)" />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Duration (e.g., 10 Days)" />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Price (PKR)" />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Image URL" />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Highlights (comma separated)" />
-                  <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Description" rows={3} />
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Tour Title (e.g., Turkey Tour)" value={tourForm.title} onChange={e => setTourForm({...tourForm, title: e.target.value})} />
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Subtitle (e.g., Istanbul, Cappadocia)" value={tourForm.subtitle} onChange={e => setTourForm({...tourForm, subtitle: e.target.value})} />
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Duration (e.g., 10 Days)" value={tourForm.duration} onChange={e => setTourForm({...tourForm, duration: e.target.value})} />
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Price (PKR)" value={tourForm.price} onChange={e => setTourForm({...tourForm, price: e.target.value})} />
+                  
+                  {/* Image Upload */}
+                  <div className="md:col-span-2">
+                    <ImageUpload 
+                      value={tourForm.image_url} 
+                      onChange={(val) => setTourForm({...tourForm, image_url: val})}
+                      label="Tour Image"
+                    />
+                  </div>
+
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Highlights (comma separated)" value={tourForm.highlights} onChange={e => setTourForm({...tourForm, highlights: e.target.value})} />
+                  <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Description" rows={3} value={tourForm.description} onChange={e => setTourForm({...tourForm, description: e.target.value})} />
                   <button type="button" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Add Tour</button>
                 </form>
               </div>
@@ -225,11 +333,11 @@ const AdminDashboard = () => {
               <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
                 <h3 className="font-notoSerif text-xl font-bold mb-6">Add New Visa Service</h3>
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Visa Title (e.g., Umrah Visa)" />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Processing Time" />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Fee (PKR)" />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Required Documents (comma separated)" />
-                  <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Description" rows={3} />
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Visa Title (e.g., Umrah Visa)" value={visaForm.title} onChange={e => setVisaForm({...visaForm, title: e.target.value})} />
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Processing Time" value={visaForm.processing_time} onChange={e => setVisaForm({...visaForm, processing_time: e.target.value})} />
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Fee (PKR)" value={visaForm.fee} onChange={e => setVisaForm({...visaForm, fee: e.target.value})} />
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Required Documents (comma separated)" value={visaForm.documents} onChange={e => setVisaForm({...visaForm, documents: e.target.value})} />
+                  <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Description" rows={3} value={visaForm.description} onChange={e => setVisaForm({...visaForm, description: e.target.value})} />
                   <button type="button" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Add Visa Service</button>
                 </form>
               </div>
@@ -247,9 +355,16 @@ const AdminDashboard = () => {
               <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
                 <h3 className="font-notoSerif text-xl font-bold mb-6">Add New Gallery Image</h3>
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Image URL" />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Label / Title" />
-                  <select className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm">
+                  {/* Image Upload */}
+                  <div className="md:col-span-2">
+                    <ImageUpload 
+                      value={galleryForm.src} 
+                      onChange={(val) => setGalleryForm({...galleryForm, src: val})}
+                      label="Gallery Image"
+                    />
+                  </div>
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Label / Title" value={galleryForm.label} onChange={e => setGalleryForm({...galleryForm, label: e.target.value})} />
+                  <select className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" value={galleryForm.category} onChange={e => setGalleryForm({...galleryForm, category: e.target.value})}>
                     <option>Kaaba</option>
                     <option>Masjid Nabawi</option>
                     <option>Ziyarat</option>
@@ -273,18 +388,27 @@ const AdminDashboard = () => {
               <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
                 <h3 className="font-notoSerif text-xl font-bold mb-6">Add New Blog Post</h3>
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Post Title" />
-                  <select className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm">
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Post Title" value={blogForm.title} onChange={e => setBlogForm({...blogForm, title: e.target.value})} />
+                  <select className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" value={blogForm.category} onChange={e => setBlogForm({...blogForm, category: e.target.value})}>
                     <option>Guides</option>
                     <option>Planning</option>
                     <option>Destinations</option>
                     <option>Packages</option>
                     <option>History</option>
                   </select>
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Read Time (e.g., 5 min read)" />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Image URL" />
-                  <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Excerpt" rows={2} />
-                  <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Full Content" rows={4} />
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Read Time (e.g., 5 min read)" value={blogForm.read_time} onChange={e => setBlogForm({...blogForm, read_time: e.target.value})} />
+                  
+                  {/* Image Upload */}
+                  <div className="md:col-span-2">
+                    <ImageUpload 
+                      value={blogForm.image_url} 
+                      onChange={(val) => setBlogForm({...blogForm, image_url: val})}
+                      label="Featured Image"
+                    />
+                  </div>
+
+                  <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Excerpt" rows={2} value={blogForm.excerpt} onChange={e => setBlogForm({...blogForm, excerpt: e.target.value})} />
+                  <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Full Content" rows={4} value={blogForm.content} onChange={e => setBlogForm({...blogForm, content: e.target.value})} />
                   <button type="button" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Publish Post</button>
                 </form>
               </div>
