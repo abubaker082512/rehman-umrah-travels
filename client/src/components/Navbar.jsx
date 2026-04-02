@@ -2,9 +2,9 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
 // Inlined SVG logo using the project color tokens for a modern, dynamic logo.
-const LogoSVG = () => (
-  <svg width="150" height="40" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg" aria-label="Royal Umrah Travel Logo">
-    <defs>
+  const LogoSVG = () => (
+    <svg width="150" height="40" viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg" aria-label="Royal Umrah Travel Logo">
+      <defs>
       <linearGradient id="gradGold" x1="0" x2="1" y1="0" y2="0">
         <stop stopColor="#CD9933" offset="0%"/>
         <stop stopColor="#E6B24A" offset="100%"/>
@@ -14,16 +14,15 @@ const LogoSVG = () => (
         <stop stopColor="#006064" offset="100%"/>
       </linearGradient>
     </defs>
-    <!-- decorative mark -->
     <path d="M20,60 C40,20 90,20 140,40" fill="none" stroke="url(#gradTeal)" strokeWidth="6" strokeLinecap="round"/>
     <circle cx="28" cy="60" r="6" fill="#CD9933"/>
     <circle cx="36" cy="60" r="6" fill="#CD9933"/>
     <circle cx="44" cy="60" r="6" fill="#CD9933"/>
-    <!-- wordmark -->
-    <text x="70" y="48" font-family="Georgia, serif" font-size="36" fill="#CD9933">ROYAL</text>
-    <text x="70" y="75" font-family="Nunito, system-ui, sans-serif" font-size="32" fill="#013334">UMRAH TRAVEL</text>
-  </svg>
-)
+    {/* wordmark */}
+    <text x="70" y="48" fontFamily="Georgia, serif" fontSize="36" fill="#CD9933">ROYAL</text>
+    <text x="70" y="75" fontFamily="Nunito, system-ui, sans-serif" fontSize="32" fill="#013334">UMRAH TRAVEL</text>
+    </svg>
+  )
 
 const Navbar = ({ isVersion2 = false }) => {
   const links = [
