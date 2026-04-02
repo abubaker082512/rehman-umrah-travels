@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
 
+const API_BASE = import.meta.env.VITE_API_URL || ''
+
 const staticPackages = [
   {
     id: 1,
@@ -52,7 +54,7 @@ const Home = () => {
 
   useEffect(() => {
     // Fetch packages from backend
-    axios.get('/api/packages')
+    axios.get(`${API_BASE}/api/packages`)
       .then(res => {
         if (Array.isArray(res.data) && res.data.length > 0) {
           setPackages(res.data)

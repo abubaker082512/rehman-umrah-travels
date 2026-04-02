@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+const API_BASE = import.meta.env.VITE_API_URL || ''
+
 const tabs = [
   { id: 'packages', label: 'Umrah Packages', icon: 'mosque' },
   { id: 'tours', label: 'International Tours', icon: 'flight' },
@@ -56,7 +58,7 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     setLoading(true)
     try {
-      const res = await axios.get('/api/packages', {
+      const res = await axios.get(`${API_BASE}/api/packages`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       setPackages(Array.isArray(res.data) ? res.data : [])
@@ -69,7 +71,7 @@ const AdminDashboard = () => {
   const handleAddPackage = async (e) => {
     e.preventDefault()
     try {
-      await axios.post('/api/packages', packageForm, {
+      await axios.post(`${API_BASE}/api/packages`, packageForm, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       setPackageForm({ title: '', description: '', price: '', category: 'Economy', duration: '', location: '', hotel_name: '', distance_from_haram: '', image_url: '', airline: '', stars: 4, badge: '' })
@@ -83,7 +85,7 @@ const AdminDashboard = () => {
   const handleDeletePackage = async (id) => {
     if (!confirm('Are you sure you want to delete this package?')) return
     try {
-      await axios.delete(`/api/packages/${id}`, {
+      await axios.delete(`${API_BASE}/api/packages/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       })
       fetchData()

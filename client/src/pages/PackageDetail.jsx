@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
 
+const API_BASE = import.meta.env.VITE_API_URL || ''
+
 const staticPackages = [
   {
     id: 1,
@@ -110,7 +112,7 @@ const PackageDetail = () => {
 
   useEffect(() => {
     setLoading(true)
-    axios.get(`/api/packages/${id}`)
+    axios.get(`${API_BASE}/api/packages/${id}`)
       .then(res => {
         setPkg(res.data)
         setLoading(false)
