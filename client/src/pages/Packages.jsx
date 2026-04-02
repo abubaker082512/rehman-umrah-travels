@@ -137,12 +137,12 @@ const Packages = () => {
 
                 return (
                   <div key={pkg.id || i} className="bg-surface-container-lowest editorial-shadow rounded-xl overflow-hidden flex flex-col group">
-                    <div className="relative h-72 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src={image} alt={pkg.title || pkg.name} />
-                      {badge && (
-                        <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded`}>{badge}</div>
-                      )}
-                    </div>
+                  <div className="relative h-72 overflow-hidden">
+                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={image} alt={pkg.title || pkg.name} />
+                    {badge && (
+                      <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded`}>{badge}</div>
+                    )}
+                  </div>
                     <div className="p-8 flex-1 flex flex-col">
                       <div className="flex justify-between items-start mb-4">
                         <div>
