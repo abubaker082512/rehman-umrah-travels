@@ -3,8 +3,22 @@
   "outputDirectory": "client/dist",
   "framework": null,
   "installCommand": "npm install",
+  "functions": {
+    "api/auth/login.js": {
+      "runtime": "nodejs18.x"
+    },
+    "api/health.js": {
+      "runtime": "nodejs18.x"
+    },
+    "api/packages.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/api/auth/login", "destination": "/api/auth/login" },
+    { "source": "/api/health", "destination": "/api/health" },
+    { "source": "/api/packages", "destination": "/api/packages" },
+    { "source": "/api/packages/:id", "destination": "/api/packages" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
