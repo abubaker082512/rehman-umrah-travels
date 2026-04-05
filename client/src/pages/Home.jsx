@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
 
+const API_BASE = import.meta.env.VITE_API_URL || ''
+
 const staticPackages = [
   {
     id: 1,
@@ -52,7 +54,7 @@ const Home = () => {
 
   useEffect(() => {
     // Fetch packages from backend
-    axios.get('/api/packages')
+    axios.get(`${API_BASE}/api/packages`)
       .then(res => {
         if (Array.isArray(res.data) && res.data.length > 0) {
           setPackages(res.data)
@@ -293,7 +295,7 @@ const Home = () => {
             <h2 className="font-notoSerif text-4xl font-bold text-primary">Voices of Gratitude</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-xl editorial-shadow">
+            <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
               <div className="flex gap-1 text-[#CD9933] mb-6">
                 {[...Array(5)].map((_, i) => (
                   <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
@@ -308,7 +310,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-white p-8 rounded-xl editorial-shadow">
+            <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
               <div className="flex gap-1 text-[#CD9933] mb-6">
                 {[...Array(5)].map((_, i) => (
                   <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
@@ -323,7 +325,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-white p-8 rounded-xl editorial-shadow">
+            <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
               <div className="flex gap-1 text-[#CD9933] mb-6">
                 {[...Array(5)].map((_, i) => (
                   <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>

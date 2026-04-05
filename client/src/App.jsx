@@ -8,6 +8,11 @@ import AdminLogin from './pages/Admin/Login'
 import AdminDashboard from './pages/Admin/Dashboard'
 import About from './pages/About'
 import Gallery from './pages/Gallery'
+import Blog from './pages/Blog'
+import VisaServices from './pages/VisaServices'
+import FAQ from './pages/FAQ'
+import Contact from './pages/Contact'
+import InternationalTours from './pages/InternationalTours'
 
 function App() {
   return (
@@ -21,6 +26,11 @@ function App() {
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/visa-services" element={<VisaServices />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/international-tours" element={<InternationalTours />} />
       </Routes>
     </Router>
   )

@@ -4,22 +4,126 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
 
+const API_BASE = import.meta.env.VITE_API_URL || ''
+
+const staticPackages = [
+  {
+    id: 1,
+    title: 'Premium 5-Star Executive',
+    location: 'Pullman ZamZam (150m from Haram)',
+    hotel_name: 'Pullman ZamZam Makkah',
+    distance_from_haram: '150m from Haram',
+    price: 485000,
+    days: '15 Days',
+    duration: '15 Days',
+    airline: 'Qatar Airways',
+    category: '5 Star',
+    stars: 5,
+    badge: 'Best Seller',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAdBRKj372X3XEdAkE-8DFUWUG3imKQ3ac1b9USL1W0C7BBcveBszqF8mJwUnrjm_5pqskUDnrMUG5yx4QEV-eq5AZXw1KY6sy0X29rpzsJ0PgTNtzNIKD6UJk5_i92ULJFJC4ETiDGG5sBM3I5psHDr_G9s4mWI7IBISEwh_FOp8XWve3y6kl_TDJzu-I1o55kkiAvkMjUJOG_qFJqigRHzs8XXys3tPtXSAhE7XP1c17NsdmgiYoT9NlK4oiCiDUJZtS4VqPVr2_y',
+    image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAdBRKj372X3XEdAkE-8DFUWUG3imKQ3ac1b9USL1W0C7BBcveBszqF8mJwUnrjm_5pqskUDnrMUG5yx4QEV-eq5AZXw1KY6sy0X29rpzsJ0PgTNtzNIKD6UJk5_i92ULJFJC4ETiDGG5sBM3I5psHDr_G9s4mWI7IBISEwh_FOp8XWve3y6kl_TDJzu-I1o55kkiAvkMjUJOG_qFJqigRHzs8XXys3tPtXSAhE7XP1c17NsdmgiYoT9NlK4oiCiDUJZtS4VqPVr2_y',
+    description: 'Experience the ultimate spiritual journey with our premium 5-star package. Stay at the iconic Pullman ZamZam hotel, just 150 meters from the Masjid Al-Haram.',
+    includes: ['E-Visa Processing', 'Return Flights (Qatar Airways)', 'VIP Ground Transfer', 'Guided Ziyarat', 'Daily Buffet Breakfast & Dinner', '24/7 Tour Manager Support'],
+    itinerary: [
+      { day: 'Day 01', title: 'Arrival & Makkah Check-in', description: 'Arrival at Jeddah Airport, VIP GMC transfer to Makkah. Perform Umrah under scholar guidance.' },
+      { day: 'Day 02 - 07', title: 'Makkah Devotion', description: 'Daily prayers in Masjid Al-Haram. Guided Ziyarat to Mina, Arafat & Muzdalifah on Day 3.' },
+      { day: 'Day 08 - 13', title: 'Madinah Munawwarah', description: 'Transfer to Madinah. Stay at Anwar Al Madinah Movenpick. Daily Fajr at Masjid Nabawi.' },
+      { day: 'Day 14 - 15', title: 'Departure', description: 'Final prayers at Masjid Nabawi. Farewell Tawaf in Makkah then transfer to airport.' }
+    ]
+  },
+  {
+    id: 2,
+    title: 'Silver 4-Star Comfort',
+    location: 'Al-Shohada Hotel (300m from Haram)',
+    hotel_name: 'Al-Shohada Hotel',
+    distance_from_haram: '300m from Haram',
+    price: 325000,
+    days: '10 Days',
+    duration: '10 Days',
+    airline: 'Saudi Airlines',
+    category: '4 Star',
+    stars: 4,
+    badge: 'Popular Choice',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA3_91cdPdyWpCst8uVkcSEkdZVScCJV50Uz8dmehZ72dVc-AfHZbJoQzWGsgyEAxSfLd4WFy_TcxoatRlFL9pYi7TlRzV0SRDbRgWohXX1z0OTxHqAQTG9iS5gpGUB5Z_H6pitDxZUMKSXLEM0yFiSDg8vEdV9EQFTltpcz7I4kc00gPiHi3Ng2O0p0E9HLJPYcB4wTjtqGLQVhxvHDrhAIguL_9WFBZysggur9-whO305qAImVClX1qsUEVVKYQmL9mKjsOC2BAkA',
+    image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA3_91cdPdyWpCst8uVkcSEkdZVScCJV50Uz8dmehZ72dVc-AfHZbJoQzWGsgyEAxSfLd4WFy_TcxoatRlFL9pYi7TlRzV0SRDbRgWohXX1z0OTxHqAQTG9iS5gpGUB5Z_H6pitDxZUMKSXLEM0yFiSDg8vEdV9EQFTltpcz7I4kc00gPiHi3Ng2O0p0E9HLJPYcB4wTjtqGLQVhxvHDrhAIguL_9WFBZysggur9-whO305qAImVClX1qsUEVVKYQmL9mKjsOC2BAkA',
+    description: 'Our most popular family package offering the perfect balance of comfort and value. Stay at Al-Shohada Hotel, just 300 meters from the Haram.',
+    includes: ['E-Visa Processing', 'Return Flights (Saudi Airlines)', 'Shared Ground Transfer', 'Guided Ziyarat Makkah', 'Breakfast Included', '24/7 Support Line'],
+    itinerary: [
+      { day: 'Day 01', title: 'Arrival & Umrah', description: 'Arrival at Jeddah, transfer to Makkah hotel. Perform Umrah with group guide.' },
+      { day: 'Day 02 - 05', title: 'Makkah Prayers', description: 'All five prayers in Haram. Full-day Ziyarat of historical Makkah sites on Day 3.' },
+      { day: 'Day 06 - 09', title: 'Madinah Stay', description: 'Transfer to Madinah. Prayers at Masjid Nabawi, Ziyarat of Uhud, Quba mosque & more.' },
+      { day: 'Day 10', title: 'Departure', description: 'Check-out and transfer to airport. Farewell dua with group.' }
+    ]
+  },
+  {
+    id: 3,
+    title: 'Spiritual Ramadan 2024',
+    location: 'Full Ramadan in Makkah & Madinah',
+    hotel_name: 'Dar Al Eiman Grand',
+    distance_from_haram: '200m from Haram',
+    price: 750000,
+    days: '30 Days',
+    duration: '30 Days',
+    airline: 'Full Iftar/Suhur',
+    category: 'Ramadan',
+    stars: 4,
+    badge: 'Limited',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD0LUe8DBs6mr578_8-2rCv85B1fSGUnt1I0JeY6VCP13gvKcXOSuQN20B8yyCGUalnauFjp-7PXrQHfZc81fClbi4Y51FKF3AgmNo_WAvbPfWwlMksw02OxLGeliL9fXwIDQy6zi6mBt72o6pbuQfNejTb2P8-MsB_LzXSulKKW6JIrcuX_AVIxvZtOvVNTcRjpRsjWlgLthPSmBMS7LQni7NObK0Z2NVuXC1Fwpyo0DA1bzO5JkQdnTpwDyIBxSRfImfbwrXaNF59',
+    image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD0LUe8DBs6mr578_8-2rCv85B1fSGUnt1I0JeY6VCP13gvKcXOSuQN20B8yyCGUalnauFjp-7PXrQHfZc81fClbi4Y51FKF3AgmNo_WAvbPfWwlMksw02OxLGeliL9fXwIDQy6zi6mBt72o6pbuQfNejTb2P8-MsB_LzXSulKKW6JIrcuX_AVIxvZtOvVNTcRjpRsjWlgLthPSmBMS7LQni7NObK0Z2NVuXC1Fwpyo0DA1bzO5JkQdnTpwDyIBxSRfImfbwrXaNF59',
+    description: 'Experience the blessed month of Ramadan in the holy cities. Full iftar and suhoor provided, with special Taraweeh prayers at Masjid Al-Haram.',
+    includes: ['E-Visa Processing', 'Return Flights', 'Hotel Accommodation', 'Full Iftar & Suhur', 'Guided Ziyarat', '24/7 Support'],
+    itinerary: [
+      { day: 'Day 01', title: 'Arrival & Umrah', description: 'Arrival at Jeddah, transfer to Makkah. Perform Umrah upon arrival.' },
+      { day: 'Day 02 - 15', title: 'Ramadan in Makkah', description: 'Fast in the holy month. Taraweeh at Haram. Ziyarat of historical sites.' },
+      { day: 'Day 16 - 28', title: 'Madinah Stay', description: 'Transfer to Madinah for remaining Ramadan. Iftar at Masjid Nabawi.' },
+      { day: 'Day 29 - 30', title: 'Eid & Departure', description: 'Celebrate Eid Al-Fitr in Madinah. Departure after Eid prayers.' }
+    ]
+  },
+  {
+    id: 4,
+    title: 'Royal Suites Collection',
+    location: 'Raffles Makkah (Inside Clock Tower)',
+    hotel_name: 'Raffles Makkah',
+    distance_from_haram: 'Inside Clock Tower',
+    price: 980000,
+    days: '07 Days',
+    duration: '07 Days',
+    airline: 'Private GMC Transfer',
+    category: '5 Star',
+    stars: 5,
+    badge: 'Gold Standard',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDUqhQvXdmXntutgQNw439DJ2g4eby54ExQ7ovVzpherZzYoDIMWSfjuoq-pLcHYRa26UOYkjpll3nqA_UaSv0631v_QxoE7eujuTlkIq-R18tW4l1cM6J25NQ_lnmK7WjpXsbtJ0hmNiYQrzvh-U5FoYMQ_0y6HpIyCg5MUWVAnZpkpOnz4djr09D6mLQFN1gg0pbjNEZDCaRh2w_baUqbwlml3jMs6ck_bKp5H8wQ_YZyoJPk7e_YZJXJMy5WkLJZkJ31ORsCy_rb',
+    image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDUqhQvXdmXntutgQNw439DJ2g4eby54ExQ7ovVzpherZzYoDIMWSfjuoq-pLcHYRa26UOYkjpll3nqA_UaSv0631v_QxoE7eujuTlkIq-R18tW4l1cM6J25NQ_lnmK7WjpXsbtJ0hmNiYQrzvh-U5FoYMQ_0y6HpIyCg5MUWVAnZpkpOnz4djr09D6mLQFN1gg0pbjNEZDCaRh2w_baUqbwlml3jMs6ck_bKp5H8wQ_YZyoJPk7e_YZJXJMy5WkLJZkJ31ORsCy_rb',
+    description: 'The ultimate luxury experience. Raffles Makkah offers world-class suites with panoramic views of the Holy Kaaba. Private transfers and butler service included.',
+    includes: ['E-Visa Processing', 'Business Class Flights', 'Raffles Suite Accommodation', 'Private GMC Transfer', 'Personal Butler Service', 'All Meals Included', 'VIP Ziyarat'],
+    itinerary: [
+      { day: 'Day 01', title: 'VIP Arrival', description: 'Business class arrival, private transfer to Raffles. Suite check-in with welcome amenities.' },
+      { day: 'Day 02 - 04', title: 'Makkah in Luxury', description: 'Prayers with Kaaba view. Private Ziyarat with expert guide. Butler assists with all arrangements.' },
+      { day: 'Day 05 - 06', title: 'Madinah Royal Treatment', description: 'Helicopter or private car transfer. Stay at The Oberoi Madinah. Prayers at Masjid Nabawi.' },
+      { day: 'Day 07', title: 'Farewell Departure', description: 'Final Tawaf, private transfer to airport. Business class departure.' }
+    ]
+  }
+]
+
 const PackageDetail = () => {
   const { id } = useParams()
   const [pkg, setPkg] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
 
   useEffect(() => {
     setLoading(true)
-    axios.get(`/api/packages/${id}`)
+    axios.get(`${API_BASE}/api/packages/${id}`)
       .then(res => {
         setPkg(res.data)
         setLoading(false)
       })
       .catch(err => {
-        console.error('Error fetching package details:', err)
-        setError('Failed to load package details. It may have been removed.')
+        console.error('Error fetching package:', err)
+        // Fallback to static packages
+        const staticPkg = staticPackages.find(p => p.id === parseInt(id))
+        if (staticPkg) {
+          setPkg(staticPkg)
+        }
         setLoading(false)
       })
   }, [id])
@@ -36,13 +140,13 @@ const PackageDetail = () => {
     )
   }
 
-  if (error || !pkg) {
+  if (!pkg) {
     return (
       <div className="bg-surface font-manrope text-on-surface min-h-screen flex flex-col items-center justify-center">
         <Navbar />
         <div className="text-center mt-24">
           <span className="material-symbols-outlined text-6xl text-error mb-4 block">error</span>
-          <h2 className="font-notoSerif text-3xl text-primary mb-4">{error || 'Package Not Found'}</h2>
+          <h2 className="font-notoSerif text-3xl text-primary mb-4">Package Not Found</h2>
           <Link to="/packages" className="bg-[#CD9933] text-white px-8 py-3 rounded font-bold uppercase tracking-widest text-sm inline-block mt-4">Browse All Packages</Link>
         </div>
       </div>
@@ -57,206 +161,202 @@ const PackageDetail = () => {
     <div className="bg-surface font-manrope text-on-surface">
       <Navbar />
       
-      <main className="pt-24">
-        {/* Hero Section & Gallery */}
-        <section className="max-w-screen-2xl mx-auto px-8 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img className="w-full h-full object-cover" src={pkg.image_url || pkg.image || staticPackages[0].image} alt={pkg.title} />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
+        </div>
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:px-24 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
             <div className="lg:col-span-8">
               <div className="flex items-center gap-4 mb-4">
-                <span className="bg-secondary-container/20 text-secondary font-bold text-xs tracking-widest uppercase px-3 py-1 rounded">{pkg.category || 'Premium Collection'}</span>
+                {pkg.badge && <span className="bg-[#CD9933] text-white font-bold text-xs tracking-widest uppercase px-3 py-1 rounded">{pkg.badge}</span>}
                 <div className="flex text-[#CD9933]">
                   {Array.from({ length: pkg.stars || 5 }).map((_, i) => (
                     <span key={i} className="material-symbols-outlined text-sm" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
                   ))}
                 </div>
               </div>
-              <h1 className="font-notoSerif text-5xl md:text-7xl text-primary leading-tight tracking-tight">{pkg.title || 'Umrah Journey'}</h1>
+              <h1 className="font-notoSerif text-5xl lg:text-7xl text-white leading-tight tracking-tight">{pkg.title || 'Umrah Journey'}</h1>
             </div>
             <div className="lg:col-span-4 lg:text-right">
-              <p className="text-outline font-medium mb-2">Starting from</p>
-              <div className="font-notoSerif text-4xl text-primary">PKR {price.toLocaleString()} <span className="text-lg font-manrope text-outline font-normal">/ person</span></div>
+              <p className="text-white/70 font-medium mb-2">Starting from</p>
+              <div className="font-notoSerif text-4xl text-[#CD9933]">PKR {price.toLocaleString()} <span className="text-lg font-manrope text-white/70 font-normal">/ person</span></div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Asymmetric Gallery */}
-          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-10 gap-4 h-[600px]">
-            <div className="md:col-span-2 lg:col-span-5 rounded-xl overflow-hidden relative group">
-              <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={pkg.image_url || pkg.image || "https://lh3.googleusercontent.com/aida-public/AB6AXuC_umMwNrlCdZQQHw-gkNmIlvZ1RKy4ljfjZeHztDWu0Wgt9uTVwcC8SCXvvdKqtiQ8v5oNtA7grwHPXPG15OXDFYiqHvhKUVG17-erSKGUK7O2pmJY9mWZ8iyijELGBy-NB61ei7aEg5jsvtpBXbL0ND3vwZ9Ne6f9J7_W6D_0YJrVDA7ESbokU67XJ37dAjbcdx3wsCdGyi4dHRNDLRtl1twWIlv-M0rr3r0kY69jtOec16g7y6ZNh513s3PPjOvnH00dJr_aRChe"} alt={pkg.title} />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white text-left">
-                <p className="font-notoSerif text-2xl text-left">{pkg.location || 'Makkah Al-Mukarramah'}</p>
-                <p className="text-sm text-white/80 text-left">{pkg.duration || 'Full Stay'}</p>
+      {/* Main Content Area */}
+      <section className="py-16 px-8 max-w-screen-2xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          {/* Left Column: Details */}
+          <div className="lg:col-span-8 space-y-16">
+            {/* Quick Info */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+                <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">calendar_today</span>
+                <h3 className="font-notoSerif text-lg mb-1">Duration</h3>
+                <p className="text-on-surface-variant text-sm">{pkg.duration || pkg.days || 'Custom'}</p>
+              </div>
+              <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+                <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">hotel</span>
+                <h3 className="font-notoSerif text-lg mb-1">Accommodation</h3>
+                <p className="text-on-surface-variant text-sm">{hotelName}</p>
+              </div>
+              <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+                <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">flight</span>
+                <h3 className="font-notoSerif text-lg mb-1">Flight</h3>
+                <p className="text-on-surface-variant text-sm">{pkg.airline || 'Included'}</p>
               </div>
             </div>
-            <div className="md:col-span-2 lg:col-span-3 rounded-xl overflow-hidden relative group">
-              <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoKHIP0C3QMaqa0Klr2dM78ntz2OMNGskdqZpgaSJ-t6CzhN9wtM0mVM_VfSXuA51y498oLIAKD-uoj3lEBnBE8WmcWNOLOSOq9dH9S0lGZIfFBT1ZhI-DDgNOWBLRTwE3G7J0rMP7EcoWJ320MQ5b4uQ8mPqH3otJS4kmYLSdyP7CkobPzxStF_dClqG1HjjpMwEyFmBv7FGdx4exw17NjJDYM-FTizn97bzsUtNLtNiN42PQQll7lzJbJk6og1ghe9D9P9QPzoGt" alt="Madinah" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white text-left">
-                <p className="font-notoSerif text-xl text-left">Al-Madinah Al-Munawwarah</p>
-                <p className="text-sm text-white/80 text-left">4 Nights Stay</p>
-              </div>
-            </div>
-            <div className="hidden lg:flex lg:col-span-2 flex-col gap-4">
-              <div className="h-1/2 rounded-xl overflow-hidden">
-                <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs-3qmKoW98IM_J_X3Q_aTrfuMrpa0_3OEjthRGCUB3jHEcoo3_pKG4Oc4qprPrX2t2bV2igc5DhVOvihYbZ1LHhdYartl4G_OfY20PW3BKvQQzMU_4vrcW6KOEn9ZAp5JZ95sXIPWOxpX3I5QnoN_i0EJxbTSJCDLTBRNYvi6ADIWgJTYv5Dzkguq6ZwJF9kECE-NIvWKZ9-IAtiVhkP6mgVUlUExzGaqXYVzzApG0yi7rZPIjwTYX7m1d4SFtXN5dKyEBTdqNaO7" alt="Hotel" />
-              </div>
-              <div className="h-1/2 rounded-xl bg-[#CD9933] flex items-center justify-center p-8 text-center text-white">
-                <div>
-                  <span className="material-symbols-outlined text-4xl mb-2">photo_library</span>
-                  <p className="font-bold text-sm uppercase tracking-widest">View 24+ Photos</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Main Content Area */}
-        <section className="bg-surface-container-low py-24 relative overflow-hidden">
-          <div className="max-w-screen-2xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
-            {/* Left Column: Details */}
-            <div className="lg:col-span-8 space-y-24">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
-                  <span className="material-symbols-outlined text-secondary text-3xl mb-4 text-left block">calendar_today</span>
-                  <h3 className="font-notoSerif text-lg mb-1 text-left">Duration</h3>
-                  <p className="text-outline text-sm text-left">{pkg.duration || 'Custom'}</p>
+            {/* Hotel Info */}
+            <div>
+              <h2 className="font-notoSerif text-3xl mb-8 flex items-center gap-4">
+                {pkg.category === '5 Star' || pkg.category === '4 Star' ? 'Premium Accommodations' : 'Comfortable Stays'}
+                <span className="h-px flex-grow bg-outline-variant/30"></span>
+              </h2>
+              <div className="bg-surface-container-lowest p-6 rounded-xl editorial-shadow">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <p className="text-[#CD9933] text-xs font-bold uppercase tracking-widest mb-1">Makkah & Madinah</p>
+                    <h4 className="font-notoSerif text-2xl">{hotelName}</h4>
+                  </div>
+                  <div className="bg-surface-container text-xs px-3 py-1 rounded font-bold">{distance}</div>
                 </div>
-                <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
-                  <span className="material-symbols-outlined text-secondary text-3xl mb-4 text-left block">hotel</span>
-                  <h3 className="font-notoSerif text-lg mb-1 text-left">Accommodation</h3>
-                  <p className="text-outline text-sm text-left">{pkg.category || 'Premium'}</p>
-                </div>
-                <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
-                  <span className="material-symbols-outlined text-secondary text-3xl mb-4 text-left block">flight</span>
-                  <h3 className="font-notoSerif text-lg mb-1 text-left">Flight</h3>
-                  <p className="text-outline text-sm text-left">{pkg.airline || 'Included'}</p>
+                <p className="text-on-surface-variant text-sm leading-relaxed mb-4">{pkg.description || 'Centrally located accommodations for your spiritual journey.'}</p>
+                <div className="flex gap-6">
+                  <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">wifi</span> Free WiFi</span>
+                  <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">restaurant</span> Breakfast Inc.</span>
+                  <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">ac_unit</span> Central AC</span>
                 </div>
               </div>
-              
-              {/* Hotel Info */}
+            </div>
+
+            {/* Services Checklist */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
-                <h2 className="font-notoSerif text-3xl mb-12 flex items-center gap-4 text-left">
-                  {pkg.category === '5 Star' ? 'Premium Accommodations' : 'Comfortable Stays'}
-                  <span className="h-px flex-grow bg-outline-variant/30"></span>
-                </h2>
-                <div className="space-y-12">
-                  <div className="flex flex-col md:flex-row gap-8 items-center bg-surface-container-lowest p-6 rounded-xl editorial-shadow">
-                    <img className="w-full md:w-64 h-48 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1OLKkdBZ3EeqXXVHssUEB0VLG6ldeYaU6CeQKf32v7DhdxLPfXHwZgFw0L0SIfFbEW-E2ZPeCmWolwPc_H4eGwMY6AGBIlc9iE6QtlnAwClvChfGJ2WFxpHV3Wvl4-O5pzXpJrEqFrrNvdGX4YZ42rTQZtp6Xxg4XGSNpu0rjTO_ml8iusR25IJ7SzuoYoHsJIsXadQR82HujxI-MAn7l2lmossX-0yHiTzCwnz0O3PnvewQ-Oj4I7NFvdXM_ctpezHicx3LxQx4c" alt="Hotel" />
-                    <div className="flex-grow text-left">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <p className="text-secondary text-xs font-bold uppercase tracking-widest mb-1 text-left">Makkah & Madinah</p>
-                          <h4 className="font-notoSerif text-2xl mb-2 text-left">{hotelName}</h4>
-                        </div>
-                        <div className="bg-surface-container text-xs px-2 py-1 rounded font-bold">{distance}</div>
-                      </div>
-                      <p className="text-outline text-sm leading-relaxed mb-4 text-left">{pkg.description || 'Centrally located accommodations for your spiritual journey.'}</p>
-                      <div className="flex gap-4">
-                        <span className="flex items-center gap-1 text-xs font-bold"><span className="material-symbols-outlined text-sm">ac_unit</span> Central AC</span>
-                        <span className="flex items-center gap-1 text-xs font-bold"><span className="material-symbols-outlined text-sm">room_service</span> 24/7 Support</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <h3 className="font-notoSerif text-xl mb-6">What's Included</h3>
+                <ul className="space-y-4">
+                  {(pkg.includes || ['Visa Processing', 'Flights', 'Ground Transport', 'Guided Tours']).map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-3 text-sm">
+                      <span className="material-symbols-outlined text-[#CD9933] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-
-              {/* Services Checklist */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-                <div>
-                  <h3 className="font-notoSerif text-xl mb-6 text-left">What's Included</h3>
-                  <ul className="space-y-4">
-                    {(pkg.includes || ['Visa Processing', 'Flights', 'Ground Transport', 'Guided Tours']).map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-3 text-sm text-left">
-                        <span className="material-symbols-outlined text-secondary text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-notoSerif text-xl mb-6 text-left">Not Included</h3>
-                  <ul className="space-y-4 text-left">
-                    <li className="flex items-center gap-3 text-sm text-outline text-left">
-                      <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
-                      Personal shopping & extra meals
-                    </li>
-                    <li className="flex items-center gap-3 text-sm text-outline text-left">
-                      <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
-                      Travel and health insurance
-                    </li>
-                    <li className="flex items-center gap-3 text-sm text-outline text-left">
-                      <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
-                      Excess baggage fees
-                    </li>
-                  </ul>
-                </div>
+              <div>
+                <h3 className="font-notoSerif text-xl mb-6">Not Included</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-center gap-3 text-sm text-on-surface-variant">
+                    <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
+                    Personal shopping & extra meals
+                  </li>
+                  <li className="flex items-center gap-3 text-sm text-on-surface-variant">
+                    <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
+                    Travel and health insurance
+                  </li>
+                  <li className="flex items-center gap-3 text-sm text-on-surface-variant">
+                    <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
+                    Laundry and room service charges
+                  </li>
+                </ul>
               </div>
-
-              {/* Itinerary Timeline */}
-              {pkg.itinerary && pkg.itinerary.length > 0 && (
-                <div className="text-left">
-                  <h2 className="font-notoSerif text-3xl mb-12 text-left">Journey Itinerary</h2>
-                  <div className="relative pl-8 border-l-2 border-dashed border-secondary/30 ml-4 space-y-12">
-                    {pkg.itinerary.map((step, idx) => {
-                      const isLast = idx === pkg.itinerary.length - 1;
-                      return (
-                        <div key={idx} className="relative text-left">
-                          <div className={`absolute -left-[41px] top-0 w-4 h-4 rounded-full ring-4 ${isLast ? 'bg-[#CD9933] ring-[#CD9933]/20' : 'bg-secondary ring-secondary/20'}`}></div>
-                          <p className="text-secondary font-bold text-xs uppercase mb-1 text-left">{step.day}</p>
-                          <h4 className="font-notoSerif text-lg mb-2 text-left">{step.title}</h4>
-                          <p className="text-outline text-sm leading-relaxed text-left">{step.description}</p>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              )}
             </div>
 
-            {/* Right Column: Booking Form */}
-            <div className="lg:col-span-4">
-              <div className="sticky top-32 bg-surface-container-lowest p-8 rounded-xl editorial-shadow border border-outline-variant/10 text-left">
-                <div className="text-center mb-8">
-                  <h3 className="font-notoSerif text-2xl mb-2">Plan Your Journey</h3>
-                  <p className="text-outline text-xs">Fill the form below, and our spiritual consultant will contact you within 24 hours.</p>
+            {/* Itinerary Timeline */}
+            {pkg.itinerary && pkg.itinerary.length > 0 && (
+              <div>
+                <h2 className="font-notoSerif text-3xl mb-8">Journey Itinerary</h2>
+                <div className="relative pl-8 border-l-2 border-dashed border-[#CD9933]/30 ml-4 space-y-10">
+                  {pkg.itinerary.map((step, idx) => {
+                    const isLast = idx === pkg.itinerary.length - 1
+                    return (
+                      <div key={idx} className="relative">
+                        <div className={`absolute -left-[41px] top-0 w-4 h-4 rounded-full ring-4 ${isLast ? 'bg-[#CD9933] ring-[#CD9933]/20' : 'bg-[#7d5800] ring-[#7d5800]/20'}`}></div>
+                        <p className="text-[#CD9933] font-bold text-xs uppercase mb-1">{step.day}</p>
+                        <h4 className="font-notoSerif text-lg mb-2">{step.title}</h4>
+                        <p className="text-on-surface-variant text-sm leading-relaxed">{step.description}</p>
+                      </div>
+                    )
+                  })}
                 </div>
-                <form className="space-y-6 text-left">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1 text-left">Full Name</label>
-                    <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 transition-colors py-2 text-sm text-left" placeholder="Enter your name" type="text" />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1 text-left">Phone Number</label>
-                    <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 transition-colors py-2 text-sm text-left" placeholder="+92 XXXXX XXXXX" type="tel" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-left">
-                      <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1 text-left">City</label>
-                      <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 transition-colors py-2 text-sm text-left" placeholder="e.g. Lahore" type="text" />
-                    </div>
-                    <div className="text-left">
-                      <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1 text-left">Travelers</label>
-                      <select className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 transition-colors py-2 text-sm appearance-none text-left">
-                        <option>01 Person</option>
-                        <option selected>02 Persons</option>
-                        <option>04+ Persons</option>
-                      </select>
-                    </div>
-                  </div>
-                  <button className="w-full bg-gradient-to-r from-secondary to-[#f6bd54] text-white py-4 rounded-md font-bold text-sm tracking-widest uppercase shadow-lg shadow-secondary/20 hover:scale-[1.02] transition-transform" type="submit">Send Inquiry</button>
-                </form>
-                <div className="mt-8 pt-8 border-t border-outline-variant/20 text-center">
-                  <p className="text-xs text-outline mb-4">Or connect instantly via</p>
-                  <a className="inline-flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors" href="#">
-                    <span className="material-symbols-outlined">chat</span>
-                    WhatsApp Support
-                  </a>
+              </div>
+            )}
+          </div>
+
+          {/* Right Column: Booking Form */}
+          <div className="lg:col-span-4">
+            <div className="sticky top-32 bg-surface-container-lowest p-8 rounded-xl editorial-shadow border border-outline-variant/10">
+              <div className="text-center mb-8">
+                <h3 className="font-notoSerif text-2xl mb-2">Plan Your Journey</h3>
+                <p className="text-on-surface-variant text-xs">Fill the form below, and our consultant will contact you within 24 hours.</p>
+              </div>
+              <form className="space-y-6">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1">Full Name</label>
+                  <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-2 text-sm" placeholder="Enter your name" type="text" />
                 </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1">Phone Number</label>
+                  <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-2 text-sm" placeholder="+92 XXXXX XXXXX" type="tel" />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1">City</label>
+                    <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-2 text-sm" placeholder="e.g. Lahore" type="text" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1">Travelers</label>
+                    <select className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-2 text-sm appearance-none">
+                      <option>01 Person</option>
+                      <option>02 Persons</option>
+                      <option>04+ Persons</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-1">Estimated Date</label>
+                  <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-2 text-sm" type="date" />
+                </div>
+                <button className="w-full bg-gradient-to-r from-[#7d5800] to-[#CD9933] text-white py-4 rounded-md font-bold text-sm tracking-widest uppercase shadow-lg shadow-[#7d5800]/20 hover:scale-[1.02] transition-transform" type="submit">Send Inquiry</button>
+              </form>
+              <div className="mt-8 pt-8 border-t border-outline-variant/20 text-center">
+                <p className="text-xs text-on-surface-variant mb-4">Or connect instantly via</p>
+                <a className="inline-flex items-center gap-2 text-[#013334] font-bold hover:text-[#CD9933] transition-colors" href="#">
+                  <span className="material-symbols-outlined">chat</span>
+                  WhatsApp Support
+                </a>
               </div>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* More Packages */}
+      <section className="py-16 bg-surface-container-low px-8">
+        <div className="max-w-screen-2xl mx-auto">
+          <h2 className="font-notoSerif text-3xl mb-8">More Packages</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {staticPackages.filter(p => p.id !== parseInt(id)).slice(0, 3).map(p => (
+              <Link to={`/package/${p.id}`} key={p.id} className="bg-surface-container-lowest editorial-shadow overflow-hidden group cursor-pointer transition-transform hover:-translate-y-1 block">
+                <div className="relative h-48 overflow-hidden">
+                  <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src={p.image} alt={p.title} />
+                  <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded">{p.badge}</div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-notoSerif text-lg font-bold text-primary mb-1">{p.title}</h3>
+                  <p className="text-on-surface-variant text-sm mb-3">{p.days}</p>
+                  <span className="text-xl font-extrabold text-[#CD9933]">PKR {p.price.toLocaleString()}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
