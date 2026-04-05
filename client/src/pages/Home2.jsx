@@ -175,7 +175,7 @@ const Home2 = () => {
                     </div>
                     <div className="container mx-auto px-6 relative z-10">
                         <div className="text-center max-w-3xl mx-auto mb-20">
-                            <h2 className="font-headline text-4xl mb-6 italic text-[#CD9933]">Why Travel with Rehman Travels?</h2>
+                            <h2 className="font-headline text-4xl mb-6 italic text-[#CD9933]">Why Travel with Royal Travels?</h2>
                             <p className="font-body text-white/70">Over two decades of excellence in crafting sacred journeys with dedication and spiritual integrity.</p>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">

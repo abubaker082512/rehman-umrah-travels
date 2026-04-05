@@ -301,7 +301,7 @@ const Home = () => {
                   <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                 ))}
               </div>
-              <p className="italic text-primary mb-8 leading-relaxed font-manrope">"Our Umrah journey with Rehman Travels was flawless. From the visa process to the hotels being so close to the Haram, everything was perfectly managed. May Allah reward them."</p>
+              <p className="italic text-primary mb-8 leading-relaxed font-manrope">"Our Umrah journey with Royal Travels was flawless. From the visa process to the hotels being so close to the Haram, everything was perfectly managed. May Allah reward them."</p>
               <div className="flex items-center gap-4">
                 <img className="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFTFEGBCE5jXj6eM278TP2Ax109ogHPCfKt81ueziR3aYr7jMI04ENRCcJ4Vat5FMphSQMJq3NRdl6DUVSdm8nFooEXYlNGQI9_C-5B213ukaJ9Xj7hmEwYW6AVrwzbiywDR_z2CJefQ6hr6aFsVuYYVv5gR2huLiFxsi9Lb67BKod9sXjic742wH_Fn6ZYyp0h6ui-0gv-aNCzmnupdBLzGxeHzlxAg7MlFO_-ufV_NafC8G0jsnsNHvpAjTtcvlHuf-l48cgZVBe" alt="Customer" />
                 <div>
@@ -331,7 +331,7 @@ const Home = () => {
                   <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                 ))}
               </div>
-              <p className="italic text-primary mb-8 leading-relaxed font-manrope">"The ground staff in Makkah were like family. They helped us with our elderly parents during Tawaaf. I highly recommend Rehman Travels for their compassion."</p>
+              <p className="italic text-primary mb-8 leading-relaxed font-manrope">"The ground staff in Makkah were like family. They helped us with our elderly parents during Tawaaf. I highly recommend Royal Travels for their compassion."</p>
               <div className="flex items-center gap-4">
                 <img className="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc5pUsNWCfg7tO9-yhbEhsmWLR3vQg8yhvrq9qB4GvnXb1unZaqrw0qOK-Hwi5u-JfvnYT0g1z0MtYppgRxP5iDR0XwPBCjXfWvQt0MPJwuIuJQPWqJLmAgYZYdnwi8iF415-FVPbgwE9pf8ASPKktSBaff--XmTPWezqEMdYXTyH94z6ov_Hillp9mm9rt9JPL-SAz8nvhrPKEMWuos3DBXCq-RAHeGlShRxei8Zj44aC41yTkVxlgBdbJTd6PS2-karlMjwZHSxh" alt="Customer" />
                 <div>

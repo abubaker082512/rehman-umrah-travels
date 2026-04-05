@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Rehman Umrah & Travels API (Supabase) is running...');
+  res.send('Royal Umrah & Travels API (Supabase) is running...');
 });
 
 // Admin Auth

@@ -1,7 +1,7 @@
 {
   "name": "rehman-umrah-travels",
   "version": "1.0.0",
-  "description": "Rehman Umrah & Travels MERN Stack Website",
+  "description": "Royal Umrah & Travels MERN Stack Website",
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",

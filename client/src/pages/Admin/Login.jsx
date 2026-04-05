@@ -40,7 +40,7 @@ const AdminLogin = () => {
       <div className="bg-white p-12 rounded-2xl shadow-2xl w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-notoSerif font-bold text-[#013334]">Admin Login</h1>
-          <p className="text-on-surface-variant text-sm mt-2">Rehman Umrah & Travels</p>
+          <p className="text-on-surface-variant text-sm mt-2">Royal Umrah & Travels</p>
         </div>
         
         {error && (

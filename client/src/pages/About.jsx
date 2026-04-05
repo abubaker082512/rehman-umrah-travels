@@ -42,7 +42,7 @@ const About = () => {
               <span className="font-manrope tracking-[0.3em] uppercase text-xs text-secondary font-bold">Company Story</span>
               <h2 className="font-notoSerif text-4xl md:text-5xl text-primary leading-tight">Crafting Pathways to the Holy Lands</h2>
               <div className="space-y-6 text-on-surface-variant font-manrope leading-loose text-lg">
-                <p>Rehman Umrah &amp; Travels began as a humble aspiration: to transform the daunting logistics of pilgrimage into a seamless, contemplative experience. We understood that for many, this journey is the culmination of a lifetime's prayer.</p>
+                <p>Royal Umrah &amp; Travels began as a humble aspiration: to transform the daunting logistics of pilgrimage into a seamless, contemplative experience. We understood that for many, this journey is the culmination of a lifetime's prayer.</p>
                 <p>Over two decades, we have evolved from a small local agency into a premier travel concierge in Pakistan. Our growth has been guided not by numbers, but by the testimonials of pilgrims who found peace in our planning and comfort in our care.</p>
                 <p>Every detail, from the proximity of the hotels to the expertise of our guides, is curated to ensure that your focus remains entirely on the spiritual essence of your visit.</p>
               </div>

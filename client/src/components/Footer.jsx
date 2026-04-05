@@ -5,8 +5,8 @@ const Footer = () => {
     <footer className="bg-[#013334] dark:bg-[#001c1d]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 w-full max-w-screen-2xl mx-auto">
         <div className="space-y-6">
-          <div className="font-notoSerif text-xl text-[#CD9933]">REHMAN</div>
-          <p className="text-white/60 text-sm leading-relaxed font-manrope">Rehman Umrah & Travels specializes in crafting meaningful spiritual journeys and world-class international tours for the discerning traveler.</p>
+          <div className="font-notoSerif text-xl text-[#CD9933]">ROYAL</div>
+          <p className="text-white/60 text-sm leading-relaxed font-manrope">Royal Umrah & Travels specializes in crafting meaningful spiritual journeys and world-class international tours for the discerning traveler.</p>
         </div>
         <div>
           <h5 className="font-notoSerif text-lg text-[#CD9933] mb-6">Quick Links</h5>
@@ -41,7 +41,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-t border-white/5 px-12 py-8 text-center">
-        <p className="text-white/40 text-xs font-manrope">© 2024 Rehman Umrah & Travels. All Rights Reserved.</p>
+        <p className="text-white/40 text-xs font-manrope">© 2024 Royal Umrah & Travels. All Rights Reserved.</p>
       </div>
     </footer>
   )

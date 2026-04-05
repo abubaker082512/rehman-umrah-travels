@@ -179,7 +179,7 @@ const AdminDashboard = () => {
       <header className="bg-[#013334] text-white px-8 py-4 flex justify-between items-center">
         <div>
           <h1 className="font-notoSerif text-2xl font-bold text-[#CD9933]">Admin Dashboard</h1>
-          <p className="text-white/60 text-sm">Rehman Umrah & Travels</p>
+          <p className="text-white/60 text-sm">Royal Umrah & Travels</p>
         </div>
         <div className="flex items-center gap-4">
           <a href="/" className="text-white/80 hover:text-[#CD9933] text-sm">View Site</a>
