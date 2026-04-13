@@ -13,9 +13,6 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    cssCodeSplit: false
-  },
-  base: './'
+    outDir: 'dist'
+  }
 })

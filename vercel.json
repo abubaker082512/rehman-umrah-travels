@@ -1,11 +1,4 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "cd client && npm install && npm run build",
-  "outputDirectory": "client/dist",
-  "routes": [
-    { "src": "^/api/(.*)$", "dest": "/api/$1" },
-    { "src": "/favicon.ico", "dest": "/favicon.png" },
-    { "src": "/favicon.png", "dest": "/favicon.png" },
-    { "src": "^/(.*)$", "dest": "/index.html" }
-  ]
+  "outputDirectory": "client/dist"
 }
