@@ -4,6 +4,8 @@
   "outputDirectory": "client/dist",
   "routes": [
     { "src": "^/api/(.*)$", "dest": "/api/$1" },
+    { "src": "/favicon.ico", "dest": "/favicon.png" },
+    { "src": "/favicon.png", "dest": "/favicon.png" },
     { "src": "^/(.*)$", "dest": "/index.html" }
   ]
 }
