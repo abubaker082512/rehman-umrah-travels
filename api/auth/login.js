@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = function handler(req, res) {
-  // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -16,10 +15,10 @@ module.exports = function handler(req, res) {
 
   const { email, password } = req.body;
 
-  if (email === 'admin@royalumrahandtravel.com' && password === 'admin123') {
+  if (email === 'admin@royal.com' && password === 'admin') {
     const token = jwt.sign({ id: 'admin' }, process.env.JWT_SECRET || 'secretkey', { expiresIn: '1d' });
-    return res.json({ token, user: { email: 'admin@royalumrahandtravel.com', role: 'admin' } });
-  } else {
-    return res.status(401).json({ message: 'Invalid credentials' });
+    return res.json({ token, user: { email: 'admin@royal.com', role: 'admin' } });
   }
+  
+  return res.status(401).json({ message: 'Invalid credentials' });
 }
