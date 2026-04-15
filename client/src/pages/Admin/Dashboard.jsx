@@ -5,7 +5,6 @@ import { createClient } from '@supabase/supabase-js'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
-// Supabase client for image uploads
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
 const supabase = (supabaseUrl && supabaseKey) ? createClient(supabaseUrl, supabaseKey) : null
@@ -16,19 +15,22 @@ const tabs = [
   { id: 'visa', label: 'Visa Services', icon: 'description' },
   { id: 'gallery', label: 'Gallery', icon: 'photo_library' },
   { id: 'blog', label: 'Blog', icon: 'article' },
+  { id: 'page-media', label: 'Page Media', icon: 'image' },
 ]
 
-// Image Upload Component
-const ImageUpload = ({ value, onChange, label = 'Image' }) => {
+// Media Upload Component (Photo or Video)
+const MediaUpload = ({ value, onChange, label = 'Media', type = 'image' }) => {
   const [uploading, setUploading] = useState(false)
   const [preview, setPreview] = useState(value)
+  const [mediaType, setMediaType] = useState(type)
+
+  const acceptTypes = mediaType === 'video' ? 'video/*' : 'image/*'
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0]
     if (!file) return
 
     if (supabase) {
-      // Upload to Supabase Storage
       setUploading(true)
       const fileExt = file.name.split('.').pop()
       const fileName = `${Date.now()}.${fileExt}`
@@ -50,7 +52,95 @@ const ImageUpload = ({ value, onChange, label = 'Image' }) => {
       setPreview(publicUrl)
       setUploading(false)
     } else {
-      // Fallback: convert to base64 data URL for preview
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        const dataUrl = reader.result
+        onChange(dataUrl)
+        setPreview(dataUrl)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <label className="block text-xs font-bold uppercase tracking-widest text-outline">{label}</label>
+        <select 
+          value={mediaType} 
+          onChange={(e) => setMediaType(e.target.value)}
+          className="text-xs bg-surface border border-outline-variant px-2 py-1 rounded"
+        >
+          <option value="image">Photo</option>
+          <option value="video">Video</option>
+        </select>
+      </div>
+      <div className="flex items-center gap-4">
+        <label className="flex-1 flex items-center gap-2 bg-surface border border-outline-variant hover:border-[#CD9933] py-3 px-3 rounded-lg cursor-pointer transition-colors">
+          <span className="material-symbols-outlined text-outline">{mediaType === 'video' ? 'videocam' : 'add_photo_alternate'}</span>
+          <span className="text-sm text-on-surface-variant truncate flex-1">
+            {uploading ? 'Uploading...' : 'Click to upload ' + (mediaType === 'video' ? 'video' : 'image')}
+          </span>
+          <input type="file" accept={acceptTypes} onChange={handleFileChange} disabled={uploading} className="hidden" />
+        </label>
+        {preview && (
+          <button onClick={() => { onChange(''); setPreview('') }} className="text-red-500 hover:text-red-700">
+            <span className="material-symbols-outlined">delete</span>
+          </button>
+        )}
+      </div>
+      {preview && (
+        <div className="mt-2">
+          {mediaType === 'video' || preview.includes('video') || preview.includes('.mp4') ? (
+            <video src={preview} controls className="w-full max-h-48 rounded-lg border border-outline-variant" />
+          ) : (
+            <img src={preview} alt="Preview" className="w-full max-h-48 object-cover rounded-lg border border-outline-variant" />
+          )}
+        </div>
+      )}
+      {value && !value.startsWith('data:') && (
+        <input 
+          className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 px-3 text-xs text-on-surface-variant rounded-lg" 
+          value={value} 
+          onChange={e => { onChange(e.target.value); setPreview(e.target.value) }} 
+          placeholder="Or paste URL here" 
+        />
+      )}
+    </div>
+  )
+}
+
+// Image Upload Component
+const ImageUpload = ({ value, onChange, label = 'Image' }) => {
+  const [uploading, setUploading] = useState(false)
+  const [preview, setPreview] = useState(value)
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+
+    if (supabase) {
+      setUploading(true)
+      const fileExt = file.name.split('.').pop()
+      const fileName = `${Date.now()}.${fileExt}`
+      const { data, error } = await supabase.storage
+        .from('uploads')
+        .upload(fileName, file)
+
+      if (error) {
+        alert('Upload failed: ' + error.message)
+        setUploading(false)
+        return
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('uploads')
+        .getPublicUrl(data.path)
+
+      onChange(publicUrl)
+      setPreview(publicUrl)
+      setUploading(false)
+    } else {
       const reader = new FileReader()
       reader.onloadend = () => {
         const dataUrl = reader.result
@@ -83,11 +173,100 @@ const ImageUpload = ({ value, onChange, label = 'Image' }) => {
   )
 }
 
+// Page Media Configuration
+const pageMediaConfig = [
+  {
+    page: 'Homepage',
+    section: 'Hero Section',
+    items: [
+      { key: 'home_hero_image', label: 'Hero Background Image', type: 'image', description: 'Main hero section background image' },
+      { key: 'home_hero_video', label: 'Hero Background Video', type: 'video', description: 'Optional video background (replaces image)' },
+    ]
+  },
+  {
+    page: 'Homepage',
+    section: 'Backgrounds',
+    items: [
+      { key: 'home_about_bg', label: 'About Section Background', type: 'image', description: 'Background for About Us section' },
+      { key: 'home_packages_bg', label: 'Packages Section Background', type: 'image', description: 'Background for Packages section' },
+      { key: 'home_gallery_bg', label: 'Gallery Section Background', type: 'image', description: 'Background for Gallery section' },
+      { key: 'home_testimonials_bg', label: 'Testimonials Section Background', type: 'image', description: 'Background for Testimonials section' },
+    ]
+  },
+  {
+    page: 'About Page',
+    section: 'About Page Media',
+    items: [
+      { key: 'about_hero_image', label: 'Hero Image', type: 'image', description: 'About page hero image' },
+      { key: 'about_section_image', label: 'Main Content Image', type: 'image', description: 'Image in main content area' },
+      { key: 'about_video', label: 'Promotional Video', type: 'video', description: 'Optional company video' },
+    ]
+  },
+  {
+    page: 'Contact Page',
+    section: 'Contact Page Media',
+    items: [
+      { key: 'contact_hero_image', label: 'Hero Image', type: 'image', description: 'Contact page hero image' },
+      { key: 'contact_map_image', label: 'Map Placeholder Image', type: 'image', description: 'Map or location image' },
+    ]
+  },
+  {
+    page: 'Gallery Page',
+    section: 'Gallery Page Media',
+    items: [
+      { key: 'gallery_hero_image', label: 'Hero Image', type: 'image', description: 'Gallery page hero image' },
+      { key: 'gallery_banner', label: 'Banner Image', type: 'image', description: 'Additional banner for gallery' },
+    ]
+  },
+  {
+    page: 'Visa Services',
+    section: 'Visa Page Media',
+    items: [
+      { key: 'visa_hero_image', label: 'Hero Image', type: 'image', description: 'Visa services hero image' },
+      { key: 'visa_banner', label: 'Banner/Background', type: 'image', description: 'Banner or background image' },
+    ]
+  },
+  {
+    page: 'International Tours',
+    section: 'Tours Page Media',
+    items: [
+      { key: 'tours_hero_image', label: 'Hero Image', type: 'image', description: 'Tours page hero image' },
+      { key: 'tours_video', label: 'Promotional Video', type: 'video', description: 'Tours promotional video' },
+    ]
+  },
+  {
+    page: 'FAQ Page',
+    section: 'FAQ Page Media',
+    items: [
+      { key: 'faq_hero_image', label: 'Hero Image', type: 'image', description: 'FAQ page hero image' },
+    ]
+  },
+  {
+    page: 'Blog Page',
+    section: 'Blog Page Media',
+    items: [
+      { key: 'blog_hero_image', label: 'Hero Image', type: 'image', description: 'Blog page hero image' },
+    ]
+  },
+  {
+    page: 'Umrah Packages',
+    section: 'Packages Page Media',
+    items: [
+      { key: 'packages_hero_image', label: 'Hero Image', type: 'image', description: 'Packages page hero image' },
+      { key: 'packages_video', label: 'Umrah Video', type: 'video', description: 'Promotional Umrah video' },
+    ]
+  },
+]
+
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('packages')
   const [packages, setPackages] = useState([])
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+
+  // Page Media State
+  const [pageMedia, setPageMedia] = useState({})
+  const [mediaSaving, setMediaSaving] = useState(false)
 
   // Package form
   const [packageForm, setPackageForm] = useState({
@@ -117,14 +296,30 @@ const AdminDashboard = () => {
     src: '', label: '', category: 'Kaaba'
   })
 
-  // Check auth
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (!token) {
       navigate('/admin/login')
     }
     fetchData()
+    loadPageMedia()
   }, [])
+
+  const loadPageMedia = () => {
+    const saved = localStorage.getItem('pageMedia')
+    if (saved) {
+      setPageMedia(JSON.parse(saved))
+    }
+  }
+
+  const savePageMedia = () => {
+    setMediaSaving(true)
+    localStorage.setItem('pageMedia', JSON.stringify(pageMedia))
+    setTimeout(() => {
+      setMediaSaving(false)
+      alert('Page media saved successfully!')
+    }, 500)
+  }
 
   const fetchData = async () => {
     setLoading(true)
@@ -415,6 +610,67 @@ const AdminDashboard = () => {
               <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow text-center">
                 <span className="material-symbols-outlined text-6xl text-outline-variant mb-4 block">article</span>
                 <p className="text-on-surface-variant">Blog management. Create and publish articles for SEO and customer engagement.</p>
+              </div>
+            </div>
+          )}
+
+          {/* Page Media Tab */}
+          {activeTab === 'page-media' && (
+            <div>
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="font-notoSerif text-3xl font-bold text-primary">Page Media Manager</h2>
+                <button 
+                  onClick={savePageMedia}
+                  disabled={mediaSaving}
+                  className="bg-[#CD9933] text-white px-8 py-3 rounded font-bold hover:brightness-110 transition-all flex items-center gap-2"
+                >
+                  <span className="material-symbols-outlined">{mediaSaving ? 'hourglass_empty' : 'save'}</span>
+                  {mediaSaving ? 'Saving...' : 'Save All Changes'}
+                </button>
+              </div>
+              
+              <p className="text-on-surface-variant mb-8">Upload images and videos for different pages and sections of your website. Select Photo or Video option for each media item.</p>
+
+              {/* Media Sections by Page */}
+              {pageMediaConfig.map((section) => (
+                <div key={section.page + section.section} className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
+                  <div className="mb-6">
+                    <span className="inline-block bg-[#013334] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">{section.page}</span>
+                    <h3 className="font-notoSerif text-xl font-bold text-primary">{section.section}</h3>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {section.items.map((item) => (
+                      <div key={item.key} className="bg-surface p-6 rounded-xl border border-outline-variant">
+                        <div className="mb-3">
+                          <h4 className="font-bold text-sm">{item.label}</h4>
+                          <p className="text-xs text-on-surface-variant">{item.description}</p>
+                        </div>
+                        <MediaUpload
+                          value={pageMedia[item.key] || ''}
+                          onChange={(val) => setPageMedia({...pageMedia, [item.key]: val})}
+                          label={item.label}
+                          type={item.type}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+
+              {/* Info Box */}
+              <div className="bg-[#CD9933]/10 border border-[#CD9933]/30 p-6 rounded-xl">
+                <div className="flex items-start gap-3">
+                  <span className="material-symbols-outlined text-[#CD9933]">info</span>
+                  <div>
+                    <h4 className="font-bold text-sm mb-1">How Page Media Works</h4>
+                    <p className="text-xs text-on-surface-variant">
+                      Upload images and videos for specific sections of your website. 
+                      Media is saved locally in your browser and will persist across sessions. 
+                      For production use with Supabase, media URLs can be configured to point to your storage bucket.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           )}
