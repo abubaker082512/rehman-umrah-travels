@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -11,11 +12,11 @@ const Footer = () => {
         <div>
           <h5 className="font-notoSerif text-lg text-[#CD9933] mb-6">Quick Links</h5>
           <ul className="space-y-4">
-            <li><a className="text-white/60 hover:text-[#CD9933] transition-all text-sm font-manrope" href="#">About Us</a></li>
-            <li><a className="text-white/60 hover:text-[#CD9933] transition-all text-sm font-manrope" href="#">Visa Services</a></li>
-            <li><a className="text-white/60 hover:text-[#CD9933] transition-all text-sm font-manrope" href="#">Packages</a></li>
-            <li><a className="text-white/60 hover:text-[#CD9933] transition-all text-sm font-manrope" href="#">Terms & Conditions</a></li>
-            <li><a className="text-white/60 hover:text-[#CD9933] transition-all text-sm font-manrope" href="#">Privacy Policy</a></li>
+            <li><Link to="/about" className="text-white/60 hover:text-[#CD9933] transition-all text-sm font-manrope">About Us</Link></li>
+            <li><Link to="/visa-services" className="text-white/60 hover:text-[#CD9933] transition-all text-sm font-manrope">Visa Services</Link></li>
+            <li><Link to="/packages" className="text-white/60 hover:text-[#CD9933] transition-all text-sm font-manrope">Packages</Link></li>
+            <li><Link to="/contact" className="text-white/60 hover:text-[#CD9933] transition-all text-sm font-manrope">Contact</Link></li>
+            <li><Link to="/faq" className="text-white/60 hover:text-[#CD9933] transition-all text-sm font-manrope">FAQ</Link></li>
           </ul>
         </div>
         <div>

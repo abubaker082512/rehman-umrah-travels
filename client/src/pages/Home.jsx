@@ -97,9 +97,9 @@ const Home = () => {
               Embark on a spiritual journey of a lifetime with our premium, all-inclusive Umrah packages and bespoke international travel experiences.
             </p>
             <div className="flex flex-wrap gap-6">
-              <button className="bg-[#CD9933] hover:bg-[#b88a2e] text-white px-8 py-4 rounded-md font-bold transition-all shadow-lg flex items-center gap-2">
+              <Link to="/packages" className="bg-[#CD9933] hover:bg-[#b88a2e] text-white px-8 py-4 rounded-md font-bold transition-all shadow-lg flex items-center gap-2">
                 View Umrah Packages
-              </button>
+              </Link>
               <button className="bg-transparent border border-[#CD9933]/40 hover:bg-[#CD9933]/10 text-white px-8 py-4 rounded-md font-bold transition-all flex items-center gap-2 backdrop-blur-sm">
                 <span className="material-symbols-outlined">chat</span>
                 Contact on WhatsApp
@@ -248,41 +248,41 @@ const Home = () => {
           <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
             <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo34TNKnDfPALrJLu5UciOIr7LARLN_xMd56yq9UtN280tkvjiEnxN3TtX2PclWHifVh-nu8QV_2cBRDHQyvPmPzZGIZNdK59dTjZS_Z7zyQnU3g6H9XtU6VzrOpldicf7vIybJnfw64PVqTVsjONncJK9U_xFuHg1W1wWMoj67jRKKTctsOdONWmyphd-lo0jqhdNTCIXpryZF3G0yfAhu2sIiRgcLLrXo2593SUcftSq5rTTctJCZOjzrrlvn1FRx-ijiWOD06Kn" alt="Turkey" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
-            <div className="absolute bottom-8 left-8 right-8 text-white">
+            <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white group cursor-pointer overflow-hidden rounded-lg block">
               <h3 className="font-notoSerif text-2xl font-bold mb-2">Turkey</h3>
               <p className="text-sm text-white/70 mb-4">Istanbul, Cappadocia, Antalya</p>
-              <span className="inline-block border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-widest">Explore Tour</span>
-            </div>
+              <span className="inline-block border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-widest group-hover:bg-[#CD9933] group-hover:border-[#CD9933] transition-all">Explore Tour</span>
+            </Link>
           </div>
           {/* Dubai */}
           <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
             <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUQYOVnZnCAbJnFrX1nyML3VQoCv0DXi5Irz0Y73qxzjrCnv9Fjfew89pvxdv8ZCASmG7JXvm6ivVtlWSDgDNl6WD5Qkh9yA9ePoYhW5-2lqFxEm_UD-gdv3y855ixx1a4TNrQKs_YDGiCBrtJNtbyqSVu-OpnZy8NM7Q_OjK_9-EAJxvTxySJdH3PL-NHtQ5wCIWYnxE88P2f-rJ9uHs3kO3HDAd20k7SpB0jq8u4Sn1BDaHihQy3xKayJDzjSbhMkeSgMrymfb39" alt="Dubai" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
-            <div className="absolute bottom-8 left-8 right-8 text-white">
+            <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white">
               <h3 className="font-notoSerif text-2xl font-bold mb-2">Dubai</h3>
               <p className="text-sm text-white/70 mb-4">City Sights & Desert Safari</p>
               <span className="inline-block border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-widest">Explore Tour</span>
-            </div>
+            </Link>
           </div>
           {/* Malaysia */}
           <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
             <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3zaexyac9JYbgc7JJW579-lS9WPkAgTeUI7Z4f5Gl08eeqwiSxGeYnsEo-duQ9zPlj4ciIjAaAHQxZpJWRSzi7QTPiBvQTt5PnQL360TdVEtcUe8-A1xE2f5tRkgQevJB0FH9BEKMxS9GfArHkUk1mmMGLjWSTTIINCUnMLvlQIt-niCyleGQ6NoGhUF9wsVc4M84ENHV6AyrYG2HEoJD3DrsDsNwuv-5k4zPqoMOXRMxOHGoe_2H7qk6_JElzjsy7uAvRdhWRfDf" alt="Malaysia" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
-            <div className="absolute bottom-8 left-8 right-8 text-white">
+            <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white">
               <h3 className="font-notoSerif text-2xl font-bold mb-2">Malaysia</h3>
               <p className="text-sm text-white/70 mb-4">Kuala Lumpur & Genting</p>
               <span className="inline-block border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-widest">Explore Tour</span>
-            </div>
+            </Link>
           </div>
           {/* Europe */}
           <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
             <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv-MVsZqKBwhFPBQ8VFiq3TU0N5EnqlsYH2DbJRB5qbT_Cq8D2o6SSJOfghgRCyIin6rAX9gA_gYojLbuUrx53KQNs5-IEFKUuQCSPDJADWJ4WR-wdlDFUu341hUW3bpPXn5i_22fhWnEfLqshrlO64tuM__-1f54SpwlxVe2bQGSh0jdBOS_x6jW2ttrKZoyb_W-fAUeq6l6DZazJ7KXpOFW-pVOA24jVsXFRRGsk7z2EjtSS0-inrhXqDyByLzKRQqLQX-m_UhJv" alt="Europe" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
-            <div className="absolute bottom-8 left-8 right-8 text-white">
+            <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white">
               <h3 className="font-notoSerif text-2xl font-bold mb-2">Europe</h3>
               <p className="text-sm text-white/70 mb-4">Paris, Swiss, Rome</p>
               <span className="inline-block border border-white/30 px-4 py-2 text-xs font-bold uppercase tracking-widest">Explore Tour</span>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -354,8 +354,8 @@ const Home = () => {
             <h2 className="font-notoSerif text-4xl lg:text-6xl font-bold text-white mb-8">Book Your Umrah Journey Today</h2>
             <p className="text-white/70 text-lg mb-12 max-w-2xl mx-auto">Contact our travel consultants today to get a personalized quote for your spiritual or leisure travel needs.</p>
             <div className="flex flex-wrap justify-center gap-6">
-              <button className="bg-[#CD9933] text-white px-10 py-4 rounded-md font-bold text-lg hover:scale-105 transition-all">Get a Quote</button>
-              <button className="bg-white/10 text-white border border-white/20 px-10 py-4 rounded-md font-bold text-lg backdrop-blur-md hover:bg-white/20 transition-all">Contact Us</button>
+              <Link to="/contact" className="bg-[#CD9933] text-white px-10 py-4 rounded-md font-bold text-lg hover:scale-105 transition-all">Get a Quote</Link>
+              <Link to="/contact" className="bg-white/10 text-white border border-white/20 px-10 py-4 rounded-md font-bold text-lg backdrop-blur-md hover:bg-white/20 transition-all">Contact Us</Link>
             </div>
           </div>
         </div>

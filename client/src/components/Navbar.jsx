@@ -35,7 +35,7 @@ const Navbar = ({ isVersion2 = false }) => {
           ))}
         </div>
         <div className="flex items-center gap-6">
-          <button className="bg-[#CD9933] text-white px-6 py-2 rounded-md font-manrope text-sm font-bold tracking-wide hover:opacity-90 transition-all">Book Now</button>
+          <Link to="/packages" className="bg-[#CD9933] text-white px-6 py-2 rounded-md font-manrope text-sm font-bold tracking-wide hover:opacity-90 transition-all">Book Now</Link>
         </div>
       </div>
     </nav>
