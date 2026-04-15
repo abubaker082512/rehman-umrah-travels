@@ -114,12 +114,16 @@ const PackageDetail = () => {
     setLoading(true)
     axios.get(`${API_BASE}/api/packages/${id}`)
       .then(res => {
-        setPkg(res.data)
+        // Ensure includes is always an array
+        const data = res.data
+        if (data.includes && typeof data.includes === 'string') {
+          data.includes = data.includes.split(',').map(s => s.trim())
+        }
+        setPkg(data)
         setLoading(false)
       })
       .catch(err => {
         console.error('Error fetching package:', err)
-        // Fallback to static packages
         const staticPkg = staticPackages.find(p => p.id === parseInt(id))
         if (staticPkg) {
           setPkg(staticPkg)
@@ -240,7 +244,7 @@ const PackageDetail = () => {
               <div>
                 <h3 className="font-notoSerif text-xl mb-6">What's Included</h3>
                 <ul className="space-y-4">
-                  {(pkg.includes || ['Visa Processing', 'Flights', 'Ground Transport', 'Guided Tours']).map((item, idx) => (
+                  {(Array.isArray(pkg.includes) ? pkg.includes : String(pkg.includes || 'Visa Processing,Flights,Ground Transport,Guided Tours').split(',')).map((item, idx) => (
                     <li key={idx} className="flex items-center gap-3 text-sm">
                       <span className="material-symbols-outlined text-[#CD9933] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
                       {item}
