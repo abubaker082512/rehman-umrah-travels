@@ -16,6 +16,8 @@ const tabs = [
   { id: 'gallery', label: 'Gallery', icon: 'photo_library' },
   { id: 'blog', label: 'Blog', icon: 'article' },
   { id: 'page-media', label: 'Page Media', icon: 'image' },
+  { id: 'cms', label: 'Content CMS', icon: 'edit_note' },
+  { id: 'settings', label: 'Site Settings', icon: 'settings' },
 ]
 
 // Media Upload Component (Photo or Video)
@@ -674,7 +676,731 @@ const AdminDashboard = () => {
               </div>
             </div>
           )}
+
+          {/* Content CMS Tab */}
+          {activeTab === 'cms' && <ContentCMS />}
+
+          {/* Settings Tab */}
+          {activeTab === 'settings' && <SiteSettings />}
         </main>
+      </div>
+    </div>
+  )
+}
+
+// Content CMS Component
+const ContentCMS = () => {
+  const [activeContentTab, setActiveContentTab] = useState('home')
+  const [saving, setSaving] = useState(false)
+  
+  // Content state
+  const [homeContent, setHomeContent] = useState(() => {
+    const saved = localStorage.getItem('cms_home')
+    return saved ? JSON.parse(saved) : {
+      heroTitle: 'Your Trusted Partner for Umrah & International Tours',
+      heroSubtitle: 'Embark on a spiritual journey of a lifetime with our premium, all-inclusive Umrah packages and bespoke international travel experiences.',
+      heroCta: 'View Umrah Packages',
+      heroWhatsApp: 'Contact on WhatsApp',
+      featuredTitle: 'Curated Umrah Packages',
+      featuredSubtitle: 'Spiritual Journeys',
+      whyChooseTitle: 'Setting a Sacred Standard for Travel',
+      toursTitle: 'Discover the World',
+      toursSubtitle: 'Beyond Borders',
+      testimonialsTitle: 'Voices of Gratitude',
+      testimonialsSubtitle: 'Client Feedback',
+      ctaTitle: 'Book Your Umrah Journey Today',
+      ctaSubtitle: 'Contact our travel consultants today to get a personalized quote for your spiritual or leisure travel needs.',
+      ctaPrimary: 'Get a Quote',
+      ctaSecondary: 'Contact Us'
+    }
+  })
+
+  const [aboutContent, setAboutContent] = useState(() => {
+    const saved = localStorage.getItem('cms_about')
+    return saved ? JSON.parse(saved) : {
+      heroTitle: 'About Us',
+      heroSubtitle: 'A legacy of service, built on the foundation of faith and the honor of serving Allah\'s guests.',
+      storyTitle: 'Crafting Pathways to the Holy Lands',
+      storyText1: 'Royal Umrah & Travels began as a humble aspiration: to transform the daunting logistics of pilgrimage into a seamless, contemplative experience.',
+      storyText2: 'Over two decades, we have evolved from a small local agency into a premier travel concierge in Pakistan.',
+      storyText3: 'Every detail, from the proximity of the hotels to the expertise of our guides, is curated to ensure that your focus remains entirely on the spiritual essence of your visit.',
+      missionTitle: 'To provide affordable and comfortable Umrah journeys.',
+      missionText: 'We dismantle the barriers of complexity and cost, ensuring every believer can answer the call to the Haramain with dignity and ease.',
+      visionTitle: 'To become a trusted Umrah travel agency in Pakistan.',
+      visionText: 'We aspire to set the gold standard in pilgrimage services, blending traditional values with modern logistical excellence.',
+      statsYears: '25+',
+      statsPilgrims: '50K+',
+      statsDestinations: '100+',
+      statsRating: '4.9',
+      ctaTitle: 'Ready to begin your pilgrimage?',
+      ctaSubtitle: 'Consult with our specialists today and let us tailor a journey that honors your devotion.',
+    }
+  })
+
+  const [contactContent, setContactContent] = useState(() => {
+    const saved = localStorage.getItem('cms_contact')
+    return saved ? JSON.parse(saved) : {
+      heroTitle: 'Get in Touch',
+      heroSubtitle: 'Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you.',
+      phone1: '+92 300 123 4567',
+      phone2: '+92 42 123 4567',
+      email: 'info@royalumrahandtravel.com',
+      whatsapp: '+92 300 123 4567',
+      addressLahore: 'Main Boulevard, Gulberg III, Lahore, Pakistan',
+      addressKarachi: 'DHA Phase II, Karachi, Pakistan',
+      formTitle: 'Send Us a Message',
+      formSubtitle: 'Fill out the form below and our travel consultants will get back to you within 24 hours.',
+      ctaTitle: 'Let Us Plan Your Journey',
+      ctaSubtitle: 'Whether it\'s a spiritual Umrah journey or an international adventure, our experts are here to make it happen.',
+    }
+  })
+
+  const [faqContent, setFaqContent] = useState(() => {
+    const saved = localStorage.getItem('cms_faq')
+    return saved ? JSON.parse(saved) : [
+      { id: 1, question: 'What documents do I need for Umrah?', answer: 'For Umrah, you need a valid passport with at least 6 months validity, passport-sized photos, and a completed visa application. We handle the visa process for you.', category: 'Visa' },
+      { id: 2, question: 'How far in advance should I book?', answer: 'We recommend booking at least 2-3 months in advance, especially during Ramadan and Hajj season, to ensure availability and better rates.', category: 'Booking' },
+      { id: 3, question: 'Is travel insurance included?', answer: 'Travel insurance is not included in our packages but can be added at an additional cost. We recommend it for international travel.', category: 'Services' },
+      { id: 4, question: 'What is the difference between Economy and VIP packages?', answer: 'Economy packages offer standard 3-star hotels with shared transportation, while VIP packages include 5-star hotels, private transfers, and premium services.', category: 'Packages' },
+      { id: 5, question: 'Can I customize my Umrah package?', answer: 'Yes! We offer fully customizable packages. Contact our team to discuss your specific requirements and we will create a tailored itinerary.', category: 'Customization' },
+    ]
+  })
+
+  const [footerContent, setFooterContent] = useState(() => {
+    const saved = localStorage.getItem('cms_footer')
+    return saved ? JSON.parse(saved) : {
+      description: 'Royal Umrah & Travels specializes in crafting meaningful spiritual journeys and world-class international tours for the discerning traveler.',
+      quickLinks: ['About Us', 'Visa Services', 'Packages', 'Terms & Conditions', 'Privacy Policy'],
+      copyright: '© 2024 Royal Umrah & Travels. All Rights Reserved.',
+      socialLinks: { facebook: '', instagram: '', twitter: '', youtube: '' }
+    }
+  })
+
+  const saveContent = (key, content) => {
+    setSaving(true)
+    localStorage.setItem(`cms_${key}`, JSON.stringify(content))
+    setTimeout(() => {
+      setSaving(false)
+      alert('Content saved successfully!')
+    }, 500)
+  }
+
+  const addFaq = () => {
+    const newFaq = {
+      id: Date.now(),
+      question: 'New Question',
+      answer: 'Your answer here...',
+      category: 'General'
+    }
+    setFaqContent([...faqContent, newFaq])
+  }
+
+  const updateFaq = (id, field, value) => {
+    setFaqContent(faqContent.map(faq => 
+      faq.id === id ? { ...faq, [field]: value } : faq
+    ))
+  }
+
+  const deleteFaq = (id) => {
+    if (confirm('Delete this FAQ?')) {
+      setFaqContent(faqContent.filter(faq => faq.id !== id))
+    }
+  }
+
+  const contentTabs = [
+    { id: 'home', label: 'Home Page' },
+    { id: 'about', label: 'About Page' },
+    { id: 'contact', label: 'Contact Page' },
+    { id: 'faq', label: 'FAQ' },
+    { id: 'footer', label: 'Footer' },
+  ]
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="font-notoSerif text-3xl font-bold text-primary">Content Management</h2>
+      </div>
+      
+      <p className="text-on-surface-variant mb-8">Manage all website content including text, FAQs, and footer information.</p>
+
+      {/* Content Tabs */}
+      <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
+        {contentTabs.map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveContentTab(tab.id)}
+            className={`px-6 py-3 rounded-lg font-bold text-sm whitespace-nowrap transition-all ${
+              activeContentTab === tab.id 
+                ? 'bg-[#013334] text-white' 
+                : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container'
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Home Page Content */}
+      {activeContentTab === 'home' && (
+        <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+          <h3 className="font-notoSerif text-xl font-bold mb-6">Home Page Content</h3>
+          <div className="space-y-6">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Section Title</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={homeContent.heroTitle}
+                onChange={(e) => setHomeContent({...homeContent, heroTitle: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Section Subtitle</label>
+              <textarea 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                rows={3}
+                value={homeContent.heroSubtitle}
+                onChange={(e) => setHomeContent({...homeContent, heroSubtitle: e.target.value})}
+              />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Featured Section Title</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={homeContent.featuredTitle}
+                  onChange={(e) => setHomeContent({...homeContent, featuredTitle: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Tours Section Title</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={homeContent.toursTitle}
+                  onChange={(e) => setHomeContent({...homeContent, toursTitle: e.target.value})}
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">CTA Section Title</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={homeContent.ctaTitle}
+                onChange={(e) => setHomeContent({...homeContent, ctaTitle: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">CTA Section Subtitle</label>
+              <textarea 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                rows={2}
+                value={homeContent.ctaSubtitle}
+                onChange={(e) => setHomeContent({...homeContent, ctaSubtitle: e.target.value})}
+              />
+            </div>
+            <button 
+              onClick={() => saveContent('home', homeContent)}
+              className="bg-[#CD9933] text-white px-8 py-3 rounded-lg font-bold text-sm hover:brightness-110 transition-all"
+            >
+              {saving ? 'Saving...' : 'Save Home Page Content'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* About Page Content */}
+      {activeContentTab === 'about' && (
+        <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+          <h3 className="font-notoSerif text-xl font-bold mb-6">About Page Content</h3>
+          <div className="space-y-6">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Title</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={aboutContent.heroTitle}
+                onChange={(e) => setAboutContent({...aboutContent, heroTitle: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Subtitle</label>
+              <textarea 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                rows={2}
+                value={aboutContent.heroSubtitle}
+                onChange={(e) => setAboutContent({...aboutContent, heroSubtitle: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Story Title</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={aboutContent.storyTitle}
+                onChange={(e) => setAboutContent({...aboutContent, storyTitle: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Story Paragraph 1</label>
+              <textarea 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                rows={3}
+                value={aboutContent.storyText1}
+                onChange={(e) => setAboutContent({...aboutContent, storyText1: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Story Paragraph 2</label>
+              <textarea 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                rows={3}
+                value={aboutContent.storyText2}
+                onChange={(e) => setAboutContent({...aboutContent, storyText2: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Mission Statement</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={aboutContent.missionTitle}
+                onChange={(e) => setAboutContent({...aboutContent, missionTitle: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Vision Statement</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={aboutContent.visionTitle}
+                onChange={(e) => setAboutContent({...aboutContent, visionTitle: e.target.value})}
+              />
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Years (e.g. 25+)</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={aboutContent.statsYears}
+                  onChange={(e) => setAboutContent({...aboutContent, statsYears: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Pilgrims (e.g. 50K+)</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={aboutContent.statsPilgrims}
+                  onChange={(e) => setAboutContent({...aboutContent, statsPilgrims: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Destinations</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={aboutContent.statsDestinations}
+                  onChange={(e) => setAboutContent({...aboutContent, statsDestinations: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Rating</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={aboutContent.statsRating}
+                  onChange={(e) => setAboutContent({...aboutContent, statsRating: e.target.value})}
+                />
+              </div>
+            </div>
+            <button 
+              onClick={() => saveContent('about', aboutContent)}
+              className="bg-[#CD9933] text-white px-8 py-3 rounded-lg font-bold text-sm hover:brightness-110 transition-all"
+            >
+              {saving ? 'Saving...' : 'Save About Page Content'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Contact Page Content */}
+      {activeContentTab === 'contact' && (
+        <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+          <h3 className="font-notoSerif text-xl font-bold mb-6">Contact Page Content</h3>
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Phone Number 1</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={contactContent.phone1}
+                  onChange={(e) => setContactContent({...contactContent, phone1: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Phone Number 2</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={contactContent.phone2}
+                  onChange={(e) => setContactContent({...contactContent, phone2: e.target.value})}
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Email Address</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={contactContent.email}
+                onChange={(e) => setContactContent({...contactContent, email: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">WhatsApp Number</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={contactContent.whatsapp}
+                onChange={(e) => setContactContent({...contactContent, whatsapp: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Lahore Address</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={contactContent.addressLahore}
+                onChange={(e) => setContactContent({...contactContent, addressLahore: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Karachi Address</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={contactContent.addressKarachi}
+                onChange={(e) => setContactContent({...contactContent, addressKarachi: e.target.value})}
+              />
+            </div>
+            <button 
+              onClick={() => saveContent('contact', contactContent)}
+              className="bg-[#CD9933] text-white px-8 py-3 rounded-lg font-bold text-sm hover:brightness-110 transition-all"
+            >
+              {saving ? 'Saving...' : 'Save Contact Content'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* FAQ Management */}
+      {activeContentTab === 'faq' && (
+        <div>
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="font-notoSerif text-xl font-bold">Frequently Asked Questions</h3>
+            <button 
+              onClick={addFaq}
+              className="bg-[#013334] text-white px-6 py-2 rounded-lg font-bold text-sm hover:brightness-110 transition-all flex items-center gap-2"
+            >
+              <span className="material-symbols-outlined text-sm">add</span>
+              Add FAQ
+            </button>
+          </div>
+          <div className="space-y-4">
+            {faqContent.map((faq, index) => (
+              <div key={faq.id} className="bg-surface-container-lowest p-6 rounded-xl editorial-shadow">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-bold text-[#CD9933] uppercase">FAQ #{index + 1}</span>
+                  <div className="flex items-center gap-2">
+                    <select 
+                      value={faq.category}
+                      onChange={(e) => updateFaq(faq.id, 'category', e.target.value)}
+                      className="text-xs bg-surface border border-outline-variant px-3 py-1 rounded"
+                    >
+                      <option>General</option>
+                      <option>Visa</option>
+                      <option>Booking</option>
+                      <option>Packages</option>
+                      <option>Customization</option>
+                      <option>Services</option>
+                    </select>
+                    <button 
+                      onClick={() => deleteFaq(faq.id)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      <span className="material-symbols-outlined">delete</span>
+                    </button>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Question</label>
+                    <input 
+                      className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 px-3 rounded-lg text-sm"
+                      value={faq.question}
+                      onChange={(e) => updateFaq(faq.id, 'question', e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Answer</label>
+                    <textarea 
+                      className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 px-3 rounded-lg text-sm"
+                      rows={3}
+                      value={faq.answer}
+                      onChange={(e) => updateFaq(faq.id, 'answer', e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button 
+            onClick={() => saveContent('faq', faqContent)}
+            className="bg-[#CD9933] text-white px-8 py-3 rounded-lg font-bold text-sm hover:brightness-110 transition-all mt-6"
+          >
+            {saving ? 'Saving...' : 'Save All FAQs'}
+          </button>
+        </div>
+      )}
+
+      {/* Footer Content */}
+      {activeContentTab === 'footer' && (
+        <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+          <h3 className="font-notoSerif text-xl font-bold mb-6">Footer Content</h3>
+          <div className="space-y-6">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Company Description</label>
+              <textarea 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                rows={3}
+                value={footerContent.description}
+                onChange={(e) => setFooterContent({...footerContent, description: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Copyright Text</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={footerContent.copyright}
+                onChange={(e) => setFooterContent({...footerContent, copyright: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Quick Links (comma separated)</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={footerContent.quickLinks.join(', ')}
+                onChange={(e) => setFooterContent({...footerContent, quickLinks: e.target.value.split(',').map(s => s.trim())})}
+              />
+            </div>
+            <h4 className="font-bold text-sm mt-6">Social Media Links</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Facebook URL</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={footerContent.socialLinks.facebook}
+                  onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, facebook: e.target.value}})}
+                  placeholder="https://facebook.com/..."
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Instagram URL</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={footerContent.socialLinks.instagram}
+                  onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, instagram: e.target.value}})}
+                  placeholder="https://instagram.com/..."
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Twitter/X URL</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={footerContent.socialLinks.twitter}
+                  onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, twitter: e.target.value}})}
+                  placeholder="https://twitter.com/..."
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">YouTube URL</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={footerContent.socialLinks.youtube}
+                  onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, youtube: e.target.value}})}
+                  placeholder="https://youtube.com/..."
+                />
+              </div>
+            </div>
+            <button 
+              onClick={() => saveContent('footer', footerContent)}
+              className="bg-[#CD9933] text-white px-8 py-3 rounded-lg font-bold text-sm hover:brightness-110 transition-all"
+            >
+              {saving ? 'Saving...' : 'Save Footer Content'}
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// Site Settings Component
+const SiteSettings = () => {
+  const [saving, setSaving] = useState(false)
+  
+  const [settings, setSettings] = useState(() => {
+    const saved = localStorage.getItem('site_settings')
+    return saved ? JSON.parse(saved) : {
+      siteName: 'Royal Umrah & Travels',
+      tagline: 'Your Trusted Partner for Umrah & International Tours',
+      email: 'info@royalumrahandtravel.com',
+      phone: '+92 300 123 4567',
+      whatsapp: '+92 300 123 4567',
+      address: 'Main Boulevard, Gulberg III, Lahore, Pakistan',
+      workingHours: 'Mon - Sat: 9:00 AM - 8:00 PM',
+      metaTitle: 'Royal Umrah & Travels - Your Trusted Partner for Umrah & International Tours',
+      metaDescription: 'Experience premium Umrah packages and international tours with Royal Umrah & Travels. Approved by Ministry of Hajj & Umrah.',
+      metaKeywords: 'umrah, packages, makkah, madinah, hajj, travel, tours, pakistan',
+    }
+  })
+
+  const saveSettings = () => {
+    setSaving(true)
+    localStorage.setItem('site_settings', JSON.stringify(settings))
+    setTimeout(() => {
+      setSaving(false)
+      alert('Settings saved successfully!')
+    }, 500)
+  }
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="font-notoSerif text-3xl font-bold text-primary">Site Settings</h2>
+        <button 
+          onClick={saveSettings}
+          disabled={saving}
+          className="bg-[#CD9933] text-white px-8 py-3 rounded-lg font-bold text-sm hover:brightness-110 transition-all flex items-center gap-2"
+        >
+          <span className="material-symbols-outlined">{saving ? 'hourglass_empty' : 'save'}</span>
+          {saving ? 'Saving...' : 'Save Settings'}
+        </button>
+      </div>
+      
+      <div className="space-y-8">
+        {/* General Settings */}
+        <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+          <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+            <span className="material-symbols-outlined text-[#CD9933]">settings</span>
+            General Settings
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Site Name</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={settings.siteName}
+                onChange={(e) => setSettings({...settings, siteName: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Tagline</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={settings.tagline}
+                onChange={(e) => setSettings({...settings, tagline: e.target.value})}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Information */}
+        <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+          <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+            <span className="material-symbols-outlined text-[#CD9933]">contact_phone</span>
+            Contact Information
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Primary Email</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                type="email"
+                value={settings.email}
+                onChange={(e) => setSettings({...settings, email: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Phone Number</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={settings.phone}
+                onChange={(e) => setSettings({...settings, phone: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">WhatsApp Number</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={settings.whatsapp}
+                onChange={(e) => setSettings({...settings, whatsapp: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Working Hours</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={settings.workingHours}
+                onChange={(e) => setSettings({...settings, workingHours: e.target.value})}
+              />
+            </div>
+          </div>
+          <div className="mt-6">
+            <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Address</label>
+            <input 
+              className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+              value={settings.address}
+              onChange={(e) => setSettings({...settings, address: e.target.value})}
+            />
+          </div>
+        </div>
+
+        {/* SEO Settings */}
+        <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+          <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+            <span className="material-symbols-outlined text-[#CD9933]">search</span>
+            SEO Settings
+          </h3>
+          <div className="space-y-6">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Meta Title</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={settings.metaTitle}
+                onChange={(e) => setSettings({...settings, metaTitle: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Meta Description</label>
+              <textarea 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                rows={3}
+                value={settings.metaDescription}
+                onChange={(e) => setSettings({...settings, metaDescription: e.target.value})}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Meta Keywords</label>
+              <input 
+                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                value={settings.metaKeywords}
+                onChange={(e) => setSettings({...settings, metaKeywords: e.target.value})}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Info Box */}
+        <div className="bg-[#CD9933]/10 border border-[#CD9933]/30 p-6 rounded-xl">
+          <div className="flex items-start gap-3">
+            <span className="material-symbols-outlined text-[#CD9933]">info</span>
+            <div>
+              <h4 className="font-bold text-sm mb-1">About Settings</h4>
+              <p className="text-xs text-on-surface-variant">
+                Settings are saved locally in your browser. For production use with a database, 
+                these values can be connected to Supabase or another backend service.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
