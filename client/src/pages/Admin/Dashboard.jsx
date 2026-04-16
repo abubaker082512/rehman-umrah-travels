@@ -701,17 +701,24 @@ const ContentCMS = () => {
       heroSubtitle: 'Embark on a spiritual journey of a lifetime with our premium, all-inclusive Umrah packages and bespoke international travel experiences.',
       heroCta: 'View Umrah Packages',
       heroWhatsApp: 'Contact on WhatsApp',
+      heroImage: '',
+      heroVideo: '',
       featuredTitle: 'Curated Umrah Packages',
       featuredSubtitle: 'Spiritual Journeys',
+      featuredImage: '',
       whyChooseTitle: 'Setting a Sacred Standard for Travel',
+      whyChooseImage: '',
       toursTitle: 'Discover the World',
       toursSubtitle: 'Beyond Borders',
+      toursImage: '',
       testimonialsTitle: 'Voices of Gratitude',
       testimonialsSubtitle: 'Client Feedback',
+      testimonialsImage: '',
       ctaTitle: 'Book Your Umrah Journey Today',
       ctaSubtitle: 'Contact our travel consultants today to get a personalized quote for your spiritual or leisure travel needs.',
       ctaPrimary: 'Get a Quote',
-      ctaSecondary: 'Contact Us'
+      ctaSecondary: 'Contact Us',
+      ctaImage: '',
     }
   })
 
@@ -720,10 +727,13 @@ const ContentCMS = () => {
     return saved ? JSON.parse(saved) : {
       heroTitle: 'About Us',
       heroSubtitle: 'A legacy of service, built on the foundation of faith and the honor of serving Allah\'s guests.',
+      heroImage: '',
+      heroVideo: '',
       storyTitle: 'Crafting Pathways to the Holy Lands',
       storyText1: 'Royal Umrah & Travels began as a humble aspiration: to transform the daunting logistics of pilgrimage into a seamless, contemplative experience.',
       storyText2: 'Over two decades, we have evolved from a small local agency into a premier travel concierge in Pakistan.',
       storyText3: 'Every detail, from the proximity of the hotels to the expertise of our guides, is curated to ensure that your focus remains entirely on the spiritual essence of your visit.',
+      storyImage: '',
       missionTitle: 'To provide affordable and comfortable Umrah journeys.',
       missionText: 'We dismantle the barriers of complexity and cost, ensuring every believer can answer the call to the Haramain with dignity and ease.',
       visionTitle: 'To become a trusted Umrah travel agency in Pakistan.',
@@ -732,6 +742,7 @@ const ContentCMS = () => {
       statsPilgrims: '50K+',
       statsDestinations: '100+',
       statsRating: '4.9',
+      statsImage: '',
       ctaTitle: 'Ready to begin your pilgrimage?',
       ctaSubtitle: 'Consult with our specialists today and let us tailor a journey that honors your devotion.',
     }
@@ -742,12 +753,14 @@ const ContentCMS = () => {
     return saved ? JSON.parse(saved) : {
       heroTitle: 'Get in Touch',
       heroSubtitle: 'Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you.',
+      heroImage: '',
       phone1: '+92 300 123 4567',
       phone2: '+92 42 123 4567',
       email: 'info@royalumrahandtravel.com',
       whatsapp: '+92 300 123 4567',
       addressLahore: 'Main Boulevard, Gulberg III, Lahore, Pakistan',
       addressKarachi: 'DHA Phase II, Karachi, Pakistan',
+      mapImage: '',
       formTitle: 'Send Us a Message',
       formSubtitle: 'Fill out the form below and our travel consultants will get back to you within 24 hours.',
       ctaTitle: 'Let Us Plan Your Journey',
@@ -772,7 +785,41 @@ const ContentCMS = () => {
       description: 'Royal Umrah & Travels specializes in crafting meaningful spiritual journeys and world-class international tours for the discerning traveler.',
       quickLinks: ['About Us', 'Visa Services', 'Packages', 'Terms & Conditions', 'Privacy Policy'],
       copyright: '© 2024 Royal Umrah & Travels. All Rights Reserved.',
-      socialLinks: { facebook: '', instagram: '', twitter: '', youtube: '' }
+      socialLinks: { facebook: '', instagram: '', twitter: '', youtube: '' },
+      logo: '',
+      bgImage: ''
+    }
+  })
+
+  const [mediaContent, setMediaContent] = useState(() => {
+    const saved = localStorage.getItem('cms_media')
+    return saved ? JSON.parse(saved) : {
+      homeHeroImage: '',
+      homeHeroVideo: '',
+      homeWhyChooseBg: '',
+      homeFeaturedBg: '',
+      homeTestimonialsBg: '',
+      homeCtaBg: '',
+      aboutHeroImage: '',
+      aboutStoryImage: '',
+      aboutVideo: '',
+      aboutStatsBg: '',
+      contactHeroImage: '',
+      contactMapImage: '',
+      contactCtaBg: '',
+      packagesHeroImage: '',
+      packagesVideo: '',
+      toursHeroImage: '',
+      toursVideo: '',
+      visaHeroImage: '',
+      visaBgImage: '',
+      galleryHeroImage: '',
+      galleryBanner: '',
+      faqHeroImage: '',
+      blogHeroImage: '',
+      navbarLogo: '',
+      favicon: '',
+      whatsappIcon: ''
     }
   })
 
@@ -786,6 +833,14 @@ const ContentCMS = () => {
   }
 
   const addFaq = () => {
+    const newFaq = {
+      id: Date.now(),
+      question: 'New Question',
+      answer: 'Your answer here...',
+      category: 'General'
+    }
+    setFaqContent([...faqContent, newFaq])
+  }
     const newFaq = {
       id: Date.now(),
       question: 'New Question',
@@ -813,6 +868,7 @@ const ContentCMS = () => {
     { id: 'contact', label: 'Contact Page' },
     { id: 'faq', label: 'FAQ' },
     { id: 'footer', label: 'Footer' },
+    { id: 'media', label: 'Images & Videos' },
   ]
 
   return (
@@ -1152,79 +1208,460 @@ const ContentCMS = () => {
 
       {/* Footer Content */}
       {activeContentTab === 'footer' && (
-        <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
-          <h3 className="font-notoSerif text-xl font-bold mb-6">Footer Content</h3>
-          <div className="space-y-6">
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Company Description</label>
-              <textarea 
-                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
-                rows={3}
-                value={footerContent.description}
-                onChange={(e) => setFooterContent({...footerContent, description: e.target.value})}
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Copyright Text</label>
-              <input 
-                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
-                value={footerContent.copyright}
-                onChange={(e) => setFooterContent({...footerContent, copyright: e.target.value})}
-              />
-            </div>
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Quick Links (comma separated)</label>
-              <input 
-                className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
-                value={footerContent.quickLinks.join(', ')}
-                onChange={(e) => setFooterContent({...footerContent, quickLinks: e.target.value.split(',').map(s => s.trim())})}
-              />
-            </div>
-            <h4 className="font-bold text-sm mt-6">Social Media Links</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-6">
+          {/* Footer Media */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+            <h3 className="font-notoSerif text-xl font-bold mb-6">Footer Media</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Facebook URL</label>
-                <input 
-                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
-                  value={footerContent.socialLinks.facebook}
-                  onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, facebook: e.target.value}})}
-                  placeholder="https://facebook.com/..."
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Footer Logo</label>
+                <MediaUpload
+                  value={footerContent.logo || ''}
+                  onChange={(val) => setFooterContent({...footerContent, logo: val})}
+                  label="Logo"
+                  type="image"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Instagram URL</label>
-                <input 
-                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
-                  value={footerContent.socialLinks.instagram}
-                  onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, instagram: e.target.value}})}
-                  placeholder="https://instagram.com/..."
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Twitter/X URL</label>
-                <input 
-                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
-                  value={footerContent.socialLinks.twitter}
-                  onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, twitter: e.target.value}})}
-                  placeholder="https://twitter.com/..."
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">YouTube URL</label>
-                <input 
-                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
-                  value={footerContent.socialLinks.youtube}
-                  onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, youtube: e.target.value}})}
-                  placeholder="https://youtube.com/..."
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Background Image</label>
+                <MediaUpload
+                  value={footerContent.bgImage || ''}
+                  onChange={(val) => setFooterContent({...footerContent, bgImage: val})}
+                  label="Background"
+                  type="image"
                 />
               </div>
             </div>
+          </div>
+
+          {/* Footer Text Content */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+            <h3 className="font-notoSerif text-xl font-bold mb-6">Footer Text Content</h3>
+            <div className="space-y-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Company Description</label>
+                <textarea 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  rows={3}
+                  value={footerContent.description}
+                  onChange={(e) => setFooterContent({...footerContent, description: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Copyright Text</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={footerContent.copyright}
+                  onChange={(e) => setFooterContent({...footerContent, copyright: e.target.value})}
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Quick Links (comma separated)</label>
+                <input 
+                  className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                  value={footerContent.quickLinks.join(', ')}
+                  onChange={(e) => setFooterContent({...footerContent, quickLinks: e.target.value.split(',').map(s => s.trim())})}
+                />
+              </div>
+              <h4 className="font-bold text-sm mt-6">Social Media Links</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Facebook URL</label>
+                  <input 
+                    className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                    value={footerContent.socialLinks.facebook}
+                    onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, facebook: e.target.value}})}
+                    placeholder="https://facebook.com/..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Instagram URL</label>
+                  <input 
+                    className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                    value={footerContent.socialLinks.instagram}
+                    onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, instagram: e.target.value}})}
+                    placeholder="https://instagram.com/..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Twitter/X URL</label>
+                  <input 
+                    className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                    value={footerContent.socialLinks.twitter}
+                    onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, twitter: e.target.value}})}
+                    placeholder="https://twitter.com/..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">YouTube URL</label>
+                  <input 
+                    className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm"
+                    value={footerContent.socialLinks.youtube}
+                    onChange={(e) => setFooterContent({...footerContent, socialLinks: {...footerContent.socialLinks, youtube: e.target.value}})}
+                    placeholder="https://youtube.com/..."
+                  />
+                </div>
+              </div>
+              <button 
+                onClick={() => saveContent('footer', footerContent)}
+                className="bg-[#CD9933] text-white px-8 py-3 rounded-lg font-bold text-sm hover:brightness-110 transition-all"
+              >
+                {saving ? 'Saving...' : 'Save Footer Content'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Images & Videos Media Manager */}
+      {activeContentTab === 'media' && (
+        <div>
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="font-notoSerif text-3xl font-bold text-primary">Images & Videos Manager</h2>
             <button 
-              onClick={() => saveContent('footer', footerContent)}
-              className="bg-[#CD9933] text-white px-8 py-3 rounded-lg font-bold text-sm hover:brightness-110 transition-all"
+              onClick={() => saveContent('media', mediaContent)}
+              disabled={saving}
+              className="bg-[#CD9933] text-white px-8 py-3 rounded-lg font-bold text-sm hover:brightness-110 transition-all flex items-center gap-2"
             >
-              {saving ? 'Saving...' : 'Save Footer Content'}
+              <span className="material-symbols-outlined">{saving ? 'hourglass_empty' : 'save'}</span>
+              {saving ? 'Saving...' : 'Save All Media'}
             </button>
+          </div>
+          
+          <p className="text-on-surface-variant mb-8">Upload and manage images and videos for all pages. Choose between Photo or Video for each item.</p>
+
+          {/* Homepage Media */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
+            <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+              <span className="material-symbols-outlined text-[#CD9933]">home</span>
+              Homepage Media
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Background Image</label>
+                <MediaUpload
+                  value={mediaContent.homeHeroImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, homeHeroImage: val})}
+                  label="Hero Image"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Background Video (Optional)</label>
+                <MediaUpload
+                  value={mediaContent.homeHeroVideo || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, homeHeroVideo: val})}
+                  label="Hero Video"
+                  type="video"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Why Choose Us Background</label>
+                <MediaUpload
+                  value={mediaContent.homeWhyChooseBg || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, homeWhyChooseBg: val})}
+                  label="Background"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Featured Section Background</label>
+                <MediaUpload
+                  value={mediaContent.homeFeaturedBg || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, homeFeaturedBg: val})}
+                  label="Background"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Testimonials Background</label>
+                <MediaUpload
+                  value={mediaContent.homeTestimonialsBg || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, homeTestimonialsBg: val})}
+                  label="Background"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">CTA Section Background</label>
+                <MediaUpload
+                  value={mediaContent.homeCtaBg || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, homeCtaBg: val})}
+                  label="Background"
+                  type="image"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* About Page Media */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
+            <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+              <span className="material-symbols-outlined text-[#CD9933]">info</span>
+              About Page Media
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Image</label>
+                <MediaUpload
+                  value={mediaContent.aboutHeroImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, aboutHeroImage: val})}
+                  label="Hero Image"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Story Section Image</label>
+                <MediaUpload
+                  value={mediaContent.aboutStoryImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, aboutStoryImage: val})}
+                  label="Story Image"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Promotional Video</label>
+                <MediaUpload
+                  value={mediaContent.aboutVideo || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, aboutVideo: val})}
+                  label="Video"
+                  type="video"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Stats Section Background</label>
+                <MediaUpload
+                  value={mediaContent.aboutStatsBg || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, aboutStatsBg: val})}
+                  label="Background"
+                  type="image"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Page Media */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
+            <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+              <span className="material-symbols-outlined text-[#CD9933]">contact_phone</span>
+              Contact Page Media
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Image</label>
+                <MediaUpload
+                  value={mediaContent.contactHeroImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, contactHeroImage: val})}
+                  label="Hero Image"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Map/Location Image</label>
+                <MediaUpload
+                  value={mediaContent.contactMapImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, contactMapImage: val})}
+                  label="Map Image"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">CTA Background</label>
+                <MediaUpload
+                  value={mediaContent.contactCtaBg || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, contactCtaBg: val})}
+                  label="Background"
+                  type="image"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Umrah Packages Page Media */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
+            <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+              <span className="material-symbols-outlined text-[#CD9933]">mosque</span>
+              Umrah Packages Page Media
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Image</label>
+                <MediaUpload
+                  value={mediaContent.packagesHeroImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, packagesHeroImage: val})}
+                  label="Hero Image"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Umrah Promotional Video</label>
+                <MediaUpload
+                  value={mediaContent.packagesVideo || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, packagesVideo: val})}
+                  label="Video"
+                  type="video"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* International Tours Page Media */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
+            <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+              <span className="material-symbols-outlined text-[#CD9933]">flight</span>
+              International Tours Page Media
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Image</label>
+                <MediaUpload
+                  value={mediaContent.toursHeroImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, toursHeroImage: val})}
+                  label="Hero Image"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Promotional Video</label>
+                <MediaUpload
+                  value={mediaContent.toursVideo || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, toursVideo: val})}
+                  label="Video"
+                  type="video"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Visa Services Page Media */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
+            <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+              <span className="material-symbols-outlined text-[#CD9933]">description</span>
+              Visa Services Page Media
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Image</label>
+                <MediaUpload
+                  value={mediaContent.visaHeroImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, visaHeroImage: val})}
+                  label="Hero Image"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Background Image</label>
+                <MediaUpload
+                  value={mediaContent.visaBgImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, visaBgImage: val})}
+                  label="Background"
+                  type="image"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Gallery Page Media */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
+            <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+              <span className="material-symbols-outlined text-[#CD9933]">photo_library</span>
+              Gallery Page Media
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Image</label>
+                <MediaUpload
+                  value={mediaContent.galleryHeroImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, galleryHeroImage: val})}
+                  label="Hero Image"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Banner Image</label>
+                <MediaUpload
+                  value={mediaContent.galleryBanner || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, galleryBanner: val})}
+                  label="Banner"
+                  type="image"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* FAQ Page Media */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
+            <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+              <span className="material-symbols-outlined text-[#CD9933]">quiz</span>
+              FAQ Page Media
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Image</label>
+                <MediaUpload
+                  value={mediaContent.faqHeroImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, faqHeroImage: val})}
+                  label="Hero Image"
+                  type="image"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Blog Page Media */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
+            <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+              <span className="material-symbols-outlined text-[#CD9933]">article</span>
+              Blog Page Media
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Image</label>
+                <MediaUpload
+                  value={mediaContent.blogHeroImage || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, blogHeroImage: val})}
+                  label="Hero Image"
+                  type="image"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Navbar & Misc Media */}
+          <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+            <h3 className="font-notoSerif text-xl font-bold mb-6 flex items-center gap-3">
+              <span className="material-symbols-outlined text-[#CD9933]">settings</span>
+              Navigation & Misc Media
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Navbar Logo</label>
+                <MediaUpload
+                  value={mediaContent.navbarLogo || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, navbarLogo: val})}
+                  label="Logo"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Favicon/Icon</label>
+                <MediaUpload
+                  value={mediaContent.favicon || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, favicon: val})}
+                  label="Favicon"
+                  type="image"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">WhatsApp FAB Icon</label>
+                <MediaUpload
+                  value={mediaContent.whatsappIcon || ''}
+                  onChange={(val) => setMediaContent({...mediaContent, whatsappIcon: val})}
+                  label="Icon"
+                  type="image"
+                />
+              </div>
+            </div>
           </div>
         </div>
       )}
