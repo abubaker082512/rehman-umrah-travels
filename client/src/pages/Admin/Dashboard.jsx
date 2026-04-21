@@ -813,7 +813,6 @@ const ContentCMS = () => {
       navbarLogo: '',
       favicon: '',
       whatsappIcon: ''
-    }
   })
 
   useEffect(() => {
