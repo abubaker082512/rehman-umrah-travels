@@ -77,6 +77,13 @@ CREATE TABLE IF NOT EXISTS blog_posts (
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- 6. CMS CONTENT TABLE
+CREATE TABLE IF NOT EXISTS cms_content (
+  id TEXT PRIMARY KEY,
+  content JSONB NOT NULL,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- =============================================
 -- ENABLE ROW LEVEL SECURITY (RLS)
 -- =============================================
@@ -86,6 +93,7 @@ ALTER TABLE tours ENABLE ROW LEVEL SECURITY;
 ALTER TABLE visa_services ENABLE ROW LEVEL SECURITY;
 ALTER TABLE gallery ENABLE ROW LEVEL SECURITY;
 ALTER TABLE blog_posts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE cms_content ENABLE ROW LEVEL SECURITY;
 
 -- =============================================
 -- RLS POLICIES - PUBLIC READ, ADMIN WRITE
@@ -120,6 +128,12 @@ CREATE POLICY "Public can view blog posts" ON blog_posts FOR SELECT USING (true)
 CREATE POLICY "Authenticated users can insert blog posts" ON blog_posts FOR INSERT WITH CHECK (auth.role() = 'authenticated');
 CREATE POLICY "Authenticated users can update blog posts" ON blog_posts FOR UPDATE USING (auth.role() = 'authenticated');
 CREATE POLICY "Authenticated users can delete blog posts" ON blog_posts FOR DELETE USING (auth.role() = 'authenticated');
+
+-- CMS Content: Public can read, authenticated users can write
+CREATE POLICY "Public can view cms content" ON cms_content FOR SELECT USING (true);
+CREATE POLICY "Authenticated users can insert cms content" ON cms_content FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Authenticated users can update cms content" ON cms_content FOR UPDATE USING (auth.role() = 'authenticated');
+CREATE POLICY "Authenticated users can delete cms content" ON cms_content FOR DELETE USING (auth.role() = 'authenticated');
 
 -- =============================================
 -- SEED DATA - PACKAGES
@@ -202,6 +216,19 @@ INSERT INTO blog_posts (title, excerpt, content, category, image_url, read_time,
 ('Best Time for Umrah: A Complete Seasonal Guide', 'Discover the best months to visit Makkah and Madinah based on weather, crowd levels, and spiritual significance.', 'Full content here...', 'Planning', 'https://lh3.googleusercontent.com/aida-public/AB6AXuCoKHIP0C3QMaqa0Klr2dM78ntz2OMNGskdqZpgaSJ-t6CzhN9wtM0mVM_VfSXuA51y498oLIAKD-uoj3lEBnBE8WmcWNOLOSOq9dH9S0lGZIfFBT1ZhI-DDgNOWBLRTwE3G7J0rMP7EcoWJ320MQ5b4uQ8mPqH3otJS4kmYLSdyP7CkobPzxStF_dClqG1HjjpMwEyFmBv7FGdx4exw17NjJDYM-FTizn97bzsUtNLtNiN42PQQll7lzJbJk6og1ghe9D9P9QPzoGt', '6 min read', false),
 
 ('Top Ziyarat Places in Madinah You Must Visit', 'Explore the most significant historical and religious sites in Madinah, from Masjid Quba to Mount Uhud.', 'Full content here...', 'Destinations', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAGAIsAHsj1aeHsF48svRjVUbf98DzT-X9LQhfvfa-q2PJlyI09AuEIY6srDte53YCFFWCd2EaqKD-uoj3lEBnBE8WmcWNOLOSOq9dH9S0lGZIfFBT1ZhI-DDgNOWBLRTwE3G7J0rMP7EcoWJ320MQ5b4uQ8mPqH3otJS4kmYLSdyP7CkobPzxStF_dClqG1HjjpMwEyFmBv7FGdx4exw17NjJDYM-FTizn97bzsUtNLtNiN42PQQll7lzJbJk6og1ghe9D9P9QPzoGt', '7 min read', false);
+
+-- =============================================
+-- SEED DATA - CMS CONTENT
+-- =============================================
+
+INSERT INTO cms_content (id, content) VALUES
+('cms_home', '{
+  "heroTitle": "Your Trusted Partner for Umrah & International Tours",
+  "heroSubtitle": "Embark on a spiritual journey of a lifetime with our premium, all-inclusive Umrah packages and bespoke international travel experiences.",
+  "heroCta": "View Umrah Packages",
+  "heroWhatsApp": "Contact on WhatsApp"
+}'),
+('page_media', '{}');
 
 -- =============================================
 -- STORAGE BUCKETS (Run separately in Supabase Dashboard)

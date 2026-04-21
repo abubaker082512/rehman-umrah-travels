@@ -307,20 +307,29 @@ const AdminDashboard = () => {
     loadPageMedia()
   }, [])
 
-  const loadPageMedia = () => {
-    const saved = localStorage.getItem('pageMedia')
-    if (saved) {
-      setPageMedia(JSON.parse(saved))
+  const loadPageMedia = async () => {
+    try {
+      const res = await axios.get(`${API_BASE}/api/cms?id=page_media`)
+      if (res.data) {
+        setPageMedia(res.data)
+      }
+    } catch (err) {
+      console.error('Error loading page media:', err)
     }
   }
 
-  const savePageMedia = () => {
+  const savePageMedia = async () => {
     setMediaSaving(true)
-    localStorage.setItem('pageMedia', JSON.stringify(pageMedia))
-    setTimeout(() => {
+    try {
+      await axios.post(`${API_BASE}/api/cms?id=page_media`, pageMedia, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      alert('Page media saved successfully to database!')
+    } catch (err) {
+      alert('Error saving page media: ' + err.message)
+    } finally {
       setMediaSaving(false)
-      alert('Page media saved successfully!')
-    }, 500)
+    }
   }
 
   const fetchData = async () => {
@@ -473,13 +482,14 @@ const AdminDashboard = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {packages.map(pkg => (
                       <div key={pkg.id} className="bg-surface-container-lowest p-4 rounded-lg editorial-shadow flex gap-4">
-                        <img src={pkg.image_url || 'https://via.placeholder.com/96'} alt={pkg.title} className="w-24 h-24 object-cover rounded-lg" />
+                        <img src={(pkg.image_url || pkg.image) || 'https://via.placeholder.com/96'} alt={pkg.title} className="w-24 h-24 object-cover rounded-lg" />
                         <div className="flex-1">
                           <h4 className="font-bold text-primary">{pkg.title}</h4>
-                          <p className="text-sm text-on-surface-variant">{pkg.category} • {pkg.duration}</p>
+                          <p className="text-sm text-on-surface-variant font-medium">{pkg.category} • {pkg.duration}</p>
                           <p className="text-[#CD9933] font-bold">PKR {(pkg.price || 0).toLocaleString()}</p>
+                          <p className="text-[10px] text-outline mt-1 font-mono uppercase truncate max-w-[150px]">{pkg.id}</p>
                         </div>
-                        <button onClick={() => handleDeletePackage(pkg.id)} className="self-start text-red-500 hover:text-red-700">
+                        <button onClick={() => handleDeletePackage(pkg.id)} className="self-start text-red-500 hover:text-red-700 transition-colors">
                           <span className="material-symbols-outlined">delete</span>
                         </button>
                       </div>
@@ -694,10 +704,8 @@ const ContentCMS = () => {
   const [saving, setSaving] = useState(false)
   
   // Content state
-  const [homeContent, setHomeContent] = useState(() => {
-    const saved = localStorage.getItem('cms_home')
-    return saved ? JSON.parse(saved) : {
-      heroTitle: 'Your Trusted Partner for Umrah & International Tours',
+  const [homeContent, setHomeContent] = useState({
+    heroTitle: 'Your Trusted Partner for Umrah & International Tours',
       heroSubtitle: 'Embark on a spiritual journey of a lifetime with our premium, all-inclusive Umrah packages and bespoke international travel experiences.',
       heroCta: 'View Umrah Packages',
       heroWhatsApp: 'Contact on WhatsApp',
@@ -719,13 +727,10 @@ const ContentCMS = () => {
       ctaPrimary: 'Get a Quote',
       ctaSecondary: 'Contact Us',
       ctaImage: '',
-    }
   })
 
-  const [aboutContent, setAboutContent] = useState(() => {
-    const saved = localStorage.getItem('cms_about')
-    return saved ? JSON.parse(saved) : {
-      heroTitle: 'About Us',
+  const [aboutContent, setAboutContent] = useState({
+    heroTitle: 'About Us',
       heroSubtitle: 'A legacy of service, built on the foundation of faith and the honor of serving Allah\'s guests.',
       heroImage: '',
       heroVideo: '',
@@ -745,13 +750,10 @@ const ContentCMS = () => {
       statsImage: '',
       ctaTitle: 'Ready to begin your pilgrimage?',
       ctaSubtitle: 'Consult with our specialists today and let us tailor a journey that honors your devotion.',
-    }
   })
 
-  const [contactContent, setContactContent] = useState(() => {
-    const saved = localStorage.getItem('cms_contact')
-    return saved ? JSON.parse(saved) : {
-      heroTitle: 'Get in Touch',
+  const [contactContent, setContactContent] = useState({
+    heroTitle: 'Get in Touch',
       heroSubtitle: 'Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you.',
       heroImage: '',
       phone1: '+92 300 123 4567',
@@ -765,36 +767,27 @@ const ContentCMS = () => {
       formSubtitle: 'Fill out the form below and our travel consultants will get back to you within 24 hours.',
       ctaTitle: 'Let Us Plan Your Journey',
       ctaSubtitle: 'Whether it\'s a spiritual Umrah journey or an international adventure, our experts are here to make it happen.',
-    }
   })
 
-  const [faqContent, setFaqContent] = useState(() => {
-    const saved = localStorage.getItem('cms_faq')
-    return saved ? JSON.parse(saved) : [
-      { id: 1, question: 'What documents do I need for Umrah?', answer: 'For Umrah, you need a valid passport with at least 6 months validity, passport-sized photos, and a completed visa application. We handle the visa process for you.', category: 'Visa' },
+  const [faqContent, setFaqContent] = useState([
+    { id: 1, question: 'What documents do I need for Umrah?', answer: 'For Umrah, you need a valid passport with at least 6 months validity, passport-sized photos, and a completed visa application. We handle the visa process for you.', category: 'Visa' },
       { id: 2, question: 'How far in advance should I book?', answer: 'We recommend booking at least 2-3 months in advance, especially during Ramadan and Hajj season, to ensure availability and better rates.', category: 'Booking' },
       { id: 3, question: 'Is travel insurance included?', answer: 'Travel insurance is not included in our packages but can be added at an additional cost. We recommend it for international travel.', category: 'Services' },
       { id: 4, question: 'What is the difference between Economy and VIP packages?', answer: 'Economy packages offer standard 3-star hotels with shared transportation, while VIP packages include 5-star hotels, private transfers, and premium services.', category: 'Packages' },
       { id: 5, question: 'Can I customize my Umrah package?', answer: 'Yes! We offer fully customizable packages. Contact our team to discuss your specific requirements and we will create a tailored itinerary.', category: 'Customization' },
-    ]
-  })
+  ])
 
-  const [footerContent, setFooterContent] = useState(() => {
-    const saved = localStorage.getItem('cms_footer')
-    return saved ? JSON.parse(saved) : {
-      description: 'Royal Umrah & Travels specializes in crafting meaningful spiritual journeys and world-class international tours for the discerning traveler.',
+  const [footerContent, setFooterContent] = useState({
+    description: 'Royal Umrah & Travels specializes in crafting meaningful spiritual journeys and world-class international tours for the discerning traveler.',
       quickLinks: ['About Us', 'Visa Services', 'Packages', 'Terms & Conditions', 'Privacy Policy'],
       copyright: '© 2024 Royal Umrah & Travels. All Rights Reserved.',
       socialLinks: { facebook: '', instagram: '', twitter: '', youtube: '' },
       logo: '',
       bgImage: ''
-    }
   })
 
-  const [mediaContent, setMediaContent] = useState(() => {
-    const saved = localStorage.getItem('cms_media')
-    return saved ? JSON.parse(saved) : {
-      homeHeroImage: '',
+  const [mediaContent, setMediaContent] = useState({
+    homeHeroImage: '',
       homeHeroVideo: '',
       homeWhyChooseBg: '',
       homeFeaturedBg: '',
@@ -823,13 +816,37 @@ const ContentCMS = () => {
     }
   })
 
-  const saveContent = (key, content) => {
+  useEffect(() => {
+    fetchCmsContent()
+  }, [])
+
+  const fetchCmsContent = async () => {
+    try {
+      const res = await axios.get(`${API_BASE}/api/cms`)
+      const data = res.data
+      if (data.cms_home) setHomeContent(data.cms_home)
+      if (data.cms_about) setAboutContent(data.cms_about)
+      if (data.cms_contact) setContactContent(data.cms_contact)
+      if (data.cms_faq) setFaqContent(data.cms_faq)
+      if (data.cms_footer) setFooterContent(data.cms_footer)
+      if (data.cms_media) setMediaContent(data.cms_media)
+    } catch (err) {
+      console.error('Error fetching CMS content:', err)
+    }
+  }
+
+  const saveContent = async (key, content) => {
     setSaving(true)
-    localStorage.setItem(`cms_${key}`, JSON.stringify(content))
-    setTimeout(() => {
+    try {
+      await axios.post(`${API_BASE}/api/cms?id=cms_${key}`, content, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      alert(`Content ${key} saved to database!`)
+    } catch (err) {
+      alert('Error saving content: ' + err.message)
+    } finally {
       setSaving(false)
-      alert('Content saved successfully!')
-    }, 500)
+    }
   }
 
   const addFaq = () => {

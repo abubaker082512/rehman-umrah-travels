@@ -51,6 +51,12 @@ const staticPackages = [
 
 const Home = () => {
   const [packages, setPackages] = useState([])
+  const [cmsContent, setCmsContent] = useState({
+    heroTitle: 'Your Trusted Partner for Umrah & International Tours',
+    heroSubtitle: 'Embark on a spiritual journey of a lifetime with our premium, all-inclusive Umrah packages and bespoke international travel experiences.',
+    heroCta: 'View Umrah Packages',
+    heroWhatsApp: 'Contact on WhatsApp'
+  })
 
   useEffect(() => {
     // Fetch packages from backend
@@ -66,6 +72,15 @@ const Home = () => {
         console.error('Failed to fetch packages:', err)
         setPackages(staticPackages)
       })
+
+    // Fetch CMS content
+    axios.get(`${API_BASE}/api/cms?id=cms_home`)
+      .then(res => {
+        if (res.data && Object.keys(res.data).length > 0) {
+          setCmsContent(prev => ({ ...prev, ...res.data }))
+        }
+      })
+      .catch(err => console.error('Failed to fetch CMS content:', err))
   }, [])
   return (
     <div className="bg-surface font-manrope text-on-surface">
@@ -91,18 +106,24 @@ const Home = () => {
           <div className="max-w-3xl">
             <div className="w-12 h-1 bg-[#CD9933] mb-8"></div>
             <h1 className="font-notoSerif text-5xl lg:text-7xl font-bold text-white leading-tight mb-8">
-              Your Trusted Partner for <span className="text-[#CD9933]">Umrah</span> & International Tours
+              {cmsContent.heroTitle.includes('Umrah') ? (
+                <>
+                  {cmsContent.heroTitle.split('Umrah')[0]}
+                  <span className="text-[#CD9933]">Umrah</span>
+                  {cmsContent.heroTitle.split('Umrah')[1]}
+                </>
+              ) : cmsContent.heroTitle}
             </h1>
             <p className="font-manrope text-lg text-white/80 mb-12 max-w-xl">
-              Embark on a spiritual journey of a lifetime with our premium, all-inclusive Umrah packages and bespoke international travel experiences.
+              {cmsContent.heroSubtitle}
             </p>
             <div className="flex flex-wrap gap-6">
               <Link to="/packages" className="bg-[#CD9933] hover:bg-[#b88a2e] text-white px-8 py-4 rounded-md font-bold transition-all shadow-lg flex items-center gap-2">
-                View Umrah Packages
+                {cmsContent.heroCta}
               </Link>
               <button className="bg-transparent border border-[#CD9933]/40 hover:bg-[#CD9933]/10 text-white px-8 py-4 rounded-md font-bold transition-all flex items-center gap-2 backdrop-blur-sm">
                 <span className="material-symbols-outlined">chat</span>
-                Contact on WhatsApp
+                {cmsContent.heroWhatsApp}
               </button>
             </div>
           </div>
