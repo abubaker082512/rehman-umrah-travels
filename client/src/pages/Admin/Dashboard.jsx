@@ -858,14 +858,6 @@ const ContentCMS = () => {
     }
     setFaqContent([...faqContent, newFaq])
   }
-    const newFaq = {
-      id: Date.now(),
-      question: 'New Question',
-      answer: 'Your answer here...',
-      category: 'General'
-    }
-    setFaqContent([...faqContent, newFaq])
-  }
 
   const updateFaq = (id, field, value) => {
     setFaqContent(faqContent.map(faq => 
