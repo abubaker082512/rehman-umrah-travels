@@ -3,6 +3,14 @@
 -- Run this SQL in your Supabase SQL Editor
 -- =============================================
 
+-- CLEANUP (Ensures a clean setup with the correct schema)
+DROP TABLE IF EXISTS packages CASCADE;
+DROP TABLE IF EXISTS tours CASCADE;
+DROP TABLE IF EXISTS visa_services CASCADE;
+DROP TABLE IF EXISTS gallery CASCADE;
+DROP TABLE IF EXISTS blog_posts CASCADE;
+DROP TABLE IF EXISTS cms_content CASCADE;
+
 -- 1. PACKAGES TABLE
 CREATE TABLE IF NOT EXISTS packages (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
