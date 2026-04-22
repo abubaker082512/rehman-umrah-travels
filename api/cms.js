@@ -1,120 +1,133 @@
 const jwt = require('jsonwebtoken');
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY;
-const jwtSecret = process.env.JWT_SECRET || 'secretkey';
-
-let supabase = null;
-if (supabaseUrl && supabaseKey) {
-  const { createClient } = require('@supabase/supabase-js');
-  supabase = createClient(supabaseUrl, supabaseKey);
-  console.log('CMS: Supabase connected');
-} else {
-  console.log('CMS: No Supabase credentials');
-}
-
-const isAuthenticated = (req) => {
-  const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    console.log('CMS: No auth header');
-    return false;
+// Simple Supabase client initialization
+const getSupabase = () => {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY;
+  
+  if (!supabaseUrl || !supabaseKey) {
+    console.log('[CMS] Missing Supabase credentials');
+    return null;
   }
   
-  try {
-    const token = authHeader.split(' ')[1];
-    const verified = jwt.verify(token, jwtSecret);
-    console.log('CMS: Token verified:', verified);
-    return true;
-  } catch (err) {
-    console.log('CMS: Token verify failed:', err.message);
-    return false;
-  }
+  const { createClient } = require('@supabase/supabase-js');
+  return createClient(supabaseUrl, supabaseKey);
 };
 
-module.exports = async function handler(req, res) {
+const supabase = getSupabase();
+
+module.exports = async (req, res) => {
+  // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   
+  // Handle preflight
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
-  const { method, query } = req;
-  const id = query.id;
-  console.log('CMS:', method, 'id:', id);
+  console.log('[CMS] Request:', req.method, 'URL:', req.url);
+  
+  // Parse the id from query string manually
+  const url = new URL(req.url, `http://${req.headers.host}`);
+  const id = url.searchParams.get('id');
+  
+  console.log('[CMS] Query id:', id);
 
   if (!supabase) {
-    return res.status(503).json({ message: 'Database not configured' });
+    console.log('[CMS] No Supabase connection');
+    return res.status(503).json({ error: 'Database not configured' });
   }
 
-  if (method === 'GET') {
+  // GET - Fetch CMS content
+  if (req.method === 'GET') {
     try {
+      console.log('[CMS] GET fetching:', id || 'all');
+      
+      let query = supabase.from('cms_content').select('*');
+      
       if (id) {
-        console.log('CMS GET: Fetching id:', id);
-        const { data, error } = await supabase
-          .from('cms_content')
-          .select('content')
-          .eq('id', id)
-          .maybeSingle();
-          
-        if (error) {
-          console.log('CMS GET error:', error);
-          throw error;
-        }
-        console.log('CMS GET data:', data);
-        return res.json(data ? data.content : {});
+        query = query.eq('id', id);
+      }
+      
+      const { data, error } = await query;
+      
+      if (error) {
+        console.log('[CMS] GET error:', error);
+        return res.status(400).json({ error: error.message });
+      }
+      
+      if (id) {
+        console.log('[CMS] GET found:', data ? data.length : 0);
+        return res.json(data && data[0] ? data[0].content : {});
       } else {
-        const { data, error } = await supabase
-          .from('cms_content')
-          .select('*');
-          
-        if (error) throw error;
         const mapped = {};
-        data.forEach(item => mapped[item.id] = item.content);
+        data.forEach(item => { mapped[item.id] = item.content; });
         return res.json(mapped);
       }
-    } catch (error) {
-      console.error('CMS GET error:', error);
-      return res.status(500).json({ message: error.message });
+    } catch (err) {
+      console.log('[CMS] GET catch:', err);
+      return res.status(500).json({ error: err.message });
     }
   }
 
-  if (method === 'POST') {
-    if (!id) {
-      return res.status(400).json({ message: 'Content ID is required' });
+  // POST - Save CMS content
+  if (req.method === 'POST') {
+    // Check auth token
+    const authHeader = req.headers.authorization;
+    let isAuth = false;
+    
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      try {
+        const token = authHeader.replace('Bearer ', '');
+        jwt.verify(token, process.env.JWT_SECRET || 'secretkey');
+        isAuth = true;
+      } catch (e) {
+        console.log('[CMS] Auth failed:', e.message);
+      }
+    }
+    
+    if (!isAuth) {
+      console.log('[CMS] Not authenticated');
+      return res.status(401).json({ error: 'Authentication required' });
     }
 
-    // Debug - log what's received
-    console.log('CMS POST id:', id);
-    console.log('CMS POST body type:', typeof req.body);
-    console.log('CMS POST body:', JSON.stringify(req.body).substring(0, 200));
+    if (!id) {
+      return res.status(400).json({ error: 'Content ID is required' });
+    }
 
-    // If no body, create dummy content for testing
-    const content = req.body || { test: 'hello', timestamp: new Date().toISOString() };
-
-    try {     
+    try {
+      // Parse body - Vercel uses req.body differently
+      let body = req.body;
+      if (typeof body === 'string') {
+        try { body = JSON.parse(body); } catch (e) {}
+      }
+      
+      console.log('[CMS] POST body:', typeof body, body ? 'has data' : 'empty');
+      
+      // Use INSERT with upsert behavior
       const { data, error } = await supabase
         .from('cms_content')
-        .upsert({ 
-          id: id, 
-          content: content,
+        .upsert({
+          id: id,
+          content: body || {},
           updated_at: new Date().toISOString()
         }, { onConflict: 'id' })
         .select();
-      
+
       if (error) {
-        console.log('CMS POST supabase error:', error);
-        return res.status(400).json({ message: error.message });
+        console.log('[CMS] POST error:', error);
+        return res.status(400).json({ error: error.message });
       }
-      
-      console.log('CMS POST success');
-      return res.json({ success: true, id, content });
-    } catch (error) {
-      console.error('CMS POST catch error:', error);
-      return res.status(400).json({ message: error.message });
+
+      console.log('[CMS] POST success:', id);
+      return res.json({ success: true, id });
+    } catch (err) {
+      console.log('[CMS] POST catch:', err);
+      return res.status(500).json({ error: err.message });
     }
   }
 
-  return res.status(405).json({ message: 'Method not allowed' });
-}
+  return res.status(405).json({ error: 'Method not allowed' });
+};
