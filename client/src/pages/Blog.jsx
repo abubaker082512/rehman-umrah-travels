@@ -5,13 +5,98 @@ import Footer from '../components/Footer'
 const blogPosts = [
   {
     id: 1,
-    title: 'How to Perform Umrah Step by Step',
-    excerpt: 'A comprehensive guide for first-time pilgrims covering every ritual of Umrah, from Ihram to Tawaf and Sa\'i.',
+    title: 'How to Perform Umrah – A Complete Step-by-Step Guide',
+    excerpt: 'Performing Umrah is a deeply spiritual journey that allows Muslims to seek closeness to Allah, ask for forgiveness, and renew their faith. This guide will walk you through the complete process.',
     category: 'Guides',
-    date: 'March 15, 2024',
-    readTime: '8 min read',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC_umMwNrlCdZQQHw-gkNmIlvZ1RKy4ljfjZeHztDWu0Wgt9uTVwcC8SCXvvdKqtiQ8v5oNtA7grwHPXPG15OXDFYiqHvhKUVG17-erSKGUK7O2pmJY9mWZ8iyijELGBy-NB61ei7aEg5jsvtpBXbL0ND3vwZ9Ne6f9J7_W6D_0YJrVDA7ESbokU67XJ37dAjbcdx3wsCdGyi4dHRNDLRtl1twWIlv-M0rr3r0kY69jtOec16g7y6ZNh513s3PPjOvnH00dJr_aRChe',
-    featured: true
+    date: 'April 22, 2026',
+    readTime: '15 min read',
+    image: 'https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=800',
+    featured: true,
+    content: `Performing Umrah is a deeply spiritual journey that allows Muslims to seek closeness to Allah, ask for forgiveness, and renew their faith. Although it is not obligatory like Hajj, Umrah holds great significance and reward in Islam.
+
+This guide will walk you through the complete process of performing Umrah in a clear and authentic way.
+
+What is Umrah?
+Umrah is a pilgrimage to Makkah that can be performed at any time of the year. It consists of a set of sacred rituals carried out in and around the Holy Kaaba.
+
+Step-by-Step Guide to Performing Umrah
+
+1. Entering the State of Ihram
+Before reaching Makkah, pilgrims must enter the sacred state of Ihram.
+Key steps:
+- Perform Ghusl (full body purification)
+- Wear Ihram clothing:
+  o Men: Two white unstitched sheets
+  o Women: Modest Islamic dress (no specific color required)
+- Make the intention (Niyyah) for Umrah
+- Recite the Talbiyah:
+"Labbayk Allahumma Labbayk, Labbayka La Sharika Laka Labbayk…"
+Continue reciting Talbiyah until you reach the Kaaba.
+
+2. Performing Tawaf (Circling the Kaaba)
+Upon entering Masjid al-Haram, proceed towards the Kaaba.
+Steps of Tawaf:
+- Begin at the Black Stone (Hajr al-Aswad)
+- Make 7 anti-clockwise circles around the Kaaba
+- Men should uncover their right shoulder (Idtiba) during Tawaf
+- Try to kiss or point towards the Black Stone if possible
+- Engage in dua, dhikr, and Quran recitation throughout
+After completing Tawaf, offer 2 Rak'ah Salah near Maqam Ibrahim (if possible).
+
+3. Drinking Zamzam Water
+After Salah, drink Zamzam water and make heartfelt duas. It is a blessed water and a Sunnah of the Prophet ﷺ.
+
+4. Performing Sa'i (Between Safa and Marwah)
+Next, perform Sa'i between the hills of Safa and Marwah.
+Steps:
+- Start at Safa and make dua
+- Walk towards Marwah
+- This counts as one round
+- Complete 7 rounds (ending at Marwah)
+Men should jog lightly between the green markers.
+
+5. Halq or Taqsir (Hair Cutting)
+After completing Sa'i:
+- Men: Shave head completely (Halq) OR trim hair (Taqsir)
+- Women: Cut a small portion of hair (about a fingertip length)
+This step marks the completion of Umrah.
+
+Important Tips for Pilgrims
+- Stay in a state of purity (Wudu) as much as possible
+- Avoid arguments and maintain good character
+- Respect the sacredness of the Haram
+- Make abundant dua for yourself and others
+- Follow the Sunnah in all actions
+
+Common Mistakes to Avoid in Umrah
+- Not making proper Niyyah
+- Pushing or hurting others during Tawaf
+- Skipping Sunnah acts
+- Not learning duas
+
+Umrah Preparation Tips
+- Keep Ihram ready before Miqat
+- Carry comfortable footwear
+- Stay hydrated
+- Keep a small dua book
+- Umrah checklist, Umrah packing list
+
+Spiritual Benefits of Umrah
+Umrah is a chance to purify your soul and seek forgiveness.
+The Prophet ﷺ said:
+"Umrah removes the sins between one Umrah and another."
+
+Why Choose Royal Umrah & Travels?
+At Royal Umrah & Travels, we make your journey simple and stress-free.
+- Affordable Packages
+- Visa Assistance
+- Comfortable Hotels
+- Complete Guidance
+Contact us today to book your Umrah package.
+
+Conclusion
+Now that you know how to perform Umrah step by step, you can prepare confidently for this blessed journey. Always perform each step with sincerity and devotion.
+May Allah accept your Umrah. Ameen.`
   },
   {
     id: 2,
