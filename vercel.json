@@ -2,14 +2,7 @@
   "buildCommand": "cd client && npm install && npm run build",
   "outputDirectory": "client/dist",
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1",
-      " methods": ["GET", "POST", "OPTIONS"]
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
