@@ -1,5 +1,13 @@
 const jwt = require('jsonwebtoken');
-const supabase = require('./_utils/supabase');
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY;
+
+let supabase = null;
+if (supabaseUrl && supabaseKey) {
+  const { createClient } = require('@supabase/supabase-js');
+  supabase = createClient(supabaseUrl, supabaseKey);
+}
 
 const isAuthenticated = (req) => {
   const authHeader = req.headers.authorization;
@@ -24,7 +32,11 @@ module.exports = async function handler(req, res) {
   }
 
   const { method, query } = req;
-  const id = query.id; // e.g., 'cms_home' or 'page_media'
+  const id = query.id;
+
+  if (!supabase) {
+    return res.status(503).json({ message: 'Database not configured. Set SUPABASE_URL and SUPABASE_KEY in Vercel env vars.' });
+  }
 
   if (method === 'GET') {
     try {
@@ -35,10 +47,9 @@ module.exports = async function handler(req, res) {
           .eq('id', id)
           .single();
           
-        if (error && error.code !== 'PGRST116') throw error; // PGRST116 is not found
+        if (error && error.code !== 'PGRST116') throw error;
         return res.json(data ? data.content : {});
       } else {
-        // Fetch all CMS content as a mapped object
         const { data, error } = await supabase
           .from('cms_content')
           .select('*');
@@ -66,11 +77,11 @@ module.exports = async function handler(req, res) {
     try {
       const { data, error } = await supabase
         .from('cms_content')
-        .upsert({ id, content: req.body, updated_at: new Date() })
+        .upsert({ id, content: req.body, updated_at: new Date().toISOString() }, { onConflict: 'id' })
         .select();
         
       if (error) throw error;
-      return res.json(data[0].content);
+      return res.json({ success: true, id });
     } catch (error) {
       console.error('CMS POST error:', error);
       return res.status(400).json({ message: error.message });
