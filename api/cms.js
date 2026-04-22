@@ -51,16 +51,18 @@ module.exports = async function handler(req, res) {
   if (method === 'GET') {
     try {
       if (id) {
+        console.log('CMS GET: Fetching id:', id);
         const { data, error } = await supabase
           .from('cms_content')
           .select('content')
           .eq('id', id)
-          .single();
+          .maybeSingle();
           
-        if (error && error.code !== 'PGRST116') {
+        if (error) {
           console.log('CMS GET error:', error);
           throw error;
         }
+        console.log('CMS GET data:', data);
         return res.json(data ? data.content : {});
       } else {
         const { data, error } = await supabase
