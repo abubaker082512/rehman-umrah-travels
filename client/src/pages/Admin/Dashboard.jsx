@@ -818,33 +818,14 @@ const ContentCMS = () => {
     fetchCmsContent()
   }, [])
 
-  const fetchCmsContent = async () => {
-    try {
-      const res = await axios.get(`${API_BASE}/api/cms`)
-      const data = res.data
-      if (data.cms_home) setHomeContent(data.cms_home)
-      if (data.cms_about) setAboutContent(data.cms_about)
-      if (data.cms_contact) setContactContent(data.cms_contact)
-      if (data.cms_faq) setFaqContent(data.cms_faq)
-      if (data.cms_footer) setFooterContent(data.cms_footer)
-      if (data.cms_media) setMediaContent(data.cms_media)
-    } catch (err) {
-      console.error('Error fetching CMS content:', err)
-    }
-  }
-
-const saveContent = (key, content) => {
+  const saveContent = (key, content) => {
     setSaving(true)
     localStorage.setItem(`cms_${key}`, JSON.stringify(content))
     console.log('Saved locally:', key)
     setSaving(false)
     alert('Content saved successfully!')
   }
-    
-    setSaving(false)
-    alert('Content saved successfully!')
-  }
-
+  
   const addFaq = () => {
     const newFaq = {
       id: Date.now(),
