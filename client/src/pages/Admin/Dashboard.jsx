@@ -706,8 +706,8 @@ const ContentCMS = () => {
   const [homeContent, setHomeContent] = useState(() => {
     const saved = localStorage.getItem('cms_home')
     return saved ? JSON.parse(saved) : {
-      heroTitle: 'Your Trusted Partner for Umrah & International Tours',
-      heroSubtitle: 'Embark on a spiritual journey of a lifetime with our premium, all-inclusive Umrah packages and bespoke international travel experiences.',
+      heroTitle: 'Proudly serving the guest of Allah',
+      heroSubtitle: 'We provide reliable, comfortable, and affordable Umrah services with complete guidance—so you can focus on your عبادت while we take care of the rest.',
       heroCta: 'View Umrah Packages',
       heroWhatsApp: 'Contact on WhatsApp',
       featuredTitle: 'Curated Umrah Packages',
