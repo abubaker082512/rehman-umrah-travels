@@ -703,120 +703,73 @@ const ContentCMS = () => {
   const [saving, setSaving] = useState(false)
   
   // Content state
-  const [homeContent, setHomeContent] = useState({
-    heroTitle: 'Your Trusted Partner for Umrah & International Tours',
+  const [homeContent, setHomeContent] = useState(() => {
+    const saved = localStorage.getItem('cms_home')
+    return saved ? JSON.parse(saved) : {
+      heroTitle: 'Your Trusted Partner for Umrah & International Tours',
       heroSubtitle: 'Embark on a spiritual journey of a lifetime with our premium, all-inclusive Umrah packages and bespoke international travel experiences.',
       heroCta: 'View Umrah Packages',
       heroWhatsApp: 'Contact on WhatsApp',
-      heroImage: '',
-      heroVideo: '',
       featuredTitle: 'Curated Umrah Packages',
       featuredSubtitle: 'Spiritual Journeys',
-      featuredImage: '',
-      whyChooseTitle: 'Setting a Sacred Standard for Travel',
-      whyChooseImage: '',
       toursTitle: 'Discover the World',
       toursSubtitle: 'Beyond Borders',
-      toursImage: '',
-      testimonialsTitle: 'Voices of Gratitude',
-      testimonialsSubtitle: 'Client Feedback',
-      testimonialsImage: '',
       ctaTitle: 'Book Your Umrah Journey Today',
       ctaSubtitle: 'Contact our travel consultants today to get a personalized quote for your spiritual or leisure travel needs.',
       ctaPrimary: 'Get a Quote',
-      ctaSecondary: 'Contact Us',
-      ctaImage: '',
+      ctaSecondary: 'Contact Us'
+    }
   })
 
-  const [aboutContent, setAboutContent] = useState({
-    heroTitle: 'About Us',
+  const [aboutContent, setAboutContent] = useState(() => {
+    const saved = localStorage.getItem('cms_about')
+    return saved ? JSON.parse(saved) : {
+      heroTitle: 'About Us',
       heroSubtitle: 'A legacy of service, built on the foundation of faith and the honor of serving Allah\'s guests.',
-      heroImage: '',
-      heroVideo: '',
       storyTitle: 'Crafting Pathways to the Holy Lands',
       storyText1: 'Royal Umrah & Travels began as a humble aspiration: to transform the daunting logistics of pilgrimage into a seamless, contemplative experience.',
       storyText2: 'Over two decades, we have evolved from a small local agency into a premier travel concierge in Pakistan.',
-      storyText3: 'Every detail, from the proximity of the hotels to the expertise of our guides, is curated to ensure that your focus remains entirely on the spiritual essence of your visit.',
-      storyImage: '',
       missionTitle: 'To provide affordable and comfortable Umrah journeys.',
-      missionText: 'We dismantle the barriers of complexity and cost, ensuring every believer can answer the call to the Haramain with dignity and ease.',
       visionTitle: 'To become a trusted Umrah travel agency in Pakistan.',
-      visionText: 'We aspire to set the gold standard in pilgrimage services, blending traditional values with modern logistical excellence.',
       statsYears: '25+',
       statsPilgrims: '50K+',
       statsDestinations: '100+',
       statsRating: '4.9',
-      statsImage: '',
-      ctaTitle: 'Ready to begin your pilgrimage?',
-      ctaSubtitle: 'Consult with our specialists today and let us tailor a journey that honors your devotion.',
+    }
   })
 
-  const [contactContent, setContactContent] = useState({
-    heroTitle: 'Get in Touch',
+  const [contactContent, setContactContent] = useState(() => {
+    const saved = localStorage.getItem('cms_contact')
+    return saved ? JSON.parse(saved) : {
+      heroTitle: 'Get in Touch',
       heroSubtitle: 'Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you.',
-      heroImage: '',
       phone1: '+92 300 123 4567',
       phone2: '+92 42 123 4567',
       email: 'info@royalumrahandtravel.com',
       whatsapp: '+92 300 123 4567',
       addressLahore: 'Main Boulevard, Gulberg III, Lahore, Pakistan',
       addressKarachi: 'DHA Phase II, Karachi, Pakistan',
-      mapImage: '',
-      formTitle: 'Send Us a Message',
-      formSubtitle: 'Fill out the form below and our travel consultants will get back to you within 24 hours.',
-      ctaTitle: 'Let Us Plan Your Journey',
-      ctaSubtitle: 'Whether it\'s a spiritual Umrah journey or an international adventure, our experts are here to make it happen.',
+    }
   })
 
-  const [faqContent, setFaqContent] = useState([
-    { id: 1, question: 'What documents do I need for Umrah?', answer: 'For Umrah, you need a valid passport with at least 6 months validity, passport-sized photos, and a completed visa application. We handle the visa process for you.', category: 'Visa' },
+  const [faqContent, setFaqContent] = useState(() => {
+    const saved = localStorage.getItem('cms_faq')
+    return saved ? JSON.parse(saved) : [
+      { id: 1, question: 'What documents do I need for Umrah?', answer: 'For Umrah, you need a valid passport with at least 6 months validity, passport-sized photos, and a completed visa application. We handle the visa process for you.', category: 'Visa' },
       { id: 2, question: 'How far in advance should I book?', answer: 'We recommend booking at least 2-3 months in advance, especially during Ramadan and Hajj season, to ensure availability and better rates.', category: 'Booking' },
-      { id: 3, question: 'Is travel insurance included?', answer: 'Travel insurance is not included in our packages but can be added at an additional cost. We recommend it for international travel.', category: 'Services' },
-      { id: 4, question: 'What is the difference between Economy and VIP packages?', answer: 'Economy packages offer standard 3-star hotels with shared transportation, while VIP packages include 5-star hotels, private transfers, and premium services.', category: 'Packages' },
-      { id: 5, question: 'Can I customize my Umrah package?', answer: 'Yes! We offer fully customizable packages. Contact our team to discuss your specific requirements and we will create a tailored itinerary.', category: 'Customization' },
-  ])
+      { id: 3, question: 'Is travel insurance included?', answer: 'Travel insurance is not included in our packages but can be added at an additional cost.', category: 'Services' },
+    ]
+  })
 
-  const [footerContent, setFooterContent] = useState({
-    description: 'Royal Umrah & Travels specializes in crafting meaningful spiritual journeys and world-class international tours for the discerning traveler.',
+  const [footerContent, setFooterContent] = useState(() => {
+    const saved = localStorage.getItem('cms_footer')
+    return saved ? JSON.parse(saved) : {
+      description: 'Royal Umrah & Travels specializes in crafting meaningful spiritual journeys and world-class international tours.',
       quickLinks: ['About Us', 'Visa Services', 'Packages', 'Terms & Conditions', 'Privacy Policy'],
       copyright: '© 2024 Royal Umrah & Travels. All Rights Reserved.',
-      socialLinks: { facebook: '', instagram: '', twitter: '', youtube: '' },
-      logo: '',
-      bgImage: ''
+      socialLinks: { facebook: '', instagram: '', twitter: '', youtube: '' }
+    }
   })
-
-  const [mediaContent, setMediaContent] = useState({
-    homeHeroImage: '',
-      homeHeroVideo: '',
-      homeWhyChooseBg: '',
-      homeFeaturedBg: '',
-      homeTestimonialsBg: '',
-      homeCtaBg: '',
-      aboutHeroImage: '',
-      aboutStoryImage: '',
-      aboutVideo: '',
-      aboutStatsBg: '',
-      contactHeroImage: '',
-      contactMapImage: '',
-      contactCtaBg: '',
-      packagesHeroImage: '',
-      packagesVideo: '',
-      toursHeroImage: '',
-      toursVideo: '',
-      visaHeroImage: '',
-      visaBgImage: '',
-      galleryHeroImage: '',
-      galleryBanner: '',
-      faqHeroImage: '',
-      blogHeroImage: '',
-      navbarLogo: '',
-      favicon: '',
-      whatsappIcon: ''
-  })
-
-  useEffect(() => {
-    fetchCmsContent()
-  }, [])
 
   const saveContent = (key, content) => {
     setSaving(true)
@@ -825,7 +778,7 @@ const ContentCMS = () => {
     setSaving(false)
     alert('Content saved successfully!')
   }
-  
+
   const addFaq = () => {
     const newFaq = {
       id: Date.now(),
