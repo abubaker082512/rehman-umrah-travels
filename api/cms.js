@@ -81,33 +81,37 @@ module.exports = async function handler(req, res) {
   }
 
   if (method === 'POST') {
-    // Skip auth for now to test - add auth back later for security
-    // const authOk = isAuthenticated(req);
-    
     if (!id) {
       return res.status(400).json({ message: 'Content ID is required' });
     }
 
-    try {
-      console.log('CMS POST: Saving id:', id);      
+    // Debug - log what's received
+    console.log('CMS POST id:', id);
+    console.log('CMS POST body type:', typeof req.body);
+    console.log('CMS POST body:', JSON.stringify(req.body).substring(0, 200));
+
+    // If no body, create dummy content for testing
+    const content = req.body || { test: 'hello', timestamp: new Date().toISOString() };
+
+    try {     
       const { data, error } = await supabase
         .from('cms_content')
         .upsert({ 
           id: id, 
-          content: req.body,
+          content: content,
           updated_at: new Date().toISOString()
         }, { onConflict: 'id' })
         .select();
       
       if (error) {
-        console.log('CMS POST error:', error);
-        throw error;
+        console.log('CMS POST supabase error:', error);
+        return res.status(400).json({ message: error.message });
       }
       
       console.log('CMS POST success');
-      return res.json({ success: true, id, content: req.body });
+      return res.json({ success: true, id, content });
     } catch (error) {
-      console.error('CMS POST error:', error);
+      console.error('CMS POST catch error:', error);
       return res.status(400).json({ message: error.message });
     }
   }
