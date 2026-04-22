@@ -833,21 +833,13 @@ const ContentCMS = () => {
     }
   }
 
-  const saveContent = async (key, content) => {
+const saveContent = (key, content) => {
     setSaving(true)
-    // Always save to localStorage first (works offline too)
     localStorage.setItem(`cms_${key}`, JSON.stringify(content))
-    
-    // Try to sync to API (optional - database not required)
-    try {
-      await axios.post(`${API_BASE}/api/cms?id=cms_${key}`, content, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      })
-      console.log('Saved to database as well')
-    } catch (err) {
-      // Silently fail - localStorage already saved the content
-      console.log('Saved locally (database sync optional)')
-    }
+    console.log('Saved locally:', key)
+    setSaving(false)
+    alert('Content saved successfully!')
+  }
     
     setSaving(false)
     alert('Content saved successfully!')

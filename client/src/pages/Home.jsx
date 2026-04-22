@@ -73,11 +73,24 @@ const Home = () => {
         setPackages(staticPackages)
       })
 
-    // Fetch CMS content
+    // Fetch CMS content - try localStorage first, then API
+    const savedCms = localStorage.getItem('cms_home')
+    if (savedCms) {
+      try {
+        const parsed = JSON.parse(savedCms)
+        if (parsed && Object.keys(parsed).length > 0) {
+          setCmsContent(prev => ({ ...prev, ...parsed }))
+          console.log('Loaded CMS from localStorage')
+        }
+      } catch (e) {}
+    }
+    
     axios.get(`${API_BASE}/api/cms?id=cms_home`)
       .then(res => {
         if (res.data && Object.keys(res.data).length > 0) {
           setCmsContent(prev => ({ ...prev, ...res.data }))
+          // Also save to localStorage for offline
+          localStorage.setItem('cms_home', JSON.stringify(res.data))
         }
       })
       .catch(err => console.error('Failed to fetch CMS content:', err))
