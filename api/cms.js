@@ -82,7 +82,7 @@ module.exports = async function handler(req, res) {
 
   if (method === 'POST') {
     const authOk = isAuthenticated(req);
-    console.log('CMS POST auth:', authOk);
+    console.log('CMS POST auth:', authOk, 'body:', JSON.stringify(req.body).substring(0, 100));
     
     if (!authOk) {
       return res.status(401).json({ message: 'Authentication required' });
@@ -93,37 +93,25 @@ module.exports = async function handler(req, res) {
     }
 
     try {
-      // First try to insert, if fails then update
-      const { data: existing } = await supabase
+      console.log('CMS POST: Saving id:', id, 'content keys:', Object.keys(req.body || {}));
+      
+      // Upsert using the id as the primary key
+      const { data, error } = await supabase
         .from('cms_content')
-        .select('id')
-        .eq('id', id)
-        .single();
-      
-      let result;
-      if (existing) {
-        // Update
-        result = await supabase
-          .from('cms_content')
-          .update({ content: req.body, updated_at: new Date().toISOString() })
-          .eq('id', id)
-          .select();
-      } else {
-        // Insert
-        result = await supabase
-          .from('cms_content')
-          .insert({ id, content: req.body });
-      }
-      
-      const { data, error } = result;
+        .upsert({ 
+          id: id, 
+          content: req.body,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'id' })
+        .select();
       
       if (error) {
         console.log('CMS POST error:', error);
         throw error;
       }
       
-      console.log('CMS POST success:', id);
-      return res.json({ success: true, id });
+      console.log('CMS POST success, data:', data);
+      return res.json({ success: true, id, saved: req.body });
     } catch (error) {
       console.error('CMS POST error:', error);
       return res.status(400).json({ message: error.message });
