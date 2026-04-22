@@ -2,22 +2,31 @@ const jwt = require('jsonwebtoken');
 
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY;
+const jwtSecret = process.env.JWT_SECRET || 'secretkey';
 
 let supabase = null;
 if (supabaseUrl && supabaseKey) {
   const { createClient } = require('@supabase/supabase-js');
   supabase = createClient(supabaseUrl, supabaseKey);
+  console.log('CMS: Supabase connected');
+} else {
+  console.log('CMS: No Supabase credentials');
 }
 
 const isAuthenticated = (req) => {
   const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) return false;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    console.log('CMS: No auth header');
+    return false;
+  }
   
   try {
     const token = authHeader.split(' ')[1];
-    jwt.verify(token, process.env.JWT_SECRET || 'secretkey');
+    const verified = jwt.verify(token, jwtSecret);
+    console.log('CMS: Token verified:', verified);
     return true;
-  } catch {
+  } catch (err) {
+    console.log('CMS: Token verify failed:', err.message);
     return false;
   }
 };
@@ -33,9 +42,10 @@ module.exports = async function handler(req, res) {
 
   const { method, query } = req;
   const id = query.id;
+  console.log('CMS:', method, 'id:', id);
 
   if (!supabase) {
-    return res.status(503).json({ message: 'Database not configured. Set SUPABASE_URL and SUPABASE_KEY in Vercel env vars.' });
+    return res.status(503).json({ message: 'Database not configured' });
   }
 
   if (method === 'GET') {
@@ -47,7 +57,10 @@ module.exports = async function handler(req, res) {
           .eq('id', id)
           .single();
           
-        if (error && error.code !== 'PGRST116') throw error;
+        if (error && error.code !== 'PGRST116') {
+          console.log('CMS GET error:', error);
+          throw error;
+        }
         return res.json(data ? data.content : {});
       } else {
         const { data, error } = await supabase
@@ -66,7 +79,10 @@ module.exports = async function handler(req, res) {
   }
 
   if (method === 'POST') {
-    if (!isAuthenticated(req)) {
+    const authOk = isAuthenticated(req);
+    console.log('CMS POST auth:', authOk);
+    
+    if (!authOk) {
       return res.status(401).json({ message: 'Authentication required' });
     }
     
@@ -75,12 +91,36 @@ module.exports = async function handler(req, res) {
     }
 
     try {
-      const { data, error } = await supabase
+      // First try to insert, if fails then update
+      const { data: existing } = await supabase
         .from('cms_content')
-        .upsert({ id, content: req.body, updated_at: new Date().toISOString() }, { onConflict: 'id' })
-        .select();
-        
-      if (error) throw error;
+        .select('id')
+        .eq('id', id)
+        .single();
+      
+      let result;
+      if (existing) {
+        // Update
+        result = await supabase
+          .from('cms_content')
+          .update({ content: req.body, updated_at: new Date().toISOString() })
+          .eq('id', id)
+          .select();
+      } else {
+        // Insert
+        result = await supabase
+          .from('cms_content')
+          .insert({ id, content: req.body });
+      }
+      
+      const { data, error } = result;
+      
+      if (error) {
+        console.log('CMS POST error:', error);
+        throw error;
+      }
+      
+      console.log('CMS POST success:', id);
       return res.json({ success: true, id });
     } catch (error) {
       console.error('CMS POST error:', error);
