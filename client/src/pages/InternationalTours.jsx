@@ -10,8 +10,8 @@ const tours = [
     subtitle: 'Istanbul, Cappadocia, Antalya',
     duration: '10 Days / 9 Nights',
     price: 'PKR 285,000',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDo34TNKnDfPALrJLu5UciOIr7LARLN_xMd56yq9UtN280tkvjiEnxN3TtX2PclWHifVh-nu8QV_2cBRDHQyvPmPzZGIZNdK59dTjZS_Z7zyQnU3g6H9XtU6VzrOpldicf7vIybJnfw64PVqTVsjONncJK9U_xFuHg1W1wWMoj67jRKKTctsOdONWmyphd-lo0jqhdNTCIXpryZF3G0yfAhu2sIiRgcLLrXo2593SUcftSq5rTTctJCZOjzrrlvn1FRx-ijiWOD06Kn',
-    highlights: ['Blue Mosque', 'Cappadocia Balloon Ride', 'Grand Bazaar', 'Pamukkale'],
+    image: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800',
+    highlights: ['Blue Mosque', 'Cappadocia', 'Grand Bazaar', 'Pamukkale'],
     icon: 'place'
   },
   {
@@ -20,7 +20,7 @@ const tours = [
     subtitle: 'Dubai, Abu Dhabi, Sharjah',
     duration: '7 Days / 6 Nights',
     price: 'PKR 195,000',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAUQYOVnZnCAbJnFrX1nyML3VQoCv0DXi5Irz0Y73qxzjrCnv9Fjfew89pvxdv8ZCASmG7JXvm6ivVtlWSDgDNl6WD5Qkh9yA9ePoYhW5-2lqFxEm_UD-gdv3y855ixx1a4TNrQKs_YDGiCBrtJNtbyqSVu-OpnZy8NM7Q_OjK_9-EAJxvTxySJdH3PL-NHtQ5wCIWYnxE88P2f-rJ9uHs3kO3HDAd20k7SpB0jq8u4Sn1BDaHihQy3xKayJDzjSbhMkeSgMrymfb39',
+    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800',
     highlights: ['Burj Khalifa', 'Desert Safari', 'Dubai Frame', 'Sheikh Zayed Mosque'],
     icon: 'place'
   },
@@ -30,7 +30,7 @@ const tours = [
     subtitle: 'Kuala Lumpur, Genting, Penang',
     duration: '8 Days / 7 Nights',
     price: 'PKR 175,000',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD3zaexyac9JYbgc7JJW579-lS9WPkAgTeUI7Z4f5Gl08eeqwiSxGeYnsEo-duQ9zPlj4ciIjAaAHQxZpJWRSzi7QTPiBvQTt5PnQL360TdVEtcUe8-A1xE2f5tRkgQevJB0FH9BEKMxS9GfArHkUk1mmMGLjWSTTIINCUnMLvlQIt-niCyleGQ6NoGhUF9wsVc4M84ENHV6AyrYG2HEoJD3DrsDsNwuv-5k4zPqoMOXRMxOHGoe_2H7qk6_JElzjsy7uAvRdhWRfDf',
+    image: 'https://images.unsplash.com/photo-1596422748573-cbb5bf090104?w=800',
     highlights: ['Petronas Towers', 'Genting Highlands', 'Batu Caves', 'Gurney Drive'],
     icon: 'place'
   },
@@ -40,7 +40,7 @@ const tours = [
     subtitle: 'Paris, Swiss, Rome',
     duration: '12 Days / 11 Nights',
     price: 'PKR 550,000',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBv-MVsZqKBwhFPBQ8VFiq3TU0N5EnqlsYH2DbJRB5qbT_Cq8D2o6SSJOfghgRCyIin6rAX9gA_gYojLbuUrx53KQNs5-IEFKUuQCSPDJADWJ4WR-wdlDFUu341hUW3bpPXn5i_22fhWnEfLqshrlO64tuM__-1f54SpwlxVe2bQGSh0jdBOS_x6jW2ttrKZoyb_W-fAUeq6l6DZazJ7KXpOFW-pVOA24jVsXFRRGsk7z2EjtSS0-inrhXqDyByLzKRQqLQX-m_UhJv',
+    image: 'https://images.unslash.com/photo-1502602892935-72c3ac7c352?w=800',
     highlights: ['Eiffel Tower', 'Swiss Alps', 'Colosseum', 'Lucerne'],
     icon: 'place'
   }
@@ -50,11 +50,11 @@ const InternationalTours = () => {
   return (
     <div className="bg-surface font-manrope text-on-surface min-h-screen">
       <Navbar />
-
+      
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo34TNKnDfPALrJLu5UciOIr7LARLN_xMd56yq9UtN280tkvjiEnxN3TtX2PclWHifVh-nu8QV_2cBRDHQyvPmPzZGIZNdK59dTjZS_Z7zyQnU3g6H9XtU6VzrOpldicf7vIybJnfw64PVqTVsjONncJK9U_xFuHg1W1wWMoj67jRKKTctsOdONWmyphd-lo0jqhdNTCIXpryZF3G0yfAhu2sIiRgcLLrXo2593SUcftSq5rTTctJCZOjzrrlvn1FRx-ijiWOD06Kn" alt="International Tours" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1530783324-1a1b1b5a51?w=1600" alt="Tours" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:px-24 w-full">
@@ -63,109 +63,86 @@ const InternationalTours = () => {
             <h1 className="font-notoSerif text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
               Discover the <span className="text-[#CD9933]">World</span>
             </h1>
-            <p className="font-manrope text-lg text-white/80 max-w-xl">
-              Explore breathtaking destinations beyond Umrah. From the ancient wonders of Turkey to the modern marvels of Dubai, embark on unforgettable journeys with expert guidance.
+            <p className="font-manrope text-lg text-white/80 max-w-xl mb-8">
+              Explore the most beautiful destinations with our curated international tour packages.
             </p>
+            <div className="flex flex-wrap gap-4">
+              <Link to="/contact" className="bg-[#CD9933] text-white px-10 py-4 font-manrope font-bold tracking-widest text-sm hover:brightness-110 transition-all">
+                Get a Quote
+              </Link>
+              <Link to="/contact" className="bg-white/10 text-white border border-white/20 px-10 py-4 font-manrope font-bold tracking-widest text-sm backdrop-blur-md hover:bg-white/20 transition-all">
+                Contact Us
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Tours Grid */}
       <section className="py-24 px-8 max-w-screen-2xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-          <div className="max-w-2xl">
-            <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Beyond Borders</h6>
-            <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-primary leading-tight">Curated International Tours</h2>
-          </div>
+        <div className="mb-16">
+          <span className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4 block">Beyond Borders</span>
+          <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-primary">Discover Our Tours</h2>
+          <div className="w-24 h-1 bg-[#CD9933] mt-4 opacity-50"></div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {tours.map((tour) => (
-            <div key={tour.id} className="bg-surface-container-lowest group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1">
+            <div key={tour.id} className="bg-surface-container-lowest editorial-shadow overflow-hidden group cursor-pointer transition-transform hover:-translate-y-1">
               <div className="relative h-72 overflow-hidden">
-                <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 asymmetric-clip" src={tour.image} alt={tour.title} />
-                <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded">{tour.duration}</div>
+                <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src={tour.image} alt={tour.title} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <h3 className="font-notoSerif text-2xl font-bold mb-2">{tour.title}</h3>
+                  <p className="text-sm opacity-90">{tour.subtitle}</p>
+                </div>
               </div>
               <div className="p-8">
-                <h3 className="font-notoSerif text-2xl font-bold text-primary mb-1">{tour.title}</h3>
-                <p className="text-outline text-sm mb-4 flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">location_on</span>
-                  {tour.subtitle}
-                </p>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <div className="flex items-center gap-2 text-on-surface-variant text-sm mb-2">
+                      <span className="material-symbols-outlined text-sm">calendar_today</span>
+                      {tour.duration}
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-xs text-on-surface-variant uppercase font-bold tracking-tighter">Starting from</div>
+                    <div className="text-2xl font-notoSerif font-bold text-[#CD9933]">{tour.price}</div>
+                  </div>
+                </div>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {tour.highlights.map((h, i) => (
-                    <span key={i} className="bg-surface-container text-xs px-3 py-1 rounded font-bold text-on-surface">{h}</span>
+                  {tour.highlights.slice(0, 3).map((hl, i) => (
+                    <span key={i} className="bg-surface-container px-3 py-1 rounded text-xs">{hl}</span>
                   ))}
                 </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="block text-xs text-outline">Starting from</span>
-                    <span className="text-xl font-extrabold text-[#CD9933]">{tour.price}</span>
-                  </div>
-                  <button className="bg-[#013334] text-white px-6 py-3 rounded-md font-bold text-sm hover:bg-[#002c2e] transition-all flex items-center gap-2">
-                    View Details
-                    <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                  </button>
-                </div>
+                <Link to="/contact" className="block w-full py-3 bg-[#CD9933] text-white font-bold rounded-md hover:brightness-110 transition-all text-sm text-center">
+                  Book Now
+                </Link>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Why Travel With Us */}
+      {/* CTA */}
       <section className="py-24 bg-primary-container relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7iqIMSWjJemycSurDzLS49I7vf1E_Ir_9JNdo7vnnjUs42efP_S1dgqe2xI0QDJaKbHo9ZRkqvdYo1bYcwBvEnTPhPclF1OSmgOVghrFtvqeq5b92V1yjUro0sxR_GnE1BNCqYps0QKr0yc_d2G0_23gzKUpiz3nt2gERaWgkbPWLcVYUd6z7noGPOWbDAz3zrOwnleugBBJWc52v2BSX_rOZLmuCn0bBOWhLLmTx7ip4AO3yKpRp0shQrdTuKpNfm0QTUA_N0WM8" alt="Pattern" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1530783324-1a1b1b5a51?w=800" alt="Pattern" />
         </div>
-        <div className="max-w-screen-2xl mx-auto px-8 relative z-10">
-          <div className="text-center mb-16">
-            <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Why Choose Us</h6>
-            <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-white">Travel With Confidence</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="space-y-4 text-center">
-              <div className="text-[#CD9933] bg-white/5 w-16 h-16 flex items-center justify-center rounded-lg mx-auto">
-                <span className="material-symbols-outlined text-3xl">verified_user</span>
-              </div>
-              <h4 className="font-bold text-white font-manrope">Licensed Agency</h4>
-              <p className="text-white/60 text-sm leading-relaxed">Fully licensed and certified travel operations for your peace of mind.</p>
-            </div>
-            <div className="space-y-4 text-center">
-              <div className="text-[#CD9933] bg-white/5 w-16 h-16 flex items-center justify-center rounded-lg mx-auto">
-                <span className="material-symbols-outlined text-3xl">hotel</span>
-              </div>
-              <h4 className="font-bold text-white font-manrope">Premium Hotels</h4>
-              <p className="text-white/60 text-sm leading-relaxed">Handpicked 4 and 5-star accommodations for a comfortable stay.</p>
-            </div>
-            <div className="space-y-4 text-center">
-              <div className="text-[#CD9933] bg-white/5 w-16 h-16 flex items-center justify-center rounded-lg mx-auto">
-                <span className="material-symbols-outlined text-3xl">support_agent</span>
-              </div>
-              <h4 className="font-bold text-white font-manrope">24/7 Support</h4>
-              <p className="text-white/60 text-sm leading-relaxed">Our dedicated team is available around the clock during your trip.</p>
-            </div>
-            <div className="space-y-4 text-center">
-              <div className="text-[#CD9933] bg-white/5 w-16 h-16 flex items-center justify-center rounded-lg mx-auto">
-                <span className="material-symbols-outlined text-3xl">group</span>
-              </div>
-              <h4 className="font-bold text-white font-manrope">Expert Guides</h4>
-              <p className="text-white/60 text-sm leading-relaxed">Knowledgeable local guides to enhance your travel experience.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 px-8">
-        <div className="max-w-5xl mx-auto bg-surface-container-lowest text-center p-16 relative overflow-hidden editorial-shadow">
-          <div className="relative z-10">
-            <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Start Your Adventure</h6>
-            <h2 className="font-notoSerif text-3xl md:text-4xl text-primary mb-6">Ready to Explore the World?</h2>
-            <p className="text-on-surface-variant font-manrope mb-10 max-w-xl mx-auto">Contact our travel experts today and let us craft your perfect international tour package.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="bg-[#CD9933] text-white px-10 py-4 font-manrope font-bold tracking-widest uppercase text-sm hover:brightness-110 transition-all">Get a Quote</Link>
-              <Link to="/contact" className="border-2 border-outline-variant text-primary px-10 py-4 font-manrope font-bold tracking-widest uppercase text-sm hover:bg-surface-container transition-all">Contact Us</Link>
-            </div>
+        <div className="max-w-screen-2xl mx-auto px-8 relative z-10 text-center">
+          <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ready to Explore?</h6>
+          <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-white mb-6">Book Your Dream Destination</h2>
+          <p className="text-white/60 mb-10 max-w-xl mx-auto">
+            Whether it's a spiritual Umrah journey or an international adventure, our experts are here to make it happen.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/packages" className="bg-[#CD9933] text-white px-10 py-4 font-manrope font-bold tracking-widest text-sm hover:brightness-110 transition-all">
+              View Umrah Packages
+            </Link>
+            <a href="tel:+923001234567" className="border border-white/30 text-white px-10 py-4 font-manrope font-bold tracking-widest text-sm hover:bg-white/10 transition-all flex items-center gap-2">
+              <span className="material-symbols-outlined">call</span>
+              Call Now
+            </a>
           </div>
         </div>
       </section>

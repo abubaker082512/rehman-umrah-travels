@@ -38,7 +38,7 @@ const staticPackages = [
     airline: 'Full Iftar/Suhur',
     badge: 'Limited',
     badgeColor: 'bg-[#CD9933]',
-    image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800',
+    image: 'https://images.unslash.com/photo-1580338834642-8a3acf79b1b8?w=800',
   },
   {
     id: 4,
@@ -50,7 +50,7 @@ const staticPackages = [
     badge: 'Gold Standard',
     badgeColor: 'bg-[#CD9933]',
     image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800',
-  },
+  }
 ]
 
 const Packages = () => {
@@ -59,30 +59,33 @@ const Packages = () => {
   useEffect(() => {
     axios.get(`${API_BASE}/api/packages`)
       .then(res => {
-        const data = Array.isArray(res.data) ? res.data : []
-        if (data.length > 0) setPackages(data)
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          setPackages(res.data)
+        }
       })
-      .catch(() => {})
+      .catch((err) => {
+        console.error('Failed to fetch packages:', err)
+      })
   }, [])
 
   return (
-    <div className="bg-surface text-on-surface font-manrope">
+    <div className="bg-surface font-manrope text-on-surface">
       <Navbar />
-
+      
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4NMCBl-fs_JwXhpSNh5wZDRuY3kj1glPRuI6GUCnwgY7RgshXtejdsIA_OMo1kWkl4aLrgrdh3RGeFeomHwml6Ye_UHMR_724sEpA6Uulrf9_aQjmkT-ADo-9hF60KH3OfXm8aB-XPBWvJ6YWjPnW0I-USoLZnkH5_AIbbmLUOXhodKo4PqQTCml7ShpBQCDSBl4P42qgkAUDOZl_6dXB_2l_l6AMVS93vp-cCDVZhyq59UOO1xgHVExeGK0gKwAgxabAYk5MLAgJ" alt="Umrah Packages" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=1600" alt="Makkah" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:px-24 w-full">
           <div className="max-w-3xl">
             <div className="w-12 h-1 bg-[#CD9933] mb-8"></div>
             <h1 className="font-notoSerif text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
-              Umrah <span className="text-[#CD9933]">Packages</span>
+              Curated <span className="text-[#CD9933]">Umrah Packages</span>
             </h1>
-            <p className="font-manrope text-lg text-white/80 max-w-xl">
-              Embark on a spiritual journey of a lifetime with our meticulously curated pilgrimage experiences. From economy to luxury, find the perfect package for your sacred journey.
+            <p className="font-manrope text-lg text-white/80 max-w-xl mb-8">
+              Embark on a spiritual journey of a lifetime with our meticulously curated pilgrimage experiences.
             </p>
           </div>
         </div>
@@ -90,14 +93,6 @@ const Packages = () => {
 
       {/* Main Content */}
       <main className="max-w-screen-2xl mx-auto px-8 py-16">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-          <div className="max-w-2xl">
-            <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Spiritual Journeys</h6>
-            <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-primary leading-tight">Curated Umrah Packages</h2>
-          </div>
-        </div>
-
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Filter Sidebar */}
           <aside className="w-full lg:w-72 flex-shrink-0">
@@ -133,11 +128,11 @@ const Packages = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {(packages.length > 0 ? packages : staticPackages).map((pkg, i) => {
                 const staticPkg = staticPackages[i % staticPackages.length]
-                const image = pkg.image || staticPkg?.image
+                const image = pkg.image_url || pkg.image || staticPkg?.image
                 const badge = pkg.badge || staticPkg?.badge || ''
                 const badgeColor = pkg.badgeColor || staticPkg?.badgeColor || 'bg-[#CD9933]'
-                const days = pkg.days || staticPkg?.days || '15 Days'
-                const airline = pkg.airline || staticPkg?.airline || 'Qatar Airways'
+                const days = pkg.days || pkg.duration || staticPkg?.days || '15 Days'
+                const airline = pkg.airline || pkg.airline || staticPkg?.airline || 'Qatar Airways'
                 const price = typeof pkg.price === 'number' ? pkg.price : (parseFloat(String(pkg.price).replace(/[^0-9.]/g, '')) || 0)
 
                 return (
@@ -153,7 +148,7 @@ const Packages = () => {
                         <div>
                           <h3 className="font-notoSerif text-2xl text-primary font-bold">{pkg.title || pkg.name}</h3>
                           <div className="flex items-center mt-1 text-on-surface-variant text-sm">
-                            <span className="material-symbols-outlined text-sm mr-1">location_on</span>
+                            <span className="material-symbols-outlined text-sm mr-2">location_on</span>
                             <span>{pkg.location || pkg.hotel || 'Makkah & Madinah'}</span>
                           </div>
                         </div>
@@ -186,7 +181,7 @@ const Packages = () => {
       {/* CTA */}
       <section className="py-24 bg-primary-container relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7iqIMSWjJemycSurDzLS49I7vf1E_Ir_9JNdo7vnnjUs42efP_S1dgqe2xI0QDJaKbHo9ZRkqvdYo1bYcwBvEnTPhPclF1OSmgOVghrFtvqeq5b92V1yjUro0sxR_GnE1BNCqYps0QKr0yc_d2G0_23gzKUpiz3nt2gERaWgkbPWLcVYUd6z7noGPOWbDAz3zrOwnleugBBJWc52v2BSX_rOZLmuCn0bBOWhLLmTx7ip4AO3yKpRp0shQrdTuKpNfm0QTUA_N0WM8" alt="Pattern" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1465378977933-3f5aae93cec2?w=800" alt="Pattern" />
         </div>
         <div className="max-w-screen-2xl mx-auto px-8 relative z-10 text-center">
           <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ready to Begin?</h6>
@@ -194,7 +189,10 @@ const Packages = () => {
           <p className="text-white/60 mb-10 max-w-xl mx-auto">Contact our travel experts to get a personalized quote and start your spiritual journey.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact" className="bg-[#CD9933] text-white px-10 py-4 font-manrope font-bold tracking-widest uppercase text-sm hover:brightness-110 transition-all">Get a Quote</Link>
-            <Link to="/international-tours" className="border border-white/30 text-white px-10 py-4 font-manrope font-bold tracking-widest uppercase text-sm hover:bg-white/10 transition-all">Explore Tours</Link>
+            <Link to="/international-tours" className="border border-white/30 text-white px-10 py-4 font-manrope font-bold tracking-widest uppercase text-sm hover:bg-white/10 transition-all flex items-center gap-2">
+              <span className="material-symbols-outlined">flight</span>
+              Explore Tours
+            </Link>
           </div>
         </div>
       </section>

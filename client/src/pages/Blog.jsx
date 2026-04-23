@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -105,7 +106,7 @@ May Allah accept your Umrah. Ameen.`
     category: 'Planning',
     date: 'March 10, 2024',
     readTime: '6 min read',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCoKHIP0C3QMaqa0Klr2dM78ntz2OMNGskdqZpgaSJ-t6CzhN9wtM0mVM_VfSXuA51y498oLIAKD-uoj3lEBnBE8WmcWNOLOSOq9dH9S0lGZIfFBT1ZhI-DDgNOWBLRTwE3G7J0rMP7EcoWJ320MQ5b4uQ8mPqH3otJS4kmYLSdyP7CkobPzxStF_dClqG1HjjpMwEyFmBv7FGdx4exw17NjJDYM-FTizn97bzsUtNLtNiN42PQQll7lzJbJk6og1ghe9D9P9QPzoGt',
+    image: 'https://images.unsplash.com/photo-1469357001414-5c82ea24f067?w=800',
     featured: false
   },
   {
@@ -115,7 +116,7 @@ May Allah accept your Umrah. Ameen.`
     category: 'Destinations',
     date: 'February 28, 2024',
     readTime: '7 min read',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAGAIsAHsj1aeHsF48svRjVUbf98DzT-X9LQhfvfa-q2PJlyI09AuEIY6srDte53YCFFWCd2EaqKDYaWjc7R1oD8Oy0UQZonZ4QmyQHfAPWRL1m5sQGS9dtdQLq8f2bLzqIOWQmNgNi9ljBiW5R4LPKlvDDMzjwtdiHpg6rvvZMcZomzBGJjvB9xOfnjvbugZr1ychDGq06fIZDh06Dz9ZZUQa-GIE-lRKaUC8cnXzsPqkzMMPpZHTcCzgU4BenPNn8U-Z6Uv-gDbmW',
+    image: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800',
     featured: false
   },
   {
@@ -125,7 +126,7 @@ May Allah accept your Umrah. Ameen.`
     category: 'Packages',
     date: 'February 20, 2024',
     readTime: '5 min read',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBgeIqrjd4iZZprHhl6dvsS6TlHxSPpsRmm2Q4eJ0zVcfSsCDiAzFs_uTdG6viogBc4vtlsa9ul1Nk18k6JBhkP-xeMEttf2BqJ1jOG8pQ7cnBf6Ao3WlNsQPFRlNK9j0rbGdGfbKOnG3rdjzGKSfNDY5wKpvPKQTepPxMwUq1cLbg-SxCK5TQ5rRrkARlzPWy_VGIQZQUGsTi_0CoUUzDbyZHY6No-V79Ao-q62kF8A-wSQe15IlpAbZe8_-0Ezat1qZmyvj1c8ZAL',
+    image: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=800',
     featured: false
   },
   {
@@ -135,7 +136,7 @@ May Allah accept your Umrah. Ameen.`
     category: 'Planning',
     date: 'February 15, 2024',
     readTime: '4 min read',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDeKAHUE-PrOvKyjvjA04CL1jr6-62S2Gq4OvwV7zH1lF0mlQjEH7m1ZghycTUjRSVtzOY5suj3gVo-PrLaXmzs2tiIW_cYJr-NSNa5pH_qsN7H7frVEt78dEk6MhB2J8Uj-Q6hheong-lQY2BU3RxegAaq6Na8Zwccq_7Zr1ZDRzOEpbEtIn9Q5EYOtLqjMcX5SNtiZrfZ4GWoCX7gId6_Df31VjHmy08Fi8IbzJqwShYHYNoTk4A1tdg-YSEzWH5ct9SdGFD2b2sQ',
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800',
     featured: false
   },
   {
@@ -145,7 +146,7 @@ May Allah accept your Umrah. Ameen.`
     category: 'History',
     date: 'February 10, 2024',
     readTime: '10 min read',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA1TFYjcNCU1jatQI4D8YLqCDfuhWfk0cT0dMGoRBMfve9VV0lv0YzvCp9dIMEq-a05foGyu6nL0GphRF9kWJmOOUJoKETJpCojoqxl5XPI7FK5iE3wLkyS0ey_5yC3zsz96FsqZGofrd-XWR16bcukQBkRotmsfTZaX-xmFrjfUhi7Zazqb_BXhe8zYK74QxEmECK8vJaAXdzHQmhvAW-KyDZXPkR43tt1afbIF6YM7PBCOBBy-l6TuMWtejlRDSj5vmKIidlF72YJ',
+    image: 'https://images.unsplash.com/photo-1519817914152-22d216bb9170?w=800',
     featured: false
   }
 ]
@@ -163,7 +164,7 @@ const Blog = () => {
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxMvKGaBzbI1spkgpMFmKdzOm4xCMawjMzIuAQhLFp1UUOqf1YTeL6uXQ9gPF8FrrGCdwtr-1OKdN_rZmKJ6fVc6EvrliZFd_0W8amMRlNyXK3tPSD1-PHcBaClpfsT4uytWjklgkPBDReyPm67SPC5tznRfQGqC0Qy7kQvOjMKvf2GP1C1srbNAdhL9V5sDjhuaGxgfVbtnwie5LZPTfLKGrk2Htqx15vojrzuf6zerg6AlywtCG5x8qf2h4EJH4NB0oN-xxXnpZN" alt="Blog" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1469357001414-5c82ea24f067?w=1600" alt="Blog" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:px-24 w-full">
@@ -181,27 +182,29 @@ const Blog = () => {
 
       {/* Featured Post */}
       <section className="py-24 px-8 max-w-screen-2xl mx-auto -mt-16 relative z-20">
-        <div className="bg-surface-container-lowest editorial-shadow overflow-hidden asymmetric-clip group cursor-pointer">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="relative h-72 lg:h-auto overflow-hidden">
-              <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src={featuredPost.image} alt={featuredPost.title} />
-              <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded">{featuredPost.category}</div>
-            </div>
-            <div className="p-8 lg:p-12 flex flex-col justify-center">
-              <div className="flex items-center gap-4 text-sm text-outline mb-4">
-                <span>{featuredPost.date}</span>
-                <span>•</span>
-                <span>{featuredPost.readTime}</span>
+        <Link to={`/blog/${featuredPost.id}`} className="block">
+          <div className="bg-surface-container-lowest editorial-shadow overflow-hidden asymmetric-clip group">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+              <div className="relative h-72 lg:h-auto overflow-hidden">
+                <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src={featuredPost.image} alt={featuredPost.title} />
+                <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded">{featuredPost.category}</div>
               </div>
-              <h2 className="font-notoSerif text-3xl lg:text-4xl font-bold text-primary mb-4 group-hover:text-[#CD9933] transition-colors">{featuredPost.title}</h2>
-              <p className="text-on-surface-variant leading-relaxed mb-6">{featuredPost.excerpt}</p>
-              <button className="text-[#CD9933] font-bold flex items-center gap-2 hover:gap-4 transition-all" onClick={() => window.location.href = '/blog/1'}>
-                Read Article
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </button>
+              <div className="p-8 lg:p-12 flex flex-col justify-center">
+                <div className="flex items-center gap-4 text-sm text-outline mb-4">
+                  <span>{featuredPost.date}</span>
+                  <span>•</span>
+                  <span>{featuredPost.readTime}</span>
+                </div>
+                <h2 className="font-notoSerif text-3xl lg:text-4xl font-bold text-primary mb-4 group-hover:text-[#CD9933] transition-colors">{featuredPost.title}</h2>
+                <p className="text-on-surface-variant leading-relaxed mb-6">{featuredPost.excerpt}</p>
+                <span className="text-[#CD9933] font-bold flex items-center gap-2 hover:gap-4 transition-all">
+                  Read Article
+                  <span className="material-symbols-outlined">arrow_forward</span>
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </section>
 
       {/* Categories */}
@@ -219,25 +222,27 @@ const Blog = () => {
       <section className="pb-24 px-8 max-w-screen-2xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {regularPosts.map((post) => (
-            <div key={post.id} className="bg-surface-container-lowest group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1" onClick={() => window.location.href = `/blog/${post.id}`}>
-              <div className="relative h-56 overflow-hidden">
-                <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 asymmetric-clip" src={post.image} alt={post.title} />
-                <div className="absolute top-4 left-4 bg-[#013334] text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded">{post.category}</div>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-4 text-xs text-outline mb-3">
-                  <span>{post.date}</span>
-                  <span>•</span>
-                  <span>{post.readTime}</span>
+            <Link key={post.id} to={`/blog/${post.id}`} className="block">
+              <div className="bg-surface-container-lowest group overflow-hidden editorial-shadow transition-transform hover:-translate-y-1">
+                <div className="relative h-56 overflow-hidden">
+                  <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 asymmetric-clip" src={post.image} alt={post.title} />
+                  <div className="absolute top-4 left-4 bg-[#013334] text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded">{post.category}</div>
                 </div>
-                <h3 className="font-notoSerif text-xl font-bold text-primary mb-3 group-hover:text-[#CD9933] transition-colors line-clamp-2">{post.title}</h3>
-                <p className="text-on-surface-variant text-sm leading-relaxed line-clamp-3 mb-4">{post.excerpt}</p>
-                <span className="text-[#CD9933] font-bold text-sm flex items-center gap-2">
-                  Read More
-                  <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                </span>
+                <div className="p-6">
+                  <div className="flex items-center gap-4 text-xs text-outline mb-3">
+                    <span>{post.date}</span>
+                    <span>•</span>
+                    <span>{post.readTime}</span>
+                  </div>
+                  <h3 className="font-notoSerif text-xl font-bold text-primary mb-3 group-hover:text-[#CD9933] transition-colors line-clamp-2">{post.title}</h3>
+                  <p className="text-on-surface-variant text-sm leading-relaxed line-clamp-3 mb-4">{post.excerpt}</p>
+                  <span className="text-[#CD9933] font-bold text-sm flex items-center gap-2">
+                    Read More
+                    <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                  </span>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -245,7 +250,7 @@ const Blog = () => {
       {/* Newsletter */}
       <section className="py-24 bg-primary-container relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7iqIMSWjJemycSurDzLS49I7vf1E_Ir_9JNdo7vnnjUs42efP_S1dgqe2xI0QDJaKbHo9ZRkqvdYo1bYcwBvEnTPhPclF1OSmgOVghrFtvqeq5b92V1yjUro0sxR_GnE1BNCqYps0QKr0yc_d2G0_23gzKUpiz3nt2gERaWgkbPWLcVYUd6z7noGPOWbDAz3zrOwnleugBBJWc52v2BSX_rOZLmuCn0bBOWhLLmTx7ip4AO3yKpRp0shQrdTuKpNfm0QTUA_N0WM8" alt="Pattern" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1469357001414-5c82ea24f067?w=800" alt="Pattern" />
         </div>
         <div className="max-w-2xl mx-auto px-8 relative z-10 text-center">
           <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Stay Updated</h6>
