@@ -195,7 +195,7 @@ const Blog = () => {
               </div>
               <h2 className="font-notoSerif text-3xl lg:text-4xl font-bold text-primary mb-4 group-hover:text-[#CD9933] transition-colors">{featuredPost.title}</h2>
               <p className="text-on-surface-variant leading-relaxed mb-6">{featuredPost.excerpt}</p>
-              <button className="text-[#CD9933] font-bold flex items-center gap-2 hover:gap-4 transition-all">
+              <button className="text-[#CD9933] font-bold flex items-center gap-2 hover:gap-4 transition-all" onClick={() => window.location.href = '/blog/1'}>
                 Read Article
                 <span className="material-symbols-outlined">arrow_forward</span>
               </button>
@@ -219,7 +219,7 @@ const Blog = () => {
       <section className="pb-24 px-8 max-w-screen-2xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {regularPosts.map((post) => (
-            <div key={post.id} className="bg-surface-container-lowest group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1">
+            <div key={post.id} className="bg-surface-container-lowest group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1" onClick={() => window.location.href = `/blog/${post.id}`}>
               <div className="relative h-56 overflow-hidden">
                 <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 asymmetric-clip" src={post.image} alt={post.title} />
                 <div className="absolute top-4 left-4 bg-[#013334] text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded">{post.category}</div>
@@ -232,10 +232,10 @@ const Blog = () => {
                 </div>
                 <h3 className="font-notoSerif text-xl font-bold text-primary mb-3 group-hover:text-[#CD9933] transition-colors line-clamp-2">{post.title}</h3>
                 <p className="text-on-surface-variant text-sm leading-relaxed line-clamp-3 mb-4">{post.excerpt}</p>
-                <button className="text-[#CD9933] font-bold text-sm flex items-center gap-2 hover:gap-4 transition-all">
+                <span className="text-[#CD9933] font-bold text-sm flex items-center gap-2">
                   Read More
                   <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                </button>
+                </span>
               </div>
             </div>
           ))}

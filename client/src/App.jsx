@@ -9,6 +9,7 @@ import AdminDashboard from './pages/Admin/Dashboard'
 import About from './pages/About'
 import Gallery from './pages/Gallery'
 import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 import VisaServices from './pages/VisaServices'
 import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
@@ -27,6 +28,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/visa-services" element={<VisaServices />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
