@@ -55,6 +55,7 @@ const staticPackages = [
 
 const Packages = () => {
   const [packages, setPackages] = useState(staticPackages)
+  const [pageMedia, setPageMedia] = useState({})
 
   useEffect(() => {
     axios.get(`${API_BASE}/api/packages`)
@@ -66,6 +67,16 @@ const Packages = () => {
       .catch((err) => {
         console.error('Failed to fetch packages:', err)
       })
+
+    const savedMedia = localStorage.getItem('pageMedia')
+    if (savedMedia) {
+      try {
+        const parsed = JSON.parse(savedMedia)
+        if (parsed && Object.keys(parsed).length > 0) {
+          setPageMedia(parsed)
+        }
+      } catch (e) {}
+    }
   }, [])
 
   return (
@@ -75,7 +86,7 @@ const Packages = () => {
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=1600" alt="Makkah" />
+          <img className="w-full h-full object-cover" src={pageMedia.packages_hero_image || "https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=1600"} alt="Makkah" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">

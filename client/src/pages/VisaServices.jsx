@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -52,6 +52,20 @@ const visaServices = [
 ]
 
 const VisaServices = () => {
+  const [pageMedia, setPageMedia] = useState({})
+
+  useEffect(() => {
+    const savedMedia = localStorage.getItem('pageMedia')
+    if (savedMedia) {
+      try {
+        const parsed = JSON.parse(savedMedia)
+        if (parsed && Object.keys(parsed).length > 0) {
+          setPageMedia(parsed)
+        }
+      } catch (e) {}
+    }
+  }, [])
+
   return (
     <div className="bg-surface font-manrope text-on-surface min-h-screen">
       <Navbar />
@@ -59,7 +73,7 @@ const VisaServices = () => {
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1555992457-b8fefdd09069?w=1600&q=80" alt="Visa Services" />
+          <img className="w-full h-full object-cover" src={pageMedia.visa_hero_image || "https://images.unsplash.com/photo-1555992457-b8fefdd09069?w=1600&q=80"} alt="Visa Services" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
