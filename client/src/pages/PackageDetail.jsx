@@ -171,10 +171,10 @@ const PackageDetail = () => {
           <img className="w-full h-full object-cover" src={pkg.image_url || pkg.image || staticPackages[0].image} alt={pkg.title} />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
-        <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:px-24 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-end">
             <div className="lg:col-span-8">
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-2 md:gap-4 mb-3 md:mb-4">
                 {pkg.badge && <span className="bg-[#CD9933] text-white font-bold text-xs tracking-widest uppercase px-3 py-1 rounded">{pkg.badge}</span>}
                 <div className="flex text-[#CD9933]">
                   {Array.from({ length: pkg.stars || 5 }).map((_, i) => (
@@ -182,34 +182,34 @@ const PackageDetail = () => {
                   ))}
                 </div>
               </div>
-              <h1 className="font-notoSerif text-5xl lg:text-7xl text-white leading-tight tracking-tight">{pkg.title || 'Umrah Journey'}</h1>
+              <h1 className="font-notoSerif text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white leading-tight tracking-tight">{pkg.title || 'Umrah Journey'}</h1>
             </div>
             <div className="lg:col-span-4 lg:text-right">
               <p className="text-white/70 font-medium mb-2">Starting from</p>
-              <div className="font-notoSerif text-4xl text-[#CD9933]">PKR {price.toLocaleString()} <span className="text-lg font-manrope text-white/70 font-normal">/ person</span></div>
+              <div className="font-notoSerif text-2xl md:text-3xl lg:text-4xl text-[#CD9933]">PKR {price.toLocaleString()} <span className="text-sm md:text-lg font-manrope text-white/70 font-normal">/ person</span></div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Main Content Area */}
-      <section className="py-16 px-8 max-w-screen-2xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <section className="py-12 md:py-16 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           {/* Left Column: Details */}
-          <div className="lg:col-span-8 space-y-16">
+          <div className="lg:col-span-8 space-y-12 md:space-y-16">
             {/* Quick Info */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 rounded-xl editorial-shadow">
                 <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">calendar_today</span>
                 <h3 className="font-notoSerif text-lg mb-1">Duration</h3>
                 <p className="text-on-surface-variant text-sm">{pkg.duration || pkg.days || 'Custom'}</p>
               </div>
-              <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+              <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 rounded-xl editorial-shadow">
                 <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">hotel</span>
                 <h3 className="font-notoSerif text-lg mb-1">Accommodation</h3>
                 <p className="text-on-surface-variant text-sm">{hotelName}</p>
               </div>
-              <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+              <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 rounded-xl editorial-shadow">
                 <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">flight</span>
                 <h3 className="font-notoSerif text-lg mb-1">Flight</h3>
                 <p className="text-on-surface-variant text-sm">{pkg.airline || 'Included'}</p>
@@ -231,7 +231,7 @@ const PackageDetail = () => {
                   <div className="bg-surface-container text-xs px-3 py-1 rounded font-bold">{distance}</div>
                 </div>
                 <p className="text-on-surface-variant text-sm leading-relaxed mb-4">{pkg.description || 'Centrally located accommodations for your spiritual journey.'}</p>
-                <div className="flex gap-6">
+                <div className="flex flex-wrap gap-3 md:gap-6">
                   <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">wifi</span> Free WiFi</span>
                   <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">restaurant</span> Breakfast Inc.</span>
                   <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">ac_unit</span> Central AC</span>
@@ -240,7 +240,7 @@ const PackageDetail = () => {
             </div>
 
             {/* Services Checklist */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
               <div>
                 <h3 className="font-notoSerif text-xl mb-6">What's Included</h3>
                 <ul className="space-y-4">
@@ -275,7 +275,7 @@ const PackageDetail = () => {
             {pkg.itinerary && pkg.itinerary.length > 0 && (
               <div>
                 <h2 className="font-notoSerif text-3xl mb-8">Journey Itinerary</h2>
-                <div className="relative pl-8 border-l-2 border-dashed border-[#CD9933]/30 ml-4 space-y-10">
+                <div className="relative pl-6 md:pl-8 border-l-2 border-dashed border-[#CD9933]/30 ml-2 md:ml-4 space-y-8 md:space-y-10">
                   {pkg.itinerary.map((step, idx) => {
                     const isLast = idx === pkg.itinerary.length - 1
                     return (
@@ -294,7 +294,7 @@ const PackageDetail = () => {
 
           {/* Right Column: Booking Form */}
           <div className="lg:col-span-4">
-            <div className="sticky top-32 bg-surface-container-lowest p-8 rounded-xl editorial-shadow border border-outline-variant/10">
+            <div className="sticky top-32 bg-surface-container-lowest p-4 md:p-6 lg:p-8 rounded-xl editorial-shadow border border-outline-variant/10">
               <div className="text-center mb-8">
                 <h3 className="font-notoSerif text-2xl mb-2">Plan Your Journey</h3>
                 <p className="text-on-surface-variant text-xs">Fill the form below, and our consultant will contact you within 24 hours.</p>
@@ -341,7 +341,7 @@ const PackageDetail = () => {
       </section>
 
       {/* More Packages */}
-      <section className="py-16 bg-surface-container-low px-8">
+      <section className="py-12 md:py-16 bg-surface-container-low px-4 sm:px-6 md:px-8">
         <div className="max-w-screen-2xl mx-auto">
           <h2 className="font-notoSerif text-3xl mb-8">More Packages</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

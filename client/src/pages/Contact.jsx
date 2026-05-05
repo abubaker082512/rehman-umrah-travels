@@ -26,13 +26,13 @@ const Contact = () => {
           <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0aZyzzS27YXvxLihAy6D5j3Gm2owPVXHsbfuUpmt_V9nkUVpDY4qBxeVk0N3qgMHMknGP--1SptyzErFVr4VdanNEpX9igHPZTTaRxc4i6rU2-6OgyJTAxPc6fJ7GSbrjpd56LYsKngpdgMDqyYKFklvQklParbfNbGHj_2fhhiKy5JDpsotHSwbH0n_3-EbdRPfyMiOQB2cX2lCALLrhziCkRKq31IJCnDT8pL3Ls5WYdZVk8IsNZeCsk3BtKiWAWkEkMyO4AAFZ" alt="Contact Us" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
-        <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:px-24 w-full">
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
           <div className="max-w-3xl">
-            <div className="w-12 h-1 bg-[#CD9933] mb-8"></div>
-            <h1 className="font-notoSerif text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
+            <div className="w-12 h-1 bg-[#CD9933] mb-6 md:mb-8"></div>
+            <h1 className="font-notoSerif text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
               Get in <span className="text-[#CD9933]">Touch</span>
             </h1>
-            <p className="font-manrope text-lg text-white/80 max-w-xl">
+            <p className="font-manrope text-base md:text-lg text-white/80 max-w-xl">
               Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you with personalized guidance and support.
             </p>
           </div>
@@ -40,12 +40,12 @@ const Contact = () => {
       </section>
 
       {/* Contact Content */}
-      <section className="py-24 px-8 max-w-screen-2xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
           {/* Contact Info Cards */}
           <div className="lg:col-span-1 space-y-6">
             {/* Phone */}
-            <div className="bg-surface-container-lowest p-8 editorial-shadow hover:-translate-y-1 transition-transform">
+            <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 editorial-shadow hover:-translate-y-1 transition-transform">
               <div className="text-[#CD9933] bg-[#013334]/5 w-14 h-14 flex items-center justify-center rounded-lg mb-4">
                 <span className="material-symbols-outlined text-2xl">call</span>
               </div>
@@ -57,7 +57,7 @@ const Contact = () => {
             </div>
 
             {/* WhatsApp */}
-            <div className="bg-surface-container-lowest p-8 editorial-shadow hover:-translate-y-1 transition-transform">
+            <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 editorial-shadow hover:-translate-y-1 transition-transform">
               <div className="text-[#CD9933] bg-[#013334]/5 w-14 h-14 flex items-center justify-center rounded-lg mb-4">
                 <span className="material-symbols-outlined text-2xl">chat</span>
               </div>
@@ -67,7 +67,7 @@ const Contact = () => {
             </div>
 
             {/* Email */}
-            <div className="bg-surface-container-lowest p-8 editorial-shadow hover:-translate-y-1 transition-transform">
+            <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 editorial-shadow hover:-translate-y-1 transition-transform">
               <div className="text-[#CD9933] bg-[#013334]/5 w-14 h-14 flex items-center justify-center rounded-lg mb-4">
                 <span className="material-symbols-outlined text-2xl">mail</span>
               </div>
@@ -77,7 +77,7 @@ const Contact = () => {
             </div>
 
             {/* Office */}
-            <div className="bg-surface-container-lowest p-8 editorial-shadow hover:-translate-y-1 transition-transform">
+            <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 editorial-shadow hover:-translate-y-1 transition-transform">
               <div className="text-[#CD9933] bg-[#013334]/5 w-14 h-14 flex items-center justify-center rounded-lg mb-4">
                 <span className="material-symbols-outlined text-2xl">location_on</span>
               </div>
@@ -183,16 +183,16 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="pb-24 px-8 max-w-screen-2xl mx-auto">
+      <section className="pb-16 md:pb-24 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
         <div className="bg-surface-container-lowest editorial-shadow overflow-hidden">
-          <div className="p-8 border-b border-outline-variant/10">
+          <div className="p-4 md:p-8 border-b border-outline-variant/10">
             <h3 className="font-notoSerif text-2xl font-bold text-primary mb-2">Our Location</h3>
             <p className="text-on-surface-variant text-sm flex items-center gap-2">
               <span className="material-symbols-outlined text-[#CD9933]">location_on</span>
               Main Boulevard, Gulberg III, Lahore, Pakistan
             </p>
           </div>
-          <div className="h-80 bg-surface-container flex items-center justify-center">
+          <div className="h-64 md:h-80 bg-surface-container flex items-center justify-center">
             <div className="text-center">
               <span className="material-symbols-outlined text-6xl text-outline-variant mb-4 block">map</span>
               <p className="text-on-surface-variant">Interactive map placeholder</p>
@@ -203,10 +203,10 @@ const Contact = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-primary-container relative overflow-hidden">
-        <div className="max-w-screen-2xl mx-auto px-8 relative z-10 text-center">
+      <section className="py-16 md:py-24 bg-primary-container relative overflow-hidden">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 relative z-10 text-center">
           <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ready to Travel?</h6>
-          <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-white mb-6">Let Us Plan Your Journey</h2>
+          <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">Let Us Plan Your Journey</h2>
           <p className="text-white/60 mb-10 max-w-xl mx-auto">Whether it's a spiritual Umrah journey or an international adventure, our experts are here to make it happen.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/packages" className="bg-[#CD9933] text-white px-10 py-4 font-manrope font-bold tracking-widest uppercase text-sm hover:brightness-110 transition-all">View Packages</Link>

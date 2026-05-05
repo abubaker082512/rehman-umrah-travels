@@ -62,13 +62,13 @@ const VisaServices = () => {
           <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0aZyzzS27YXvxLihAy6D5j3Gm2owPVXHsbfuUpmt_V9nkUVpDY4qBxeVk0N3qgMHMknGP--1SptyzErFVr4VdanNEpX9igHPZTTaRxc4i6rU2-6OgyJTAxPc6fJ7GSbrjpd56LYsKngpdgMDqyYKFklvQklParbfNbGHj_2fhhiKy5JDpsotHSwbH0n_3-EbdRPfyMiOQB2cX2lCALLrhziCkRKq31IJCnDT8pL3Ls5WYdZVk8IsNZeCsk3BtKiWAWkEkMyO4AAFZ" alt="Visa Services" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
-        <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:px-24 w-full">
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
           <div className="max-w-3xl">
-            <div className="w-12 h-1 bg-[#CD9933] mb-8"></div>
-            <h1 className="font-notoSerif text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
+            <div className="w-12 h-1 bg-[#CD9933] mb-6 md:mb-8"></div>
+            <h1 className="font-notoSerif text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
               Visa <span className="text-[#CD9933]">Services</span>
             </h1>
-            <p className="font-manrope text-lg text-white/80 max-w-xl">
+            <p className="font-manrope text-base md:text-lg text-white/80 max-w-xl">
               Simplifying your travel documentation with expert visa processing services. From Umrah visas to international travel permits, we handle it all with precision and care.
             </p>
           </div>
@@ -76,16 +76,16 @@ const VisaServices = () => {
       </section>
 
       {/* Visa Cards */}
-      <section className="py-24 px-8 max-w-screen-2xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
           <div className="max-w-2xl">
             <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Our Services</h6>
-            <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-primary leading-tight">Visa Solutions for Every Journey</h2>
+            <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-primary leading-tight">Visa Solutions for Every Journey</h2>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {visaServices.map((visa) => (
-            <div key={visa.id} className="bg-surface-container-lowest group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1 p-8">
+            <div key={visa.id} className="bg-surface-container-lowest group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1 p-4 md:p-6 lg:p-8">
               <div className="text-[#CD9933] bg-[#013334]/5 w-16 h-16 flex items-center justify-center rounded-lg mb-6">
                 <span className="material-symbols-outlined text-3xl">{visa.icon}</span>
               </div>
@@ -125,16 +125,16 @@ const VisaServices = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 bg-primary-container relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-primary-container relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
           <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7iqIMSWjJemycSurDzLS49I7vf1E_Ir_9JNdo7vnnjUs42efP_S1dgqe2xI0QDJaKbHo9ZRkqvdYo1bYcwBvEnTPhPclF1OSmgOVghrFtvqeq5b92V1yjUro0sxR_GnE1BNCqYps0QKr0yc_d2G0_23gzKUpiz3nt2gERaWgkbPWLcVYUd6z7noGPOWbDAz3zrOwnleugBBJWc52v2BSX_rOZLmuCn0bBOWhLLmTx7ip4AO3yKpRp0shQrdTuKpNfm0QTUA_N0WM8" alt="Pattern" />
         </div>
-        <div className="max-w-screen-2xl mx-auto px-8 relative z-10">
-          <div className="text-center mb-16">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+          <div className="text-center mb-12 md:mb-16">
             <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Simple Process</h6>
-            <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-white">How It Works</h2>
+            <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white">How It Works</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {[
               { step: '01', title: 'Submit Documents', desc: 'Send us your passport copies, photos, and required paperwork.', icon: 'upload_file' },
               { step: '02', title: 'Pay Fees', desc: 'Complete the visa fee payment through our secure channels.', icon: 'payments' },
@@ -155,8 +155,8 @@ const VisaServices = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-24 px-8">
-        <div className="max-w-5xl mx-auto bg-surface-container-lowest text-center p-16 relative overflow-hidden editorial-shadow">
+      <section className="py-16 md:py-24 px-4">
+        <div className="max-w-5xl mx-auto bg-surface-container-lowest text-center p-8 md:p-12 lg:p-16 relative overflow-hidden editorial-shadow">
           <div className="relative z-10">
             <h2 className="font-notoSerif text-3xl md:text-4xl text-primary mb-6">Need Visa Assistance?</h2>
             <p className="text-on-surface-variant font-manrope mb-10 max-w-xl mx-auto">Our visa specialists are ready to help you with any visa requirements. Contact us today for a free consultation.</p>

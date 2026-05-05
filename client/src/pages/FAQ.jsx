@@ -61,13 +61,13 @@ const FAQ = () => {
           <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCThNKNEuml8S1hYHoJAa_fd8Ffyv8O8Iq2j-NA9FVUP7zCGQsN6jN2tF8VCnGOyfdUyUuP8GP73d3gmmYIN83RqTi9W_OXwEWEIsE_m6GnsPRbR6B90ww72ul0XyG5UEhF_UfY8ScbMOKfUi-YSEqSKW1CpnnC-W7bGeRNSmRg1mpqX6LufEg0aToWCar_Qf3WCSgkUewTKsO0ShkTe_syFOt6l9fU1SeLP0mHdOvYo2UFQefcP7eabsZMkJI6nhYfae9VilxFq4hf" alt="FAQ" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
-        <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:px-24 w-full">
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
           <div className="max-w-3xl">
-            <div className="w-12 h-1 bg-[#CD9933] mb-8"></div>
-            <h1 className="font-notoSerif text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
+            <div className="w-12 h-1 bg-[#CD9933] mb-6 md:mb-8"></div>
+            <h1 className="font-notoSerif text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
               Frequently Asked <span className="text-[#CD9933]">Questions</span>
             </h1>
-            <p className="font-manrope text-lg text-white/80 max-w-xl">
+            <p className="font-manrope text-base md:text-lg text-white/80 max-w-xl">
               Find answers to common questions about our Umrah packages, visa services, travel arrangements, and more.
             </p>
           </div>
@@ -75,8 +75,8 @@ const FAQ = () => {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-24 px-8 max-w-screen-2xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8">
           {/* Category Tabs */}
           <div className="lg:col-span-1">
             <h3 className="font-notoSerif text-xl font-bold text-primary mb-6">Categories</h3>
@@ -130,20 +130,20 @@ const FAQ = () => {
       </section>
 
       {/* Popular Questions Quick Links */}
-      <section className="py-24 bg-primary-container relative overflow-hidden">
-        <div className="max-w-screen-2xl mx-auto px-8 relative z-10">
-          <div className="text-center mb-16">
+      <section className="py-16 md:py-24 bg-primary-container relative overflow-hidden">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+          <div className="text-center mb-12 md:mb-16">
             <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Quick Answers</h6>
-            <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-white">Most Searched Questions</h2>
+            <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Most Searched Questions</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
               { q: 'How much does Umrah cost?', icon: 'payments' },
               { q: 'How many days for Umrah?', icon: 'calendar_today' },
               { q: 'Best hotels near Haram?', icon: 'hotel' },
               { q: 'Documents for Umrah visa?', icon: 'description' }
             ].map((item, i) => (
-              <button key={i} className="bg-white/5 border border-white/10 p-6 rounded-xl text-left hover:bg-white/10 transition-all group">
+              <button key={i} className="bg-white/5 border border-white/10 p-4 md:p-6 rounded-xl text-left hover:bg-white/10 transition-all group">
                 <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">{item.icon}</span>
                 <span className="text-white font-bold group-hover:text-[#CD9933] transition-colors">{item.q}</span>
               </button>

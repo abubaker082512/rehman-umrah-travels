@@ -100,25 +100,25 @@ const Home = () => {
       <Navbar />
       
       {/* SideNavBar (WhatsApp FAB) */}
-      <div className="fixed bottom-8 right-8 z-[9999] group">
+      <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[9999] group">
         <div className="flex flex-col items-center gap-2">
           <span className="bg-white/80 backdrop-blur-md text-[#CD9933] font-manrope font-bold text-[10px] uppercase px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">WhatsApp Support</span>
-          <div className="bg-white/80 dark:bg-black/80 backdrop-blur-md text-[#CD9933] rounded-full p-4 w-16 h-16 flex items-center justify-center shadow-2xl shadow-[#013334]/20 border border-[#CD9933]/15 animate-bounce duration-[2000ms] cursor-pointer hover:scale-110 transition-transform">
-            <span className="material-symbols-outlined text-3xl">chat</span>
+          <div className="bg-white/80 dark:bg-black/80 backdrop-blur-md text-[#CD9933] rounded-full p-3 md:p-4 w-14 h-14 md:w-16 md:h-16 flex items-center justify-center shadow-2xl shadow-[#013334]/20 border border-[#CD9933]/15 animate-bounce duration-[2000ms] cursor-pointer hover:scale-110 transition-transform">
+            <span className="material-symbols-outlined text-2xl md:text-3xl">chat</span>
           </div>
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <section className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-screen flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBubkTzEiGLq9ecV5_P_POI2om-XGLtBdG4UhZ6Z2FTNoko77ZP0hrzDRjD1aq1xPF-psQ32LnNFxg5sr3ZK0lrA7GhF4a595_Mgjp4euDQqJzGNNOMK2lPWFL6tklR8Q5zp3ootIYqJ-zH4z2AJTQgItEet4mbPUh2a-2NMMX7dqqaMpz4LVQkMc_2Mhd5Xlaw5dikwbzDN1ckBtHfsFsVohx7APcLJLU0OSBcS_E6dfIgQwo_aIUkSmIgk_cNCfeXZpd20jDUPAvp" alt="Makkah" />
+          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBubkTzEiGLq9ecV5_P_POI2om-XGLtBIrcBhG4Z6Z2FTNoko77ZP0hrzDRjD1aq1xPF-psQ32LnNFxg5sr3ZK0lrA7GhF4a595_Mgjp4euDQqJzGNNOMK2lPWFL6tklR8Q5zp3ootIYqJ-zH4z2AJTQgItEet4mbPUh2a-2NMMX7dqqaMpz4LVQkMc_2Mhd5Xlaw5dikwbzDN1ckBtHfsVsVohx7APcLJLU0OSBcS_E6dfIgQwo_aIUkSmIgk_cNCfeXZpd20jDUPAvp" alt="Makkah" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
-        <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:px-24 w-full">
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
           <div className="max-w-3xl">
-            <div className="w-12 h-1 bg-[#CD9933] mb-8"></div>
-            <h1 className="font-notoSerif text-5xl lg:text-7xl font-bold text-white leading-tight mb-8">
+            <div className="w-12 h-1 bg-[#CD9933] mb-6 md:mb-8"></div>
+            <h1 className="font-notoSerif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 md:mb-8">
               {cmsContent.heroTitle.includes('Umrah') ? (
                 <>
                   {cmsContent.heroTitle.split('Umrah')[0]}
@@ -127,14 +127,14 @@ const Home = () => {
                 </>
               ) : cmsContent.heroTitle}
             </h1>
-            <p className="font-manrope text-lg text-white/80 mb-12 max-w-xl">
+            <p className="font-manrope text-base md:text-lg text-white/80 mb-8 md:mb-12 max-w-xl">
               {cmsContent.heroSubtitle}
             </p>
-            <div className="flex flex-wrap gap-6">
-              <Link to="/packages" className="bg-[#CD9933] hover:bg-[#b88a2e] text-white px-8 py-4 rounded-md font-bold transition-all shadow-lg flex items-center gap-2">
+            <div className="flex flex-wrap gap-3 md:gap-6">
+              <Link to="/packages" className="bg-[#CD9933] hover:bg-[#b88a2e] text-white px-6 py-3 md:px-8 md:py-4 rounded-md font-bold transition-all shadow-lg flex items-center gap-2">
                 {cmsContent.heroCta}
               </Link>
-              <button className="bg-transparent border border-[#CD9933]/40 hover:bg-[#CD9933]/10 text-white px-8 py-4 rounded-md font-bold transition-all flex items-center gap-2 backdrop-blur-sm">
+              <button className="bg-transparent border border-[#CD9933]/40 hover:bg-[#CD9933]/10 text-white px-6 py-3 md:px-8 md:py-4 rounded-md font-bold transition-all flex items-center gap-2 backdrop-blur-sm">
                 <span className="material-symbols-outlined">chat</span>
                 {cmsContent.heroWhatsApp}
               </button>
@@ -144,9 +144,9 @@ const Home = () => {
       </section>
 
       {/* Quick Package Search */}
-      <div className="relative z-20 max-w-6xl mx-auto -mt-24 px-4">
-        <div className="bg-surface-container-lowest editorial-shadow p-8 rounded-xl flex flex-wrap lg:flex-nowrap gap-6 items-end">
-          <div className="flex-1 min-w-[200px]">
+      <div className="relative z-20 max-w-6xl mx-auto -mt-12 sm:-mt-16 lg:-mt-24 px-4">
+        <div className="bg-surface-container-lowest editorial-shadow p-4 sm:p-6 md:p-8 rounded-xl flex flex-col lg:flex-row gap-4 md:gap-6 items-stretch lg:items-end">
+          <div className="flex-1 min-w-0">
             <label className="block font-manrope text-xs font-bold uppercase text-outline mb-2">Departure City</label>
             <select className="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-[#CD9933] font-manrope text-sm py-2 px-0">
               <option>Karachi</option>
@@ -154,7 +154,7 @@ const Home = () => {
               <option>Islamabad</option>
             </select>
           </div>
-          <div className="flex-1 min-w-[200px]">
+          <div className="flex-1 min-w-0">
             <label className="block font-manrope text-xs font-bold uppercase text-outline mb-2">Month</label>
             <select className="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-[#CD9933] font-manrope text-sm py-2 px-0">
               <option>September 2024</option>
@@ -162,7 +162,7 @@ const Home = () => {
               <option>Ramadan 2025</option>
             </select>
           </div>
-          <div className="flex-1 min-w-[200px]">
+          <div className="flex-1 min-w-0">
             <label className="block font-manrope text-xs font-bold uppercase text-outline mb-2">Package Type</label>
             <select className="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-[#CD9933] font-manrope text-sm py-2 px-0">
               <option>Economy</option>
@@ -179,15 +179,15 @@ const Home = () => {
       </div>
 
       {/* Featured Umrah Packages */}
-      <section className="py-24 px-8 max-w-screen-2xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
           <div className="max-w-2xl">
             <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Spiritual Journeys</h6>
-            <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-primary leading-tight">Curated Umrah Packages</h2>
+            <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-primary leading-tight">Curated Umrah Packages</h2>
           </div>
           <Link className="text-primary font-bold border-b-2 border-[#CD9933] pb-1 mt-6 md:mt-0 transition-all hover:pr-4" to="/packages">View All Packages</Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {packages.slice(0, 4).map((pkg, i) => {
             const staticPkg = staticPackages[i % staticPackages.length]
             const image = pkg.image_url || pkg.image || staticPkg.image
@@ -199,11 +199,11 @@ const Home = () => {
             
             return (
               <Link to={`/package/${pkg.id || pkg._id || staticPkg.id}`} key={pkg.id || i} className="bg-surface-container-low group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1 block">
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                   <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={image} alt={pkg.title} />
                   <div className={`absolute top-4 left-4 ${badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{badge}</div>
                 </div>
-                <div className="p-6">
+                <div className="p-4 md:p-6">
                   <h3 className="font-notoSerif text-xl font-bold text-primary mb-2 line-clamp-1">{pkg.title}</h3>
                   <p className="text-outline text-sm mb-4 line-clamp-1">{location} • {duration}</p>
                   <div className="flex items-center justify-between mt-6">
@@ -221,14 +221,14 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 bg-primary-container relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-primary-container relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
           <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7iqIMSWjJemycSurDzLS49I7vf1E_Ir_9JNdo7vnnjUs42efP_S1dgqe2xI0QDJaKbHo9ZRkqvdYo1bYcwBvEnTPhPclF1OSmgOVghrFtvqeq5b92V1yjUro0sxR_GnE1BNCqYps0QKr0yc_d2G0_23gzKUpiz3nt2gERaWgkbPWLcVYUd6z7noGPOWbDAz3zrOwnleugBBJWc52v2BSX_rOZLmuCn0bBOWhLLmTx7ip4AO3yKpRp0shQrdTuKpNfm0QTUA_N0WM8" alt="Pattern" />
         </div>
-        <div className="max-w-screen-2xl mx-auto px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-white mb-12">Setting a Sacred Standard for Travel</h2>
+              <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">Setting a Sacred Standard for Travel</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="space-y-4">
                   <div className="text-[#CD9933] bg-white/5 w-14 h-14 flex items-center justify-center rounded-lg">
@@ -261,9 +261,9 @@ const Home = () => {
               </div>
             </div>
             <div className="relative">
-              <img className="rounded-xl editorial-shadow w-full h-[600px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGJr-PkCTbw2r-UbQwF17jWJZejPxRPpHZrMMerpfj2Dedl3aNiEtLUIt6uy0_l0y7RuUJvb4hE6eh-EuaIDrmOJ58cgOtfefFncGbp5yTjtSGMTFIpVFqNI-60_TRcCnPdbR4YBcfePrjheIpBnC3JZtzkkK1AkzXgy0wmuJMEmoxERn8tO3VjO33bJ8urtkI_zoedo3s-FyyVTjBFcSmNV7CX2cajChEUrqwldzPNnYqUwq1UAaY7pN8n0d1cpNoWUWoN5IHD0kl" alt="Architecture" />
-              <div className="absolute -bottom-10 -left-10 bg-[#CD9933] p-10 rounded-xl hidden xl:block">
-                <span className="block text-5xl font-bold text-white mb-2">25+</span>
+              <img className="rounded-xl editorial-shadow w-full h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[600px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGJr-PkCTbw2r-UbQwF17jWJZejPxRPpHZrMMerpfj2Dedl3aNiEtLUIt6uy0_l0y7RuUJvb4hE6eh-EuaIDrmOJ58cgOtfefFncGbp5yTjtSGMTFIpVFqNI-60_TRcCnPdbR4YBcfePrjheIpBnC3JZtzkkK1AkzXgy0wmuJMEmoxERn8tO3VjO33bJ8urtkI_zoedo3s-FyyVTjBFcSmNV7CX2cajChEUrqwldzPNnYqUwq1UAaY7pN8n0d1cpNoWUWoN5IHD0kl" alt="Architecture" />
+              <div className="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 bg-[#CD9933] p-6 md:p-10 rounded-xl hidden lg:block">
+                <span className="block text-3xl md:text-5xl font-bold text-white mb-2">25+</span>
                 <span className="text-white/80 font-bold tracking-widest uppercase text-xs">Years of Excellence</span>
               </div>
             </div>
@@ -272,14 +272,14 @@ const Home = () => {
       </section>
 
       {/* International Tours */}
-      <section className="py-24 px-8 max-w-screen-2xl mx-auto overflow-hidden">
-        <div className="mb-16 text-center max-w-2xl mx-auto">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto overflow-hidden">
+        <div className="mb-12 md:mb-16 text-center max-w-2xl mx-auto">
           <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Beyond Borders</h6>
-          <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-primary">Discover the World</h2>
+          <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-primary">Discover the World</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Turkey */}
-          <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
+          <div className="relative h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[500px] group cursor-pointer overflow-hidden rounded-lg">
             <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo34TNKnDfPALrJLu5UciOIr7LARLN_xMd56yq9UtN280tkvjiEnxN3TtX2PclWHifVh-nu8QV_2cBRDHQyvPmPzZGIZNdK59dTjZS_Z7zyQnU3g6H9XtU6VzrOpldicf7vIybJnfw64PVqTVsjONncJK9U_xFuHg1W1wWMoj67jRKKTctsOdONWmyphd-lo0jqhdNTCIXpryZF3G0yfAhu2sIiRgcLLrXo2593SUcftSq5rTTctJCZOjzrrlvn1FRx-ijiWOD06Kn" alt="Turkey" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
             <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white group cursor-pointer overflow-hidden rounded-lg block">
@@ -289,7 +289,7 @@ const Home = () => {
             </Link>
           </div>
           {/* Dubai */}
-          <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
+          <div className="relative h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[500px] group cursor-pointer overflow-hidden rounded-lg">
             <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUQYOVnZnCAbJnFrX1nyML3VQoCv0DXi5Irz0Y73qxzjrCnv9Fjfew89pvxdv8ZCASmG7JXvm6ivVtlWSDgDNl6WD5Qkh9yA9ePoYhW5-2lqFxEm_UD-gdv3y855ixx1a4TNrQKs_YDGiCBrtJNtbyqSVu-OpnZy8NM7Q_OjK_9-EAJxvTxySJdH3PL-NHtQ5wCIWYnxE88P2f-rJ9uHs3kO3HDAd20k7SpB0jq8u4Sn1BDaHihQy3xKayJDzjSbhMkeSgMrymfb39" alt="Dubai" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
             <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white">
@@ -299,7 +299,7 @@ const Home = () => {
             </Link>
           </div>
           {/* Malaysia */}
-          <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
+          <div className="relative h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[500px] group cursor-pointer overflow-hidden rounded-lg">
             <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3zaexyac9JYbgc7JJW579-lS9WPkAgTeUI7Z4f5Gl08eeqwiSxGeYnsEo-duQ9zPlj4ciIjAaAHQxZpJWRSzi7QTPiBvQTt5PnQL360TdVEtcUe8-A1xE2f5tRkgQevJB0FH9BEKMxS9GfArHkUk1mmMGLjWSTTIINCUnMLvlQIt-niCyleGQ6NoGhUF9wsVc4M84ENHV6AyrYG2HEoJD3DrsDsNwuv-5k4zPqoMOXRMxOHGoe_2H7qk6_JElzjsy7uAvRdhWRfDf" alt="Malaysia" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
             <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white">
@@ -309,7 +309,7 @@ const Home = () => {
             </Link>
           </div>
           {/* Europe */}
-          <div className="relative h-[500px] group cursor-pointer overflow-hidden rounded-lg">
+          <div className="relative h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[500px] group cursor-pointer overflow-hidden rounded-lg">
             <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv-MVsZqKBwhFPBQ8VFiq3TU0N5EnqlsYH2DbJRB5qbT_Cq8D2o6SSJOfghgRCyIin6rAX9gA_gYojLbuUrx53KQNs5-IEFKUuQCSPDJADWJ4WR-wdlDFUu341hUW3bpPXn5i_22fhWnEfLqshrlO64tuM__-1f54SpwlxVe2bQGSh0jdBOS_x6jW2ttrKZoyb_W-fAUeq6l6DZazJ7KXpOFW-pVOA24jVsXFRRGsk7z2EjtSS0-inrhXqDyByLzKRQqLQX-m_UhJv" alt="Europe" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
             <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white">
@@ -322,14 +322,14 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-surface-container-high px-8">
+      <section className="py-16 md:py-24 bg-surface-container-high px-4 sm:px-6 md:px-8">
         <div className="max-w-screen-2xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Client Feedback</h6>
-            <h2 className="font-notoSerif text-4xl font-bold text-primary">Voices of Gratitude</h2>
+            <h2 className="font-notoSerif text-3xl sm:text-4xl font-bold text-primary">Voices of Gratitude</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div className="bg-surface-container-lowest p-4 md:p-8 rounded-xl editorial-shadow">
               <div className="flex gap-1 text-[#CD9933] mb-6">
                 {[...Array(5)].map((_, i) => (
                   <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
@@ -344,7 +344,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+            <div className="bg-surface-container-lowest p-4 md:p-8 rounded-xl editorial-shadow">
               <div className="flex gap-1 text-[#CD9933] mb-6">
                 {[...Array(5)].map((_, i) => (
                   <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
@@ -359,7 +359,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+            <div className="bg-surface-container-lowest p-4 md:p-8 rounded-xl editorial-shadow">
               <div className="flex gap-1 text-[#CD9933] mb-6">
                 {[...Array(5)].map((_, i) => (
                   <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
@@ -379,14 +379,14 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-8">
-        <div className="max-w-5xl mx-auto bg-[#013334] rounded-3xl p-12 lg:p-24 relative overflow-hidden text-center">
+      <section className="py-16 md:py-24 px-4">
+        <div className="max-w-5xl mx-auto bg-[#013334] rounded-3xl p-8 md:p-12 lg:p-24 relative overflow-hidden text-center">
           <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzZl7ucwK5x4LN8TYbepMGi6zw8pXI9uM1IenCObm9eIDWV8U9g4t27p9DX455ME3p-LHXGymUsXBQzH4U1TlrZ8H3YEz78O69LkPrLt1NclC-XuXCxPrFm_2NDmixqQ3Cl3Bxbm2LMhvKoM-nAiokbr-I_0Q9k5656xbSpsNXu1kkcOytXqTSiaifP-ZQTWUzyKrIb9E5Zd3f5_x5_h2jVoVzylYIAIwKFlT_SETc8Sf3HujmmwyD5_vabrzwSEHSDJjxdxQHw5ns" alt="Silk Pattern" />
+            <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzZl7ucwK5x4LN8TYbepMGi6zw8pXI9uM1IenCObm9eIDWV8U9g4t27p9DX455ME3p-LHXGymUsXBQzH4U1TlrZ8H3YEz78O69LkPrLtNclC-XuXCxPrFm_2NDmixqQ3Cl3Bxbm2LMhvKoM-nAiokbr-I_0Q9k5656xbSpsNXu1kkcOytXqTSiaifP-ZQTWUzyKrIb9E5Zd3f5_x5_h2jVoVzylYIAIwKFlT_SETc8Sf3HujmmwyD5_vabrzwSEHSDJjxdxQHw5ns" alt="Silk Pattern" />
           </div>
           <div className="relative z-10">
-            <h2 className="font-notoSerif text-4xl lg:text-6xl font-bold text-white mb-8">Book Your Umrah Journey Today</h2>
-            <p className="text-white/70 text-lg mb-12 max-w-2xl mx-auto">Contact our travel consultants today to get a personalized quote for your spiritual or leisure travel needs.</p>
+            <h2 className="font-notoSerif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 md:mb-8">Book Your Umrah Journey Today</h2>
+            <p className="text-white/70 text-base md:text-lg mb-8 md:mb-12 max-w-2xl mx-auto">Contact our travel consultants today to get a personalized quote for your spiritual or leisure travel needs.</p>
             <div className="flex flex-wrap justify-center gap-6">
               <Link to="/contact" className="bg-[#CD9933] text-white px-10 py-4 rounded-md font-bold text-lg hover:scale-105 transition-all">Get a Quote</Link>
               <Link to="/contact" className="bg-white/10 text-white border border-white/20 px-10 py-4 rounded-md font-bold text-lg backdrop-blur-md hover:bg-white/20 transition-all">Contact Us</Link>

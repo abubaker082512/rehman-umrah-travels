@@ -123,33 +123,33 @@ const BlogPost = () => {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative h-[50vh] overflow-hidden">
+      <section className="relative h-[40vh] sm:h-[50vh] overflow-hidden">
         <img className="w-full h-full object-cover" src={post.image} alt={post.title} />
         <div className="absolute inset-0 bg-gradient-to-t from-[#013334] via-[#013334]/70 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 right-0 p-8 max-w-4xl mx-auto">
+        <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 max-w-4xl mx-auto">
           <span className="bg-[#CD9933] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded">{post.category}</span>
         </div>
       </section>
 
       {/* Content */}
-      <article className="max-w-3xl mx-auto px-8 py-16">
+      <article className="max-w-3xl mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16">
         <div className="flex items-center gap-4 text-sm text-on-surface-variant mb-8">
           <span>{post.date}</span>
           <span>•</span>
           <span>{post.readTime}</span>
         </div>
         
-        <h1 className="font-notoSerif text-4xl lg:text-5xl font-bold text-primary mb-8">{post.title}</h1>
+        <h1 className="font-notoSerif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-8">{post.title}</h1>
         
         <div className="prose prose-lg max-w-none text-on-surface-variant leading-relaxed whitespace-pre-line">
           {post.content}
         </div>
 
         {/* CTA */}
-        <div className="mt-16 p-8 bg-surface-container-lowest rounded-xl editorial-shadow">
-          <h3 className="font-notoSerif text-2xl font-bold text-primary mb-4">Ready to Perform Umrah?</h3>
+        <div className="mt-12 md:mt-16 p-4 md:p-8 bg-surface-container-lowest rounded-xl editorial-shadow">
+          <h3 className="font-notoSerif text-xl md:text-2xl font-bold text-primary mb-4">Ready to Perform Umrah?</h3>
           <p className="text-on-surface-variant mb-6">Contact us today to book your package and start your spiritual journey.</p>
-          <Link to="/packages" className="inline-block bg-[#CD9933] text-white px-8 py-3 rounded font-bold hover:brightness-110 transition-all">View Packages</Link>
+          <Link to="/packages" className="inline-block bg-[#CD9933] text-white px-6 md:px-8 py-3 rounded font-bold hover:brightness-110 transition-all">View Packages</Link>
         </div>
 
         <div className="mt-12 pt-8 border-t border-outline-variant">

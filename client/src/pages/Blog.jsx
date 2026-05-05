@@ -167,13 +167,13 @@ const Blog = () => {
           <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1469357001414-5c82ea24f067?w=1600" alt="Blog" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
-        <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:px-24 w-full">
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
           <div className="max-w-3xl">
-            <div className="w-12 h-1 bg-[#CD9933] mb-8"></div>
-            <h1 className="font-notoSerif text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
+            <div className="w-12 h-1 bg-[#CD9933] mb-6 md:mb-8"></div>
+            <h1 className="font-notoSerif text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
               Travel <span className="text-[#CD9933]">Blog</span>
             </h1>
-            <p className="font-manrope text-lg text-white/80 max-w-xl">
+            <p className="font-manrope text-base md:text-lg text-white/80 max-w-xl">
               Insights, guides, and spiritual wisdom to help you prepare for your journey. Stay informed with our latest articles on Umrah, travel tips, and religious guidance.
             </p>
           </div>
@@ -181,21 +181,21 @@ const Blog = () => {
       </section>
 
       {/* Featured Post */}
-      <section className="py-24 px-8 max-w-screen-2xl mx-auto -mt-16 relative z-20">
+      <section className="py-12 md:py-24 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto -mt-8 sm:-mt-12 lg:-mt-16 relative z-20">
         <Link to={`/blog/${featuredPost.id}`} className="block">
           <div className="bg-surface-container-lowest editorial-shadow overflow-hidden asymmetric-clip group">
             <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="relative h-72 lg:h-auto overflow-hidden">
+              <div className="relative h-48 sm:h-56 md:h-64 lg:h-auto overflow-hidden">
                 <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src={featuredPost.image} alt={featuredPost.title} />
                 <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded">{featuredPost.category}</div>
               </div>
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
+              <div className="p-4 md:p-6 lg:p-12 flex flex-col justify-center">
                 <div className="flex items-center gap-4 text-sm text-outline mb-4">
                   <span>{featuredPost.date}</span>
                   <span>•</span>
                   <span>{featuredPost.readTime}</span>
                 </div>
-                <h2 className="font-notoSerif text-3xl lg:text-4xl font-bold text-primary mb-4 group-hover:text-[#CD9933] transition-colors">{featuredPost.title}</h2>
+                <h2 className="font-notoSerif text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4 group-hover:text-[#CD9933] transition-colors">{featuredPost.title}</h2>
                 <p className="text-on-surface-variant leading-relaxed mb-6">{featuredPost.excerpt}</p>
                 <span className="text-[#CD9933] font-bold flex items-center gap-2 hover:gap-4 transition-all">
                   Read Article
@@ -208,10 +208,10 @@ const Blog = () => {
       </section>
 
       {/* Categories */}
-      <section className="max-w-screen-2xl mx-auto px-8 mb-8">
-        <div className="flex flex-wrap items-center gap-4">
+      <section className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 mb-8">
+        <div className="flex flex-wrap items-center gap-3 md:gap-4">
           {categories.map(cat => (
-            <button key={cat} className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${cat === 'All' ? 'bg-[#013334] text-white' : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'}`}>
+            <button key={cat} className={`px-4 md:px-6 py-2 rounded-full text-sm font-bold transition-all ${cat === 'All' ? 'bg-[#013334] text-white' : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'}`}>
               {cat}
             </button>
           ))}
@@ -219,12 +219,12 @@ const Blog = () => {
       </section>
 
       {/* Blog Grid */}
-      <section className="pb-24 px-8 max-w-screen-2xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="pb-16 md:pb-24 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {regularPosts.map((post) => (
             <Link key={post.id} to={`/blog/${post.id}`} className="block">
               <div className="bg-surface-container-lowest group overflow-hidden editorial-shadow transition-transform hover:-translate-y-1">
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-44 sm:h-48 md:h-56 overflow-hidden">
                   <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 asymmetric-clip" src={post.image} alt={post.title} />
                   <div className="absolute top-4 left-4 bg-[#013334] text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded">{post.category}</div>
                 </div>
@@ -248,15 +248,15 @@ const Blog = () => {
       </section>
 
       {/* Newsletter */}
-      <section className="py-24 bg-primary-container relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-primary-container relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
           <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1469357001414-5c82ea24f067?w=800" alt="Pattern" />
         </div>
-        <div className="max-w-2xl mx-auto px-8 relative z-10 text-center">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 md:px-8 relative z-10 text-center">
           <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Stay Updated</h6>
-          <h2 className="font-notoSerif text-4xl font-bold text-white mb-6">Subscribe to Our Newsletter</h2>
+          <h2 className="font-notoSerif text-3xl sm:text-4xl font-bold text-white mb-6">Subscribe to Our Newsletter</h2>
           <p className="text-white/60 mb-8">Get the latest travel tips, package deals, and spiritual guides delivered to your inbox.</p>
-          <div className="flex gap-2 max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
             <input className="flex-1 bg-white/10 border border-white/20 text-white placeholder:text-white/40 px-6 py-4 rounded-md focus:ring-2 focus:ring-[#CD9933] focus:outline-none" placeholder="Enter your email" type="email" />
             <button className="bg-[#CD9933] text-white px-8 py-4 rounded-md font-bold hover:brightness-110 transition-all">Subscribe</button>
           </div>

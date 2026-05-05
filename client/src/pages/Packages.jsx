@@ -78,13 +78,13 @@ const Packages = () => {
           <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=1600" alt="Makkah" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
-        <div className="relative z-10 max-w-screen-2xl mx-auto px-8 lg:px-24 w-full">
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
           <div className="max-w-3xl">
-            <div className="w-12 h-1 bg-[#CD9933] mb-8"></div>
-            <h1 className="font-notoSerif text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
+            <div className="w-12 h-1 bg-[#CD9933] mb-6 md:mb-8"></div>
+            <h1 className="font-notoSerif text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
               Curated <span className="text-[#CD9933]">Umrah Packages</span>
             </h1>
-            <p className="font-manrope text-lg text-white/80 max-w-xl mb-8">
+            <p className="font-manrope text-base md:text-lg text-white/80 max-w-xl mb-8">
               Embark on a spiritual journey of a lifetime with our meticulously curated pilgrimage experiences.
             </p>
           </div>
@@ -92,11 +92,11 @@ const Packages = () => {
       </section>
 
       {/* Main Content */}
-      <main className="max-w-screen-2xl mx-auto px-8 py-16">
-        <div className="flex flex-col lg:flex-row gap-12">
+      <main className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16">
+        <div className="flex flex-col lg:flex-row gap-8 md:gap-12">
           {/* Filter Sidebar */}
           <aside className="w-full lg:w-72 flex-shrink-0">
-            <div className="bg-surface-container-lowest p-8 editorial-shadow sticky top-24">
+            <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 editorial-shadow lg:sticky lg:top-24">
               <h2 className="font-notoSerif text-xl text-primary mb-8 border-b border-outline-variant/30 pb-4">Categories</h2>
               <nav className="space-y-6">
                 {[
@@ -125,7 +125,7 @@ const Packages = () => {
 
           {/* Package Grid */}
           <section className="flex-1">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
               {(packages.length > 0 ? packages : staticPackages).map((pkg, i) => {
                 const staticPkg = staticPackages[i % staticPackages.length]
                 const image = pkg.image_url || pkg.image || staticPkg?.image
@@ -137,14 +137,14 @@ const Packages = () => {
 
                 return (
                   <div key={pkg.id || i} className="bg-surface-container-lowest editorial-shadow overflow-hidden flex flex-col group cursor-pointer transition-transform hover:-translate-y-1">
-                    <div className="relative h-72 overflow-hidden">
+                    <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={image} alt={pkg.title || pkg.name} />
                       {badge && (
                         <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded`}>{badge}</div>
                       )}
                     </div>
-                    <div className="p-8 flex-1 flex flex-col">
-                      <div className="flex justify-between items-start mb-4">
+                    <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col">
+                      <div className="flex flex-col sm:flex-row sm:justify-between gap-2 mb-4">
                         <div>
                           <h3 className="font-notoSerif text-2xl text-primary font-bold">{pkg.title || pkg.name}</h3>
                           <div className="flex items-center mt-1 text-on-surface-variant text-sm">
@@ -179,13 +179,13 @@ const Packages = () => {
       </main>
 
       {/* CTA */}
-      <section className="py-24 bg-primary-container relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-primary-container relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
           <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1465378977933-3f5aae93cec2?w=800" alt="Pattern" />
         </div>
-        <div className="max-w-screen-2xl mx-auto px-8 relative z-10 text-center">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 relative z-10 text-center">
           <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ready to Begin?</h6>
-          <h2 className="font-notoSerif text-4xl lg:text-5xl font-bold text-white mb-6">Book Your Umrah Journey Today</h2>
+          <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">Book Your Umrah Journey Today</h2>
           <p className="text-white/60 mb-10 max-w-xl mx-auto">Contact our travel experts to get a personalized quote and start your spiritual journey.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact" className="bg-[#CD9933] text-white px-10 py-4 font-manrope font-bold tracking-widest uppercase text-sm hover:brightness-110 transition-all">Get a Quote</Link>
@@ -198,11 +198,11 @@ const Packages = () => {
       </section>
 
       {/* WhatsApp FAB */}
-      <div className="fixed bottom-8 right-8 z-[9999] group">
+      <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[9999] group">
         <div className="flex flex-col items-center gap-2">
           <span className="bg-white/80 backdrop-blur-md text-[#CD9933] font-manrope font-bold text-[10px] uppercase px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">WhatsApp Support</span>
-          <div className="bg-white/80 backdrop-blur-md text-[#CD9933] rounded-full p-4 w-16 h-16 flex items-center justify-center shadow-2xl shadow-[#013334]/20 border border-[#CD9933]/15 animate-bounce cursor-pointer hover:scale-110 transition-transform">
-            <span className="material-symbols-outlined text-3xl">chat</span>
+          <div className="bg-white/80 backdrop-blur-md text-[#CD9933] rounded-full p-3 md:p-4 w-14 h-14 md:w-16 md:h-16 flex items-center justify-center shadow-2xl shadow-[#013334]/20 border border-[#CD9933]/15 animate-bounce cursor-pointer hover:scale-110 transition-transform">
+            <span className="material-symbols-outlined text-2xl md:text-3xl">chat</span>
           </div>
         </div>
       </div>

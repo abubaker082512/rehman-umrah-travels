@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Footer = () => {
   return (
     <footer className="bg-[#013334] dark:bg-[#001c1d]">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 w-full max-w-screen-2xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 px-4 sm:px-8 md:px-12 py-10 md:py-16 w-full max-w-screen-2xl mx-auto">
         <div className="space-y-6">
           <div className="font-notoSerif text-xl text-[#CD9933]">ROYAL</div>
           <p className="text-white/60 text-sm leading-relaxed font-manrope">Royal Umrah & Travels specializes in crafting meaningful spiritual journeys and world-class international tours for the discerning traveler.</p>
@@ -41,7 +41,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="border-t border-white/5 px-12 py-8 text-center">
+      <div className="border-t border-white/5 px-4 md:px-12 py-6 md:py-8 text-center">
         <p className="text-white/40 text-xs font-manrope">© 2024 Royal Umrah & Travels. All Rights Reserved.</p>
       </div>
     </footer>

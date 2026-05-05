@@ -381,7 +381,7 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-surface">
       {/* Admin Header */}
-      <header className="bg-[#013334] text-white px-8 py-4 flex justify-between items-center">
+      <header className="bg-[#013334] text-white px-4 md:px-8 py-4 flex justify-between items-center">
         <div>
           <h1 className="font-notoSerif text-2xl font-bold text-[#CD9933]">Admin Dashboard</h1>
           <p className="text-white/60 text-sm">Royal Umrah & Travels</p>
@@ -392,15 +392,15 @@ const AdminDashboard = () => {
         </div>
       </header>
 
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row">
         {/* Sidebar Tabs */}
-        <aside className="w-64 bg-surface-container-lowest min-h-[calc(100vh-72px)] p-4">
-          <nav className="space-y-2">
+        <aside className="w-full lg:w-64 bg-surface-container-lowest lg:min-h-[calc(100vh-72px)] p-4">
+          <nav className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">
             {tabs.map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-all ${activeTab === tab.id ? 'bg-[#013334] text-white' : 'text-on-surface-variant hover:bg-surface-container'}`}
+                className={`flex-shrink-0 text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-all lg:w-full ${activeTab === tab.id ? 'bg-[#013334] text-white' : 'text-on-surface-variant hover:bg-surface-container'}`}
               >
                 <span className="material-symbols-outlined">{tab.icon}</span>
                 <span className="font-bold text-sm">{tab.label}</span>
@@ -409,7 +409,7 @@ const AdminDashboard = () => {
           </nav>
 
           {/* Supabase Status */}
-          <div className="mt-8 p-4 bg-surface-container-low rounded-lg">
+          <div className="mt-4 lg:mt-8 p-4 bg-surface-container-low rounded-lg">
             <p className="text-xs font-bold text-outline uppercase tracking-widest mb-2">Storage</p>
             {supabase ? (
               <p className="text-xs text-green-600 flex items-center gap-1">
@@ -426,7 +426,7 @@ const AdminDashboard = () => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-4 md:p-6 lg:p-8">
           {/* Packages Tab */}
           {activeTab === 'packages' && (
             <div>
