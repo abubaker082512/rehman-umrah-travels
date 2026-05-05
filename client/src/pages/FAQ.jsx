@@ -58,7 +58,7 @@ const FAQ = () => {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCThNKNEuml8S1hYHoJAa_fd8Ffyv8O8Iq2j-NA9FVUP7zCGQsN6jN2tF8VCnGOyfdUyUuP8GP73d3gmmYIN83RqTi9W_OXwEWEIsE_m6GnsPRbR6B90ww72ul0XyG5UEhF_UfY8ScbMOKfUi-YSEqSKW1CpnnC-W7bGeRNSmRg1mpqX6LufEg0aToWCar_Qf3WCSgkUewTKsO0ShkTe_syFOt6l9fU1SeLP0mHdOvYo2UFQefcP7eabsZMkJI6nhYfae9VilxFq4hf" alt="FAQ" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1600&q=80" alt="FAQ" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">

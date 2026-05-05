@@ -15,7 +15,7 @@ const staticPackages = [
     days: '15 Days',
     badge: 'Economy',
     badgeColor: 'bg-[#013334]',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA4Q8F_FtsvuFZGVJy2M4mCNPoPdVIucrb-qLz9KMrRnHu2y4jEomHtxH3XbUIIyVb7fx_R8ZKzpO6JLW8a6r4u3ZLuupgq0zzie6njk5Tfw4CBH4smAeMF-b77uxEfjcwrfE0bWG20icpPBH2u6gYRsM9m3qcQKyoCWfFKdTlc4W1zTDVSW_X8tKo7HpcqPSaj9bPBqhdRYe8qu6UWesjRMAZC1_LwgtnBhuYiFBjcxkTV8czsNli9D9lT7GLzq0jlRAJJ2hm4V7JG'
+    image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80'
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const staticPackages = [
     days: '15 Days',
     badge: '3 Star',
     badgeColor: 'bg-[#CD9933]',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBgeIqrjd4iZZprHhl6dvsS6TlHxSPpsRmm2Q4eJ0zVcfSsCDiAzFs_uTdG6viogBc4vtlsa9ul1Nk18k6JBhkP-xeMEttf2BqJ1jOG8pQ7cnBf6Ao3WlNsQPFRlNK9j0rbGdGfbKOnG3rdjzGKSfNDY5wKpvPKQTepPxMwUq1cLbg-SxCK5TQ5rRrkARlzPWy_VGIQZQUGsTi_0CoUUzDbyZHY6No-V79Ao-q62kF8A-wSQe15IlpAbZe8_-0Ezat1qZmyvj1c8ZAL'
+    image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80'
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const staticPackages = [
     days: '10 Days',
     badge: '4 Star',
     badgeColor: 'bg-primary',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDeKAHUE-PrOvKyjvjA04CL1jr6-62S2Gq4OvwV7zH1lF0mlQjEH7m1ZghycTUjRSVtzOY5suj3gVo-PrLaXmzs2tiIW_cYJr-NSNa5pH_qsN7H7frVEt78dEk6MhB2J8Uj-Q6hheong-lQY2BU3RxegAaq6Na8Zwccq_7Zr1ZDRzOEpbEtIn9Q5EYOtLqjMcX5SNtiZrfZ4GWoCX7gId6_Df31VjHmy08Fi8IbzJqwShYHYNoTk4A1tdg-YSEzWH5ct9SdGFD2b2sQ'
+    image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80'
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ const staticPackages = [
     days: '7 Days',
     badge: 'Luxury',
     badgeColor: 'bg-[#CD9933]',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA1TFYjcNCU1jatQI4D8YLqCDfuhWfk0cT0dMGoRBMfve9VV0lv0YzvCp9dIMEq-a05foGyu6nL0GphRF9kWJmOOUJoKETJpCojoqxl5XPI7FK5iE3wLkyS0ey_5yC3zsz96FsqZGofrd-XWR16bcukQBkRotmsfTZaX-xmFrjfUhi7Zazqb_BXhe8zYK74QxEmECK8vJaAXdzHQmhvAW-KyDZXPkR43tt1afbIF6YM7PBCOBBy-l6TuMWtejlRDSj5vmKIidlF72YJ'
+    image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80'
   }
 ]
 
@@ -112,7 +112,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-screen flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBubkTzEiGLq9ecV5_P_POI2om-XGLtBIrcBhG4Z6Z2FTNoko77ZP0hrzDRjD1aq1xPF-psQ32LnNFxg5sr3ZK0lrA7GhF4a595_Mgjp4euDQqJzGNNOMK2lPWFL6tklR8Q5zp3ootIYqJ-zH4z2AJTQgItEet4mbPUh2a-2NMMX7dqqaMpz4LVQkMc_2Mhd5Xlaw5dikwbzDN1ckBtHfsVsVohx7APcLJLU0OSBcS_E6dfIgQwo_aIUkSmIgk_cNCfeXZpd20jDUPAvp" alt="Makkah" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=1600&q=80" alt="Makkah" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
@@ -223,7 +223,7 @@ const Home = () => {
       {/* Why Choose Us */}
       <section className="py-16 md:py-24 bg-primary-container relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7iqIMSWjJemycSurDzLS49I7vf1E_Ir_9JNdo7vnnjUs42efP_S1dgqe2xI0QDJaKbHo9ZRkqvdYo1bYcwBvEnTPhPclF1OSmgOVghrFtvqeq5b92V1yjUro0sxR_GnE1BNCqYps0QKr0yc_d2G0_23gzKUpiz3nt2gERaWgkbPWLcVYUd6z7noGPOWbDAz3zrOwnleugBBJWc52v2BSX_rOZLmuCn0bBOWhLLmTx7ip4AO3yKpRp0shQrdTuKpNfm0QTUA_N0WM8" alt="Pattern" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1564507004663-b6dfb3c8924d?w=1200&q=80" alt="Pattern" />
         </div>
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -261,7 +261,7 @@ const Home = () => {
               </div>
             </div>
             <div className="relative">
-              <img className="rounded-xl editorial-shadow w-full h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[600px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGJr-PkCTbw2r-UbQwF17jWJZejPxRPpHZrMMerpfj2Dedl3aNiEtLUIt6uy0_l0y7RuUJvb4hE6eh-EuaIDrmOJ58cgOtfefFncGbp5yTjtSGMTFIpVFqNI-60_TRcCnPdbR4YBcfePrjheIpBnC3JZtzkkK1AkzXgy0wmuJMEmoxERn8tO3VjO33bJ8urtkI_zoedo3s-FyyVTjBFcSmNV7CX2cajChEUrqwldzPNnYqUwq1UAaY7pN8n0d1cpNoWUWoN5IHD0kl" alt="Architecture" />
+              <img className="rounded-xl editorial-shadow w-full h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[600px] object-cover" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Architecture" />
               <div className="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 bg-[#CD9933] p-6 md:p-10 rounded-xl hidden lg:block">
                 <span className="block text-3xl md:text-5xl font-bold text-white mb-2">25+</span>
                 <span className="text-white/80 font-bold tracking-widest uppercase text-xs">Years of Excellence</span>
@@ -280,7 +280,7 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Turkey */}
           <div className="relative h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[500px] group cursor-pointer overflow-hidden rounded-lg">
-            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo34TNKnDfPALrJLu5UciOIr7LARLN_xMd56yq9UtN280tkvjiEnxN3TtX2PclWHifVh-nu8QV_2cBRDHQyvPmPzZGIZNdK59dTjZS_Z7zyQnU3g6H9XtU6VzrOpldicf7vIybJnfw64PVqTVsjONncJK9U_xFuHg1W1wWMoj67jRKKTctsOdONWmyphd-lo0jqhdNTCIXpryZF3G0yfAhu2sIiRgcLLrXo2593SUcftSq5rTTctJCZOjzrrlvn1FRx-ijiWOD06Kn" alt="Turkey" />
+            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&q=80" alt="Turkey" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
             <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white group cursor-pointer overflow-hidden rounded-lg block">
               <h3 className="font-notoSerif text-2xl font-bold mb-2">Turkey</h3>
@@ -290,7 +290,7 @@ const Home = () => {
           </div>
           {/* Dubai */}
           <div className="relative h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[500px] group cursor-pointer overflow-hidden rounded-lg">
-            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUQYOVnZnCAbJnFrX1nyML3VQoCv0DXi5Irz0Y73qxzjrCnv9Fjfew89pvxdv8ZCASmG7JXvm6ivVtlWSDgDNl6WD5Qkh9yA9ePoYhW5-2lqFxEm_UD-gdv3y855ixx1a4TNrQKs_YDGiCBrtJNtbyqSVu-OpnZy8NM7Q_OjK_9-EAJxvTxySJdH3PL-NHtQ5wCIWYnxE88P2f-rJ9uHs3kO3HDAd20k7SpB0jq8u4Sn1BDaHihQy3xKayJDzjSbhMkeSgMrymfb39" alt="Dubai" />
+            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80" alt="Dubai" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
             <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white">
               <h3 className="font-notoSerif text-2xl font-bold mb-2">Dubai</h3>
@@ -300,7 +300,7 @@ const Home = () => {
           </div>
           {/* Malaysia */}
           <div className="relative h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[500px] group cursor-pointer overflow-hidden rounded-lg">
-            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3zaexyac9JYbgc7JJW579-lS9WPkAgTeUI7Z4f5Gl08eeqwiSxGeYnsEo-duQ9zPlj4ciIjAaAHQxZpJWRSzi7QTPiBvQTt5PnQL360TdVEtcUe8-A1xE2f5tRkgQevJB0FH9BEKMxS9GfArHkUk1mmMGLjWSTTIINCUnMLvlQIt-niCyleGQ6NoGhUF9wsVc4M84ENHV6AyrYG2HEoJD3DrsDsNwuv-5k4zPqoMOXRMxOHGoe_2H7qk6_JElzjsy7uAvRdhWRfDf" alt="Malaysia" />
+            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://images.unsplash.com/photo-1596422748573-cbb5bf090104?w=800&q=80" alt="Malaysia" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
             <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white">
               <h3 className="font-notoSerif text-2xl font-bold mb-2">Malaysia</h3>
@@ -310,7 +310,7 @@ const Home = () => {
           </div>
           {/* Europe */}
           <div className="relative h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[500px] group cursor-pointer overflow-hidden rounded-lg">
-            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv-MVsZqKBwhFPBQ8VFiq3TU0N5EnqlsYH2DbJRB5qbT_Cq8D2o6SSJOfghgRCyIin6rAX9gA_gYojLbuUrx53KQNs5-IEFKUuQCSPDJADWJ4WR-wdlDFUu341hUW3bpPXn5i_22fhWnEfLqshrlO64tuM__-1f54SpwlxVe2bQGSh0jdBOS_x6jW2ttrKZoyb_W-fAUeq6l6DZazJ7KXpOFW-pVOA24jVsXFRRGsk7z2EjtSS0-inrhXqDyByLzKRQqLQX-m_UhJv" alt="Europe" />
+            <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" src="https://images.unsplash.com/photo-1502602892935-72c3ac7c352?w=800&q=80" alt="Europe" />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
             <Link to="/international-tours" className="absolute bottom-8 left-8 right-8 text-white">
               <h3 className="font-notoSerif text-2xl font-bold mb-2">Europe</h3>
@@ -337,7 +337,7 @@ const Home = () => {
               </div>
               <p className="italic text-primary mb-8 leading-relaxed font-manrope">"Our Umrah journey with Royal Travels was flawless. From the visa process to the hotels being so close to the Haram, everything was perfectly managed. May Allah reward them."</p>
               <div className="flex items-center gap-4">
-                <img className="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFTFEGBCE5jXj6eM278TP2Ax109ogHPCfKt81ueziR3aYr7jMI04ENRCcJ4Vat5FMphSQMJq3NRdl6DUVSdm8nFooEXYlNGQI9_C-5B213ukaJ9Xj7hmEwYW6AVrwzbiywDR_z2CJefQ6hr6aFsVuYYVv5gR2huLiFxsi9Lb67BKod9sXjic742wH_Fn6ZYyp0h6ui-0gv-aNCzmnupdBLzGxeHzlxAg7MlFO_-ufV_NafC8G0jsnsNHvpAjTtcvlHuf-l48cgZVBe" alt="Customer" />
+                <img className="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Customer" />
                 <div>
                   <span className="block font-bold text-primary">Ahmed Raza</span>
                   <span className="text-xs text-outline uppercase">Karachi</span>
@@ -352,7 +352,7 @@ const Home = () => {
               </div>
               <p className="italic text-primary mb-8 leading-relaxed font-manrope">"I booked the Turkey tour for my family. The guide was incredibly knowledgeable and the itinerary wasn't rushed. A truly premium experience from start to finish."</p>
               <div className="flex items-center gap-4">
-                <img className="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYtBIK6gOk0mhtUl3IJw77r0t3KrPVBPzAB2jnlOFTw40N4dbTdNmMDE-o-U8B7NWRqYLJNQVU00R33NODc6-fQFpF_qS3HQ4Ns1jC3YE4UsVumzicObLswfujvAFvLEH0Y9sx8n-BgUJ3hw65lY6AVs22E27ixYB22eQgfF83wfON4Jmx6jrz8Mn1yAnrvpejNzMf0C5Hj_tA6fi78-r_1Q3QD5P1SQ7vY77p_Ao0y4L0T5GIOcS2hdFZFPs7IrUJSgzroNNbUpRq" alt="Customer" />
+                <img className="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Customer" />
                 <div>
                   <span className="block font-bold text-primary">Saba Khan</span>
                   <span className="text-xs text-outline uppercase">Lahore</span>
@@ -367,7 +367,7 @@ const Home = () => {
               </div>
               <p className="italic text-primary mb-8 leading-relaxed font-manrope">"The ground staff in Makkah were like family. They helped us with our elderly parents during Tawaaf. I highly recommend Royal Travels for their compassion."</p>
               <div className="flex items-center gap-4">
-                <img className="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc5pUsNWCfg7tO9-yhbEhsmWLR3vQg8yhvrq9qB4GvnXb1unZaqrw0qOK-Hwi5u-JfvnYT0g1z0MtYppgRxP5iDR0XwPBCjXfWvQt0MPJwuIuJQPWqJLmAgYZYdnwi8iF415-FVPbgwE9pf8ASPKktSBaff--XmTPWezqEMdYXTyH94z6ov_Hillp9mm9rt9JPL-SAz8nvhrPKEMWuos3DBXCq-RAHeGlShRxei8Zj44aC41yTkVxlgBdbJTd6PS2-karlMjwZHSxh" alt="Customer" />
+                <img className="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Customer" />
                 <div>
                   <span className="block font-bold text-primary">Dr. Mohammad Ali</span>
                   <span className="text-xs text-outline uppercase">Islamabad</span>
@@ -382,7 +382,7 @@ const Home = () => {
       <section className="py-16 md:py-24 px-4">
         <div className="max-w-5xl mx-auto bg-[#013334] rounded-3xl p-8 md:p-12 lg:p-24 relative overflow-hidden text-center">
           <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzZl7ucwK5x4LN8TYbepMGi6zw8pXI9uM1IenCObm9eIDWV8U9g4t27p9DX455ME3p-LHXGymUsXBQzH4U1TlrZ8H3YEz78O69LkPrLtNclC-XuXCxPrFm_2NDmixqQ3Cl3Bxbm2LMhvKoM-nAiokbr-I_0Q9k5656xbSpsNXu1kkcOytXqTSiaifP-ZQTWUzyKrIb9E5Zd3f5_x5_h2jVoVzylYIAIwKFlT_SETc8Sf3HujmmwyD5_vabrzwSEHSDJjxdxQHw5ns" alt="Silk Pattern" />
+            <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1555992457-b8fefdd09069?w=1200&q=80" alt="Silk Pattern" />
           </div>
           <div className="relative z-10">
             <h2 className="font-notoSerif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 md:mb-8">Book Your Umrah Journey Today</h2>

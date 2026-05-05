@@ -23,7 +23,7 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0aZyzzS27YXvxLihAy6D5j3Gm2owPVXHsbfuUpmt_V9nkUVpDY4qBxeVk0N3qgMHMknGP--1SptyzErFVr4VdanNEpX9igHPZTTaRxc4i6rU2-6OgyJTAxPc6fJ7GSbrjpd56LYsKngpdgMDqyYKFklvQklParbfNbGHj_2fhhiKy5JDpsotHSwbH0n_3-EbdRPfyMiOQB2cX2lCALLrhziCkRKq31IJCnDT8pL3Ls5WYdZVk8IsNZeCsk3BtKiWAWkEkMyO4AAFZ" alt="Contact Us" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=1600&q=80" alt="Contact Us" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">

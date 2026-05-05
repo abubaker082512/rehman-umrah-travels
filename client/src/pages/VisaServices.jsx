@@ -59,7 +59,7 @@ const VisaServices = () => {
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0aZyzzS27YXvxLihAy6D5j3Gm2owPVXHsbfuUpmt_V9nkUVpDY4qBxeVk0N3qgMHMknGP--1SptyzErFVr4VdanNEpX9igHPZTTaRxc4i6rU2-6OgyJTAxPc6fJ7GSbrjpd56LYsKngpdgMDqyYKFklvQklParbfNbGHj_2fhhiKy5JDpsotHSwbH0n_3-EbdRPfyMiOQB2cX2lCALLrhziCkRKq31IJCnDT8pL3Ls5WYdZVk8IsNZeCsk3BtKiWAWkEkMyO4AAFZ" alt="Visa Services" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1555992457-b8fefdd09069?w=1600&q=80" alt="Visa Services" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
@@ -127,7 +127,7 @@ const VisaServices = () => {
       {/* How It Works */}
       <section className="py-16 md:py-24 bg-primary-container relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full opacity-10">
-          <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7iqIMSWjJemycSurDzLS49I7vf1E_Ir_9JNdo7vnnjUs42efP_S1dgqe2xI0QDJaKbHo9ZRkqvdYo1bYcwBvEnTPhPclF1OSmgOVghrFtvqeq5b92V1yjUro0sxR_GnE1BNCqYps0QKr0yc_d2G0_23gzKUpiz3nt2gERaWgkbPWLcVYUd6z7noGPOWbDAz3zrOwnleugBBJWc52v2BSX_rOZLmuCn0bBOWhLLmTx7ip4AO3yKpRp0shQrdTuKpNfm0QTUA_N0WM8" alt="Pattern" />
+          <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1564507004663-b6dfb3c8924d?w=1200&q=80" alt="Pattern" />
         </div>
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
           <div className="text-center mb-12 md:mb-16">

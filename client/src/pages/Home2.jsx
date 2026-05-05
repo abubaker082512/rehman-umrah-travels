@@ -11,7 +11,7 @@ const Home2 = () => {
                 {/* Hero Section */}
                 <section className="relative h-[921px] flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 z-0">
-                        <img alt="The Holy Kaaba in Makkah" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB9jFYv-6zH25opjeQu3ruFk6JGDGpms3BOA83kZpAOxjsKQZQgNitLSz-KVZWeeDC_gZXT8BJz11t1DknRhSd9pTBuiQoBvxnaMIAp35Q7SB9iIt2XaQDKM86xIf3ZRcIwEb4IBt-nxvUewqFJcSaxFhnzidmBmS-8LhDnZ_xCmzD2tOFW8HiYBJOBLG-flKcFrn-JXUMbIIX6y1VMN65cfIK0VIKM4N11EkvET7hA-VVrgFrZOtcl3EV0mH8nleBrVQpe8G6hWS0"/>
+                        <img alt="The Holy Kaaba in Makkah" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=1600&q=80"/>
                         <div className="absolute inset-0 bg-gradient-to-r from-[#013334]/90 to-[#013334]/40"></div>
                     </div>
                     <div className="relative z-10 container mx-auto px-6 text-white text-center md:text-left">
@@ -80,7 +80,7 @@ const Home2 = () => {
                             {/* Package Card 1 */}
                             <div className="group bg-surface-container-low rounded-none overflow-hidden editorial-shadow transition-transform hover:-translate-y-2">
                                 <div className="relative h-64 overflow-hidden">
-                                    <img alt="Luxury Hotel in Makkah" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC8hfMuviMIrs1BO9AQ6xkB_NnbtkuUJSAZR9t8LcOJGCI-ZUoWCHkhbn337LYHdFc2LG45Ux7JklkTzXSvPnJds2Xvasnu67E2zLnLkUjmGYk3ghJNuIj95TbKpmyNOHwSu0fvdYeUNpA-aZPazi7m1pddLJgpyZZkEe1kmlJXh5Rz_-6krMI7WlcewRCYsLMs9UVkBHcFeP8n9MzAyAl4ZWFbNPfxpUJQJLnHpleRXBzsiLfrS6E34uFiL-Kmd3jxPDjmjO3Kl-k"/>
+                                    <img alt="Luxury Hotel in Makkah" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80" />
                                     <div className="absolute top-4 right-4 bg-secondary text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">Premium</div>
                                 </div>
                                 <div className="p-8">
@@ -109,7 +109,7 @@ const Home2 = () => {
                             {/* Package Card 2 */}
                             <div className="group bg-surface-container-low rounded-none overflow-hidden editorial-shadow transition-transform hover:-translate-y-2">
                                 <div className="relative h-64 overflow-hidden">
-                                    <img alt="Prophet's Mosque Madinah" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgEwYXgAO4hzQv6MzGVhQPNLS9cQhTn5yxhzLhsy6gw_ZvK9D75bY8xt9rv7DUSK08r-UA6g9dndLAVIa-sIkjxCXdkSHQWXFiqkjFDjBQ1e7tuBhDJVg90Du8Z2BH8j_GD_DHEOjeEbCP7XvDbwfQ0RSAsQ4B-Hx9JToKfuNs5slyiZtlnUY66JK3BK2hooi5vLYvPFKi4f5_6SJGEf-DQ-G30vaj9ebvtDIHZ66v5GRpgHVU8wwEOn1KS19fU0ClQTicAYBQijiS"/>
+                                    <img alt="Prophet's Mosque Madinah" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80" />
                                     <div className="absolute top-4 right-4 bg-[#013334] text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">Economy Plus</div>
                                 </div>
                                 <div className="p-8">
@@ -138,7 +138,7 @@ const Home2 = () => {
                             {/* Package Card 3 */}
                             <div className="group bg-surface-container-low rounded-none overflow-hidden editorial-shadow transition-transform hover:-translate-y-2">
                                 <div className="relative h-64 overflow-hidden">
-                                    <img alt="Makkah Clock Tower" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYUNZpMW3r01m5o2u6TvSpfDV_LR3prigiF2tOBtk8O3NBZLLGxBKhpE2MdGmJhnxt5YpMdhwW42obDTM6eLnr3c0SZbaP_sQ_ep5podP_wfhjrv2CVgHn7HAiqN7zKORkVjYpQBJ4Zs58taAfzmNxyLP27ZclL4kO5ArH2d5dc4Z19Pl33ZuyLPg6rx6JEAfRg8VD3VYgmy1l63jeyGpGZPI4MA4ReMox_1nbol5Yx64q8XMxJX8zvcAzeQkeDySEN8fLsjiOVVTq"/>
+                                    <img alt="Makkah Clock Tower" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=800&q=80" />
                                     <div className="absolute top-4 right-4 bg-[#CD9933] text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">Custom</div>
                                 </div>
                                 <div className="p-8">
@@ -171,7 +171,7 @@ const Home2 = () => {
                 {/* Why Travel with Rehman */}
                 <section className="py-24 bg-primary text-white relative overflow-hidden">
                     <div className="absolute top-0 right-0 opacity-5 w-1/3">
-                        <img alt="Islamic pattern background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVbY90BdIiko3C0cLL6XNdoe8ivwZiF_k-9ksGRe9QDSq7RazmBbS6lje5gh52FCE8saOQAYLFln0XTMnWLzkEFq0_U0sLI6xTwgpCG0mrVbXC9hMJpE6PzlOu0MxNP376D6ltH1FU57mxu6XikkE1fyqV0-4LoxEHN7jLpcmJqy8dpYlUKw9eFhjMbniAK444XYX3H_Xp78SHrsOkixPEGBO3A_ua1xDRpsBNOQYF3pssWZOVf_syx_ioeGVhllnpZ_47Jn4V3q1u"/>
+                        <img alt="Islamic pattern background" src="https://images.unsplash.com/photo-1564507004663-b6dfb3c8924d?w=1200&q=80" />
                     </div>
                     <div className="container mx-auto px-6 relative z-10">
                         <div className="text-center max-w-3xl mx-auto mb-20">
@@ -224,7 +224,7 @@ const Home2 = () => {
                             {/* Turkey */}
                             <div className="group cursor-pointer">
                                 <div className="relative aspect-[3/4] overflow-hidden rounded-none shadow-xl">
-                                    <img alt="Turkey Tour" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_1DKE_mZepOi2xlGXYjXO8UXTpmIp8G1iErjZZofvuVQIJmpAu8xOTId74lP3seHndFmeFnS6wvkXX0zWSdBFL2Nb_nHneFoYK4iwf5z2OC4RROC69_9LI46IaI0mlZAxx_KboB9mjo6k68slr5mYwAwoV7vXSDAE1qipZYLIOrK5jaWkSpYQ1rLUwHUCsrFqdaJMKHPr1Q_xlj-F-4yU1DkfBKmsyUKI08m1Xyadd9VDCiA9A_LZwfMvX5p8LZIp5xOL4Aio5Esf"/>
+                                    <img alt="Turkey Tour" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&q=80" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-8">
                                         <span className="text-secondary-fixed text-xs font-bold uppercase tracking-widest mb-2">Starting PKR 190k</span>
                                         <h3 className="text-white font-headline text-3xl">Grand Turkey Tour</h3>
@@ -234,7 +234,7 @@ const Home2 = () => {
                             {/* Dubai */}
                             <div className="group cursor-pointer">
                                 <div className="relative aspect-[3/4] overflow-hidden rounded-none shadow-xl">
-                                    <img alt="Dubai Tour" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJMbNiI07MeG4SgLPpLdk2SufXtDdITf1-X6yi9CbKWmf6GTcvzbse6lVEp3-X8ZAh4Mb6O5wmbn_pOpEmzJmlSthGW2CaUe66yS2KtwRxitnrzbb3z9PikHcuN4PJ2kEnwK2R4rk3_Xb1_U_l1mSn2TgrL1IEwNU2AQXoKx7B2Af_b7yj26KpTFXykaqiFLUjSWC2nwNuQHQ8rwz46xmCB3mqVA29-veaLtIbVdOKUk0L9d88-F4g8ydlJf86o5enEvCod_hb_b6t"/>
+                                    <img alt="Dubai Tour" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-8">
                                         <span className="text-secondary-fixed text-xs font-bold uppercase tracking-widest mb-2">Starting PKR 120k</span>
                                         <h3 className="text-white font-headline text-3xl">Luxury Dubai</h3>
@@ -244,7 +244,7 @@ const Home2 = () => {
                             {/* Thailand */}
                             <div className="group cursor-pointer">
                                 <div className="relative aspect-[3/4] overflow-hidden rounded-none shadow-xl">
-                                    <img alt="Thailand Tour" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqE6PE4iBqntAcN9gF-Ma0U_9yp0mmdFQ-sKDAkFgXjjkap3oPgFA8jDY_UxxudhOWD4TLQG-gNmIefn_WnhyRy03onMjF0-f7wrl1BhJmt0FDbJ69sNUH_DV2tcExj5rkYmZYeT6zxfBtlTL6x1O_osEU166VlJDr1oiHMw9XMLFdovmcHLegULEieQ3agweZV5xdWxH36SKxTOhD6mI5OZZwkrTKKwJMOxGJyAPNGktqozCyOO0zL8nUrq91IS2ersdcfJ0T1mC3"/>
+                                    <img alt="Thailand Tour" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=800&q=80" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-8">
                                         <span className="text-secondary-fixed text-xs font-bold uppercase tracking-widest mb-2">Starting PKR 145k</span>
                                         <h3 className="text-white font-headline text-3xl">Siam Treasures</h3>
@@ -292,7 +292,7 @@ const Home2 = () => {
                         </div>
                         <div className="flex flex-col md:flex-row gap-6">
                             <div className="flex-1 relative group overflow-hidden h-[400px]">
-                                <img alt="Swat Valley" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8UWzw7ZUciLwustx21_RLWFJ1WIA_P3ssiJuQyGWxXn20tyWFSeWUtebA4fk6LPkgcSHQjLRmSVPnFn3Xy5J1k8IC1z9jfcvyU1e-7IZq_mHRkQZshDdoWlOUn7-VrPlFUNsxNzjoI592qoaUdAJThtvjHHRWmVem6sKr0qf3lzcq0QoGiZ_za_xldfj3-dv7caF9RxoHubToLew63WXa-zcR_qTitry8z3KFzWI8wm-g-hHFEKQqfbgOWTRzISlrNeNJqgOh2ZEh"/>
+                                <img alt="Swat Valley" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://images.unsplash.com/photo-1589407715436-7d75b0f24f17?w=800&q=80" />
                                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
                                 <div className="absolute bottom-6 left-6 text-white">
                                     <h3 className="font-headline text-2xl mb-1 italic">Swat Valley</h3>
@@ -300,7 +300,7 @@ const Home2 = () => {
                                 </div>
                             </div>
                             <div className="flex-1 relative group overflow-hidden h-[400px]">
-                                <img alt="Naran" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzbBB3vf6iBLykPLDM3jL97yd9P5QGmRM0RAaqMWEAOtK2rLSHbK6RYU0BNYT0m1Lw90aDWq7MBoIegIJz-aru4K9-9YwynYbZ1fTHhR5XaLnU3T6CqFVWVGBtt1zRLCXpZzgEr2AjdtLv3DMBzfvSRfwts1Fo4KOGyHsAHyYvJWWFrL6PY5dsOnalW1VO3IOiSIvXfaEsxcxWDdIq3-w1cYqciXeYovAjCig-TaCVV_p5AuLHrtYS9RiEKtHFR1H3o3E6ORSuhIAm"/>
+                                <img alt="Naran" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://images.unsplash.com/photo-1625516777156-74a8e15b4532?w=800&q=80" />
                                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
                                 <div className="absolute bottom-6 left-6 text-white">
                                     <h3 className="font-headline text-2xl mb-1 italic">Naran & Kaghan</h3>
@@ -308,7 +308,7 @@ const Home2 = () => {
                                 </div>
                             </div>
                             <div className="flex-1 relative group overflow-hidden h-[400px]">
-                                <img alt="Neelum Valley" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD34qp4YBQ3A4evqZXLQIizFUoU1q1Jtmgo7GlEB3hLacHEBz77YwM8QKy8_vGlCzk1VaW8xISXshGWD1QWKXcXdIzCEpsHpTvGoLUazrfsi7x4GU0pnUguVrY5RkLA-xlmSC2EyRAykiE68wHr_9bbgBkwe6KaqVKbTF0-Rgpl1ydQBex9FpPkRTh5U-zj9Hmlvpww6Kxa4cIGvRSvkoZVzi9FmRMASyCfS6NRJViP6N1RdAd4djMX5dEXeUcA5qeGYvv8XSboBKHE"/>
+                                <img alt="Neelum Valley" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://images.unsplash.com/photo-1598017555949-31e1d6e9b6d5?w=800&q=80" />
                                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
                                 <div className="absolute bottom-6 left-6 text-white">
                                     <h3 className="font-headline text-2xl mb-1 italic">Neelum Valley</h3>
@@ -340,7 +340,7 @@ const Home2 = () => {
                                     <p className="text-on-surface mb-8 italic leading-relaxed">"The Umrah journey was impeccably organized. From the visa process to the premium hotels in Makkah, everything was managed with extreme care. Highly recommended for families."</p>
                                     <div className="flex items-center gap-4">
                                         <div className="w-12 h-12 rounded-full overflow-hidden">
-                                            <img alt="Reviewer" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpApr5ujqXZGFsBf5D0v3VSa9vi1ovXTzWBXWkbhmFi3PYteku59p97lwbshUpFg6hmWDMfkN7ZT9rpPcTteWT53Rf7hzTsu47HdunUtCGSqjC-rhRjg1E1GA878u_xFuhBDcMpZX8G-dVfwKrhDmNW9LShJ5f5vE1UDlC2eGvjgJzS2Boe_T7GqqkLnD3B9q7mqfaBLKo75LynP8Ama-HWxnopEN3d7kLDySVpzCeyYfB7ZZKYs14y5k0kzSkoWOi3Z84OI0R-TZc"/>
+                                            <img alt="Reviewer" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" />
                                         </div>
                                         <div>
                                             <h5 className="font-bold text-primary text-sm">Ahmad Raza</h5>
@@ -353,7 +353,7 @@ const Home2 = () => {
                                     <p className="text-on-surface mb-8 italic leading-relaxed">"Our Turkey trip was the highlight of our year. The local guides were knowledgeable and the itinerary was perfectly balanced between sightseeing and relaxation."</p>
                                     <div className="flex items-center gap-4">
                                         <div className="w-12 h-12 rounded-full overflow-hidden">
-                                            <img alt="Reviewer" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDruHxfWtCMXCjbzyrn_wgbkzJFAIFGcHNsvJHctkhoTYpx2Q2poK-EsXi5XzhVU5McDs4gqYsz4g0uTV8kini0OQ_cUeaJ2sjVDKqvVkuksoYLW3wXHO3ccNM4wSPJ3xWaIJqmqQHL4fQOtix7WUzvuy1lznAiWdxkuqbm7z1HSH1GXE0Gki8h7yje455Kd82EdbRnbXql34XSIqPWQivsWrHijsVm9KI7oqy_DdZYfjDcIlHWtRGxXpnKItvr1jMKnd02C_8RMPPp"/>
+                                            <img alt="Reviewer" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80" />
                                         </div>
                                         <div>
                                             <h5 className="font-bold text-primary text-sm">Sara Khan</h5>
@@ -369,7 +369,7 @@ const Home2 = () => {
                 {/* Contact Section */}
                 <section className="relative py-24 overflow-hidden">
                     <div className="absolute inset-0">
-                        <img alt="Traveler" className="w-full h-full object-cover opacity-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9bZjlPdKfqYIdJDiRcoN8yXgcheTY8wuQq2UDAv8td12n3uH2RO5o-NzUhtUPXNM8hnd2dYWd3oEKdb4ADbKTymhwz16NPRZ4zyMs89B5n02Of-qxwt3t9OlFX35L15z49EcHrP6bLALIHYmMjmb_GWIzejE6axUcsuqx0FXv6eOb6hbtBYz8iTVgskCVTZoxMQBk-eQuGKhLSFjDwHITTqOgJSCzZCWWaXxpLbvFF_njSwLY3sEM2ljT19Fi_5XbOZ-60ZebW14k"/>
+                        <img alt="Traveler" className="w-full h-full object-cover opacity-10" src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&q=80" />
                         <div className="absolute inset-0 bg-gradient-to-b from-surface via-surface/80 to-surface"></div>
                     </div>
                     <div className="container mx-auto px-6 relative z-10">
