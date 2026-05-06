@@ -67,7 +67,7 @@ const Flights = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[700px] pt-32 pb-20 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src={pageMedia.flightsHero || "https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?w=1600&q=80"} 
@@ -77,105 +77,95 @@ const Flights = () => {
         </div>
         
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <h1 className="font-notoSerif text-4xl md:text-5xl font-bold text-white mb-4 leading-tight max-w-4xl mx-auto drop-shadow-lg uppercase">
+          <h1 className="font-notoSerif text-4xl md:text-6xl font-bold text-white mb-6 leading-tight max-w-4xl mx-auto drop-shadow-lg">
             {cmsContent.heroTitle}
           </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-12 max-w-2xl mx-auto font-medium drop-shadow-md italic">
+          <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto font-light drop-shadow-md">
             {cmsContent.heroSubtitle}
           </p>
 
           {/* Search Widget */}
-          <div className="relative max-w-6xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-2xl border-b-4 border-[#0088CC]">
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                <div className="text-left border-r border-outline-variant pr-4">
-                  <label className="text-[10px] font-bold text-on-surface-variant uppercase mb-1 block">Origin City</label>
-                  <input type="text" placeholder="From where?" className="w-full p-2 bg-transparent outline-none text-sm font-bold text-primary" />
-                </div>
-                <div className="text-left border-r border-outline-variant pr-4 pl-4">
-                  <label className="text-[10px] font-bold text-on-surface-variant uppercase mb-1 block">Destination</label>
-                  <input type="text" placeholder="To where?" className="w-full p-2 bg-transparent outline-none text-sm font-bold text-primary" />
-                </div>
-                <div className="text-left border-r border-outline-variant pr-4 pl-4">
-                  <label className="text-[10px] font-bold text-on-surface-variant uppercase mb-1 block">Departure Date</label>
-                  <input type="date" className="w-full p-2 bg-transparent outline-none text-sm font-bold text-primary" />
-                </div>
-                <div className="text-left border-r border-outline-variant pr-4 pl-4">
-                  <label className="text-[10px] font-bold text-on-surface-variant uppercase mb-1 block">Return Date</label>
-                  <input type="date" className="w-full p-2 bg-transparent outline-none text-sm font-bold text-primary" />
-                </div>
-                <div className="text-left pl-4">
-                  <label className="text-[10px] font-bold text-on-surface-variant uppercase mb-1 block">Passengers count</label>
-                  <input type="number" min="1" placeholder="1 Adult" className="w-full p-2 bg-transparent outline-none text-sm font-bold text-primary" />
-                </div>
+          <div className="bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl max-w-5xl mx-auto border border-white/20">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              <div className="text-left">
+                <label className="text-xs font-bold text-[#013334] uppercase mb-2 block">Origin</label>
+                <input type="text" placeholder="From where?" className="w-full p-3 bg-surface rounded-lg border border-outline focus:border-[#CD9933] outline-none text-sm" />
               </div>
-            </div>
-            {/* The Blue Arrow Button from Screenshot */}
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2">
-              <button className="w-12 h-12 bg-[#0088CC] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all">
-                <span className="material-symbols-outlined">expand_more</span>
-              </button>
+              <div className="text-left">
+                <label className="text-xs font-bold text-[#013334] uppercase mb-2 block">Destination</label>
+                <input type="text" placeholder="To where?" className="w-full p-3 bg-surface rounded-lg border border-outline focus:border-[#CD9933] outline-none text-sm" />
+              </div>
+              <div className="text-left">
+                <label className="text-xs font-bold text-[#013334] uppercase mb-2 block">Departure</label>
+                <input type="date" className="w-full p-3 bg-surface rounded-lg border border-outline focus:border-[#CD9933] outline-none text-sm" />
+              </div>
+              <div className="text-left">
+                <label className="text-xs font-bold text-[#013334] uppercase mb-2 block">Return</label>
+                <input type="date" className="w-full p-3 bg-surface rounded-lg border border-outline focus:border-[#CD9933] outline-none text-sm" />
+              </div>
+              <div className="flex items-end">
+                <button className="w-full bg-[#CD9933] text-white p-3 rounded-lg font-bold hover:brightness-110 transition-all shadow-lg flex items-center justify-center gap-2">
+                  <span className="material-symbols-outlined">search</span> Search
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Narrative Section 1 */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 text-center max-w-5xl">
-          <h2 className="font-notoSerif text-3xl md:text-4xl font-bold text-[#013334] mb-4">
-            YOUR NEXT ADVENTURE <span className="text-[#0088CC] uppercase">BEGINS HERE!</span>
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 text-center max-w-4xl">
+          <h2 className="font-notoSerif text-3xl md:text-4xl font-bold text-[#013334] mb-6">
+            YOUR NEXT ADVENTURE <span className="text-[#CD9933]">BEGINS HERE!</span>
           </h2>
-          <p className="text-base text-on-surface-variant leading-relaxed mb-8">
+          <p className="text-lg text-on-surface-variant leading-relaxed">
             {cmsContent.adventureSubtitle}
           </p>
-          <button className="bg-[#0088CC] text-white px-8 py-3 rounded text-sm font-bold uppercase tracking-widest hover:brightness-110 transition-all">
-            Get Started Your Trip Now - Book On Our Recommendation
+          <div className="mt-12 h-1 w-24 bg-[#CD9933] mx-auto rounded-full"></div>
+        </div>
+      </section>
+
+      {/* Narrative Section 2 (Trust) */}
+      <section className="py-24 bg-[#013334] text-white">
+        <div className="container mx-auto px-4 text-center max-w-4xl">
+          <h2 className="font-notoSerif text-3xl md:text-4xl font-bold text-[#CD9933] mb-6">
+            TIRED OF OVERPRICED FLIGHTS?
+          </h2>
+          <p className="text-lg text-white/80 leading-relaxed mb-12">
+            {cmsContent.trustSubtitle}
+          </p>
+          <button className="bg-[#CD9933] text-white px-10 py-4 rounded-full font-bold hover:scale-105 transition-all shadow-xl">
+            Book Your Free Consultation
           </button>
-          
-          <div className="mt-16 text-center">
-            <h3 className="font-notoSerif text-2xl md:text-3xl font-bold text-primary mb-4 uppercase">
-              TIRED OF OVERPRICED FLIGHTS, <span className="text-[#0088CC]">VISA HASSLES, AND GENERIC TRAVEL PLANS?</span>
-            </h3>
-            <p className="text-sm text-on-surface-variant max-w-2xl mx-auto italic">
-              {cmsContent.trustSubtitle}
-            </p>
-          </div>
         </div>
       </section>
 
       {/* Destinations Grid */}
-      <section className="py-20 bg-[#F9FAFB]">
+      <section className="py-24 bg-surface">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-notoSerif text-3xl md:text-4xl font-bold text-[#0088CC] mb-2 uppercase">
+            <h2 className="font-notoSerif text-4xl font-bold text-[#013334] mb-4">
               {cmsContent.destinationsTitle}
             </h2>
-            <p className="text-sm text-on-surface-variant font-medium uppercase tracking-widest">{cmsContent.destinationsSubtitle}</p>
+            <p className="text-on-surface-variant">{cmsContent.destinationsSubtitle}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {destinations.map(dest => (
-              <div key={dest.id} className="bg-white rounded overflow-hidden shadow-sm border border-outline-variant flex flex-col md:flex-row h-full">
-                <div className="md:w-2/5 h-48 md:h-full relative">
-                  <img src={dest.image_url} alt={dest.name} className="w-full h-full object-cover" />
-                  <div className="absolute top-3 left-3 bg-[#0088CC] text-white px-2 py-1 text-[10px] font-bold uppercase">
-                    Available Today
+              <div key={dest.id} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group">
+                <div className="h-64 relative overflow-hidden">
+                  <img src={dest.image_url} alt={dest.name} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" />
+                  <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                    From Rs {dest.price_start.toLocaleString()}
                   </div>
                 </div>
-                <div className="md:w-3/5 p-6 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center gap-2 mb-2 text-[#0088CC]">
-                      <span className="material-symbols-outlined text-sm">location_on</span>
-                      <h3 className="font-notoSerif text-xl font-bold uppercase">{dest.name}</h3>
-                    </div>
-                    <p className="text-xs text-on-surface-variant mb-4 leading-relaxed">{dest.description}</p>
-                    <p className="text-[10px] font-bold text-[#0088CC] mb-4">from PKR {dest.price_start.toLocaleString()}</p>
-                    <p className="text-[10px] text-primary font-bold uppercase underline mb-6 cursor-pointer">View On Map Details</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <button className="flex-1 bg-[#0088CC] text-white py-2 rounded text-[10px] font-bold uppercase tracking-wider hover:brightness-110">Get Now</button>
-                    <button className="flex-1 bg-[#0088CC] text-white py-2 rounded text-[10px] font-bold uppercase tracking-wider hover:brightness-110">Read More</button>
+                <div className="p-6">
+                  <h3 className="font-notoSerif text-2xl font-bold text-[#013334] mb-2">{dest.name}</h3>
+                  <p className="text-on-surface-variant text-sm mb-6 line-clamp-2">{dest.description}</p>
+                  <div className="flex gap-3">
+                    <button className="flex-1 bg-[#013334] text-white py-2 rounded font-bold text-sm hover:brightness-125 transition-all">Book Now</button>
+                    <button className="flex-1 border border-[#013334] text-[#013334] py-2 rounded font-bold text-sm hover:bg-[#013334]/5 transition-all">View Details</button>
                   </div>
                 </div>
               </div>
@@ -185,100 +175,57 @@ const Flights = () => {
       </section>
 
       {/* Features List */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white border-y border-outline-variant">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {[1, 3, 5].map(i => (
-              <div key={i} className="bg-[#F9FAFB] p-6 rounded border border-outline-variant flex items-center gap-6 relative overflow-hidden group">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-[#0088CC] flex items-center justify-center text-[#0088CC]">
-                  <span className="material-symbols-outlined">arrow_forward</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              {[1, 2, 3, 4, 5].map(i => (
+                <div key={i} className="flex items-start gap-6 group">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#013334] text-[#CD9933] flex items-center justify-center font-notoSerif text-2xl font-bold group-hover:scale-110 transition-all">
+                    {i}
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-[#013334] mb-1">{cmsContent[`feature${i}`]}</h4>
+                  </div>
                 </div>
-                <h4 className="text-sm font-bold text-primary z-10">{cmsContent[`feature${i}`]}</h4>
-                <span className="absolute right-4 bottom-0 text-7xl font-bold text-black/5 select-none transition-all group-hover:text-black/10">
-                  {i}
-                </span>
-              </div>
-            ))}
-            {[2, 4].map(i => (
-              <div key={i} className="bg-[#F9FAFB] p-6 rounded border border-outline-variant flex items-center gap-6 relative overflow-hidden group">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-[#0088CC] flex items-center justify-center text-[#0088CC]">
-                  <span className="material-symbols-outlined">arrow_back</span>
-                </div>
-                <h4 className="text-sm font-bold text-primary z-10">{cmsContent[`feature${i}`]}</h4>
-                <span className="absolute right-4 bottom-0 text-7xl font-bold text-black/5 select-none transition-all group-hover:text-black/10">
-                  {i}
-                </span>
-              </div>
-            ))}
+              ))}
+            </div>
+            <div className="relative">
+              <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80" className="rounded-3xl shadow-2xl" alt="Travel" />
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#CD9933] rounded-3xl -z-10 animate-pulse"></div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-12 bg-[#0088CC] text-white">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8 max-w-5xl">
-          <div className="text-center md:text-left">
-            <h2 className="font-notoSerif text-2xl font-bold uppercase mb-2">DO YOU HAVE QUESTIONS?</h2>
-            <p className="text-xs text-white/80">Feel free to contact us at any time!</p>
-          </div>
-          <button className="bg-white text-[#0088CC] px-8 py-3 rounded font-bold text-xs uppercase tracking-widest hover:bg-gray-100 transition-all">
-            Inquire Now
-          </button>
-        </div>
-      </section>
-
-      {/* Most Popular Places Grid Matching Screenshot */}
-      <section className="py-20 bg-white">
+      {/* Most Popular Places */}
+      <section className="py-24 bg-surface overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <p className="text-[10px] text-[#0088CC] font-bold tracking-widest uppercase mb-2">Visit Now City</p>
-            <h2 className="font-notoSerif text-3xl font-bold text-primary uppercase">{cmsContent.popularTitle}</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[600px] max-w-6xl mx-auto">
-            {/* Large Left Item (United States) */}
-            <div className="md:col-span-1 md:row-span-2 relative group overflow-hidden rounded shadow-lg">
-              <img src="https://images.unsplash.com/photo-1508433957232-310ae450c255?w=800&q=80" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" alt="United States" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white">
-                <h3 className="font-bold text-lg uppercase mb-1">United States</h3>
-                <p className="text-[10px] text-white/70 uppercase">North America</p>
-              </div>
-            </div>
-
-            {/* Small Top Right Item (France) */}
-            <div className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded shadow-lg">
-              <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" alt="France" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-              <div className="absolute bottom-4 left-4 text-white">
-                <h3 className="font-bold text-sm uppercase mb-1">France</h3>
-                <p className="text-[8px] text-white/70 uppercase">Europe</p>
-              </div>
-            </div>
-
-            {/* Huge Vertical Right Item (Australia) */}
-            <div className="md:col-span-2 md:row-span-3 relative group overflow-hidden rounded shadow-lg">
-              <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800&q=80" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" alt="Australia" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <h2 className="font-notoSerif text-4xl font-bold text-center text-[#013334] mb-16">{cmsContent.popularTitle}</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="col-span-2 row-span-2 relative h-[500px] rounded-3xl overflow-hidden group shadow-xl">
+              <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" alt="Dubai" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
               <div className="absolute bottom-8 left-8 text-white">
-                <h3 className="font-bold text-2xl uppercase mb-2">Australia</h3>
-                <p className="text-[12px] text-white/70 uppercase">Oceania</p>
+                <h3 className="font-notoSerif text-4xl font-bold mb-2">Dubai</h3>
+                <p className="text-white/70">Luxury redefined</p>
               </div>
             </div>
-
-            {/* Horizontal Middle Left (Hong Kong) */}
-            <div className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded shadow-lg">
-              <img src="https://images.unsplash.com/photo-1506230507474-686067da0073?w=800&q=80" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" alt="Hong Kong" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white">
-                <h3 className="font-bold text-lg uppercase mb-1">Hong Kong</h3>
-                <p className="text-[10px] text-white/70 uppercase">East Asia</p>
-              </div>
+            <div className="relative h-[242px] rounded-3xl overflow-hidden group shadow-lg">
+              <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" alt="Paris" />
+              <div className="absolute bottom-4 left-4 text-white"><h4 className="font-bold">Paris</h4></div>
+            </div>
+            <div className="relative h-[242px] rounded-3xl overflow-hidden group shadow-lg">
+              <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&q=80" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" alt="Istanbul" />
+              <div className="absolute bottom-4 left-4 text-white"><h4 className="font-bold">Istanbul</h4></div>
+            </div>
+            <div className="col-span-2 relative h-[242px] rounded-3xl overflow-hidden group shadow-lg">
+              <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" alt="Tokyo" />
+              <div className="absolute bottom-4 left-4 text-white"><h4 className="font-bold">Tokyo</h4></div>
             </div>
           </div>
         </div>
       </section>
-
 
       <Footer />
     </div>
