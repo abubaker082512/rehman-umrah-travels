@@ -4,12 +4,17 @@ const { supabaseAdmin, isConfigured } = require('./_utils/supabase');
 
 const isAuthenticated = (req) => {
   const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) return false;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    console.log('[CMS] Auth failed: Missing or malformed Authorization header');
+    return false;
+  }
   try {
-    jwt.verify(authHeader.split(' ')[1], process.env.JWT_SECRET || 'secretkey');
+    const token = authHeader.split(' ')[1];
+    if (!token) throw new Error('Token is empty');
+    jwt.verify(token, process.env.JWT_SECRET || 'secretkey');
     return true;
   } catch (e) {
-    console.log('[CMS] Auth failed:', e.message);
+    console.log('[CMS] Auth failed for token:', e.message);
     return false;
   }
 };

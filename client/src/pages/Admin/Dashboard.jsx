@@ -287,9 +287,24 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     if (!localStorage.getItem('token')) { navigate('/admin/login'); return }
+    
+    // Add axios interceptor for 401
+    const interceptor = axios.interceptors.response.use(
+      response => response,
+      error => {
+        if (error.response && error.response.status === 401) {
+          localStorage.removeItem('token')
+          navigate('/admin/login')
+        }
+        return Promise.reject(error)
+      }
+    )
+
     fetchAll()
     loadPageMedia()
-  }, [])
+    
+    return () => axios.interceptors.response.eject(interceptor)
+  }, [navigate])
 
   const loadPageMedia = async () => {
     try {
