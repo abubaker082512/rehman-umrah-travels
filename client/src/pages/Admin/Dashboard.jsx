@@ -13,6 +13,7 @@ const tabs = [
   { id: 'packages', label: 'Umrah Packages', icon: 'mosque' },
   { id: 'tours', label: 'International Tours', icon: 'flight' },
   { id: 'visa', label: 'Visa Services', icon: 'description' },
+  { id: 'flights', label: 'Flights', icon: 'flight_takeoff' },
   { id: 'gallery', label: 'Gallery', icon: 'photo_library' },
   { id: 'blog', label: 'Blog', icon: 'article' },
   { id: 'page-media', label: 'Page Media', icon: 'image' },
@@ -251,6 +252,13 @@ const pageMediaConfig = [
     ]
   },
   {
+    page: 'Flights Page',
+    section: 'Flights Page Media',
+    items: [
+      { key: 'flightsHero', label: 'Hero Image', type: 'image', description: 'Flights page hero image' },
+    ]
+  },
+  {
     page: 'Umrah Packages',
     section: 'Packages Page Media',
     items: [
@@ -265,6 +273,7 @@ const AdminDashboard = () => {
   const [packages, setPackages] = useState([])
   const [tours, setTours] = useState([])
   const [visaServices, setVisaServices] = useState([])
+  const [flights, setFlights] = useState([])
   const [galleryItems, setGalleryItems] = useState([])
   const [blogPosts, setBlogPosts] = useState([])
   const [loading, setLoading] = useState(false)
@@ -280,6 +289,7 @@ const AdminDashboard = () => {
   })
   const [tourForm, setTourForm] = useState({ title: '', subtitle: '', description: '', price: '', duration: '', image_url: '', highlights: '' })
   const [visaForm, setVisaForm] = useState({ title: '', description: '', processing_time: '', fee: '', documents: '' })
+  const [flightForm, setFlightForm] = useState({ name: '', description: '', image_url: '', price_start: '', category: 'Most Popular', booking_url: '' })
   const [blogForm, setBlogForm] = useState({ title: '', excerpt: '', content: '', category: 'Guides', image_url: '', read_time: '' })
   const [galleryForm, setGalleryForm] = useState({ src: '', label: '', category: 'Kaaba' })
 
@@ -325,18 +335,20 @@ const AdminDashboard = () => {
   const fetchAll = async () => {
     setLoading(true)
     try {
-      const [pkgR, tourR, visaR, galR, blogR] = await Promise.allSettled([
+      const [pkgR, tourR, visaR, galR, blogR, flightR] = await Promise.allSettled([
         axios.get(`${API_BASE}/api/packages`),
         axios.get(`${API_BASE}/api/tours`),
         axios.get(`${API_BASE}/api/visa`),
         axios.get(`${API_BASE}/api/gallery`),
         axios.get(`${API_BASE}/api/blog`),
+        axios.get(`${API_BASE}/api/flights`),
       ])
       if (pkgR.status === 'fulfilled') setPackages(Array.isArray(pkgR.value.data) ? pkgR.value.data : [])
       if (tourR.status === 'fulfilled') setTours(Array.isArray(tourR.value.data) ? tourR.value.data : [])
       if (visaR.status === 'fulfilled') setVisaServices(Array.isArray(visaR.value.data) ? visaR.value.data : [])
       if (galR.status === 'fulfilled') setGalleryItems(Array.isArray(galR.value.data) ? galR.value.data : [])
       if (blogR.status === 'fulfilled') setBlogPosts(Array.isArray(blogR.value.data) ? blogR.value.data : [])
+      if (flightR.status === 'fulfilled') setFlights(Array.isArray(flightR.value.data) ? flightR.value.data : [])
     } catch (err) { console.error('Fetch error:', err) }
     setLoading(false)
   }
@@ -388,8 +400,24 @@ const AdminDashboard = () => {
   }
 
   const handleDeleteVisa = async (id) => {
-    if (!confirm('Delete this visa service?')) return
+    if (!confirm('Delete this service?')) return
     try { await axios.delete(`${API_BASE}/api/visa?id=${id}`, { headers: authHdr() }); fetchAll() }
+    catch { alert('Error deleting') }
+  }
+
+  const handleAddFlight = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.post(`${API_BASE}/api/flights`, { ...flightForm, price_start: parseFloat(flightForm.price_start) || 0 }, { headers: authHdr() })
+      setFlightForm({ name: '', description: '', image_url: '', price_start: '', category: 'Most Popular', booking_url: '' })
+      fetchAll()
+      alert('Destination added!')
+    } catch (err) { alert('Error: ' + (err.response?.data?.message || err.message)) }
+  }
+
+  const handleDeleteFlight = async (id) => {
+    if (!confirm('Delete this destination?')) return
+    try { await axios.delete(`${API_BASE}/api/flights?id=${id}`, { headers: authHdr() }); fetchAll() }
     catch { alert('Error deleting') }
   }
 
@@ -620,6 +648,45 @@ const AdminDashboard = () => {
             </div>
           )}
 
+          {/* Flights Tab */}
+          {activeTab === 'flights' && (
+            <div>
+              <h2 className="font-notoSerif text-3xl font-bold text-primary mb-8">Manage Flights</h2>
+              <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
+                <h3 className="font-notoSerif text-xl font-bold mb-6">Add New Destination</h3>
+                <form onSubmit={handleAddFlight} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <input required className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Destination Name (e.g., London)" value={flightForm.name} onChange={e => setFlightForm({...flightForm, name: e.target.value})} />
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Price Starts From (PKR)" type="number" value={flightForm.price_start} onChange={e => setFlightForm({...flightForm, price_start: e.target.value})} />
+                  <div className="md:col-span-2">
+                    <ImageUpload value={flightForm.image_url} onChange={(val) => setFlightForm({...flightForm, image_url: val})} label="Destination Image" />
+                  </div>
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Category (e.g., Most Popular)" value={flightForm.category} onChange={e => setFlightForm({...flightForm, category: e.target.value})} />
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Booking URL (Optional)" value={flightForm.booking_url} onChange={e => setFlightForm({...flightForm, booking_url: e.target.value})} />
+                  <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Short Description" rows={2} value={flightForm.description} onChange={e => setFlightForm({...flightForm, description: e.target.value})} />
+                  <button type="submit" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Add Destination</button>
+                </form>
+              </div>
+              <div className="space-y-3">
+                <h3 className="font-notoSerif text-xl font-bold">Existing Destinations ({flights.length})</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {flights.map(f => (
+                    <div key={f.id} className="bg-surface-container-lowest p-4 rounded-lg editorial-shadow">
+                      <img src={f.image_url || 'https://via.placeholder.com/150'} alt={f.name} className="w-full h-32 object-cover rounded-lg mb-3" />
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <p className="font-bold text-primary">{f.name}</p>
+                          <p className="text-xs text-[#CD9933] font-bold">From PKR {(f.price_start || 0).toLocaleString()}</p>
+                        </div>
+                        <button onClick={()=>handleDeleteFlight(f.id)} className="text-red-500 hover:text-red-700"><span className="material-symbols-outlined">delete</span></button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {!flights.length && <p className="text-center text-on-surface-variant py-4 bg-surface-container-lowest rounded-xl">No destinations yet.</p>}
+              </div>
+            </div>
+          )}
+
           {/* Gallery Tab */}
           {activeTab === 'gallery' && (
             <div>
@@ -805,6 +872,23 @@ const ContentCMS = () => {
     addressLahore: 'Main Boulevard, Gulberg III, Lahore, Pakistan', addressKarachi: 'DHA Phase II, Karachi, Pakistan',
   })
 
+  const [flightsContent, setFlightsContent] = useState({
+    heroTitle: 'BOOK YOUR DREAM JOURNEY WITH REHMAN UMRAH & TRAVELS',
+    heroSubtitle: 'DISCOVER THE BEST DEALS ON FLIGHTS AND TRAVEL PACKAGES WORLDWIDE',
+    adventureTitle: 'YOUR NEXT ADVENTURE BEGINS HERE!',
+    adventureSubtitle: 'Discover the best flight deals and travel packages tailored to your needs.',
+    trustTitle: 'TIRED OF OVERPRICED FLIGHTS, VISA HASSLES, AND GENERIC TRAVEL PLANS?',
+    trustSubtitle: 'We provide transparent pricing and expert guidance for all your travel needs.',
+    destinationsTitle: 'YOUR DESTINATION AWAITS — WHERE WILL YOU GO?',
+    destinationsSubtitle: 'Pick your destination and let us handle the rest.',
+    popularTitle: 'Most Popular Places',
+    feature1: 'Lowest Flight Booking with Best Services',
+    feature2: 'Max Success Guarantee with Expert Guidance',
+    feature3: '24/7 Customer Care — From Letters to Landing',
+    feature4: 'Customized Packages — Umrah, HM, Management, Business',
+    feature5: 'Price Match Promise: Find it cheaper? We\'ll beat it!'
+  })
+
   const [faqContent, setFaqContent] = useState([
     { id: 1, question: 'What documents do I need for Umrah?', answer: 'For Umrah, you need a valid passport with at least 6 months validity, passport-sized photos, and a completed visa application. We handle the visa process for you.', category: 'Visa' },
     { id: 2, question: 'How far in advance should I book?', answer: 'We recommend booking at least 2-3 months in advance, especially during Ramadan and Hajj season, to ensure availability and better rates.', category: 'Booking' },
@@ -823,6 +907,7 @@ const ContentCMS = () => {
     try {
       if (localStorage.getItem('cms_home')) setHomeContent(JSON.parse(localStorage.getItem('cms_home')))
       if (localStorage.getItem('cms_about')) setAboutContent(JSON.parse(localStorage.getItem('cms_about')))
+      if (localStorage.getItem('cms_flights')) setFlightsContent(JSON.parse(localStorage.getItem('cms_flights')))
       if (localStorage.getItem('cms_contact')) setContactContent(JSON.parse(localStorage.getItem('cms_contact')))
       if (localStorage.getItem('cms_faq')) setFaqContent(JSON.parse(localStorage.getItem('cms_faq')))
       if (localStorage.getItem('cms_footer')) setFooterContent(JSON.parse(localStorage.getItem('cms_footer')))
@@ -833,6 +918,7 @@ const ContentCMS = () => {
       const data = res.data;
       if (data.cms_home && Object.keys(data.cms_home).length > 0) setHomeContent(prev => ({...prev, ...data.cms_home}));
       if (data.cms_about && Object.keys(data.cms_about).length > 0) setAboutContent(prev => ({...prev, ...data.cms_about}));
+      if (data.cms_flights && Object.keys(data.cms_flights).length > 0) setFlightsContent(prev => ({...prev, ...data.cms_flights}));
       if (data.cms_contact && Object.keys(data.cms_contact).length > 0) setContactContent(prev => ({...prev, ...data.cms_contact}));
       if (data.cms_faq && Array.isArray(data.cms_faq)) setFaqContent(data.cms_faq);
       if (data.cms_footer && Object.keys(data.cms_footer).length > 0) setFooterContent(prev => ({...prev, ...data.cms_footer}));
@@ -878,6 +964,7 @@ const ContentCMS = () => {
   const contentTabs = [
     { id: 'home', label: 'Home Page' },
     { id: 'about', label: 'About Page' },
+    { id: 'flights', label: 'Flights Page' },
     { id: 'contact', label: 'Contact Page' },
     { id: 'faq', label: 'FAQ' },
     { id: 'footer', label: 'Footer' },
@@ -1079,6 +1166,67 @@ const ContentCMS = () => {
               className="bg-[#CD9933] text-white px-8 py-3 rounded-lg font-bold text-sm hover:brightness-110 transition-all"
             >
               {saving ? 'Saving...' : 'Save About Page Content'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Flights Page Content */}
+      {activeContentTab === 'flights' && (
+        <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+          <h3 className="font-notoSerif text-xl font-bold mb-6">Flights Page Content</h3>
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Title</label>
+                <input className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm" value={flightsContent.heroTitle} onChange={(e) => setFlightsContent({...flightsContent, heroTitle: e.target.value})} />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Hero Subtitle</label>
+                <input className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm" value={flightsContent.heroSubtitle} onChange={(e) => setFlightsContent({...flightsContent, heroSubtitle: e.target.value})} />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Adventure Title</label>
+                <input className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm" value={flightsContent.adventureTitle} onChange={(e) => setFlightsContent({...flightsContent, adventureTitle: e.target.value})} />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Adventure Subtitle</label>
+                <textarea className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm" rows={2} value={flightsContent.adventureSubtitle} onChange={(e) => setFlightsContent({...flightsContent, adventureSubtitle: e.target.value})} />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Trust Title</label>
+                <input className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm" value={flightsContent.trustTitle} onChange={(e) => setFlightsContent({...flightsContent, trustTitle: e.target.value})} />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Trust Subtitle</label>
+                <textarea className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm" rows={2} value={flightsContent.trustSubtitle} onChange={(e) => setFlightsContent({...flightsContent, trustSubtitle: e.target.value})} />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Destinations Title</label>
+                <input className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm" value={flightsContent.destinationsTitle} onChange={(e) => setFlightsContent({...flightsContent, destinationsTitle: e.target.value})} />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Destinations Subtitle</label>
+                <input className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-3 px-4 rounded-lg text-sm" value={flightsContent.destinationsSubtitle} onChange={(e) => setFlightsContent({...flightsContent, destinationsSubtitle: e.target.value})} />
+              </div>
+            </div>
+            <div className="space-y-4">
+              <label className="block text-xs font-bold uppercase tracking-widest text-outline">Service Features (Why Choose Us)</label>
+              {[1, 2, 3, 4, 5].map(i => (
+                <input key={i} className="w-full bg-surface border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 px-4 rounded-lg text-sm" value={flightsContent[`feature${i}`]} onChange={(e) => setFlightsContent({...flightsContent, [`feature${i}`]: e.target.value})} placeholder={`Feature ${i}`} />
+              ))}
+            </div>
+            <button 
+              onClick={() => saveContent('flights', flightsContent)}
+              className="bg-[#CD9933] text-white px-8 py-3 rounded-lg font-bold text-sm hover:brightness-110 transition-all"
+            >
+              {saving ? 'Saving...' : 'Save Flights Page Content'}
             </button>
           </div>
         </div>

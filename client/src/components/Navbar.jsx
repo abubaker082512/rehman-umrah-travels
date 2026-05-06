@@ -7,7 +7,7 @@ const Navbar = ({ isVersion2 = false }) => {
 
   const links = [
     { to: '/', label: 'Home' },
-    { to: '/home2', label: 'Home 2' },
+    { to: '/flights', label: 'Flights' },
     { to: '/packages', label: 'Umrah Packages' },
     { to: '/international-tours', label: 'International Tours' },
     { to: '/visa-services', label: 'Visa Services' },
