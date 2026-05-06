@@ -1,8 +1,47 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import axios from 'axios'
+
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const Home2 = () => {
+    const [pageMedia, setPageMedia] = useState({})
+    const [homeContent, setHomeContent] = useState({
+      heroTitle: 'Your Trusted Partner for Umrah & International Tours',
+      heroSubtitle: 'Embark on a spiritually enriching journey with premium hospitality and expert guidance tailored for your comfort.',
+      heroCta: 'View Umrah Packages',
+      heroWhatsApp: 'Contact on WhatsApp',
+      featuredTitle: 'Featured Umrah Packages',
+      featuredSubtitle: 'Spiritual Journeys',
+      toursTitle: 'Discover the World',
+      toursSubtitle: 'International Tours',
+      ctaTitle: 'Ready to Embark on Your Journey?',
+      ctaSubtitle: 'Contact our travel experts today for personalized packages.',
+    })
+
+    useEffect(() => {
+        try {
+            const savedMedia = localStorage.getItem('pageMedia')
+            if (savedMedia) setPageMedia(JSON.parse(savedMedia))
+            const savedHome = localStorage.getItem('cms_home')
+            if (savedHome) setHomeContent(prev => ({...prev, ...JSON.parse(savedHome)}))
+        } catch (e) {}
+
+        axios.get(`${API_BASE}/api/cms`)
+            .then(res => {
+                const data = res.data
+                if (data.page_media && Object.keys(data.page_media).length > 0) {
+                    setPageMedia(data.page_media)
+                    localStorage.setItem('pageMedia', JSON.stringify(data.page_media))
+                }
+                if (data.cms_home && Object.keys(data.cms_home).length > 0) {
+                    setHomeContent(prev => ({...prev, ...data.cms_home}))
+                    localStorage.setItem('cms_home', JSON.stringify(data.cms_home))
+                }
+            }).catch(err => console.error("CMS load error:", err))
+    }, [])
+
     return (
         <div className="bg-surface font-body text-on-surface antialiased">
             <Navbar isVersion2={true} />
@@ -11,23 +50,29 @@ const Home2 = () => {
                 {/* Hero Section */}
                 <section className="relative h-[921px] flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 z-0">
-                        <img alt="The Holy Kaaba in Makkah" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=1600&q=80"/>
+                        {pageMedia.home_hero_video ? (
+                            <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+                                <source src={pageMedia.home_hero_video} type="video/mp4" />
+                            </video>
+                        ) : (
+                            <img alt="The Holy Kaaba in Makkah" className="w-full h-full object-cover" src={pageMedia.home_hero_image || "https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=1600&q=80"}/>
+                        )}
                         <div className="absolute inset-0 bg-gradient-to-r from-[#013334]/90 to-[#013334]/40"></div>
                     </div>
                     <div className="relative z-10 container mx-auto px-6 text-white text-center md:text-left">
                         <h1 className="font-headline text-5xl md:text-7xl mb-6 max-w-4xl italic leading-tight">
-                            Your Trusted Partner for <span className="text-secondary-fixed-dim">Umrah</span> & International Tours
+                            {homeContent.heroTitle}
                         </h1>
                         <p className="font-body text-xl mb-10 text-white/80 max-w-2xl font-light tracking-wide">
-                            Embark on a spiritually enriching journey with premium hospitality and expert guidance tailored for your comfort.
+                            {homeContent.heroSubtitle}
                         </p>
                         <div className="flex flex-col md:flex-row gap-4">
                             <button className="bg-[#CD9933] hover:bg-[#b5882d] text-primary px-8 py-4 rounded-md font-bold tracking-widest uppercase text-sm transition-all shadow-lg">
-                                View Umrah Packages
+                                {homeContent.heroCta}
                             </button>
                             <button className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white px-8 py-4 rounded-md font-bold tracking-widest uppercase text-sm transition-all flex items-center justify-center gap-2">
                                 <span className="material-symbols-outlined text-green-400">chat</span>
-                                Contact on WhatsApp
+                                {homeContent.heroWhatsApp}
                             </button>
                         </div>
                     </div>

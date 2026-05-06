@@ -158,9 +158,9 @@ const categories = ['All', 'Guides', 'Planning', 'Destinations', 'Packages', 'Hi
 
 const Blog = () => {
   const [pageMedia, setPageMedia] = useState({})
-  const [blogPosts, setBlogPosts] = useState([])
-  const [featuredPost, setFeaturedPost] = useState(null)
-  const [regularPosts, setRegularPosts] = useState([])
+  const [posts, setPosts] = useState(blogPosts)
+  const [featuredPost, setFeaturedPost] = useState(blogPosts.find(p => p.featured) || blogPosts[0])
+  const [regularPosts, setRegularPosts] = useState(blogPosts.filter(p => p !== (blogPosts.find(p => p.featured) || blogPosts[0])))
 
   useEffect(() => {
     const savedMedia = localStorage.getItem('pageMedia')
@@ -184,9 +184,10 @@ const Blog = () => {
     axios.get(`${API_BASE}/api/blog`)
       .then(res => {
         if (Array.isArray(res.data) && res.data.length > 0) {
-          setBlogPosts(res.data)
-          setFeaturedPost(res.data.find(p => p.featured))
-          setRegularPosts(res.data.filter(p => !p.featured))
+          setPosts(res.data)
+          const feat = res.data.find(p => p.featured) || res.data[0]
+          setFeaturedPost(feat)
+          setRegularPosts(res.data.filter(p => p !== feat))
         }
       })
       .catch(err => console.error('Failed to fetch blog posts:', err))
@@ -216,6 +217,7 @@ const Blog = () => {
       </section>
 
       {/* Featured Post */}
+      {featuredPost && (
       <section className="py-12 md:py-24 px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto -mt-8 sm:-mt-12 lg:-mt-16 relative z-20">
         <Link to={`/blog/${featuredPost.id}`} className="block">
           <div className="bg-surface-container-lowest editorial-shadow overflow-hidden asymmetric-clip group">
@@ -241,6 +243,7 @@ const Blog = () => {
           </div>
         </Link>
       </section>
+      )}
 
       {/* Categories */}
       <section className="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 mb-8">

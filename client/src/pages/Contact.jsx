@@ -9,25 +9,33 @@ const API_BASE = import.meta.env.VITE_API_URL || ''
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: 'Umrah Packages', message: '' })
   const [pageMedia, setPageMedia] = useState({})
+  const [cmsContent, setCmsContent] = useState({
+    heroTitle: 'Get in Touch', heroSubtitle: 'Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you.',
+    phone1: '+92 300 123 4567', phone2: '+92 42 123 4567', email: 'info@royalumrahandtravel.com', whatsapp: '+92 300 123 4567',
+    addressLahore: 'Main Boulevard, Gulberg III, Lahore, Pakistan', addressKarachi: 'DHA Phase II, Karachi, Pakistan',
+  })
 
   useEffect(() => {
-    const savedMedia = localStorage.getItem('pageMedia')
-    if (savedMedia) {
-      try {
-        const parsed = JSON.parse(savedMedia)
-        if (parsed && Object.keys(parsed).length > 0) {
-          setPageMedia(parsed)
-        }
-      } catch (e) {}
-    }
-    axios.get(`${API_BASE}/api/cms?id=page_media`)
+    try {
+      const savedMedia = localStorage.getItem('pageMedia')
+      if (savedMedia) setPageMedia(JSON.parse(savedMedia))
+      const savedContact = localStorage.getItem('cms_contact')
+      if (savedContact) setCmsContent(prev => ({...prev, ...JSON.parse(savedContact)}))
+    } catch (e) {}
+
+    axios.get(`${API_BASE}/api/cms`)
       .then(res => {
-        if (res.data && Object.keys(res.data).length > 0) {
-          setPageMedia(res.data)
-          localStorage.setItem('pageMedia', JSON.stringify(res.data))
+        const data = res.data;
+        if (data.page_media && Object.keys(data.page_media).length > 0) {
+          setPageMedia(data.page_media)
+          localStorage.setItem('pageMedia', JSON.stringify(data.page_media))
+        }
+        if (data.cms_contact && Object.keys(data.cms_contact).length > 0) {
+          setCmsContent(prev => ({...prev, ...data.cms_contact}))
+          localStorage.setItem('cms_contact', JSON.stringify(data.cms_contact))
         }
       })
-      .catch(err => console.error('Failed to fetch page media:', err))
+      .catch(err => console.error('Failed to fetch CMS content:', err))
   }, [])
 
   const handleChange = (e) => {
@@ -54,10 +62,16 @@ const Contact = () => {
           <div className="max-w-3xl">
             <div className="w-12 h-1 bg-[#CD9933] mb-6 md:mb-8"></div>
             <h1 className="font-notoSerif text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
-              Get in <span className="text-[#CD9933]">Touch</span>
+              {cmsContent.heroTitle.includes('Touch') ? (
+                <>
+                  {cmsContent.heroTitle.split('Touch')[0]}
+                  <span className="text-[#CD9933]">Touch</span>
+                  {cmsContent.heroTitle.split('Touch')[1]}
+                </>
+              ) : cmsContent.heroTitle}
             </h1>
             <p className="font-manrope text-base md:text-lg text-white/80 max-w-xl">
-              Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you with personalized guidance and support.
+              {cmsContent.heroSubtitle}
             </p>
           </div>
         </div>
@@ -75,9 +89,9 @@ const Contact = () => {
               </div>
               <h3 className="font-notoSerif text-xl font-bold text-primary mb-2">Call Us</h3>
               <p className="text-on-surface-variant text-sm mb-3">Available 24/7 for your inquiries</p>
-              <a href="tel:+923001234567" className="text-[#CD9933] font-bold hover:underline">+92 300 123 4567</a>
+              <a href={`tel:${cmsContent.phone1}`} className="text-[#CD9933] font-bold hover:underline">{cmsContent.phone1}</a>
               <br />
-              <a href="tel:+924212345678" className="text-[#CD9933] font-bold hover:underline">+92 42 123 4567</a>
+              <a href={`tel:${cmsContent.phone2}`} className="text-[#CD9933] font-bold hover:underline">{cmsContent.phone2}</a>
             </div>
 
             {/* WhatsApp */}
@@ -87,7 +101,7 @@ const Contact = () => {
               </div>
               <h3 className="font-notoSerif text-xl font-bold text-primary mb-2">WhatsApp</h3>
               <p className="text-on-surface-variant text-sm mb-3">Quick responses on WhatsApp</p>
-              <a href="https://wa.me/923001234567" className="text-[#CD9933] font-bold hover:underline">+92 300 123 4567</a>
+              <a href={`https://wa.me/${cmsContent.whatsapp.replace(/\D/g,'')}`} className="text-[#CD9933] font-bold hover:underline">{cmsContent.whatsapp}</a>
             </div>
 
             {/* Email */}
@@ -97,7 +111,7 @@ const Contact = () => {
               </div>
               <h3 className="font-notoSerif text-xl font-bold text-primary mb-2">Email</h3>
               <p className="text-on-surface-variant text-sm mb-3">We reply within 24 hours</p>
-              <a href="mailto:info@rehmanumrah.com" className="text-[#CD9933] font-bold hover:underline">info@rehmanumrah.com</a>
+              <a href={`mailto:${cmsContent.email}`} className="text-[#CD9933] font-bold hover:underline">{cmsContent.email}</a>
             </div>
 
             {/* Office */}
@@ -107,8 +121,7 @@ const Contact = () => {
               </div>
               <h3 className="font-notoSerif text-xl font-bold text-primary mb-2">Office</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed">
-                Main Boulevard, Gulberg III<br />
-                Lahore, Pakistan
+                {cmsContent.addressLahore}
               </p>
             </div>
           </div>
@@ -196,7 +209,7 @@ const Contact = () => {
 
               <div className="mt-8 pt-8 border-t border-outline-variant/20 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <span className="text-sm text-outline">Or reach us directly via</span>
-                <a href="https://wa.me/923001234567" className="flex items-center gap-2 text-[#CD9933] font-bold hover:underline">
+                <a href={`https://wa.me/${cmsContent.whatsapp.replace(/\D/g,'')}`} className="flex items-center gap-2 text-[#CD9933] font-bold hover:underline">
                   <span className="material-symbols-outlined">chat</span>
                   WhatsApp
                 </a>
@@ -213,7 +226,7 @@ const Contact = () => {
             <h3 className="font-notoSerif text-2xl font-bold text-primary mb-2">Our Location</h3>
             <p className="text-on-surface-variant text-sm flex items-center gap-2">
               <span className="material-symbols-outlined text-[#CD9933]">location_on</span>
-              Main Boulevard, Gulberg III, Lahore, Pakistan
+              {cmsContent.addressLahore}
             </p>
           </div>
           <div className="h-64 md:h-80 bg-surface-container flex items-center justify-center">
@@ -234,7 +247,7 @@ const Contact = () => {
           <p className="text-white/60 mb-10 max-w-xl mx-auto">Whether it's a spiritual Umrah journey or an international adventure, our experts are here to make it happen.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/packages" className="bg-[#CD9933] text-white px-10 py-4 font-manrope font-bold tracking-widest uppercase text-sm hover:brightness-110 transition-all">View Packages</Link>
-            <a href="tel:+923001234567" className="border border-white/30 text-white px-10 py-4 font-manrope font-bold tracking-widest uppercase text-sm hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+            <a href={`tel:${cmsContent.phone1}`} className="border border-white/30 text-white px-10 py-4 font-manrope font-bold tracking-widest uppercase text-sm hover:bg-white/10 transition-all flex items-center justify-center gap-2">
               <span className="material-symbols-outlined">call</span>
               Call Now
             </a>

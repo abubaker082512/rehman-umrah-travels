@@ -20,8 +20,8 @@ const filters = ['All', 'Kaaba', 'Masjid Nabawi', 'Ziyarat', 'Umrah Groups', 'In
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('All')
   const [pageMedia, setPageMedia] = useState({})
-  const [galleryItems, setGalleryItems] = useState([])
-  const filtered = activeFilter === 'All' ? galleryItems : galleryItems.filter(i => i.category === activeFilter)
+  const [items, setItems] = useState(galleryItems)
+  const filtered = activeFilter === 'All' ? items : items.filter(i => i.category === activeFilter)
 
   useEffect(() => {
     const savedMedia = localStorage.getItem('pageMedia')
@@ -46,7 +46,7 @@ const Gallery = () => {
     axios.get(`${API_BASE}/api/gallery`)
       .then(res => {
         if (Array.isArray(res.data) && res.data.length > 0) {
-          setGalleryItems(res.data)
+          setItems(res.data)
         }
       })
       .catch(err => console.error('Failed to fetch gallery:', err))

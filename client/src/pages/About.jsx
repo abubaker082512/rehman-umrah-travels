@@ -8,27 +8,38 @@ const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const About = () => {
   const [pageMedia, setPageMedia] = useState({})
+  const [cmsContent, setCmsContent] = useState({
+    heroTitle: 'About Us', heroSubtitle: 'A legacy of service, built on the foundation of faith and the honor of serving Allah\'s guests.',
+    storyTitle: 'Crafting Pathways to the Holy Lands',
+    storyText1: 'Royal Umrah & Travels began as a humble aspiration: to transform the daunting logistics of pilgrimage into a seamless, contemplative experience.',
+    storyText2: 'Over two decades, we have evolved from a small local agency into a premier travel concierge in Pakistan.',
+    missionTitle: 'To provide affordable and comfortable Umrah journeys.', visionTitle: 'To become a trusted Umrah travel agency in Pakistan.',
+    statsYears: '25+', statsPilgrims: '50K+', statsDestinations: '100+', statsRating: '4.9',
+  })
 
   useEffect(() => {
     // Fetch from localStorage first
-    const savedMedia = localStorage.getItem('pageMedia')
-    if (savedMedia) {
-      try {
-        const parsed = JSON.parse(savedMedia)
-        if (parsed && Object.keys(parsed).length > 0) {
-          setPageMedia(parsed)
-        }
-      } catch (e) {}
-    }
+    try {
+      const savedMedia = localStorage.getItem('pageMedia')
+      if (savedMedia) setPageMedia(JSON.parse(savedMedia))
+      const savedAbout = localStorage.getItem('cms_about')
+      if (savedAbout) setCmsContent(prev => ({...prev, ...JSON.parse(savedAbout)}))
+    } catch (e) {}
+
     // Then fetch from API
-    axios.get(`${API_BASE}/api/cms?id=page_media`)
+    axios.get(`${API_BASE}/api/cms`)
       .then(res => {
-        if (res.data && Object.keys(res.data).length > 0) {
-          setPageMedia(res.data)
-          localStorage.setItem('pageMedia', JSON.stringify(res.data))
+        const data = res.data;
+        if (data.page_media && Object.keys(data.page_media).length > 0) {
+          setPageMedia(data.page_media)
+          localStorage.setItem('pageMedia', JSON.stringify(data.page_media))
+        }
+        if (data.cms_about && Object.keys(data.cms_about).length > 0) {
+          setCmsContent(prev => ({...prev, ...data.cms_about}))
+          localStorage.setItem('cms_about', JSON.stringify(data.cms_about))
         }
       })
-      .catch(err => console.error('Failed to fetch page media:', err))
+      .catch(err => console.error('Failed to fetch CMS content:', err))
   }, [])
 
   return (
@@ -46,10 +57,16 @@ const About = () => {
           <div className="max-w-3xl">
             <div className="w-12 h-1 bg-[#CD9933] mb-6 md:mb-8"></div>
             <h1 className="font-notoSerif text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
-              About <span className="text-[#CD9933]">Us</span>
+              {cmsContent.heroTitle.includes('Us') ? (
+                <>
+                  {cmsContent.heroTitle.split('Us')[0]}
+                  <span className="text-[#CD9933]">Us</span>
+                  {cmsContent.heroTitle.split('Us')[1]}
+                </>
+              ) : cmsContent.heroTitle}
             </h1>
               <p className="font-manrope text-lg text-white/80 max-w-xl">
-                A legacy of service, built on the foundation of faith and the honor of serving Allah's guests.
+                {cmsContent.heroSubtitle}
               </p>
             </div>
           </div>
@@ -67,10 +84,10 @@ const About = () => {
             </div>
             <div className="space-y-8">
               <span className="font-manrope tracking-[0.3em] uppercase text-xs text-secondary font-bold">Company Story</span>
-              <h2 className="font-notoSerif text-4xl md:text-5xl text-primary leading-tight">Crafting Pathways to the Holy Lands</h2>
+              <h2 className="font-notoSerif text-4xl md:text-5xl text-primary leading-tight">{cmsContent.storyTitle}</h2>
               <div className="space-y-6 text-on-surface-variant font-manrope leading-loose text-lg">
-                <p>Royal Umrah &amp; Travels began as a humble aspiration: to transform the daunting logistics of pilgrimage into a seamless, contemplative experience. We understood that for many, this journey is the culmination of a lifetime's prayer.</p>
-                <p>Over two decades, we have evolved from a small local agency into a premier travel concierge in Pakistan. Our growth has been guided not by numbers, but by the testimonials of pilgrims who found peace in our planning and comfort in our care.</p>
+                <p>{cmsContent.storyText1}</p>
+                <p>{cmsContent.storyText2}</p>
                 <p>Every detail, from the proximity of the hotels to the expertise of our guides, is curated to ensure that your focus remains entirely on the spiritual essence of your visit.</p>
               </div>
             </div>
@@ -85,13 +102,13 @@ const About = () => {
               <div className="md:col-span-7 bg-primary-container p-6 md:p-10 lg:p-12 flex flex-col justify-center relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#CD9933]/5 rounded-full -mr-32 -mt-32 transition-transform duration-700 group-hover:scale-110"></div>
                 <span className="font-manrope tracking-widest uppercase text-xs text-[#CD9933] mb-4">Our Mission</span>
-                <h3 className="font-notoSerif text-3xl md:text-4xl text-white mb-6 leading-snug">To provide affordable and comfortable Umrah journeys.</h3>
+                <h3 className="font-notoSerif text-3xl md:text-4xl text-white mb-6 leading-snug">{cmsContent.missionTitle}</h3>
                 <p className="text-on-primary-container text-lg font-manrope leading-relaxed">We dismantle the barriers of complexity and cost, ensuring every believer can answer the call to the Haramain with dignity and ease.</p>
               </div>
               {/* Vision */}
               <div className="md:col-span-5 bg-surface-container-high p-6 md:p-10 lg:p-12 flex flex-col justify-center border-b-4 border-[#CD9933]">
                 <span className="font-manrope tracking-widest uppercase text-xs text-secondary mb-4">Our Vision</span>
-                <h3 className="font-notoSerif text-3xl text-primary mb-6">To become a trusted Umrah travel agency in Pakistan.</h3>
+                <h3 className="font-notoSerif text-3xl text-primary mb-6">{cmsContent.visionTitle}</h3>
                 <p className="text-on-surface-variant font-manrope">We aspire to set the gold standard in pilgrimage services, blending traditional values with modern logistical excellence.</p>
               </div>
             </div>
@@ -142,10 +159,10 @@ const About = () => {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {[
-                { number: '25+', label: 'Years of Service' },
-                { number: '50K+', label: 'Pilgrims Served' },
-                { number: '100+', label: 'Tour Destinations' },
-                { number: '4.9', label: 'Average Rating' }
+                { number: cmsContent.statsYears, label: 'Years of Service' },
+                { number: cmsContent.statsPilgrims, label: 'Pilgrims Served' },
+                { number: cmsContent.statsDestinations, label: 'Tour Destinations' },
+                { number: cmsContent.statsRating, label: 'Average Rating' }
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="font-notoSerif text-3xl md:text-4xl lg:text-5xl font-bold text-[#CD9933] mb-2">{stat.number}</div>

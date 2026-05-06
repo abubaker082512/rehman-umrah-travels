@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const supabase = require('./_utils/supabase');
-const { supabaseAdmin } = require('./_utils/supabase');
+const { supabaseAdmin, isConfigured } = require('./_utils/supabase');
 
 const isAuthenticated = (req) => {
   const authHeader = req.headers.authorization;
@@ -26,29 +26,36 @@ module.exports = async (req, res) => {
 
   // ─── GET ───────────────────────────────────────────────────────────────────
   if (req.method === 'GET') {
+    // Return empty if not configured
+    if (!isConfigured) {
+      console.log('[CMS] Not configured, returning empty');
+      return res.json(id ? {} : {});
+    }
+
     try {
       let query = supabase.from('cms_content').select('*');
       if (id) query = query.eq('id', id);
 
       const { data, error } = await query;
-      if (error) throw error;
+      if (error) {
+        console.log('[CMS] Supabase error:', error.message);
+        return res.json(id ? {} : {});
+      }
 
       if (id) {
-        // Return the content object directly, or empty object if not found
         return res.json(data && data[0] ? data[0].content : {});
       } else {
-        // Return a flat map of id -> content
         const mapped = {};
         (data || []).forEach(item => { mapped[item.id] = item.content; });
         return res.json(mapped);
       }
     } catch (err) {
-      console.error('[CMS] GET error:', err);
-      return res.status(500).json({ error: err.message });
+      console.error('[CMS] GET error:', err.message);
+      return res.json(id ? {} : {});
     }
   }
 
-  // ─── POST (upsert) ────────────────────────────────────────────────────────
+  // ─── POST (upsert) ───────────────────────────────────────────────────────
   if (req.method === 'POST') {
     if (!isAuthenticated(req)) {
       return res.status(401).json({ error: 'Authentication required' });
@@ -56,6 +63,12 @@ module.exports = async (req, res) => {
 
     if (!id) {
       return res.status(400).json({ error: 'Content ID is required as ?id=... query param' });
+    }
+
+    // Check if Supabase is configured
+    if (!isConfigured) {
+      console.log('[CMS] Supabase not configured');
+      return res.status(503).json({ error: 'Database not configured' });
     }
 
     try {
@@ -77,7 +90,7 @@ module.exports = async (req, res) => {
       console.log('[CMS] Saved:', id);
       return res.json({ success: true, id, data: data?.[0] });
     } catch (err) {
-      console.error('[CMS] POST error:', err);
+      console.error('[CMS] POST error:', err.message);
       return res.status(500).json({ error: err.message });
     }
   }

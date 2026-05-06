@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const supabase = require('./_utils/supabase');
-const { supabaseAdmin } = require('./_utils/supabase');
+const { supabaseAdmin, isConfigured } = require('./_utils/supabase');
 
 const isAuthenticated = (req) => {
   const authHeader = req.headers.authorization;

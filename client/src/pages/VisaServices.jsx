@@ -140,10 +140,10 @@ const VisaServices = () => {
               <div className="border-t border-outline-variant/20 pt-6">
                 <p className="text-xs font-bold uppercase tracking-widest text-outline mb-3">Required Documents</p>
                 <ul className="space-y-2">
-                  {visa.documents.map((doc, i) => (
+                  {(Array.isArray(visa.documents) ? visa.documents : typeof visa.documents === 'string' ? visa.documents.split(',') : []).map((doc, i) => (
                     <li key={i} className="flex items-center gap-2 text-sm text-on-surface-variant">
                       <span className="material-symbols-outlined text-secondary text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                      {doc}
+                      {typeof doc === 'string' ? doc.trim() : doc}
                     </li>
                   ))}
                 </ul>

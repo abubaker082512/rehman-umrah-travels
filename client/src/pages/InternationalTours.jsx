@@ -145,8 +145,8 @@ const InternationalTours = () => {
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {tour.highlights.slice(0, 3).map((hl, i) => (
-                    <span key={i} className="bg-surface-container px-3 py-1 rounded text-xs">{hl}</span>
+                  {(Array.isArray(tour.highlights) ? tour.highlights : typeof tour.highlights === 'string' ? tour.highlights.split(',') : []).slice(0, 3).map((hl, i) => (
+                    <span key={i} className="bg-surface-container px-3 py-1 rounded text-xs">{typeof hl === 'string' ? hl.trim() : hl}</span>
                   ))}
                 </div>
                 <Link to="/contact" className="block w-full py-3 bg-[#CD9933] text-white font-bold rounded-md hover:brightness-110 transition-all text-sm text-center">

@@ -762,82 +762,80 @@ const AdminDashboard = () => {
 const ContentCMS = () => {
   const [activeContentTab, setActiveContentTab] = useState('home')
   const [saving, setSaving] = useState(false)
+  const authHdr = () => ({ Authorization: `Bearer ${localStorage.getItem('token')}` })
   
-  // Content state
-  const [homeContent, setHomeContent] = useState(() => {
-    const saved = localStorage.getItem('cms_home')
-    return saved ? JSON.parse(saved) : {
-      heroTitle: 'Proudly serving the guest of Allah',
-      heroSubtitle: 'We provide reliable, comfortable, and affordable Umrah services with complete guidance—so you can focus on your عبادت while we take care of the rest.',
-      heroCta: 'View Umrah Packages',
-      heroWhatsApp: 'Contact on WhatsApp',
-      featuredTitle: 'Curated Umrah Packages',
-      featuredSubtitle: 'Spiritual Journeys',
-      toursTitle: 'Discover the World',
-      toursSubtitle: 'Beyond Borders',
-      ctaTitle: 'Book Your Umrah Journey Today',
-      ctaSubtitle: 'Contact our travel consultants today to get a personalized quote for your spiritual or leisure travel needs.',
-      ctaPrimary: 'Get a Quote',
-      ctaSecondary: 'Contact Us'
-    }
+  // Content state with defaults
+  const [homeContent, setHomeContent] = useState({
+    heroTitle: 'Proudly serving the guest of Allah',
+    heroSubtitle: 'We provide reliable, comfortable, and affordable Umrah services with complete guidance—so you can focus on your عبادت while we take care of the rest.',
+    heroCta: 'View Umrah Packages', heroWhatsApp: 'Contact on WhatsApp',
+    featuredTitle: 'Curated Umrah Packages', featuredSubtitle: 'Spiritual Journeys',
+    toursTitle: 'Discover the World', toursSubtitle: 'Beyond Borders',
+    ctaTitle: 'Book Your Umrah Journey Today', ctaSubtitle: 'Contact our travel consultants today to get a personalized quote for your spiritual or leisure travel needs.',
+    ctaPrimary: 'Get a Quote', ctaSecondary: 'Contact Us'
   })
 
-  const [aboutContent, setAboutContent] = useState(() => {
-    const saved = localStorage.getItem('cms_about')
-    return saved ? JSON.parse(saved) : {
-      heroTitle: 'About Us',
-      heroSubtitle: 'A legacy of service, built on the foundation of faith and the honor of serving Allah\'s guests.',
-      storyTitle: 'Crafting Pathways to the Holy Lands',
-      storyText1: 'Royal Umrah & Travels began as a humble aspiration: to transform the daunting logistics of pilgrimage into a seamless, contemplative experience.',
-      storyText2: 'Over two decades, we have evolved from a small local agency into a premier travel concierge in Pakistan.',
-      missionTitle: 'To provide affordable and comfortable Umrah journeys.',
-      visionTitle: 'To become a trusted Umrah travel agency in Pakistan.',
-      statsYears: '25+',
-      statsPilgrims: '50K+',
-      statsDestinations: '100+',
-      statsRating: '4.9',
-    }
+  const [aboutContent, setAboutContent] = useState({
+    heroTitle: 'About Us', heroSubtitle: 'A legacy of service, built on the foundation of faith and the honor of serving Allah\'s guests.',
+    storyTitle: 'Crafting Pathways to the Holy Lands',
+    storyText1: 'Royal Umrah & Travels began as a humble aspiration: to transform the daunting logistics of pilgrimage into a seamless, contemplative experience.',
+    storyText2: 'Over two decades, we have evolved from a small local agency into a premier travel concierge in Pakistan.',
+    missionTitle: 'To provide affordable and comfortable Umrah journeys.', visionTitle: 'To become a trusted Umrah travel agency in Pakistan.',
+    statsYears: '25+', statsPilgrims: '50K+', statsDestinations: '100+', statsRating: '4.9',
   })
 
-  const [contactContent, setContactContent] = useState(() => {
-    const saved = localStorage.getItem('cms_contact')
-    return saved ? JSON.parse(saved) : {
-      heroTitle: 'Get in Touch',
-      heroSubtitle: 'Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you.',
-      phone1: '+92 300 123 4567',
-      phone2: '+92 42 123 4567',
-      email: 'info@royalumrahandtravel.com',
-      whatsapp: '+92 300 123 4567',
-      addressLahore: 'Main Boulevard, Gulberg III, Lahore, Pakistan',
-      addressKarachi: 'DHA Phase II, Karachi, Pakistan',
-    }
+  const [contactContent, setContactContent] = useState({
+    heroTitle: 'Get in Touch', heroSubtitle: 'Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you.',
+    phone1: '+92 300 123 4567', phone2: '+92 42 123 4567', email: 'info@royalumrahandtravel.com', whatsapp: '+92 300 123 4567',
+    addressLahore: 'Main Boulevard, Gulberg III, Lahore, Pakistan', addressKarachi: 'DHA Phase II, Karachi, Pakistan',
   })
 
-  const [faqContent, setFaqContent] = useState(() => {
-    const saved = localStorage.getItem('cms_faq')
-    return saved ? JSON.parse(saved) : [
-      { id: 1, question: 'What documents do I need for Umrah?', answer: 'For Umrah, you need a valid passport with at least 6 months validity, passport-sized photos, and a completed visa application. We handle the visa process for you.', category: 'Visa' },
-      { id: 2, question: 'How far in advance should I book?', answer: 'We recommend booking at least 2-3 months in advance, especially during Ramadan and Hajj season, to ensure availability and better rates.', category: 'Booking' },
-      { id: 3, question: 'Is travel insurance included?', answer: 'Travel insurance is not included in our packages but can be added at an additional cost.', category: 'Services' },
-    ]
+  const [faqContent, setFaqContent] = useState([
+    { id: 1, question: 'What documents do I need for Umrah?', answer: 'For Umrah, you need a valid passport with at least 6 months validity, passport-sized photos, and a completed visa application. We handle the visa process for you.', category: 'Visa' },
+    { id: 2, question: 'How far in advance should I book?', answer: 'We recommend booking at least 2-3 months in advance, especially during Ramadan and Hajj season, to ensure availability and better rates.', category: 'Booking' },
+    { id: 3, question: 'Is travel insurance included?', answer: 'Travel insurance is not included in our packages but can be added at an additional cost.', category: 'Services' },
+  ])
+
+  const [footerContent, setFooterContent] = useState({
+    description: 'Royal Umrah & Travels specializes in crafting meaningful spiritual journeys and world-class international tours.',
+    quickLinks: ['About Us', 'Visa Services', 'Packages', 'Terms & Conditions', 'Privacy Policy'],
+    copyright: '© 2024 Royal Umrah & Travels. All Rights Reserved.',
+    socialLinks: { facebook: '', instagram: '', twitter: '', youtube: '' }
   })
 
-  const [footerContent, setFooterContent] = useState(() => {
-    const saved = localStorage.getItem('cms_footer')
-    return saved ? JSON.parse(saved) : {
-      description: 'Royal Umrah & Travels specializes in crafting meaningful spiritual journeys and world-class international tours.',
-      quickLinks: ['About Us', 'Visa Services', 'Packages', 'Terms & Conditions', 'Privacy Policy'],
-      copyright: '© 2024 Royal Umrah & Travels. All Rights Reserved.',
-      socialLinks: { facebook: '', instagram: '', twitter: '', youtube: '' }
-    }
-  })
+  useEffect(() => {
+    // Attempt local load first for snappiness
+    try {
+      if (localStorage.getItem('cms_home')) setHomeContent(JSON.parse(localStorage.getItem('cms_home')))
+      if (localStorage.getItem('cms_about')) setAboutContent(JSON.parse(localStorage.getItem('cms_about')))
+      if (localStorage.getItem('cms_contact')) setContactContent(JSON.parse(localStorage.getItem('cms_contact')))
+      if (localStorage.getItem('cms_faq')) setFaqContent(JSON.parse(localStorage.getItem('cms_faq')))
+      if (localStorage.getItem('cms_footer')) setFooterContent(JSON.parse(localStorage.getItem('cms_footer')))
+    } catch (e) {}
 
-  const saveContent = (key, content) => {
+    // Fetch from API
+    axios.get(`${API_BASE}/api/cms`).then(res => {
+      const data = res.data;
+      if (data.cms_home && Object.keys(data.cms_home).length > 0) setHomeContent(prev => ({...prev, ...data.cms_home}));
+      if (data.cms_about && Object.keys(data.cms_about).length > 0) setAboutContent(prev => ({...prev, ...data.cms_about}));
+      if (data.cms_contact && Object.keys(data.cms_contact).length > 0) setContactContent(prev => ({...prev, ...data.cms_contact}));
+      if (data.cms_faq && Array.isArray(data.cms_faq)) setFaqContent(data.cms_faq);
+      if (data.cms_footer && Object.keys(data.cms_footer).length > 0) setFooterContent(prev => ({...prev, ...data.cms_footer}));
+    }).catch(err => console.error("CMS load error:", err));
+  }, [])
+
+  const saveContent = async (key, content) => {
     setSaving(true)
-    localStorage.setItem(`cms_${key}`, JSON.stringify(content))
-    console.log('Saved locally:', key)
+    try {
+      // Local cache
+      localStorage.setItem(`cms_${key}`, JSON.stringify(content))
+      // API call
+      await axios.post(`${API_BASE}/api/cms?id=cms_${key}`, content, { headers: authHdr() })
+      alert('Content saved successfully!')
+    } catch (err) {
+      alert('Failed to save to database: ' + (err.response?.data?.error || err.message))
+    }
     setSaving(false)
-    alert('Content saved successfully!')
   }
 
   const addFaq = () => {
@@ -1672,30 +1670,44 @@ const ContentCMS = () => {
 // Site Settings Component
 const SiteSettings = () => {
   const [saving, setSaving] = useState(false)
+  const authHdr = () => ({ Authorization: `Bearer ${localStorage.getItem('token')}` })
   
-  const [settings, setSettings] = useState(() => {
-    const saved = localStorage.getItem('site_settings')
-    return saved ? JSON.parse(saved) : {
-      siteName: 'Royal Umrah & Travels',
-      tagline: 'Your Trusted Partner for Umrah & International Tours',
-      email: 'info@royalumrahandtravel.com',
-      phone: '+92 300 123 4567',
-      whatsapp: '+92 300 123 4567',
-      address: 'Main Boulevard, Gulberg III, Lahore, Pakistan',
-      workingHours: 'Mon - Sat: 9:00 AM - 8:00 PM',
-      metaTitle: 'Royal Umrah & Travels - Your Trusted Partner for Umrah & International Tours',
-      metaDescription: 'Experience premium Umrah packages and international tours with Royal Umrah & Travels. Approved by Ministry of Hajj & Umrah.',
-      metaKeywords: 'umrah, packages, makkah, madinah, hajj, travel, tours, pakistan',
-    }
+  const [settings, setSettings] = useState({
+    siteName: 'Royal Umrah & Travels',
+    tagline: 'Your Trusted Partner for Umrah & International Tours',
+    email: 'info@royalumrahandtravel.com',
+    phone: '+92 300 123 4567',
+    whatsapp: '+92 300 123 4567',
+    address: 'Main Boulevard, Gulberg III, Lahore, Pakistan',
+    workingHours: 'Mon - Sat: 9:00 AM - 8:00 PM',
+    metaTitle: 'Royal Umrah & Travels - Your Trusted Partner for Umrah & International Tours',
+    metaDescription: 'Experience premium Umrah packages and international tours with Royal Umrah & Travels. Approved by Ministry of Hajj & Umrah.',
+    metaKeywords: 'umrah, packages, makkah, madinah, hajj, travel, tours, pakistan',
   })
 
-  const saveSettings = () => {
+  useEffect(() => {
+    try {
+      if (localStorage.getItem('site_settings')) setSettings(JSON.parse(localStorage.getItem('site_settings')))
+    } catch (e) {}
+    axios.get(`${API_BASE}/api/cms?id=site_settings`)
+      .then(res => {
+        if (res.data && Object.keys(res.data).length > 0) {
+          setSettings(prev => ({...prev, ...res.data}));
+          localStorage.setItem('site_settings', JSON.stringify(res.data));
+        }
+      }).catch(err => console.error("Settings load error:", err));
+  }, [])
+
+  const saveSettings = async () => {
     setSaving(true)
-    localStorage.setItem('site_settings', JSON.stringify(settings))
-    setTimeout(() => {
-      setSaving(false)
+    try {
+      localStorage.setItem('site_settings', JSON.stringify(settings))
+      await axios.post(`${API_BASE}/api/cms?id=site_settings`, settings, { headers: authHdr() })
       alert('Settings saved successfully!')
-    }, 500)
+    } catch (err) {
+      alert('Failed to save settings: ' + (err.response?.data?.error || err.message))
+    }
+    setSaving(false)
   }
 
   return (
