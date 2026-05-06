@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
-const supabase = require('./_utils/supabase');
-const { supabaseAdmin, isConfigured } = require('./_utils/supabase');
+const { supabase, supabaseAdmin, isConfigured, hasServiceRole } = require('./_utils/supabase');
 
 const isAuthenticated = (req) => {
   const authHeader = req.headers.authorization;
@@ -14,7 +13,7 @@ const isAuthenticated = (req) => {
     jwt.verify(token, process.env.JWT_SECRET || 'secretkey');
     return true;
   } catch (e) {
-    console.log('[CMS] Auth failed for token:', e.message);
+    console.log('[CMS] Auth failed:', e.message);
     return false;
   }
 };
@@ -23,19 +22,14 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   const url = new URL(req.url, `http://${req.headers.host}`);
   const id = url.searchParams.get('id');
 
-  // ─── GET ───────────────────────────────────────────────────────────────────
+  // ─── GET ───────────────────────────────────────────────────
   if (req.method === 'GET') {
-    // Return empty if not configured
-    if (!isConfigured) {
-      console.log('[CMS] Not configured, returning empty');
-      return res.json(id ? {} : {});
-    }
+    if (!isConfigured) return res.json(id ? {} : {});
 
     try {
       let query = supabase.from('cms_content').select('*');
@@ -43,7 +37,7 @@ module.exports = async (req, res) => {
 
       const { data, error } = await query;
       if (error) {
-        console.log('[CMS] Supabase error:', error.message);
+        console.log('[CMS] Supabase GET error:', error.message);
         return res.json(id ? {} : {});
       }
 
@@ -60,26 +54,26 @@ module.exports = async (req, res) => {
     }
   }
 
-  // ─── POST (upsert) ───────────────────────────────────────────────────────
+  // ─── POST (upsert) ─────────────────────────────────────────
   if (req.method === 'POST') {
     if (!isAuthenticated(req)) {
-      return res.status(401).json({ error: 'Authentication required' });
+      return res.status(401).json({ error: 'Authentication required. Please log in again.' });
     }
-
     if (!id) {
       return res.status(400).json({ error: 'Content ID is required as ?id=... query param' });
     }
-
-    // Check if Supabase is configured
     if (!isConfigured) {
-      console.log('[CMS] Supabase not configured');
-      return res.status(503).json({ error: 'Database not configured' });
+      return res.status(503).json({ error: 'Database not configured. Add SUPABASE_URL and SUPABASE_KEY to Vercel Environment Variables.' });
+    }
+    if (!hasServiceRole) {
+      console.error('[CMS] SUPABASE_SERVICE_ROLE_KEY is not set.');
+      return res.status(503).json({ error: 'SUPABASE_SERVICE_ROLE_KEY is missing from Vercel Environment Variables. This key is required for saving content.' });
     }
 
     try {
       let body = req.body;
       if (typeof body === 'string') {
-        try { body = JSON.parse(body); } catch (e) { body = {}; }
+        try { body = JSON.parse(body); } catch { body = {}; }
       }
 
       const { data, error } = await supabaseAdmin

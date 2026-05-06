@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
-const supabase = require('./_utils/supabase');
-const { supabaseAdmin, isConfigured } = require('./_utils/supabase');
+const { supabase, supabaseAdmin, hasServiceRole } = require('./_utils/supabase');
 
 const isAuthenticated = (req) => {
   const authHeader = req.headers.authorization;
@@ -25,7 +24,7 @@ module.exports = async function handler(req, res) {
     if (match) id = match[1];
   }
 
-  // ─── GET ───────────────────────────────────────────────────────────────────
+  // ─── GET ───────────────────────────────────────────────────
   if (req.method === 'GET') {
     try {
       if (id) {
@@ -43,15 +42,15 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // ─── POST ──────────────────────────────────────────────────────────────────
+  // Write operations require auth + service role
+  if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
+  if (!hasServiceRole) return res.status(503).json({ message: 'SUPABASE_SERVICE_ROLE_KEY is not configured on the server.' });
+
+  // ─── POST ──────────────────────────────────────────────────
   if (req.method === 'POST') {
-    if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
     try {
       const body = { ...req.body };
       if (body.price) body.price = parseFloat(body.price);
-      if (typeof body.includes === 'string') {
-        body.includes = body.includes.split(',').map(s => s.trim()).filter(Boolean);
-      }
       const { data, error } = await supabaseAdmin.from('packages').insert([body]).select();
       if (error) throw error;
       return res.status(201).json(data[0]);
@@ -60,16 +59,12 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // ─── PUT ───────────────────────────────────────────────────────────────────
+  // ─── PUT ───────────────────────────────────────────────────
   if (req.method === 'PUT') {
-    if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
     if (!id) return res.status(400).json({ message: 'ID is required' });
     try {
       const body = { ...req.body, updated_at: new Date().toISOString() };
       if (body.price) body.price = parseFloat(body.price);
-      if (typeof body.includes === 'string') {
-        body.includes = body.includes.split(',').map(s => s.trim()).filter(Boolean);
-      }
       const { data, error } = await supabaseAdmin.from('packages').update(body).eq('id', id).select();
       if (error) throw error;
       return res.json(data[0]);
@@ -78,9 +73,8 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // ─── DELETE ────────────────────────────────────────────────────────────────
+  // ─── DELETE ────────────────────────────────────────────────
   if (req.method === 'DELETE') {
-    if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
     if (!id) return res.status(400).json({ message: 'ID is required' });
     try {
       const { error } = await supabaseAdmin.from('packages').delete().eq('id', id);

@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
-const supabase = require('./_utils/supabase');
-const { supabaseAdmin } = require('./_utils/supabase');
+const { supabase, supabaseAdmin, hasServiceRole } = require('./_utils/supabase');
 
 const isAuthenticated = (req) => {
   const authHeader = req.headers.authorization;
@@ -11,14 +10,10 @@ const isAuthenticated = (req) => {
   } catch { return false; }
 };
 
-const setCors = (res) => {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-};
-
-module.exports = async function handler(req, res) {
-  setCors(res);
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   const url = new URL(req.url, `http://${req.headers.host}`);
@@ -28,6 +23,7 @@ module.exports = async function handler(req, res) {
     if (match) id = match[1];
   }
 
+  // ─── GET ───────────────────────────────────────────────────
   if (req.method === 'GET') {
     try {
       let query = supabase.from('gallery').select('*').order('created_at', { ascending: false });
@@ -40,8 +36,12 @@ module.exports = async function handler(req, res) {
     }
   }
 
+  // Write operations require auth + service role
+  if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
+  if (!hasServiceRole) return res.status(503).json({ message: 'SUPABASE_SERVICE_ROLE_KEY is not configured on the server.' });
+
+  // ─── POST ──────────────────────────────────────────────────
   if (req.method === 'POST') {
-    if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
     try {
       const body = req.body || {};
       const { data, error } = await supabaseAdmin.from('gallery').insert([body]).select();
@@ -52,8 +52,8 @@ module.exports = async function handler(req, res) {
     }
   }
 
+  // ─── DELETE ────────────────────────────────────────────────
   if (req.method === 'DELETE') {
-    if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
     if (!id) return res.status(400).json({ message: 'ID is required' });
     try {
       const { error } = await supabaseAdmin.from('gallery').delete().eq('id', id);

@@ -1,27 +1,19 @@
 const jwt = require('jsonwebtoken');
-const supabase = require('./_utils/supabase');
-const { supabaseAdmin } = require('./_utils/supabase');
+const { supabase, supabaseAdmin, hasServiceRole } = require('./_utils/supabase');
 
 const isAuthenticated = (req) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) return false;
   try {
-    const token = authHeader.split(' ')[1];
-    jwt.verify(token, process.env.JWT_SECRET || 'secretkey');
+    jwt.verify(authHeader.split(' ')[1], process.env.JWT_SECRET || 'secretkey');
     return true;
-  } catch {
-    return false;
-  }
-};
-
-const setCors = (res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  } catch { return false; }
 };
 
 module.exports = async function handler(req, res) {
-  setCors(res);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   const url = new URL(req.url, `http://${req.headers.host}`);
@@ -31,12 +23,11 @@ module.exports = async function handler(req, res) {
     if (match) id = match[1];
   }
 
-  // ─── GET ───────────────────────────────────────────────────────────────────
+  // ─── GET ───────────────────────────────────────────────────
   if (req.method === 'GET') {
     try {
       let query = supabase.from('tours').select('*').order('created_at', { ascending: false });
       if (id) query = query.eq('id', id).single();
-
       const { data, error } = await query;
       if (error) throw error;
       return res.json(id ? data : (data || []));
@@ -45,16 +36,18 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // ─── POST ──────────────────────────────────────────────────────────────────
+  // Write operations require auth + service role
+  if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
+  if (!hasServiceRole) return res.status(503).json({ message: 'SUPABASE_SERVICE_ROLE_KEY is not configured on the server.' });
+
+  // ─── POST ──────────────────────────────────────────────────
   if (req.method === 'POST') {
-    if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
     try {
       const body = req.body || {};
       if (body.price) body.price = parseFloat(body.price);
       if (typeof body.highlights === 'string') {
         body.highlights = body.highlights.split(',').map(h => h.trim()).filter(Boolean);
       }
-
       const { data, error } = await supabaseAdmin.from('tours').insert([body]).select();
       if (error) throw error;
       return res.status(201).json(data[0]);
@@ -63,9 +56,8 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // ─── PUT (update) ──────────────────────────────────────────────────────────
+  // ─── PUT ───────────────────────────────────────────────────
   if (req.method === 'PUT') {
-    if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
     if (!id) return res.status(400).json({ message: 'ID is required' });
     try {
       const body = req.body || {};
@@ -74,7 +66,6 @@ module.exports = async function handler(req, res) {
         body.highlights = body.highlights.split(',').map(h => h.trim()).filter(Boolean);
       }
       body.updated_at = new Date().toISOString();
-
       const { data, error } = await supabaseAdmin.from('tours').update(body).eq('id', id).select();
       if (error) throw error;
       return res.json(data[0]);
@@ -83,9 +74,8 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // ─── DELETE ────────────────────────────────────────────────────────────────
+  // ─── DELETE ────────────────────────────────────────────────
   if (req.method === 'DELETE') {
-    if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
     if (!id) return res.status(400).json({ message: 'ID is required' });
     try {
       const { error } = await supabaseAdmin.from('tours').delete().eq('id', id);
