@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import axios from 'axios'
+
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const galleryItems = [
   { id: 1, type: 'wide', src: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80', label: 'The Circle of Faith', category: 'Kaaba' },
@@ -17,6 +20,7 @@ const filters = ['All', 'Kaaba', 'Masjid Nabawi', 'Ziyarat', 'Umrah Groups', 'In
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('All')
   const [pageMedia, setPageMedia] = useState({})
+  const [galleryItems, setGalleryItems] = useState([])
   const filtered = activeFilter === 'All' ? galleryItems : galleryItems.filter(i => i.category === activeFilter)
 
   useEffect(() => {
@@ -29,6 +33,23 @@ const Gallery = () => {
         }
       } catch (e) {}
     }
+    axios.get(`${API_BASE}/api/cms?id=page_media`)
+      .then(res => {
+        if (res.data && Object.keys(res.data).length > 0) {
+          setPageMedia(res.data)
+          localStorage.setItem('pageMedia', JSON.stringify(res.data))
+        }
+      })
+      .catch(err => console.error('Failed to fetch page media:', err))
+
+    // Fetch gallery images from API
+    axios.get(`${API_BASE}/api/gallery`)
+      .then(res => {
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          setGalleryItems(res.data)
+        }
+      })
+      .catch(err => console.error('Failed to fetch gallery:', err))
   }, [])
 
   return (

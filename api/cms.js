@@ -1,130 +1,83 @@
 const jwt = require('jsonwebtoken');
+const supabase = require('./_utils/supabase');
+const { supabaseAdmin } = require('./_utils/supabase');
 
-// Simple Supabase client initialization
-const getSupabase = () => {
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY;
-  
-  if (!supabaseUrl || !supabaseKey) {
-    console.log('[CMS] Missing Supabase credentials');
-    return null;
+const isAuthenticated = (req) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith('Bearer ')) return false;
+  try {
+    jwt.verify(authHeader.split(' ')[1], process.env.JWT_SECRET || 'secretkey');
+    return true;
+  } catch (e) {
+    console.log('[CMS] Auth failed:', e.message);
+    return false;
   }
-  
-  const { createClient } = require('@supabase/supabase-js');
-  return createClient(supabaseUrl, supabaseKey);
 };
 
-const supabase = getSupabase();
-
 module.exports = async (req, res) => {
-  // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
-  // Handle preflight
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
 
-  console.log('[CMS] Request:', req.method, 'URL:', req.url);
-  
-  // Parse the id from query string manually
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
   const url = new URL(req.url, `http://${req.headers.host}`);
   const id = url.searchParams.get('id');
-  
-  console.log('[CMS] Query id:', id);
 
-  if (!supabase) {
-    console.log('[CMS] No Supabase connection');
-    return res.status(503).json({ error: 'Database not configured' });
-  }
-
-  // GET - Fetch CMS content
+  // ─── GET ───────────────────────────────────────────────────────────────────
   if (req.method === 'GET') {
     try {
-      console.log('[CMS] GET fetching:', id || 'all');
-      
       let query = supabase.from('cms_content').select('*');
-      
-      if (id) {
-        query = query.eq('id', id);
-      }
-      
+      if (id) query = query.eq('id', id);
+
       const { data, error } = await query;
-      
-      if (error) {
-        console.log('[CMS] GET error:', error);
-        return res.status(400).json({ error: error.message });
-      }
-      
+      if (error) throw error;
+
       if (id) {
-        console.log('[CMS] GET found:', data ? data.length : 0);
+        // Return the content object directly, or empty object if not found
         return res.json(data && data[0] ? data[0].content : {});
       } else {
+        // Return a flat map of id -> content
         const mapped = {};
-        data.forEach(item => { mapped[item.id] = item.content; });
+        (data || []).forEach(item => { mapped[item.id] = item.content; });
         return res.json(mapped);
       }
     } catch (err) {
-      console.log('[CMS] GET catch:', err);
+      console.error('[CMS] GET error:', err);
       return res.status(500).json({ error: err.message });
     }
   }
 
-  // POST - Save CMS content
+  // ─── POST (upsert) ────────────────────────────────────────────────────────
   if (req.method === 'POST') {
-    // Check auth token
-    const authHeader = req.headers.authorization;
-    let isAuth = false;
-    
-    if (authHeader && authHeader.startsWith('Bearer ')) {
-      try {
-        const token = authHeader.replace('Bearer ', '');
-        jwt.verify(token, process.env.JWT_SECRET || 'secretkey');
-        isAuth = true;
-      } catch (e) {
-        console.log('[CMS] Auth failed:', e.message);
-      }
-    }
-    
-    if (!isAuth) {
-      console.log('[CMS] Not authenticated');
+    if (!isAuthenticated(req)) {
       return res.status(401).json({ error: 'Authentication required' });
     }
 
     if (!id) {
-      return res.status(400).json({ error: 'Content ID is required' });
+      return res.status(400).json({ error: 'Content ID is required as ?id=... query param' });
     }
 
     try {
-      // Parse body - Vercel uses req.body differently
       let body = req.body;
       if (typeof body === 'string') {
-        try { body = JSON.parse(body); } catch (e) {}
+        try { body = JSON.parse(body); } catch (e) { body = {}; }
       }
-      
-      console.log('[CMS] POST body:', typeof body, body ? 'has data' : 'empty');
-      
-      // Use INSERT with upsert behavior
-      const { data, error } = await supabase
+
+      const { data, error } = await supabaseAdmin
         .from('cms_content')
-        .upsert({
-          id: id,
-          content: body || {},
-          updated_at: new Date().toISOString()
-        }, { onConflict: 'id' })
+        .upsert(
+          { id, content: body || {}, updated_at: new Date().toISOString() },
+          { onConflict: 'id' }
+        )
         .select();
 
-      if (error) {
-        console.log('[CMS] POST error:', error);
-        return res.status(400).json({ error: error.message });
-      }
+      if (error) throw error;
 
-      console.log('[CMS] POST success:', id);
-      return res.json({ success: true, id });
+      console.log('[CMS] Saved:', id);
+      return res.json({ success: true, id, data: data?.[0] });
     } catch (err) {
-      console.log('[CMS] POST catch:', err);
+      console.error('[CMS] POST error:', err);
       return res.status(500).json({ error: err.message });
     }
   }

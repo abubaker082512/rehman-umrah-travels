@@ -263,114 +263,151 @@ const pageMediaConfig = [
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('packages')
   const [packages, setPackages] = useState([])
+  const [tours, setTours] = useState([])
+  const [visaServices, setVisaServices] = useState([])
+  const [galleryItems, setGalleryItems] = useState([])
+  const [blogPosts, setBlogPosts] = useState([])
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  // Page Media State
   const [pageMedia, setPageMedia] = useState({})
   const [mediaSaving, setMediaSaving] = useState(false)
 
-  // Package form
   const [packageForm, setPackageForm] = useState({
     title: '', description: '', price: '', category: 'Economy',
     duration: '', location: '', hotel_name: '', distance_from_haram: '',
     image_url: '', airline: '', stars: 4, badge: ''
   })
+  const [tourForm, setTourForm] = useState({ title: '', subtitle: '', description: '', price: '', duration: '', image_url: '', highlights: '' })
+  const [visaForm, setVisaForm] = useState({ title: '', description: '', processing_time: '', fee: '', documents: '' })
+  const [blogForm, setBlogForm] = useState({ title: '', excerpt: '', content: '', category: 'Guides', image_url: '', read_time: '' })
+  const [galleryForm, setGalleryForm] = useState({ src: '', label: '', category: 'Kaaba' })
 
-  // Tour form
-  const [tourForm, setTourForm] = useState({
-    title: '', subtitle: '', description: '', price: '', duration: '',
-    image_url: '', highlights: ''
-  })
-
-  // Visa form
-  const [visaForm, setVisaForm] = useState({
-    title: '', description: '', processing_time: '', fee: '', documents: ''
-  })
-
-  // Blog form
-  const [blogForm, setBlogForm] = useState({
-    title: '', excerpt: '', content: '', category: '', image_url: ''
-  })
-
-  // Gallery form
-  const [galleryForm, setGalleryForm] = useState({
-    src: '', label: '', category: 'Kaaba'
-  })
+  const authHdr = () => ({ Authorization: `Bearer ${localStorage.getItem('token')}` })
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (!token) {
-      navigate('/admin/login')
-    }
-    fetchData()
+    if (!localStorage.getItem('token')) { navigate('/admin/login'); return }
+    fetchAll()
     loadPageMedia()
   }, [])
 
   const loadPageMedia = async () => {
     try {
       const res = await axios.get(`${API_BASE}/api/cms?id=page_media`)
-      if (res.data) {
-        setPageMedia(res.data)
-      }
-    } catch (err) {
-      console.error('Error loading page media:', err)
-    }
+      if (res.data && Object.keys(res.data).length > 0) setPageMedia(res.data)
+    } catch (err) { console.error('Error loading page media:', err) }
   }
 
   const savePageMedia = async () => {
-    localStorage.setItem('pageMedia', JSON.stringify(pageMedia))
+    setMediaSaving(true)
     try {
-      await axios.post(`${API_BASE}/api/cms?id=page_media`, pageMedia, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      })
-    } catch (err) {
-      console.log('Saved locally')
-    }
+      await axios.post(`${API_BASE}/api/cms?id=page_media`, pageMedia, { headers: authHdr() })
+      alert('Page media saved successfully!')
+    } catch (err) { alert('Save failed: ' + (err.response?.data?.error || err.message)) }
     setMediaSaving(false)
-    alert('Page media saved successfully!')
   }
 
-  const fetchData = async () => {
+  const fetchAll = async () => {
     setLoading(true)
     try {
-      const res = await axios.get(`${API_BASE}/api/packages`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      })
-      setPackages(Array.isArray(res.data) ? res.data : [])
-    } catch (err) {
-      console.error('Fetch error:', err)
-    }
+      const [pkgR, tourR, visaR, galR, blogR] = await Promise.allSettled([
+        axios.get(`${API_BASE}/api/packages`),
+        axios.get(`${API_BASE}/api/tours`),
+        axios.get(`${API_BASE}/api/visa`),
+        axios.get(`${API_BASE}/api/gallery`),
+        axios.get(`${API_BASE}/api/blog`),
+      ])
+      if (pkgR.status === 'fulfilled') setPackages(Array.isArray(pkgR.value.data) ? pkgR.value.data : [])
+      if (tourR.status === 'fulfilled') setTours(Array.isArray(tourR.value.data) ? tourR.value.data : [])
+      if (visaR.status === 'fulfilled') setVisaServices(Array.isArray(visaR.value.data) ? visaR.value.data : [])
+      if (galR.status === 'fulfilled') setGalleryItems(Array.isArray(galR.value.data) ? galR.value.data : [])
+      if (blogR.status === 'fulfilled') setBlogPosts(Array.isArray(blogR.value.data) ? blogR.value.data : [])
+    } catch (err) { console.error('Fetch error:', err) }
     setLoading(false)
   }
+
+  const fetchData = fetchAll
 
   const handleAddPackage = async (e) => {
     e.preventDefault()
     try {
-      await axios.post(`${API_BASE}/api/packages`, {
-        ...packageForm,
-        price: parseFloat(packageForm.price) || 0
-      }, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      })
+      await axios.post(`${API_BASE}/api/packages`, { ...packageForm, price: parseFloat(packageForm.price) || 0 }, { headers: authHdr() })
       setPackageForm({ title: '', description: '', price: '', category: 'Economy', duration: '', location: '', hotel_name: '', distance_from_haram: '', image_url: '', airline: '', stars: 4, badge: '' })
-      fetchData()
+      fetchAll()
       alert('Package added successfully!')
-    } catch (err) {
-      alert('Error adding package: ' + (err.response?.data?.message || err.message))
-    }
+    } catch (err) { alert('Error: ' + (err.response?.data?.message || err.message)) }
   }
 
   const handleDeletePackage = async (id) => {
-    if (!confirm('Are you sure you want to delete this package?')) return
+    if (!confirm('Delete this package?')) return
     try {
-      await axios.delete(`${API_BASE}/api/packages/${id}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      })
-      fetchData()
-    } catch (err) {
-      alert('Error deleting package')
-    }
+      await axios.delete(`${API_BASE}/api/packages?id=${id}`, { headers: authHdr() })
+      fetchAll()
+    } catch { alert('Error deleting package') }
+  }
+
+  const handleAddTour = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.post(`${API_BASE}/api/tours`, { ...tourForm, price: parseFloat(tourForm.price) || 0 }, { headers: authHdr() })
+      setTourForm({ title: '', subtitle: '', description: '', price: '', duration: '', image_url: '', highlights: '' })
+      fetchAll()
+      alert('Tour added!')
+    } catch (err) { alert('Error: ' + (err.response?.data?.message || err.message)) }
+  }
+
+  const handleDeleteTour = async (id) => {
+    if (!confirm('Delete this tour?')) return
+    try { await axios.delete(`${API_BASE}/api/tours?id=${id}`, { headers: authHdr() }); fetchAll() }
+    catch { alert('Error deleting tour') }
+  }
+
+  const handleAddVisa = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.post(`${API_BASE}/api/visa`, visaForm, { headers: authHdr() })
+      setVisaForm({ title: '', description: '', processing_time: '', fee: '', documents: '' })
+      fetchAll()
+      alert('Visa service added!')
+    } catch (err) { alert('Error: ' + (err.response?.data?.message || err.message)) }
+  }
+
+  const handleDeleteVisa = async (id) => {
+    if (!confirm('Delete this visa service?')) return
+    try { await axios.delete(`${API_BASE}/api/visa?id=${id}`, { headers: authHdr() }); fetchAll() }
+    catch { alert('Error deleting') }
+  }
+
+  const handleAddGallery = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.post(`${API_BASE}/api/gallery`, galleryForm, { headers: authHdr() })
+      setGalleryForm({ src: '', label: '', category: 'Kaaba' })
+      fetchAll()
+      alert('Gallery image added!')
+    } catch (err) { alert('Error: ' + (err.response?.data?.message || err.message)) }
+  }
+
+  const handleDeleteGallery = async (id) => {
+    if (!confirm('Delete this image?')) return
+    try { await axios.delete(`${API_BASE}/api/gallery?id=${id}`, { headers: authHdr() }); fetchAll() }
+    catch { alert('Error deleting') }
+  }
+
+  const handleAddBlog = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.post(`${API_BASE}/api/blog`, blogForm, { headers: authHdr() })
+      setBlogForm({ title: '', excerpt: '', content: '', category: 'Guides', image_url: '', read_time: '' })
+      fetchAll()
+      alert('Blog post published!')
+    } catch (err) { alert('Error: ' + (err.response?.data?.message || err.message)) }
+  }
+
+  const handleDeleteBlog = async (id) => {
+    if (!confirm('Delete this post?')) return
+    try { await axios.delete(`${API_BASE}/api/blog?id=${id}`, { headers: authHdr() }); fetchAll() }
+    catch { alert('Error deleting') }
   }
 
   const handleLogout = () => {
@@ -505,29 +542,33 @@ const AdminDashboard = () => {
               <h2 className="font-notoSerif text-3xl font-bold text-primary mb-8">Manage International Tours</h2>
               <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
                 <h3 className="font-notoSerif text-xl font-bold mb-6">Add New Tour</h3>
-                <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Tour Title (e.g., Turkey Tour)" value={tourForm.title} onChange={e => setTourForm({...tourForm, title: e.target.value})} />
+                <form onSubmit={handleAddTour} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <input required className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Tour Title (e.g., Turkey Tour)" value={tourForm.title} onChange={e => setTourForm({...tourForm, title: e.target.value})} />
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Subtitle (e.g., Istanbul, Cappadocia)" value={tourForm.subtitle} onChange={e => setTourForm({...tourForm, subtitle: e.target.value})} />
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Duration (e.g., 10 Days)" value={tourForm.duration} onChange={e => setTourForm({...tourForm, duration: e.target.value})} />
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Price (PKR)" value={tourForm.price} onChange={e => setTourForm({...tourForm, price: e.target.value})} />
-                  
-                  {/* Image Upload */}
                   <div className="md:col-span-2">
-                    <ImageUpload 
-                      value={tourForm.image_url} 
-                      onChange={(val) => setTourForm({...tourForm, image_url: val})}
-                      label="Tour Image"
-                    />
+                    <ImageUpload value={tourForm.image_url} onChange={(val) => setTourForm({...tourForm, image_url: val})} label="Tour Image" />
                   </div>
-
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Highlights (comma separated)" value={tourForm.highlights} onChange={e => setTourForm({...tourForm, highlights: e.target.value})} />
                   <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Description" rows={3} value={tourForm.description} onChange={e => setTourForm({...tourForm, description: e.target.value})} />
-                  <button type="button" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Add Tour</button>
+                  <button type="submit" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Add Tour</button>
                 </form>
               </div>
-              <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow text-center">
-                <span className="material-symbols-outlined text-6xl text-outline-variant mb-4 block">travel_explore</span>
-                <p className="text-on-surface-variant">Tour management connected to database. Add tours using the form above.</p>
+              <div className="space-y-3">
+                <h3 className="font-notoSerif text-xl font-bold">Existing Tours ({tours.length})</h3>
+                {tours.map(t => (
+                  <div key={t.id} className="bg-surface-container-lowest p-4 rounded-lg flex items-center gap-4 editorial-shadow">
+                    {t.image_url && <img src={t.image_url} alt={t.title} className="w-16 h-16 object-cover rounded flex-shrink-0"/>}
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-primary truncate">{t.title}</p>
+                      <p className="text-sm text-outline">{t.subtitle} • {t.duration}</p>
+                      <p className="text-[#CD9933] font-bold text-sm">PKR {(t.price||0).toLocaleString()}</p>
+                    </div>
+                    <button onClick={()=>handleDeleteTour(t.id)} className="text-red-500 hover:text-red-700 flex-shrink-0"><span className="material-symbols-outlined">delete</span></button>
+                  </div>
+                ))}
+                {!tours.length && <p className="text-center text-on-surface-variant py-4 bg-surface-container-lowest rounded-xl">No tours yet. Add one above.</p>}
               </div>
             </div>
           )}
@@ -538,18 +579,28 @@ const AdminDashboard = () => {
               <h2 className="font-notoSerif text-3xl font-bold text-primary mb-8">Manage Visa Services</h2>
               <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
                 <h3 className="font-notoSerif text-xl font-bold mb-6">Add New Visa Service</h3>
-                <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Visa Title (e.g., Umrah Visa)" value={visaForm.title} onChange={e => setVisaForm({...visaForm, title: e.target.value})} />
+                <form onSubmit={handleAddVisa} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <input required className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Visa Title (e.g., Umrah Visa)" value={visaForm.title} onChange={e => setVisaForm({...visaForm, title: e.target.value})} />
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Processing Time" value={visaForm.processing_time} onChange={e => setVisaForm({...visaForm, processing_time: e.target.value})} />
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Fee (PKR)" value={visaForm.fee} onChange={e => setVisaForm({...visaForm, fee: e.target.value})} />
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Required Documents (comma separated)" value={visaForm.documents} onChange={e => setVisaForm({...visaForm, documents: e.target.value})} />
                   <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Description" rows={3} value={visaForm.description} onChange={e => setVisaForm({...visaForm, description: e.target.value})} />
-                  <button type="button" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Add Visa Service</button>
+                  <button type="submit" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Add Visa Service</button>
                 </form>
               </div>
-              <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow text-center">
-                <span className="material-symbols-outlined text-6xl text-outline-variant mb-4 block">description</span>
-                <p className="text-on-surface-variant">Visa services management. Add and update visa types using the form above.</p>
+              <div className="space-y-3">
+                <h3 className="font-notoSerif text-xl font-bold">Existing Visa Services ({visaServices.length})</h3>
+                {visaServices.map(v => (
+                  <div key={v.id} className="bg-surface-container-lowest p-4 rounded-lg flex items-center gap-4 editorial-shadow">
+                    <span className="material-symbols-outlined text-3xl text-[#CD9933] flex-shrink-0">description</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-primary">{v.title}</p>
+                      <p className="text-sm text-outline">{v.processing_time} • {v.fee}</p>
+                    </div>
+                    <button onClick={()=>handleDeleteVisa(v.id)} className="text-red-500 hover:text-red-700 flex-shrink-0"><span className="material-symbols-outlined">delete</span></button>
+                  </div>
+                ))}
+                {!visaServices.length && <p className="text-center text-on-surface-variant py-4 bg-surface-container-lowest rounded-xl">No visa services yet.</p>}
               </div>
             </div>
           )}
@@ -560,14 +611,10 @@ const AdminDashboard = () => {
               <h2 className="font-notoSerif text-3xl font-bold text-primary mb-8">Manage Gallery</h2>
               <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
                 <h3 className="font-notoSerif text-xl font-bold mb-6">Add New Gallery Image</h3>
-                <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form onSubmit={handleAddGallery} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Image Upload */}
                   <div className="md:col-span-2">
-                    <ImageUpload 
-                      value={galleryForm.src} 
-                      onChange={(val) => setGalleryForm({...galleryForm, src: val})}
-                      label="Gallery Image"
-                    />
+                    <ImageUpload value={galleryForm.src} onChange={(val) => setGalleryForm({...galleryForm, src: val})} label="Gallery Image" />
                   </div>
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Label / Title" value={galleryForm.label} onChange={e => setGalleryForm({...galleryForm, label: e.target.value})} />
                   <select className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" value={galleryForm.category} onChange={e => setGalleryForm({...galleryForm, category: e.target.value})}>
@@ -577,12 +624,23 @@ const AdminDashboard = () => {
                     <option>Umrah Groups</option>
                     <option>International Tours</option>
                   </select>
-                  <button type="button" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm hover:brightness-110 transition-all">Add Image</button>
+                  <button type="submit" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm hover:brightness-110 transition-all">Add Image</button>
                 </form>
               </div>
-              <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow text-center">
-                <span className="material-symbols-outlined text-6xl text-outline-variant mb-4 block">photo_library</span>
-                <p className="text-on-surface-variant">Gallery management. Upload and categorize images for the gallery page.</p>
+              <div className="space-y-3">
+                <h3 className="font-notoSerif text-xl font-bold">Gallery Images ({galleryItems.length})</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {galleryItems.map(g => (
+                    <div key={g.id} className="relative group">
+                      <img src={g.src} alt={g.label} className="w-full h-32 object-cover rounded-lg"/>
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                        <button onClick={()=>handleDeleteGallery(g.id)} className="text-white bg-red-500 rounded-full p-1"><span className="material-symbols-outlined text-sm">delete</span></button>
+                      </div>
+                      <p className="text-xs text-center mt-1 text-outline truncate">{g.label||g.category}</p>
+                    </div>
+                  ))}
+                </div>
+                {!galleryItems.length && <p className="text-center text-on-surface-variant py-4 bg-surface-container-lowest rounded-xl">No gallery images yet.</p>}
               </div>
             </div>
           )}
@@ -593,8 +651,8 @@ const AdminDashboard = () => {
               <h2 className="font-notoSerif text-3xl font-bold text-primary mb-8">Manage Blog Posts</h2>
               <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow mb-8">
                 <h3 className="font-notoSerif text-xl font-bold mb-6">Add New Blog Post</h3>
-                <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Post Title" value={blogForm.title} onChange={e => setBlogForm({...blogForm, title: e.target.value})} />
+                <form onSubmit={handleAddBlog} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <input required className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Post Title" value={blogForm.title} onChange={e => setBlogForm({...blogForm, title: e.target.value})} />
                   <select className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" value={blogForm.category} onChange={e => setBlogForm({...blogForm, category: e.target.value})}>
                     <option>Guides</option>
                     <option>Planning</option>
@@ -603,24 +661,27 @@ const AdminDashboard = () => {
                     <option>History</option>
                   </select>
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Read Time (e.g., 5 min read)" value={blogForm.read_time} onChange={e => setBlogForm({...blogForm, read_time: e.target.value})} />
-                  
-                  {/* Image Upload */}
                   <div className="md:col-span-2">
-                    <ImageUpload 
-                      value={blogForm.image_url} 
-                      onChange={(val) => setBlogForm({...blogForm, image_url: val})}
-                      label="Featured Image"
-                    />
+                    <ImageUpload value={blogForm.image_url} onChange={(val) => setBlogForm({...blogForm, image_url: val})} label="Featured Image" />
                   </div>
-
                   <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Excerpt" rows={2} value={blogForm.excerpt} onChange={e => setBlogForm({...blogForm, excerpt: e.target.value})} />
                   <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Full Content" rows={4} value={blogForm.content} onChange={e => setBlogForm({...blogForm, content: e.target.value})} />
-                  <button type="button" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Publish Post</button>
+                  <button type="submit" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Publish Post</button>
                 </form>
               </div>
-              <div className="bg-surface-container-lowest p-8 rounded-xl editorial-shadow text-center">
-                <span className="material-symbols-outlined text-6xl text-outline-variant mb-4 block">article</span>
-                <p className="text-on-surface-variant">Blog management. Create and publish articles for SEO and customer engagement.</p>
+              <div className="space-y-3">
+                <h3 className="font-notoSerif text-xl font-bold">Blog Posts ({blogPosts.length})</h3>
+                {blogPosts.map(b => (
+                  <div key={b.id} className="bg-surface-container-lowest p-4 rounded-lg flex items-center gap-4 editorial-shadow">
+                    {b.image_url && <img src={b.image_url} alt={b.title} className="w-16 h-16 object-cover rounded flex-shrink-0"/>}
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-primary truncate">{b.title}</p>
+                      <p className="text-sm text-outline">{b.category} • {b.read_time}</p>
+                    </div>
+                    <button onClick={()=>handleDeleteBlog(b.id)} className="text-red-500 hover:text-red-700 flex-shrink-0"><span className="material-symbols-outlined">delete</span></button>
+                  </div>
+                ))}
+                {!blogPosts.length && <p className="text-center text-on-surface-variant py-4 bg-surface-container-lowest rounded-xl">No posts yet.</p>}
               </div>
             </div>
           )}

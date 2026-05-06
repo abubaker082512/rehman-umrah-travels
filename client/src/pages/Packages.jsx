@@ -77,6 +77,15 @@ const Packages = () => {
         }
       } catch (e) {}
     }
+
+    axios.get(`${API_BASE}/api/cms?id=page_media`)
+      .then(res => {
+        if (res.data && Object.keys(res.data).length > 0) {
+          setPageMedia(res.data)
+          localStorage.setItem('pageMedia', JSON.stringify(res.data))
+        }
+      })
+      .catch(err => console.error('Failed to fetch page media:', err))
   }, [])
 
   return (

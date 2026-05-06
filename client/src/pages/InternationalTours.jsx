@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import axios from 'axios'
+
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const tours = [
   {
@@ -48,6 +51,7 @@ const tours = [
 
 const InternationalTours = () => {
   const [pageMedia, setPageMedia] = useState({})
+  const [tours, setTours] = useState([])
 
   useEffect(() => {
     const savedMedia = localStorage.getItem('pageMedia')
@@ -59,6 +63,22 @@ const InternationalTours = () => {
         }
       } catch (e) {}
     }
+    axios.get(`${API_BASE}/api/cms?id=page_media`)
+      .then(res => {
+        if (res.data && Object.keys(res.data).length > 0) {
+          setPageMedia(res.data)
+          localStorage.setItem('pageMedia', JSON.stringify(res.data))
+        }
+      })
+      .catch(err => console.error('Failed to fetch page media:', err))
+
+    axios.get(`${API_BASE}/api/tours`)
+      .then(res => {
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          setTours(res.data)
+        }
+      })
+      .catch(err => console.error('Failed to fetch tours:', err))
   }, [])
 
   return (

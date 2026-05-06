@@ -74,39 +74,45 @@ const Home = () => {
         setPackages(staticPackages)
       })
 
-    // Fetch CMS content - try localStorage first, then API
+    // Fetch CMS content from API with localStorage fallback
     const savedCms = localStorage.getItem('cms_home')
     if (savedCms) {
       try {
         const parsed = JSON.parse(savedCms)
         if (parsed && Object.keys(parsed).length > 0) {
           setCmsContent(prev => ({ ...prev, ...parsed }))
-          console.log('Loaded CMS from localStorage')
         }
       } catch (e) {}
     }
 
-    // Load page media from localStorage
+    axios.get(`${API_BASE}/api/cms?id=cms_home`)
+      .then(res => {
+        if (res.data && Object.keys(res.data).length > 0) {
+          setCmsContent(prev => ({ ...prev, ...res.data }))
+          localStorage.setItem('cms_home', JSON.stringify(res.data))
+        }
+      })
+      .catch(err => console.error('Failed to fetch CMS content:', err))
+
+    // Fetch page_media from API with localStorage fallback
     const savedMedia = localStorage.getItem('pageMedia')
     if (savedMedia) {
       try {
         const parsed = JSON.parse(savedMedia)
         if (parsed && Object.keys(parsed).length > 0) {
           setPageMedia(parsed)
-          console.log('Loaded page media from localStorage')
         }
       } catch (e) {}
     }
-    
-    axios.get(`${API_BASE}/api/cms?id=cms_home`)
+
+    axios.get(`${API_BASE}/api/cms?id=page_media`)
       .then(res => {
         if (res.data && Object.keys(res.data).length > 0) {
-          setCmsContent(prev => ({ ...prev, ...res.data }))
-          // Also save to localStorage for offline
-          localStorage.setItem('cms_home', JSON.stringify(res.data))
+          setPageMedia(res.data)
+          localStorage.setItem('pageMedia', JSON.stringify(res.data))
         }
       })
-      .catch(err => console.error('Failed to fetch CMS content:', err))
+      .catch(err => console.error('Failed to fetch page media:', err))
   }, [])
   return (
     <div className="bg-surface font-manrope text-on-surface">

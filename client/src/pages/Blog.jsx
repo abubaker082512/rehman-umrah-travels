@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import axios from 'axios'
+
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const blogPosts = [
   {
@@ -155,8 +158,9 @@ const categories = ['All', 'Guides', 'Planning', 'Destinations', 'Packages', 'Hi
 
 const Blog = () => {
   const [pageMedia, setPageMedia] = useState({})
-  const featuredPost = blogPosts.find(p => p.featured)
-  const regularPosts = blogPosts.filter(p => !p.featured)
+  const [blogPosts, setBlogPosts] = useState([])
+  const [featuredPost, setFeaturedPost] = useState(null)
+  const [regularPosts, setRegularPosts] = useState([])
 
   useEffect(() => {
     const savedMedia = localStorage.getItem('pageMedia')
@@ -168,6 +172,24 @@ const Blog = () => {
         }
       } catch (e) {}
     }
+    axios.get(`${API_BASE}/api/cms?id=page_media`)
+      .then(res => {
+        if (res.data && Object.keys(res.data).length > 0) {
+          setPageMedia(res.data)
+          localStorage.setItem('pageMedia', JSON.stringify(res.data))
+        }
+      })
+      .catch(err => console.error('Failed to fetch page media:', err))
+
+    axios.get(`${API_BASE}/api/blog`)
+      .then(res => {
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          setBlogPosts(res.data)
+          setFeaturedPost(res.data.find(p => p.featured))
+          setRegularPosts(res.data.filter(p => !p.featured))
+        }
+      })
+      .catch(err => console.error('Failed to fetch blog posts:', err))
   }, [])
 
   return (

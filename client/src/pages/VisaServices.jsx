@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import axios from 'axios'
+
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const visaServices = [
   {
@@ -53,6 +56,7 @@ const visaServices = [
 
 const VisaServices = () => {
   const [pageMedia, setPageMedia] = useState({})
+  const [visaServices, setVisaServices] = useState([])
 
   useEffect(() => {
     const savedMedia = localStorage.getItem('pageMedia')
@@ -64,6 +68,22 @@ const VisaServices = () => {
         }
       } catch (e) {}
     }
+    axios.get(`${API_BASE}/api/cms?id=page_media`)
+      .then(res => {
+        if (res.data && Object.keys(res.data).length > 0) {
+          setPageMedia(res.data)
+          localStorage.setItem('pageMedia', JSON.stringify(res.data))
+        }
+      })
+      .catch(err => console.error('Failed to fetch page media:', err))
+
+    axios.get(`${API_BASE}/api/visa`)
+      .then(res => {
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          setVisaServices(res.data)
+        }
+      })
+      .catch(err => console.error('Failed to fetch visa services:', err))
   }, [])
 
   return (

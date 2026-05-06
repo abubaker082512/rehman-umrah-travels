@@ -6,38 +6,40 @@ const isAuthenticated = (req) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) return false;
   try {
-    jwt.verify(authHeader.split(' ')[1], process.env.JWT_SECRET || 'secretkey');
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, process.env.JWT_SECRET || 'secretkey');
     return true;
-  } catch { return false; }
+  } catch {
+    return false;
+  }
 };
 
-module.exports = async function handler(req, res) {
+const setCors = (res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+};
+
+module.exports = async function handler(req, res) {
+  setCors(res);
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  const { url } = req;
-  const urlObj = new URL(url, `http://${req.headers.host}`);
-  let id = urlObj.searchParams.get('id');
+  const url = new URL(req.url, `http://${req.headers.host}`);
+  let id = url.searchParams.get('id');
   if (!id) {
-    const match = url.match(/\/([a-f0-9-]{36})(?:\?|$)/i);
+    const match = req.url.match(/\/([a-f0-9-]{36})(?:\?|$)/i);
     if (match) id = match[1];
   }
 
   // ─── GET ───────────────────────────────────────────────────────────────────
   if (req.method === 'GET') {
     try {
-      if (id) {
-        const { data, error } = await supabase.from('packages').select('*').eq('id', id).single();
-        if (error) throw error;
-        if (!data) return res.status(404).json({ message: 'Package not found' });
-        return res.json(data);
-      } else {
-        const { data, error } = await supabase.from('packages').select('*').order('created_at', { ascending: false });
-        if (error) throw error;
-        return res.json(data || []);
-      }
+      let query = supabase.from('tours').select('*').order('created_at', { ascending: false });
+      if (id) query = query.eq('id', id).single();
+
+      const { data, error } = await query;
+      if (error) throw error;
+      return res.json(id ? data : (data || []));
     } catch (err) {
       return res.status(500).json({ message: err.message });
     }
@@ -47,12 +49,13 @@ module.exports = async function handler(req, res) {
   if (req.method === 'POST') {
     if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
     try {
-      const body = { ...req.body };
+      const body = req.body || {};
       if (body.price) body.price = parseFloat(body.price);
-      if (typeof body.includes === 'string') {
-        body.includes = body.includes.split(',').map(s => s.trim()).filter(Boolean);
+      if (typeof body.highlights === 'string') {
+        body.highlights = body.highlights.split(',').map(h => h.trim()).filter(Boolean);
       }
-      const { data, error } = await supabaseAdmin.from('packages').insert([body]).select();
+
+      const { data, error } = await supabaseAdmin.from('tours').insert([body]).select();
       if (error) throw error;
       return res.status(201).json(data[0]);
     } catch (err) {
@@ -60,17 +63,19 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // ─── PUT ───────────────────────────────────────────────────────────────────
+  // ─── PUT (update) ──────────────────────────────────────────────────────────
   if (req.method === 'PUT') {
     if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
     if (!id) return res.status(400).json({ message: 'ID is required' });
     try {
-      const body = { ...req.body, updated_at: new Date().toISOString() };
+      const body = req.body || {};
       if (body.price) body.price = parseFloat(body.price);
-      if (typeof body.includes === 'string') {
-        body.includes = body.includes.split(',').map(s => s.trim()).filter(Boolean);
+      if (typeof body.highlights === 'string') {
+        body.highlights = body.highlights.split(',').map(h => h.trim()).filter(Boolean);
       }
-      const { data, error } = await supabaseAdmin.from('packages').update(body).eq('id', id).select();
+      body.updated_at = new Date().toISOString();
+
+      const { data, error } = await supabaseAdmin.from('tours').update(body).eq('id', id).select();
       if (error) throw error;
       return res.json(data[0]);
     } catch (err) {
@@ -83,9 +88,9 @@ module.exports = async function handler(req, res) {
     if (!isAuthenticated(req)) return res.status(401).json({ message: 'Authentication required' });
     if (!id) return res.status(400).json({ message: 'ID is required' });
     try {
-      const { error } = await supabaseAdmin.from('packages').delete().eq('id', id);
+      const { error } = await supabaseAdmin.from('tours').delete().eq('id', id);
       if (error) throw error;
-      return res.json({ message: 'Package deleted' });
+      return res.json({ message: 'Tour deleted' });
     } catch (err) {
       return res.status(500).json({ message: err.message });
     }

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import axios from 'axios'
+
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const faqCategories = [
   {
@@ -47,6 +50,9 @@ const FAQ = () => {
   const [activeCategory, setActiveCategory] = useState(0)
   const [openIndex, setOpenIndex] = useState(null)
   const [pageMedia, setPageMedia] = useState({})
+  const [faqCategories, setFaqCategories] = useState([
+    { title: 'Umrah Packages', icon: 'mosque', faqs: [{ q: 'Loading...', a: 'FAQs loading...' }] }
+  ])
 
   const toggleFaq = (index) => {
     setOpenIndex(openIndex === index ? null : index)
@@ -62,6 +68,28 @@ const FAQ = () => {
         }
       } catch (e) {}
     }
+    axios.get(`${API_BASE}/api/cms?id=page_media`)
+      .then(res => {
+        if (res.data && Object.keys(res.data).length > 0) {
+          setPageMedia(res.data)
+          localStorage.setItem('pageMedia', JSON.stringify(res.data))
+        }
+      })
+      .catch(err => console.error('Failed to fetch page media:', err))
+
+    axios.get(`${API_BASE}/api/cms?id=cms_faq`)
+      .then(res => {
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          const categories = {}
+          res.data.forEach(faq => {
+            const cat = faq.category || 'General'
+            if (!categories[cat]) categories[cat] = { title: cat, icon: 'help', faqs: [] }
+            categories[cat].faqs.push({ q: faq.question, a: faq.answer })
+          })
+          setFaqCategories(Object.values(categories))
+        }
+      })
+      .catch(err => console.error('Failed to fetch FAQs:', err))
   }, [])
 
   return (

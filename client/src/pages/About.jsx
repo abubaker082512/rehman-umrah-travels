@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import axios from 'axios'
+
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const About = () => {
   const [pageMedia, setPageMedia] = useState({})
 
   useEffect(() => {
+    // Fetch from localStorage first
     const savedMedia = localStorage.getItem('pageMedia')
     if (savedMedia) {
       try {
@@ -16,6 +20,15 @@ const About = () => {
         }
       } catch (e) {}
     }
+    // Then fetch from API
+    axios.get(`${API_BASE}/api/cms?id=page_media`)
+      .then(res => {
+        if (res.data && Object.keys(res.data).length > 0) {
+          setPageMedia(res.data)
+          localStorage.setItem('pageMedia', JSON.stringify(res.data))
+        }
+      })
+      .catch(err => console.error('Failed to fetch page media:', err))
   }, [])
 
   return (
