@@ -173,7 +173,7 @@ const Home2 = () => {
             className="w-full h-full object-cover" 
             src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1600&q=80" 
           />
-          <div className="absolute inset-0 bg-black/45"></div>
+          <div className="absolute inset-0 bg-[#013334]/40"></div>
         </div>
 
         {/* Minimalist Centered Brand Logo Overlay (Teal & Gold) */}
