@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import logo from '../assets/Rehman Travel Logo.png'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
-// High-fidelity fallback package data matching screen_user.png exactly
+// High-fidelity fallback package data matching screen_user.png layout in Rehman color scheme
 const staticInternationalTours = [
   {
     id: 101,
@@ -115,55 +116,49 @@ const Home2 = () => {
   }
 
   return (
-    <div className="bg-white font-sans antialiased text-gray-700 min-h-screen">
+    <div className="bg-white font-manrope antialiased text-gray-700 min-h-screen">
       
-      {/* 1. Header & Navigation (Transparent Overlay Style) */}
+      {/* 1. Header & Navigation (Transparent Overlay Style - Teal & Gold Theme) */}
       <header className="absolute top-0 left-0 right-0 z-50 w-full">
-        {/* Top Navy Info Bar */}
-        <div className="bg-[#0f2e5c] text-white/80 py-2.5 px-6 md:px-12 flex justify-between items-center text-xs font-medium tracking-wide">
+        {/* Top Teal Info Bar */}
+        <div className="bg-[#013334] text-white/80 py-2.5 px-6 md:px-12 flex justify-between items-center text-xs font-semibold tracking-wide">
           <div className="flex items-center gap-6">
-            <a href="tel:+923001234567" className="flex items-center gap-2 hover:text-[#00a2e8] transition-colors">
+            <a href="tel:+923001234567" className="flex items-center gap-2 hover:text-[#CD9933] transition-colors">
               <span className="material-symbols-outlined text-[14px]">phone_in_talk</span>
               <span>+92 300 1234567</span>
             </a>
-            <a href="mailto:info@wanderertravels.com" className="flex items-center gap-2 hover:text-[#00a2e8] transition-colors">
+            <a href="mailto:info@rehmanumrah.com" className="flex items-center gap-2 hover:text-[#CD9933] transition-colors">
               <span className="material-symbols-outlined text-[14px]">mail</span>
-              <span>info@wanderertravels.com</span>
+              <span>info@rehmanumrah.com</span>
             </a>
           </div>
           <div className="hidden sm:flex items-center gap-4">
-            <a href="#" className="hover:text-[#00a2e8] transition-colors"><i className="fab fa-facebook-f"></i></a>
-            <a href="#" className="hover:text-[#00a2e8] transition-colors"><i className="fab fa-twitter"></i></a>
-            <a href="#" className="hover:text-[#00a2e8] transition-colors"><i className="fab fa-instagram"></i></a>
-            <a href="#" className="hover:text-[#00a2e8] transition-colors"><i className="fab fa-linkedin-in"></i></a>
-            <a href="#" className="hover:text-[#00a2e8] transition-colors"><i className="fab fa-youtube"></i></a>
+            <a href="#" className="hover:text-[#CD9933] transition-colors"><i className="fab fa-facebook-f"></i></a>
+            <a href="#" className="hover:text-[#CD9933] transition-colors"><i className="fab fa-twitter"></i></a>
+            <a href="#" className="hover:text-[#CD9933] transition-colors"><i className="fab fa-instagram"></i></a>
+            <a href="#" className="hover:text-[#CD9933] transition-colors"><i className="fab fa-linkedin-in"></i></a>
+            <a href="#" className="hover:text-[#CD9933] transition-colors"><i className="fab fa-youtube"></i></a>
           </div>
         </div>
 
         {/* Main Navbar Overlay */}
         <nav className="px-6 md:px-12 py-5 flex justify-between items-center bg-transparent">
-          {/* Logo (WANDERER / WAY OF LIFE) */}
-          <Link to="/" className="flex flex-col select-none group">
-            <span className="text-white text-3xl font-extrabold tracking-widest uppercase font-sans">
-              WANDERER
-              <span className="text-[#00a2e8]">/</span>
-            </span>
-            <span className="text-white/60 text-[9px] font-bold tracking-[0.38em] uppercase -mt-1 pl-[2px] group-hover:text-white transition-colors">
-              WAY OF LIFE
-            </span>
+          {/* Logo (Rehman Travel Logo image) */}
+          <Link to="/" className="flex items-center gap-2 select-none">
+            <img src={logo} alt="Rehman Umrah & Travels Logo" className="h-8 sm:h-10 w-auto" />
           </Link>
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-8 text-xs font-bold tracking-[0.2em] text-white">
-            <Link to="/" className="hover:text-[#00a2e8] transition-colors uppercase">HOME</Link>
-            <Link to="/flights" className="hover:text-[#00a2e8] transition-colors uppercase">AIRLINE TICKETING</Link>
-            <Link to="/visa-services" className="hover:text-[#00a2e8] transition-colors uppercase">VISA INQUIRY</Link>
-            <Link to="/about" className="hover:text-[#00a2e8] transition-colors uppercase">PARTNERS</Link>
-            <Link to="/contact" className="hover:text-[#00a2e8] transition-colors uppercase">CONTACT</Link>
+            <Link to="/" className="hover:text-[#CD9933] transition-colors uppercase">HOME</Link>
+            <Link to="/flights" className="hover:text-[#CD9933] transition-colors uppercase">AIRLINE TICKETING</Link>
+            <Link to="/visa-services" className="hover:text-[#CD9933] transition-colors uppercase">VISA INQUIRY</Link>
+            <Link to="/about" className="hover:text-[#CD9933] transition-colors uppercase">PARTNERS</Link>
+            <Link to="/contact" className="hover:text-[#CD9933] transition-colors uppercase">CONTACT</Link>
           </div>
 
-          {/* Mobile Menu Icon (Quick Trigger to /contact) */}
-          <Link to="/contact" className="md:hidden text-white hover:text-[#00a2e8] transition-colors">
+          {/* Mobile Menu Icon */}
+          <Link to="/contact" className="md:hidden text-white hover:text-[#CD9933] transition-colors">
             <span className="material-symbols-outlined text-2xl">menu</span>
           </Link>
         </nav>
@@ -181,14 +176,14 @@ const Home2 = () => {
           <div className="absolute inset-0 bg-black/45"></div>
         </div>
 
-        {/* Minimalist Centered Brand Logo Overlay */}
+        {/* Minimalist Centered Brand Logo Overlay (Teal & Gold) */}
         <div className="relative z-10 text-center text-white px-6">
-          <h1 className="text-white text-6xl md:text-8xl font-black tracking-[0.25em] uppercase font-sans animate-fade-in">
-            WANDERER
+          <h1 className="text-white text-6xl md:text-8xl font-bold tracking-[0.25em] uppercase font-headline animate-fade-in">
+            REHMAN
           </h1>
-          <div className="h-[2px] w-24 bg-[#00a2e8] mx-auto my-4"></div>
-          <p className="text-white/80 text-sm md:text-base font-bold tracking-[0.45em] uppercase">
-            WAY OF LIFE
+          <div className="h-[2px] w-24 bg-[#CD9933] mx-auto my-4"></div>
+          <p className="text-[#CD9933] text-sm md:text-base font-bold tracking-[0.45em] uppercase">
+            UMRAH & TRAVELS
           </p>
         </div>
       </section>
@@ -211,55 +206,55 @@ const Home2 = () => {
           {/* Left Column Text Details */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <span className="text-[#00a2e8] font-bold text-xs uppercase tracking-widest">WHO WE ARE</span>
-              <div className="h-[1px] w-12 bg-[#00a2e8]"></div>
+              <span className="text-[#CD9933] font-bold text-xs uppercase tracking-widest">WHO WE ARE</span>
+              <div className="h-[1px] w-12 bg-[#CD9933]"></div>
             </div>
-            <h2 className="text-[#0f2e5c] text-3xl md:text-4xl font-extrabold tracking-wide uppercase font-sans">
-              BEST TRAVEL AGENCY IN RAWALPINDI
+            <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
+              BEST TRAVEL AGENCY IN RAWALPINDI & LAHORE
             </h2>
             <p className="text-gray-500 leading-relaxed text-sm">
-              At Wanderer, we treat every travel plan as a customized masterclass of spiritual fulfillment, logistics comfort, and exploration freedom. Over the years, we have built key flight alignments and hotel partnerships worldwide to deliver high-fidelity journeys that stay with you forever.
+              At Rehman Umrah & Travels, we treat every travel plan as a customized masterclass of spiritual fulfillment, logistics comfort, and exploration freedom. Over the years, we have built key flight alignments and hotel partnerships worldwide to deliver high-fidelity journeys that stay with you forever.
             </p>
             
             {/* Elegant 8-Item Double-Column List */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5 text-xs text-gray-600 font-bold uppercase tracking-wider">
               <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
                 <span>Economy Class Flights</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
                 <span>3-Star Accommodations</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
                 <span>Business Class Flights</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
                 <span>4-Star Accommodations</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
                 <span>First Class Flight Booking</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
                 <span>5-Star Accommodations</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
                 <span>Local Tour Packages</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
                 <span>International Tour Packages</span>
               </div>
             </div>
             
             <Link 
               to="/about" 
-              className="inline-block bg-[#0f2e5c] hover:bg-[#00a2e8] text-white px-8 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+              className="inline-block bg-[#013334] hover:bg-[#CD9933] text-white px-8 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
             >
               READ MORE
             </Link>
@@ -267,7 +262,7 @@ const Home2 = () => {
 
           {/* Right Column Graphic Collage */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-[#00a2e8] translate-x-3 translate-y-3 -z-10 group-hover:translate-x-1.5 group-hover:translate-y-1.5 transition-transform duration-300"></div>
+            <div className="absolute inset-0 bg-[#CD9933] translate-x-3 translate-y-3 -z-10 group-hover:translate-x-1.5 group-hover:translate-y-1.5 transition-transform duration-300"></div>
             <img 
               alt="Luxury traveler collage illustration mockup landscape" 
               className="w-full h-auto object-cover shadow-xl border border-gray-100" 
@@ -282,14 +277,14 @@ const Home2 = () => {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16 space-y-3">
-            <div className="flex items-center justify-center gap-2 text-[#00a2e8]">
+            <div className="flex items-center justify-center gap-2 text-[#CD9933]">
               <span className="material-symbols-outlined text-sm">rocket_launch</span>
               <span className="font-bold text-xs uppercase tracking-widest">PACKAGES AND GO</span>
             </div>
-            <h2 className="text-[#0f2e5c] text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
+            <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
               INTERNATIONAL TOURS
             </h2>
-            <div className="h-[2px] w-16 bg-[#00a2e8] mx-auto mt-4"></div>
+            <div className="h-[2px] w-16 bg-[#CD9933] mx-auto mt-4"></div>
           </div>
 
           {/* 3-Column Card Grid */}
@@ -303,14 +298,14 @@ const Home2 = () => {
 
               return (
                 <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
-                  {/* Top Image with Blue overlay Badge */}
+                  {/* Top Image with Gold overlay Badge */}
                   <div className="relative h-64 overflow-hidden shrink-0">
                     <img 
                       alt={pkg.title} 
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
                       src={img} 
                     />
-                    <div className="absolute top-4 left-4 bg-[#00a2e8] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
+                    <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
                       {badge}
                     </div>
                   </div>
@@ -318,10 +313,10 @@ const Home2 = () => {
                   {/* Card Content details */}
                   <div className="p-8 flex-1 flex flex-col justify-between">
                     <div className="space-y-4">
-                      <h3 className="text-[#0f2e5c] font-extrabold text-lg tracking-wide uppercase line-clamp-2">
+                      <h3 className="text-[#013334] font-bold text-lg tracking-wide uppercase font-headline line-clamp-2">
                         {pkg.title}
                       </h3>
-                      <p className="text-[#00a2e8] font-extrabold text-sm uppercase tracking-wider">
+                      <p className="text-[#CD9933] font-bold text-sm uppercase tracking-wider">
                         PKR {price.toLocaleString()} | {duration}
                       </p>
                       <p className="text-gray-500 text-xs leading-relaxed line-clamp-3">
@@ -333,7 +328,7 @@ const Home2 = () => {
                     <div className="flex gap-4 mt-8 pt-6 border-t border-gray-100">
                       <Link 
                         to={`/package/${pkg.id || idx + 1}`} 
-                        className="flex-1 bg-gray-900 hover:bg-[#00a2e8] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                        className="flex-1 bg-gray-900 hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                       >
                         READ MORE
                       </Link>
@@ -341,7 +336,7 @@ const Home2 = () => {
                         href="https://wa.me/923001234567" 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="flex-1 bg-[#0f2e5c] hover:bg-[#00a2e8] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                        className="flex-1 bg-[#013334] hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                       >
                         BOOK NOW
                       </a>
@@ -356,7 +351,7 @@ const Home2 = () => {
           <div className="text-center mt-16">
             <Link 
               to="/packages" 
-              className="inline-block border-2 border-gray-300 hover:border-[#00a2e8] text-gray-700 hover:text-[#00a2e8] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+              className="inline-block border-2 border-gray-300 hover:border-[#CD9933] text-gray-700 hover:text-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
             >
               MORE TOURS
             </Link>
@@ -366,18 +361,19 @@ const Home2 = () => {
 
       {/* 6. "Go Explore" CTA Banner */}
       <section className="relative py-32 px-6 overflow-hidden">
+        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
             alt="Massive panoramic dark mountains wilderness" 
             className="w-full h-full object-cover" 
             src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80" 
           />
-          <div className="absolute inset-0 bg-[#0f2e5c]/75"></div>
+          <div className="absolute inset-0 bg-[#013334]/85"></div>
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center text-white space-y-6">
-          <span className="text-[#00a2e8] font-bold text-xs uppercase tracking-[0.3em] block">IT'S A BIG WORLD OUT THERE</span>
-          <h2 className="text-white text-5xl md:text-7xl font-black tracking-widest uppercase font-sans">
+          <span className="text-[#f6bd54] font-bold text-xs uppercase tracking-[0.3em] block">IT'S A BIG WORLD OUT THERE</span>
+          <h2 className="text-white text-5xl md:text-7xl font-bold tracking-widest uppercase font-headline">
             GO EXPLORE
           </h2>
           <p className="text-white/70 max-w-2xl mx-auto text-sm leading-relaxed font-light">
@@ -386,7 +382,7 @@ const Home2 = () => {
           <div className="pt-4">
             <Link 
               to="/packages" 
-              className="inline-block bg-[#00a2e8] hover:bg-white hover:text-[#0f2e5c] text-white px-10 py-4 text-xs font-bold tracking-widest uppercase transition-all shadow-lg"
+              className="inline-block bg-[#CD9933] hover:bg-white hover:text-[#013334] text-white px-10 py-4 text-xs font-bold tracking-widest uppercase transition-all shadow-lg"
             >
               READ MORE
             </Link>
@@ -399,14 +395,14 @@ const Home2 = () => {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16 space-y-3">
-            <div className="flex items-center justify-center gap-2 text-[#00a2e8]">
+            <div className="flex items-center justify-center gap-2 text-[#CD9933]">
               <span className="material-symbols-outlined text-sm">terrain</span>
               <span className="font-bold text-xs uppercase tracking-widest">PACKAGES AND GO</span>
             </div>
-            <h2 className="text-[#0f2e5c] text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
+            <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
               LOCAL TOURS
             </h2>
-            <div className="h-[2px] w-16 bg-[#00a2e8] mx-auto mt-4"></div>
+            <div className="h-[2px] w-16 bg-[#CD9933] mx-auto mt-4"></div>
           </div>
 
           {/* 3-Column Card Grid */}
@@ -420,14 +416,14 @@ const Home2 = () => {
 
               return (
                 <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
-                  {/* Top Image with Blue overlay Badge */}
+                  {/* Top Image with Gold Badge */}
                   <div className="relative h-64 overflow-hidden shrink-0">
                     <img 
                       alt={pkg.title} 
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
                       src={img} 
                     />
-                    <div className="absolute top-4 left-4 bg-[#00a2e8] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
+                    <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
                       {badge}
                     </div>
                   </div>
@@ -435,10 +431,10 @@ const Home2 = () => {
                   {/* Card Content details */}
                   <div className="p-8 flex-1 flex flex-col justify-between">
                     <div className="space-y-4">
-                      <h3 className="text-[#0f2e5c] font-extrabold text-lg tracking-wide uppercase line-clamp-2">
+                      <h3 className="text-[#013334] font-bold text-lg tracking-wide uppercase font-headline line-clamp-2">
                         {pkg.title}
                       </h3>
-                      <p className="text-[#00a2e8] font-extrabold text-sm uppercase tracking-wider">
+                      <p className="text-[#CD9933] font-bold text-sm uppercase tracking-wider">
                         PKR {price.toLocaleString()} | {duration}
                       </p>
                       <p className="text-gray-500 text-xs leading-relaxed line-clamp-3">
@@ -450,7 +446,7 @@ const Home2 = () => {
                     <div className="flex gap-4 mt-8 pt-6 border-t border-gray-100">
                       <Link 
                         to={`/package/${pkg.id || idx + 1}`} 
-                        className="flex-1 bg-gray-900 hover:bg-[#00a2e8] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                        className="flex-1 bg-gray-900 hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                       >
                         READ MORE
                       </Link>
@@ -458,7 +454,7 @@ const Home2 = () => {
                         href="https://wa.me/923001234567" 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="flex-1 bg-[#0f2e5c] hover:bg-[#00a2e8] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                        className="flex-1 bg-[#013334] hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                       >
                         BOOK NOW
                       </a>
@@ -473,7 +469,7 @@ const Home2 = () => {
           <div className="text-center mt-16">
             <Link 
               to="/packages" 
-              className="inline-block border-2 border-gray-300 hover:border-[#00a2e8] text-gray-700 hover:text-[#00a2e8] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+              className="inline-block border-2 border-gray-300 hover:border-[#CD9933] text-gray-700 hover:text-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
             >
               MORE TOURS
             </Link>
@@ -484,15 +480,15 @@ const Home2 = () => {
       {/* 8. "Explore Dream Discover" Split Section */}
       <section className="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Left Column typography block */}
+          {/* Left Column typography block (Teal & Gold transition) */}
           <div className="bg-[#f5f7fa] py-28 px-12 md:px-24 flex flex-col justify-center space-y-4">
-            <h3 className="text-gray-300 text-7xl md:text-8xl font-black tracking-widest uppercase select-none leading-none">
+            <h3 className="text-gray-300 text-7xl md:text-8xl font-bold tracking-widest uppercase select-none leading-none font-headline">
               EXPLORE
             </h3>
-            <h3 className="text-[#00a2e8] text-7xl md:text-8xl font-black tracking-widest uppercase select-none leading-none">
+            <h3 className="text-[#CD9933] text-7xl md:text-8xl font-bold tracking-widest uppercase select-none leading-none font-headline">
               DREAM
             </h3>
-            <h3 className="text-[#0f2e5c] text-7xl md:text-8xl font-black tracking-widest uppercase select-none leading-none">
+            <h3 className="text-[#013334] text-7xl md:text-8xl font-bold tracking-widest uppercase select-none leading-none font-headline">
               DISCOVER
             </h3>
           </div>
@@ -505,28 +501,28 @@ const Home2 = () => {
                 className="w-full h-full object-cover" 
                 src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" 
               />
-              <div className="absolute inset-0 bg-[#0f2e5c]/50"></div>
+              <div className="absolute inset-0 bg-[#013334]/50"></div>
             </div>
 
             <div className="relative z-10 bg-white p-8 md:p-12 shadow-2xl max-w-md w-full space-y-6">
-              <h4 className="text-[#0f2e5c] font-black text-2xl tracking-wide uppercase font-sans">
-                Epic Journeys From The Wanderer
+              <h4 className="text-[#013334] font-bold text-2xl tracking-wide uppercase font-headline">
+                Epic Journeys From Rehman Travels
               </h4>
               <p className="text-gray-500 text-xs leading-relaxed">
-                Wanderer's refining capacities and travel logistics are built for people who wish to travel with absolute peace of mind. We ensure that every schedule is aligned, transport is fully private, and stays are vetted.
+                Rehman Travels' refining capacities and travel logistics are built for people who wish to travel with absolute peace of mind. We ensure that every schedule is aligned, transport is fully private, and stays are vetted.
               </p>
               <div className="flex gap-4 pt-2">
                 <a 
                   href="https://wa.me/923001234567" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="bg-[#00a2e8] hover:bg-[#0f2e5c] text-white text-center px-6 py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                  className="bg-[#CD9933] hover:bg-[#013334] text-white text-center px-6 py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                 >
                   BOOK NOW
                 </a>
                 <Link 
                   to="/about" 
-                  className="border border-gray-300 hover:border-[#00a2e8] text-gray-700 hover:text-[#00a2e8] text-center px-6 py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                  className="border border-gray-300 hover:border-[#CD9933] text-gray-700 hover:text-[#CD9933] text-center px-6 py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                 >
                   READ MORE
                 </Link>
@@ -537,7 +533,7 @@ const Home2 = () => {
       </section>
 
       {/* 9. Happy Travelers (Testimonials) */}
-      <section className="relative py-24 px-6 overflow-hidden bg-[#0f2e5c]">
+      <section className="relative py-24 px-6 overflow-hidden bg-[#013334]">
         {/* Shadow Overlay */}
         <div className="absolute inset-0 opacity-15 pointer-events-none">
           <img 
@@ -550,12 +546,12 @@ const Home2 = () => {
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center text-white mb-16 space-y-3">
-            <span className="material-symbols-outlined text-[#00a2e8] text-3xl">sentiment_satisfied</span>
-            <p className="text-[#00a2e8] font-bold text-xs uppercase tracking-widest">RELAX AND ENJOY</p>
-            <h2 className="text-white text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
+            <span className="material-symbols-outlined text-[#f6bd54] text-3xl">sentiment_satisfied</span>
+            <p className="text-[#f6bd54] font-bold text-xs uppercase tracking-widest">RELAX AND ENJOY</p>
+            <h2 className="text-white text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
               HAPPY TRAVELERS
             </h2>
-            <div className="h-[2px] w-12 bg-[#00a2e8] mx-auto mt-3"></div>
+            <div className="h-[2px] w-12 bg-[#CD9933] mx-auto mt-3"></div>
           </div>
 
           {/* Testimonial Cards Layout */}
@@ -570,8 +566,8 @@ const Home2 = () => {
                   src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80" 
                 />
               </div>
-              <h5 className="text-[#0f2e5c] font-black text-sm uppercase tracking-wider">Tehmina Hassan</h5>
-              <p className="text-[#00a2e8] text-[9px] font-bold tracking-widest uppercase mb-4">Rawalpindi, Pakistan</p>
+              <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">Tehmina Hassan</h5>
+              <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase mb-4">Rawalpindi, Pakistan</p>
               <p className="text-gray-500 italic text-xs leading-relaxed max-w-sm">
                 "Our Turkey package was outstanding. Flight scheduling, domestic connections in Cappadocia, hotel stays, and local historical guides were perfectly taken care of. I didn't have to worry about a single detail."
               </p>
@@ -587,24 +583,24 @@ const Home2 = () => {
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" 
                 />
               </div>
-              <h5 className="text-[#0f2e5c] font-black text-sm uppercase tracking-wider">Zubair Malik</h5>
-              <p className="text-[#00a2e8] text-[9px] font-bold tracking-widest uppercase mb-4">Islamabad, Pakistan</p>
+              <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">Zubair Malik</h5>
+              <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase mb-4">Islamabad, Pakistan</p>
               <p className="text-gray-500 italic text-xs leading-relaxed max-w-sm">
-                "Booking airline tickets and private domestic tours in Swat and Naran Valley was incredibly fast and smooth. Wanderer operates with absolute elite professionalism. Will definitely travel with them again."
+                "Booking airline tickets and private domestic tours in Swat and Naran Valley was incredibly fast and smooth. Rehman Travels operates with absolute elite professionalism. Will definitely travel with them again."
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 10. Stats Section ("A Fact of Wanderer") */}
+      {/* 10. Stats Section ("A Fact of Rehman Travels") */}
       <section className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Side Stats */}
           <div className="space-y-6">
-            <span className="text-[#00a2e8] font-bold text-xs uppercase tracking-widest block">PROUD NUMBERS</span>
-            <h2 className="text-[#0f2e5c] text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
-              A FACT OF WANDERER
+            <span className="text-[#CD9933] font-bold text-xs uppercase tracking-widest block">PROUD NUMBERS</span>
+            <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
+              THE REHMAN LEGACY
             </h2>
             <p className="text-gray-500 text-sm leading-relaxed">
               We focus on expanding our partner relationships and logistics integrations every single day. Here are key markers of our historical service footprints:
@@ -613,34 +609,34 @@ const Home2 = () => {
             {/* 5 Statistics List */}
             <div className="space-y-4 pt-4 text-xs font-bold text-gray-700 uppercase tracking-wider">
               <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-[#00a2e8] text-base">check_circle</span>
-                <span>15+ years experience in the travel field.</span>
+                <span className="material-symbols-outlined text-[#CD9933] text-base">check_circle</span>
+                <span>25+ years experience in the travel & Umrah field.</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-[#00a2e8] text-base">check_circle</span>
-                <span>100+ happy customers enjoy traveling with Wanderer.</span>
+                <span className="material-symbols-outlined text-[#CD9933] text-base">check_circle</span>
+                <span>500+ happy customers enjoy traveling with Rehman Travels.</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-[#00a2e8] text-base">check_circle</span>
+                <span className="material-symbols-outlined text-[#CD9933] text-base">check_circle</span>
                 <span>15+ best local tourist destinations we explore.</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-[#00a2e8] text-base">check_circle</span>
+                <span className="material-symbols-outlined text-[#CD9933] text-base">check_circle</span>
                 <span>10+ international packages we offer.</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-[#00a2e8] text-base">check_circle</span>
-                <span>5+ best umrah packages we offer.</span>
+                <span className="material-symbols-outlined text-[#CD9933] text-base">check_circle</span>
+                <span>8+ premium all-inclusive umrah packages.</span>
               </div>
             </div>
           </div>
 
           {/* Right Side Map */}
           <div className="flex justify-center items-center">
-            {/* Styled Tan Minimalist World Map Outline Image */}
+            {/* Styled Tan Minimalist World Map Outline */}
             <img 
               alt="Tan minimal global world map outline graphic travel network" 
-              className="w-full max-w-xl h-auto opacity-80" 
+              className="w-full max-w-xl h-auto opacity-85" 
               src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80" 
             />
           </div>
@@ -668,23 +664,23 @@ const Home2 = () => {
             />
           </div>
 
-          {/* Right Column: Dark Blue Contact Box */}
-          <div className="bg-[#0f2e5c] text-white p-12 md:p-16 flex flex-col justify-center space-y-8 shadow-2xl">
+          {/* Right Column: Dark Teal Contact Box */}
+          <div className="bg-[#013334] text-white p-12 md:p-16 flex flex-col justify-center space-y-8 shadow-2xl">
             <div>
-              <h2 className="text-white text-3xl font-black tracking-widest uppercase font-sans">
+              <h2 className="text-white text-3xl font-bold tracking-widest uppercase font-headline">
                 CONTACT US
               </h2>
-              <p className="text-[#00a2e8] text-xs font-bold uppercase tracking-wider mt-2">
-                Just, fill out form and Let's make your travel plan in minutes!
+              <p className="text-[#f6bd54] text-xs font-bold uppercase tracking-wider mt-2 font-manrope">
+                Just fill out the form and let's make your travel plan in minutes!
               </p>
             </div>
 
             {submitted ? (
               <div className="bg-white/5 border border-white/10 p-8 text-center space-y-4">
-                <span className="material-symbols-outlined text-[#00a2e8] text-5xl">mark_email_read</span>
+                <span className="material-symbols-outlined text-[#CD9933] text-5xl">mark_email_read</span>
                 <h4 className="text-white text-lg font-bold uppercase tracking-wider">Plan Request Submitted!</h4>
                 <p className="text-white/60 text-xs">
-                  Your customized details are sent to a Wanderer coordinator. We will reach back to you shortly.
+                  Your customized details are sent to a Rehman Travels coordinator. We will reach back to you shortly.
                 </p>
               </div>
             ) : (
@@ -694,7 +690,7 @@ const Home2 = () => {
                     required
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#00a2e8] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
                     placeholder="Your Name" 
                     type="text" 
                   />
@@ -704,7 +700,7 @@ const Home2 = () => {
                     required
                     value={contactPhone}
                     onChange={(e) => setContactPhone(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#00a2e8] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
                     placeholder="Your Contact Number" 
                     type="tel" 
                   />
@@ -714,7 +710,7 @@ const Home2 = () => {
                     required
                     value={contactEmail}
                     onChange={(e) => setContactEmail(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#00a2e8] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
                     placeholder="Your Email Address" 
                     type="email" 
                   />
@@ -724,13 +720,13 @@ const Home2 = () => {
                     required
                     value={contactMsg}
                     onChange={(e) => setContactMsg(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#00a2e8] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors resize-none h-24" 
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors resize-none h-24" 
                     placeholder="Your Message" 
                   />
                 </div>
                 <button 
                   type="submit"
-                  className="bg-[#00a2e8] hover:bg-white hover:text-[#0f2e5c] text-white font-bold text-xs uppercase tracking-widest py-4 px-8 transition-colors flex items-center justify-center gap-2 select-none"
+                  className="bg-[#CD9933] hover:bg-white hover:text-[#013334] text-primary font-bold text-xs uppercase tracking-widest py-4 px-8 transition-colors flex items-center justify-center gap-2 select-none"
                 >
                   <span>SEND MESSAGE</span>
                   <span className="material-symbols-outlined text-sm">send</span>
@@ -745,27 +741,27 @@ const Home2 = () => {
       <footer className="bg-[#111111] text-white/50 py-16 px-6 border-t border-white/5 text-xs">
         <div className="max-w-7xl mx-auto space-y-12">
           {/* Centered Logo at the top */}
-          <div className="flex flex-col items-center text-center select-none group">
-            <span className="text-white text-3xl font-extrabold tracking-widest uppercase font-sans">
-              WANDERER
-              <span className="text-[#00a2e8]">/</span>
+          <div className="flex flex-col items-center text-center select-none">
+            <span className="text-white text-3xl font-bold tracking-widest uppercase font-headline">
+              REHMAN
+              <span className="text-[#CD9933]">/</span>
             </span>
-            <span className="text-white/60 text-[9px] font-bold tracking-[0.38em] uppercase -mt-1 pl-[2px]">
-              WAY OF LIFE
+            <span className="text-white/60 text-[9px] font-bold tracking-[0.38em] uppercase -mt-1 pl-[2px] font-manrope">
+              UMRAH & TRAVELS
             </span>
           </div>
 
           <hr className="border-white/5" />
 
           {/* 5 Clean Columns Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 text-left font-manrope">
             {/* Col 1 */}
             <div className="space-y-4">
               <h5 className="text-white font-bold tracking-widest uppercase">Contact Us</h5>
               <div className="space-y-2.5 leading-relaxed">
                 <p>Main Boulevard, Gulberg III, Lahore, Pakistan</p>
                 <p>Tel: +92 300 1234567</p>
-                <p>Email: info@wanderertravels.com</p>
+                <p>Email: info@rehmanumrah.com</p>
               </div>
             </div>
 
@@ -773,10 +769,10 @@ const Home2 = () => {
             <div className="space-y-4">
               <h5 className="text-white font-bold tracking-widest uppercase">Book Now</h5>
               <ul className="space-y-2.5">
-                <li><Link to="/flights" className="hover:text-[#00a2e8] transition-colors">Airline Tickets</Link></li>
-                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Domestic Tours</Link></li>
-                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">International Tours</Link></li>
-                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Umrah Services</Link></li>
+                <li><Link to="/flights" className="hover:text-[#CD9933] transition-colors">Airline Tickets</Link></li>
+                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Domestic Tours</Link></li>
+                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">International Tours</Link></li>
+                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Umrah Services</Link></li>
               </ul>
             </div>
 
@@ -784,10 +780,10 @@ const Home2 = () => {
             <div className="space-y-4">
               <h5 className="text-white font-bold tracking-widest uppercase">Explore</h5>
               <ul className="space-y-2.5">
-                <li><Link to="/visa-services" className="hover:text-[#00a2e8] transition-colors">Visa Services</Link></li>
-                <li><Link to="/about" className="hover:text-[#00a2e8] transition-colors">Group Tours</Link></li>
-                <li><Link to="/blog" className="hover:text-[#00a2e8] transition-colors">Travel Blog</Link></li>
-                <li><Link to="/contact" className="hover:text-[#00a2e8] transition-colors">Careers</Link></li>
+                <li><Link to="/visa-services" className="hover:text-[#CD9933] transition-colors">Visa Services</Link></li>
+                <li><Link to="/about" className="hover:text-[#CD9933] transition-colors">Group Tours</Link></li>
+                <li><Link to="/blog" className="hover:text-[#CD9933] transition-colors">Travel Blog</Link></li>
+                <li><Link to="/contact" className="hover:text-[#CD9933] transition-colors">Careers</Link></li>
               </ul>
             </div>
 
@@ -795,10 +791,10 @@ const Home2 = () => {
             <div className="space-y-4">
               <h5 className="text-white font-bold tracking-widest uppercase">Top Deals</h5>
               <ul className="space-y-2.5">
-                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Dubai New Year Special</Link></li>
-                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Kashmir Autumn Retreat</Link></li>
-                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Turkey Spring Deal</Link></li>
-                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Custom Group Quotes</Link></li>
+                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Dubai New Year Special</Link></li>
+                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Kashmir Autumn Retreat</Link></li>
+                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Turkey Spring Deal</Link></li>
+                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Custom Group Quotes</Link></li>
               </ul>
             </div>
 
@@ -808,11 +804,11 @@ const Home2 = () => {
               <p className="leading-relaxed">Subscribe to get alerts on flash flight bookings and destination price cuts.</p>
               <div className="flex gap-2">
                 <input 
-                  className="bg-white/5 border border-white/10 text-white text-xs px-3.5 py-2.5 focus:border-[#00a2e8] outline-none flex-1" 
+                  className="bg-white/5 border border-white/10 text-white text-xs px-3.5 py-2.5 focus:border-[#CD9933] outline-none flex-1" 
                   placeholder="Your Email Address" 
                   type="email" 
                 />
-                <button className="bg-[#00a2e8] hover:bg-white hover:text-[#0f2e5c] text-white px-4 py-2.5 transition-colors font-bold">
+                <button className="bg-[#CD9933] hover:bg-white hover:text-[#013334] text-primary px-4 py-2.5 transition-colors font-bold">
                   GO
                 </button>
               </div>
@@ -823,7 +819,7 @@ const Home2 = () => {
 
           {/* Bottom copyright row */}
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] tracking-wider uppercase font-medium">
-            <p>© 2026 WANDERER WAY OF LIFE. ALL RIGHTS RESERVED.</p>
+            <p>© 2026 REHMAN UMRAH & TRAVELS. ALL RIGHTS RESERVED.</p>
             <div className="flex items-center gap-4">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
