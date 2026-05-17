@@ -1,685 +1,837 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import axios from 'axios'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
-const staticPackages = [
+// High-fidelity fallback package data matching screen_user.png exactly
+const staticInternationalTours = [
   {
-    id: 1,
-    title: '15 Days Executive Umrah',
-    location: '5★ Pullman ZamZam / Movenpick',
-    price: 245000,
-    days: '15 Days (7 Makkah / 8 Madinah)',
-    badge: 'Premium',
-    badgeColor: 'bg-secondary',
-    image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80'
+    id: 101,
+    title: 'DUBAI TOUR - NEW YEAR CELEBRATION 2025',
+    price: 145000,
+    duration: '5 Days 4 Nights',
+    badge: 'FOR 2 PERSONS - $1500',
+    description: 'Ring in the New Year with stunning fireworks at Burj Khalifa, desert safaris, and premium city cruises in luxury.',
+    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80'
   },
   {
-    id: 2,
-    title: '21 Days Spiritual Retreat',
-    location: '3★ Swiss International / Similar',
-    price: 185000,
-    days: '21 Days (10 Makkah / 11 Madinah)',
-    badge: 'Economy Plus',
-    badgeColor: 'bg-primary-container',
-    image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80'
+    id: 102,
+    title: 'TURKEY ELEGANCE - CAPPADOCIA & ISTANBUL',
+    price: 210000,
+    duration: '7 Days 6 Nights',
+    badge: 'FOR 1 PERSON - $1100',
+    description: 'Witness hot air balloons over fairy chimneys, explore Hagia Sophia, and cruise the majestic Bosphorus Strait.',
+    image: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&q=80'
   },
   {
-    id: 3,
-    title: 'Tailored Family Package',
-    location: 'Your Choice of Hotels',
-    price: 0,
-    priceText: 'Best Quote',
-    days: 'Flexible Duration',
-    badge: 'Custom',
-    badgeColor: 'bg-[#CD9933]',
-    image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80'
+    id: 103,
+    title: 'EXPLORE MALAYSIA - KUALA LUMPUR & LANGKAWI',
+    price: 135000,
+    duration: '6 Days 5 Nights',
+    badge: 'FOR 2 PERSONS - $1300',
+    description: 'Ascend the Petronas Twin Towers, relax on sandy beaches in Langkawi, and experience rich cultural heritage.',
+    image: 'https://images.unsplash.com/photo-1596422748573-cbb5bf090104?w=800&q=80'
+  }
+]
+
+const staticLocalTours = [
+  {
+    id: 201,
+    title: 'SWAT VALLEY SPIRIT - THE EAST SWITZERLAND',
+    price: 45000,
+    duration: '3 Days 2 Nights',
+    badge: 'FOR 1 PERSON - $250',
+    description: 'Unwind alongside pristine streams, visit historical Buddhist sites, and enjoy the snow-capped views of Malam Jabba.',
+    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80'
+  },
+  {
+    id: 202,
+    title: 'NARAN & KAGHAN VALLEY SUMMER ESCAPE',
+    price: 55000,
+    duration: '4 Days 3 Nights',
+    badge: 'FOR 2 PERSONS - $400',
+    description: 'Journey to the breathtaking Lake Saif-ul-Muluk, cross Babusar Top, and rest by the sparkling Kunhar River.',
+    image: 'https://images.unsplash.com/photo-1502602892935-72c3ac7c352?w=800&q=80'
+  },
+  {
+    id: 203,
+    title: 'NEELUM VALLEY KASHMIR HEAVENLY SERENITY',
+    price: 50000,
+    duration: '4 Days 3 Nights',
+    badge: 'FOR 1 PERSON - $300',
+    description: 'Explore lush green meadows, crystalline blue lakes, and historical forts in the heart of Azad Jammu & Kashmir.',
+    image: 'https://images.unsplash.com/photo-1473163928189-394b13469e19?w=800&q=80'
   }
 ]
 
 const Home2 = () => {
   const [packages, setPackages] = useState([])
-  const [cmsContent, setCmsContent] = useState({
-    heroTitle: 'Your Trusted Partner for Umrah & International Tours',
-    heroSubtitle: 'Embark on a spiritually enriching journey with premium hospitality and expert guidance tailored for your comfort.',
-    heroCta: 'View Umrah Packages',
-    heroWhatsApp: 'Contact on WhatsApp'
-  })
-  const [pageMedia, setPageMedia] = useState({})
+  const [internationalTours, setInternationalTours] = useState(staticInternationalTours)
+  const [localTours, setLocalTours] = useState(staticLocalTours)
   
-  // Search Form State
-  const [departureCity, setDepartureCity] = useState('Lahore, Pakistan')
-  const [travelMonth, setTravelMonth] = useState('October 2024')
-  const [packageType, setPackageType] = useState('Economy (3 Star)')
-
-  // Contact Form State
+  // Form State
   const [contactName, setContactName] = useState('')
+  const [contactPhone, setContactPhone] = useState('')
   const [contactEmail, setContactEmail] = useState('')
-  const [interest, setInterest] = useState('Umrah Packages')
+  const [contactMsg, setContactMsg] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
-    // Scroll to top
     window.scrollTo(0, 0)
 
-    // Fetch packages from backend
+    // Fetch packages from backend and categorize
     axios.get(`${API_BASE}/api/packages`)
       .then(res => {
         if (Array.isArray(res.data) && res.data.length > 0) {
           setPackages(res.data)
-        } else {
-          setPackages(staticPackages)
+          // Filter international
+          const fetchedInt = res.data.filter(p => p.category?.toLowerCase() === 'international')
+          if (fetchedInt.length > 0) {
+            setInternationalTours(fetchedInt.slice(0, 3))
+          }
+          // Filter domestic/local
+          const fetchedLocal = res.data.filter(p => p.category?.toLowerCase() === 'domestic' || p.category?.toLowerCase() === 'local' || p.category?.toLowerCase() === 'umrah')
+          if (fetchedLocal.length > 0) {
+            setLocalTours(fetchedLocal.slice(0, 3))
+          }
         }
       })
-      .catch((err) => {
-        console.error('Failed to fetch packages:', err)
-        setPackages(staticPackages)
+      .catch(err => {
+        console.error('API Packages fetch error (using high-fidelity fallbacks):', err)
       })
-
-    // Fetch CMS content from API with localStorage fallback
-    const savedCms = localStorage.getItem('cms_home2') || localStorage.getItem('cms_home')
-    if (savedCms) {
-      try {
-        const parsed = JSON.parse(savedCms)
-        if (parsed && Object.keys(parsed).length > 0) {
-          setCmsContent(prev => ({ ...prev, ...parsed }))
-        }
-      } catch (e) {}
-    }
-
-    axios.get(`${API_BASE}/api/cms?id=cms_home`)
-      .then(res => {
-        if (res.data && Object.keys(res.data).length > 0) {
-          setCmsContent(prev => ({ ...prev, ...res.data }))
-          localStorage.setItem('cms_home2', JSON.stringify(res.data))
-        }
-      })
-      .catch(err => console.error('Failed to fetch CMS content:', err))
-
-    // Fetch page_media from API with localStorage fallback
-    const savedMedia = localStorage.getItem('pageMedia')
-    if (savedMedia) {
-      try {
-        const parsed = JSON.parse(savedMedia)
-        if (parsed && Object.keys(parsed).length > 0) {
-          setPageMedia(parsed)
-        }
-      } catch (e) {}
-    }
-
-    axios.get(`${API_BASE}/api/cms?id=page_media`)
-      .then(res => {
-        if (res.data && Object.keys(res.data).length > 0) {
-          setPageMedia(res.data)
-          localStorage.setItem('pageMedia', JSON.stringify(res.data))
-        }
-      })
-      .catch(err => console.error('Failed to fetch page media:', err))
   }, [])
 
   const handleContactSubmit = (e) => {
     e.preventDefault()
-    // Simulated form submission
     setSubmitted(true)
     setTimeout(() => {
       setSubmitted(false)
       setContactName('')
+      setContactPhone('')
       setContactEmail('')
+      setContactMsg('')
     }, 4000)
   }
 
   return (
-    <div className="bg-surface font-manrope text-on-surface antialiased min-h-screen">
-      {/* Navbar with transparent glass blur v2 styling */}
-      <Navbar isVersion2={true} />
+    <div className="bg-white font-sans antialiased text-gray-700 min-h-screen">
+      
+      {/* 1. Header & Navigation (Transparent Overlay Style) */}
+      <header className="absolute top-0 left-0 right-0 z-50 w-full">
+        {/* Top Navy Info Bar */}
+        <div className="bg-[#0f2e5c] text-white/80 py-2.5 px-6 md:px-12 flex justify-between items-center text-xs font-medium tracking-wide">
+          <div className="flex items-center gap-6">
+            <a href="tel:+923001234567" className="flex items-center gap-2 hover:text-[#00a2e8] transition-colors">
+              <span className="material-symbols-outlined text-[14px]">phone_in_talk</span>
+              <span>+92 300 1234567</span>
+            </a>
+            <a href="mailto:info@wanderertravels.com" className="flex items-center gap-2 hover:text-[#00a2e8] transition-colors">
+              <span className="material-symbols-outlined text-[14px]">mail</span>
+              <span>info@wanderertravels.com</span>
+            </a>
+          </div>
+          <div className="hidden sm:flex items-center gap-4">
+            <a href="#" className="hover:text-[#00a2e8] transition-colors"><i className="fab fa-facebook-f"></i></a>
+            <a href="#" className="hover:text-[#00a2e8] transition-colors"><i className="fab fa-twitter"></i></a>
+            <a href="#" className="hover:text-[#00a2e8] transition-colors"><i className="fab fa-instagram"></i></a>
+            <a href="#" className="hover:text-[#00a2e8] transition-colors"><i className="fab fa-linkedin-in"></i></a>
+            <a href="#" className="hover:text-[#00a2e8] transition-colors"><i className="fab fa-youtube"></i></a>
+          </div>
+        </div>
 
-      {/* WhatsApp Floating Action Button */}
-      <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[9999] group">
-        <div className="flex flex-col items-center gap-2">
-          <span className="bg-white/90 backdrop-blur-md text-[#CD9933] font-manrope font-bold text-[10px] uppercase px-3 py-1.5 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">WhatsApp Support</span>
-          <a 
-            href="https://wa.me/923001234567" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="bg-white/80 dark:bg-black/80 backdrop-blur-md text-[#CD9933] rounded-full p-4 w-14 h-14 md:w-16 md:h-16 flex items-center justify-center shadow-2xl shadow-[#013334]/20 border border-[#CD9933]/15 animate-bounce duration-[2000ms] cursor-pointer hover:scale-110 transition-all"
-          >
-            <span className="material-symbols-outlined text-2xl md:text-3xl">chat</span>
-          </a>
+        {/* Main Navbar Overlay */}
+        <nav className="px-6 md:px-12 py-5 flex justify-between items-center bg-transparent">
+          {/* Logo (WANDERER / WAY OF LIFE) */}
+          <Link to="/" className="flex flex-col select-none group">
+            <span className="text-white text-3xl font-extrabold tracking-widest uppercase font-sans">
+              WANDERER
+              <span className="text-[#00a2e8]">/</span>
+            </span>
+            <span className="text-white/60 text-[9px] font-bold tracking-[0.38em] uppercase -mt-1 pl-[2px] group-hover:text-white transition-colors">
+              WAY OF LIFE
+            </span>
+          </Link>
+
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center gap-8 text-xs font-bold tracking-[0.2em] text-white">
+            <Link to="/" className="hover:text-[#00a2e8] transition-colors uppercase">HOME</Link>
+            <Link to="/flights" className="hover:text-[#00a2e8] transition-colors uppercase">AIRLINE TICKETING</Link>
+            <Link to="/visa-services" className="hover:text-[#00a2e8] transition-colors uppercase">VISA INQUIRY</Link>
+            <Link to="/about" className="hover:text-[#00a2e8] transition-colors uppercase">PARTNERS</Link>
+            <Link to="/contact" className="hover:text-[#00a2e8] transition-colors uppercase">CONTACT</Link>
+          </div>
+
+          {/* Mobile Menu Icon (Quick Trigger to /contact) */}
+          <Link to="/contact" className="md:hidden text-white hover:text-[#00a2e8] transition-colors">
+            <span className="material-symbols-outlined text-2xl">menu</span>
+          </Link>
+        </nav>
+      </header>
+
+      {/* 2. Brand-Focused Hero Section */}
+      <section className="relative h-[921px] flex items-center justify-center overflow-hidden">
+        {/* Background Image: Adventure flat-lay tabletop photo */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            alt="Adventure travel flatlay layout tabletop scenery" 
+            className="w-full h-full object-cover" 
+            src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1600&q=80" 
+          />
+          <div className="absolute inset-0 bg-black/45"></div>
+        </div>
+
+        {/* Minimalist Centered Brand Logo Overlay */}
+        <div className="relative z-10 text-center text-white px-6">
+          <h1 className="text-white text-6xl md:text-8xl font-black tracking-[0.25em] uppercase font-sans animate-fade-in">
+            WANDERER
+          </h1>
+          <div className="h-[2px] w-24 bg-[#00a2e8] mx-auto my-4"></div>
+          <p className="text-white/80 text-sm md:text-base font-bold tracking-[0.45em] uppercase">
+            WAY OF LIFE
+          </p>
+        </div>
+      </section>
+
+      {/* 3. Partner Logo Strip */}
+      <div className="bg-[#111111] py-8 px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70">
+          <span className="text-white font-extrabold tracking-widest text-sm uppercase">TURKISH AIRLINES</span>
+          <span className="text-white font-extrabold tracking-widest text-sm uppercase">EMIRATES</span>
+          <span className="text-white font-extrabold tracking-widest text-sm uppercase">ETIHAD</span>
+          <span className="text-white font-extrabold tracking-widest text-sm uppercase">THAI</span>
+          <span className="text-white font-extrabold tracking-widest text-sm uppercase">OMAN AIR</span>
+          <span className="text-white font-extrabold tracking-widest text-sm uppercase">AIR ASIA</span>
         </div>
       </div>
 
-      <main className="pt-0">
-        {/* Redesigned Hero Section */}
-        <section className="relative h-[921px] flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <img 
-              alt="Grand Mosque Makkah with Kaaba centerpiece at dusk" 
-              className="w-full h-full object-cover" 
-              src={pageMedia.home_hero_image || "https://lh3.googleusercontent.com/aida-public/AB6AXuCB9jFYv-6zH25opjeQu3ruFk6JGDGpms3BOA83kZpAOxjsKQZQgNitLSz-KVZWeeDC_gZXT8BJz11t1DknRhSd9pTBuiQoBvxnaMIAp35Q7SB9iIt2XaQDKM86xIf3ZRcIwEb4IBt-nxvUewqFJcSaxFhnzidmBmS-8LhDnZ_xCmzD2tOFW8HiYBJOBLG-flKcFrn-JXUMbIIX6y1VMN65cfIK0VIKM4N11EkvET7hA-VVrgFrZOtcl3EV0mH8nleBrVQpe8G6hWS0"} 
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary-container/95 to-primary-container/40"></div>
-          </div>
-          <div className="relative z-10 container mx-auto px-6 sm:px-8 md:px-12 lg:px-24 text-white text-center md:text-left w-full">
-            <h1 className="font-headline text-5xl md:text-7xl mb-6 max-w-4xl italic leading-tight">
-              {cmsContent.heroTitle.includes('Umrah') ? (
-                <>
-                  {cmsContent.heroTitle.split('Umrah')[0]}
-                  <span className="text-[#f6bd54] font-semibold">{`Umrah`}</span>
-                  {cmsContent.heroTitle.split('Umrah')[1]}
-                </>
-              ) : (
-                cmsContent.heroTitle
-              )}
-            </h1>
-            <p className="font-body text-lg md:text-xl mb-10 text-white/80 max-w-2xl font-light tracking-wide leading-relaxed">
-              {cmsContent.heroSubtitle}
+      {/* 4. "Best Travel Agency" (About Us) Section */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Column Text Details */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <span className="text-[#00a2e8] font-bold text-xs uppercase tracking-widest">WHO WE ARE</span>
+              <div className="h-[1px] w-12 bg-[#00a2e8]"></div>
+            </div>
+            <h2 className="text-[#0f2e5c] text-3xl md:text-4xl font-extrabold tracking-wide uppercase font-sans">
+              BEST TRAVEL AGENCY IN RAWALPINDI
+            </h2>
+            <p className="text-gray-500 leading-relaxed text-sm">
+              At Wanderer, we treat every travel plan as a customized masterclass of spiritual fulfillment, logistics comfort, and exploration freedom. Over the years, we have built key flight alignments and hotel partnerships worldwide to deliver high-fidelity journeys that stay with you forever.
             </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-              <Link 
-                to="/packages" 
-                className="bg-[#CD9933] hover:bg-[#b5882d] text-primary px-8 py-4 rounded-md font-bold tracking-widest uppercase text-sm transition-all shadow-lg text-center"
-              >
-                {cmsContent.heroCta}
-              </Link>
-              <a 
-                href="https://wa.me/923001234567" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white px-8 py-4 rounded-md font-bold tracking-widest uppercase text-sm transition-all flex items-center justify-center gap-2"
-              >
-                <span className="material-symbols-outlined text-green-400">chat</span>
-                {cmsContent.heroWhatsApp}
-              </a>
-            </div>
-          </div>
-
-          {/* Quick Search Bar (Absolutely positioned at the bottom, overlapping next section) */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-full max-w-5xl px-4 z-20">
-            <div className="bg-surface-container-lowest rounded-xl shadow-2xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-end border border-outline-variant/10">
-              <div className="flex-1 w-full space-y-2">
-                <label className="font-label text-xs uppercase tracking-tighter text-outline font-bold">Departure City</label>
-                <select 
-                  value={departureCity}
-                  onChange={(e) => setDepartureCity(e.target.value)}
-                  className="w-full border-b border-outline-variant bg-transparent py-2 focus:border-secondary outline-none font-body text-on-surface"
-                >
-                  <option value="Lahore, Pakistan">Lahore, Pakistan</option>
-                  <option value="Karachi, Pakistan">Karachi, Pakistan</option>
-                  <option value="Islamabad, Pakistan">Islamabad, Pakistan</option>
-                </select>
+            
+            {/* Elegant 8-Item Double-Column List */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5 text-xs text-gray-600 font-bold uppercase tracking-wider">
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span>Economy Class Flights</span>
               </div>
-              <div className="flex-1 w-full space-y-2">
-                <label className="font-label text-xs uppercase tracking-tighter text-outline font-bold">Month</label>
-                <select 
-                  value={travelMonth}
-                  onChange={(e) => setTravelMonth(e.target.value)}
-                  className="w-full border-b border-outline-variant bg-transparent py-2 focus:border-secondary outline-none font-body text-on-surface"
-                >
-                  <option value="October 2024">October 2024</option>
-                  <option value="November 2024">November 2024</option>
-                  <option value="Ramadan 2025">Ramadan 2025</option>
-                </select>
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span>3-Star Accommodations</span>
               </div>
-              <div className="flex-1 w-full space-y-2">
-                <label className="font-label text-xs uppercase tracking-tighter text-outline font-bold">Package Type</label>
-                <select 
-                  value={packageType}
-                  onChange={(e) => setPackageType(e.target.value)}
-                  className="w-full border-b border-outline-variant bg-transparent py-2 focus:border-secondary outline-none font-body text-on-surface"
-                >
-                  <option value="Economy (3 Star)">Economy (3 Star)</option>
-                  <option value="Executive (4 Star)">Executive (4 Star)</option>
-                  <option value="Premium (5 Star)">Premium (5 Star)</option>
-                </select>
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span>Business Class Flights</span>
               </div>
-              <Link 
-                to={`/packages?departure=${departureCity.split(',')[0]}&month=${travelMonth}&type=${packageType.split(' ')[0]}`}
-                className="bg-primary text-white p-4 rounded-md hover:bg-primary-container transition-colors shrink-0 flex items-center justify-center w-full md:w-auto"
-              >
-                <span className="material-symbols-outlined">search</span>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Umrah Packages Section */}
-        <section className="py-32 px-6 bg-surface">
-          <div className="container mx-auto max-w-7xl">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-              <div>
-                <span className="text-secondary font-label tracking-[0.3em] uppercase text-xs font-bold block mb-4">Spiritual Journeys</span>
-                <h2 className="font-headline text-4xl md:text-5xl text-primary font-bold">Featured Umrah Packages</h2>
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span>4-Star Accommodations</span>
               </div>
-              <div className="h-px flex-1 bg-outline-variant/30 mx-8 mb-4 hidden md:block"></div>
-              <Link 
-                className="text-primary font-bold border-b-2 border-secondary/40 pb-1 hover:border-secondary transition-all shrink-0" 
-                to="/packages"
-              >
-                Explore All Packages
-              </Link>
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span>First Class Flight Booking</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span>5-Star Accommodations</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span>Local Tour Packages</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#00a2e8]"></span>
+                <span>International Tour Packages</span>
+              </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {(packages.length > 0 ? packages.slice(0, 3) : staticPackages).map((pkg, i) => {
-                const isStatic = !pkg.hasOwnProperty('image_url')
-                const img = isStatic ? pkg.image : (pkg.image_url || staticPackages[i % 3].image)
-                const badge = isStatic ? pkg.badge : (pkg.category || 'Featured')
-                const duration = isStatic ? pkg.days : (pkg.duration || staticPackages[i % 3].days)
-                const location = isStatic ? pkg.location : (pkg.hotel_name || staticPackages[i % 3].location)
-                const price = isStatic ? pkg.price : pkg.price
-                const priceText = isStatic && pkg.priceText ? pkg.priceText : null
-
-                return (
-                  <div 
-                    key={pkg.id || i} 
-                    className="group bg-surface-container-low rounded-none overflow-hidden editorial-shadow transition-transform hover:-translate-y-2 border border-outline-variant/5"
-                  >
-                    <div className="relative h-64 overflow-hidden">
-                      <img 
-                        alt={pkg.title} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                        src={img} 
-                      />
-                      <div className="absolute top-4 right-4 bg-secondary text-white px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest">
-                        {badge}
-                      </div>
-                    </div>
-                    <div className="p-8">
-                      <h3 className="font-headline text-2xl mb-4 text-primary line-clamp-1">{pkg.title}</h3>
-                      <div className="space-y-3 mb-8">
-                        <div className="flex items-center gap-3 text-on-surface-variant text-sm">
-                          <span className="material-symbols-outlined text-secondary text-sm">hotel</span>
-                          {location}
-                        </div>
-                        <div className="flex items-center gap-3 text-on-surface-variant text-sm">
-                          <span className="material-symbols-outlined text-secondary text-sm">schedule</span>
-                          {duration}
-                        </div>
-                      </div>
-                      <div className="flex justify-between items-center border-t border-outline-variant/30 pt-6">
-                        <div>
-                          <p className="text-[10px] uppercase text-outline font-bold">
-                            {priceText ? 'Contact for' : 'Starting from'}
-                          </p>
-                          <p className="text-xl font-bold text-secondary">
-                            {priceText ? priceText : `PKR ${price.toLocaleString()}`}
-                          </p>
-                        </div>
-                        <Link 
-                          to={`/package/${pkg.id || i + 1}`} 
-                          className="text-primary font-bold text-sm uppercase tracking-widest flex items-center gap-1 group/btn"
-                        >
-                          Details 
-                          <span className="material-symbols-outlined transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
+            <Link 
+              to="/about" 
+              className="inline-block bg-[#0f2e5c] hover:bg-[#00a2e8] text-white px-8 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+            >
+              READ MORE
+            </Link>
           </div>
-        </section>
 
-        {/* Why Choose Us Section */}
-        <section className="py-24 bg-primary text-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 opacity-5 w-1/3 h-full pointer-events-none">
+          {/* Right Column Graphic Collage */}
+          <div className="relative group">
+            <div className="absolute inset-0 bg-[#00a2e8] translate-x-3 translate-y-3 -z-10 group-hover:translate-x-1.5 group-hover:translate-y-1.5 transition-transform duration-300"></div>
             <img 
-              alt="Islamic pattern background" 
-              className="w-full h-full object-cover" 
-              src="https://images.unsplash.com/photo-1564507004663-b6dfb3c8924d?w=1200&q=80" 
+              alt="Luxury traveler collage illustration mockup landscape" 
+              className="w-full h-auto object-cover shadow-xl border border-gray-100" 
+              src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80" 
             />
           </div>
-          <div className="container mx-auto px-6 relative z-10 max-w-7xl">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-              <h2 className="font-headline text-4xl mb-6 italic text-[#CD9933]">Why Travel with Rehman Travels?</h2>
-              <p className="font-body text-white/70 text-base md:text-lg">
-                Over two decades of excellence in crafting sacred journeys with dedication and spiritual integrity.
+        </div>
+      </section>
+
+      {/* 5. International Tours Grid */}
+      <section className="py-24 px-6 bg-[#f5f7fa]">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16 space-y-3">
+            <div className="flex items-center justify-center gap-2 text-[#00a2e8]">
+              <span className="material-symbols-outlined text-sm">rocket_launch</span>
+              <span className="font-bold text-xs uppercase tracking-widest">PACKAGES AND GO</span>
+            </div>
+            <h2 className="text-[#0f2e5c] text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
+              INTERNATIONAL TOURS
+            </h2>
+            <div className="h-[2px] w-16 bg-[#00a2e8] mx-auto mt-4"></div>
+          </div>
+
+          {/* 3-Column Card Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {internationalTours.map((pkg, idx) => {
+              const isStatic = !pkg.hasOwnProperty('image_url')
+              const img = isStatic ? pkg.image : (pkg.image_url || staticInternationalTours[idx % 3].image)
+              const badge = isStatic ? pkg.badge : (pkg.category || 'FOR 2 PERSONS')
+              const duration = isStatic ? pkg.duration : (pkg.duration || '5 Days 4 Nights')
+              const price = pkg.price
+
+              return (
+                <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
+                  {/* Top Image with Blue overlay Badge */}
+                  <div className="relative h-64 overflow-hidden shrink-0">
+                    <img 
+                      alt={pkg.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                      src={img} 
+                    />
+                    <div className="absolute top-4 left-4 bg-[#00a2e8] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
+                      {badge}
+                    </div>
+                  </div>
+
+                  {/* Card Content details */}
+                  <div className="p-8 flex-1 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <h3 className="text-[#0f2e5c] font-extrabold text-lg tracking-wide uppercase line-clamp-2">
+                        {pkg.title}
+                      </h3>
+                      <p className="text-[#00a2e8] font-extrabold text-sm uppercase tracking-wider">
+                        PKR {price.toLocaleString()} | {duration}
+                      </p>
+                      <p className="text-gray-500 text-xs leading-relaxed line-clamp-3">
+                        {pkg.description || 'Experience highly curated schedules, flight alignments, and premier accommodations organized with travel security and luxury.'}
+                      </p>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-4 mt-8 pt-6 border-t border-gray-100">
+                      <Link 
+                        to={`/package/${pkg.id || idx + 1}`} 
+                        className="flex-1 bg-gray-900 hover:bg-[#00a2e8] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                      >
+                        READ MORE
+                      </Link>
+                      <a 
+                        href="https://wa.me/923001234567" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex-1 bg-[#0f2e5c] hover:bg-[#00a2e8] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                      >
+                        BOOK NOW
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Centered Outline Button */}
+          <div className="text-center mt-16">
+            <Link 
+              to="/packages" 
+              className="inline-block border-2 border-gray-300 hover:border-[#00a2e8] text-gray-700 hover:text-[#00a2e8] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+            >
+              MORE TOURS
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. "Go Explore" CTA Banner */}
+      <section className="relative py-32 px-6 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            alt="Massive panoramic dark mountains wilderness" 
+            className="w-full h-full object-cover" 
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80" 
+          />
+          <div className="absolute inset-0 bg-[#0f2e5c]/75"></div>
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto text-center text-white space-y-6">
+          <span className="text-[#00a2e8] font-bold text-xs uppercase tracking-[0.3em] block">IT'S A BIG WORLD OUT THERE</span>
+          <h2 className="text-white text-5xl md:text-7xl font-black tracking-widest uppercase font-sans">
+            GO EXPLORE
+          </h2>
+          <p className="text-white/70 max-w-2xl mx-auto text-sm leading-relaxed font-light">
+            We plan the logistics, align standard flights, secure accommodations, and details down to every tourist guide so that you can simply enjoy, relax, and discover.
+          </p>
+          <div className="pt-4">
+            <Link 
+              to="/packages" 
+              className="inline-block bg-[#00a2e8] hover:bg-white hover:text-[#0f2e5c] text-white px-10 py-4 text-xs font-bold tracking-widest uppercase transition-all shadow-lg"
+            >
+              READ MORE
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Local Tours Grid */}
+      <section className="py-24 px-6 bg-[#f5f7fa]">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16 space-y-3">
+            <div className="flex items-center justify-center gap-2 text-[#00a2e8]">
+              <span className="material-symbols-outlined text-sm">terrain</span>
+              <span className="font-bold text-xs uppercase tracking-widest">PACKAGES AND GO</span>
+            </div>
+            <h2 className="text-[#0f2e5c] text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
+              LOCAL TOURS
+            </h2>
+            <div className="h-[2px] w-16 bg-[#00a2e8] mx-auto mt-4"></div>
+          </div>
+
+          {/* 3-Column Card Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {localTours.map((pkg, idx) => {
+              const isStatic = !pkg.hasOwnProperty('image_url')
+              const img = isStatic ? pkg.image : (pkg.image_url || staticLocalTours[idx % 3].image)
+              const badge = isStatic ? pkg.badge : (pkg.category || 'FOR 1 PERSON')
+              const duration = isStatic ? pkg.duration : (pkg.duration || '3 Days 2 Nights')
+              const price = pkg.price
+
+              return (
+                <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
+                  {/* Top Image with Blue overlay Badge */}
+                  <div className="relative h-64 overflow-hidden shrink-0">
+                    <img 
+                      alt={pkg.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                      src={img} 
+                    />
+                    <div className="absolute top-4 left-4 bg-[#00a2e8] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
+                      {badge}
+                    </div>
+                  </div>
+
+                  {/* Card Content details */}
+                  <div className="p-8 flex-1 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <h3 className="text-[#0f2e5c] font-extrabold text-lg tracking-wide uppercase line-clamp-2">
+                        {pkg.title}
+                      </h3>
+                      <p className="text-[#00a2e8] font-extrabold text-sm uppercase tracking-wider">
+                        PKR {price.toLocaleString()} | {duration}
+                      </p>
+                      <p className="text-gray-500 text-xs leading-relaxed line-clamp-3">
+                        {pkg.description || 'Explore the magnificent mountain views, fresh stream walks, and celestial landscapes of Northern Pakistan.'}
+                      </p>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-4 mt-8 pt-6 border-t border-gray-100">
+                      <Link 
+                        to={`/package/${pkg.id || idx + 1}`} 
+                        className="flex-1 bg-gray-900 hover:bg-[#00a2e8] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                      >
+                        READ MORE
+                      </Link>
+                      <a 
+                        href="https://wa.me/923001234567" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex-1 bg-[#0f2e5c] hover:bg-[#00a2e8] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                      >
+                        BOOK NOW
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Centered Outline Button */}
+          <div className="text-center mt-16">
+            <Link 
+              to="/packages" 
+              className="inline-block border-2 border-gray-300 hover:border-[#00a2e8] text-gray-700 hover:text-[#00a2e8] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+            >
+              MORE TOURS
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. "Explore Dream Discover" Split Section */}
+      <section className="bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Left Column typography block */}
+          <div className="bg-[#f5f7fa] py-28 px-12 md:px-24 flex flex-col justify-center space-y-4">
+            <h3 className="text-gray-300 text-7xl md:text-8xl font-black tracking-widest uppercase select-none leading-none">
+              EXPLORE
+            </h3>
+            <h3 className="text-[#00a2e8] text-7xl md:text-8xl font-black tracking-widest uppercase select-none leading-none">
+              DREAM
+            </h3>
+            <h3 className="text-[#0f2e5c] text-7xl md:text-8xl font-black tracking-widest uppercase select-none leading-none">
+              DISCOVER
+            </h3>
+          </div>
+
+          {/* Right Column details card overlaying mountain image */}
+          <div className="relative py-28 px-8 md:px-16 flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 z-0">
+              <img 
+                alt="Green pine mountain peak trees background" 
+                className="w-full h-full object-cover" 
+                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" 
+              />
+              <div className="absolute inset-0 bg-[#0f2e5c]/50"></div>
+            </div>
+
+            <div className="relative z-10 bg-white p-8 md:p-12 shadow-2xl max-w-md w-full space-y-6">
+              <h4 className="text-[#0f2e5c] font-black text-2xl tracking-wide uppercase font-sans">
+                Epic Journeys From The Wanderer
+              </h4>
+              <p className="text-gray-500 text-xs leading-relaxed">
+                Wanderer's refining capacities and travel logistics are built for people who wish to travel with absolute peace of mind. We ensure that every schedule is aligned, transport is fully private, and stays are vetted.
+              </p>
+              <div className="flex gap-4 pt-2">
+                <a 
+                  href="https://wa.me/923001234567" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="bg-[#00a2e8] hover:bg-[#0f2e5c] text-white text-center px-6 py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                >
+                  BOOK NOW
+                </a>
+                <Link 
+                  to="/about" 
+                  className="border border-gray-300 hover:border-[#00a2e8] text-gray-700 hover:text-[#00a2e8] text-center px-6 py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                >
+                  READ MORE
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Happy Travelers (Testimonials) */}
+      <section className="relative py-24 px-6 overflow-hidden bg-[#0f2e5c]">
+        {/* Shadow Overlay */}
+        <div className="absolute inset-0 opacity-15 pointer-events-none">
+          <img 
+            alt="Mountains silhouette travel landscape" 
+            className="w-full h-full object-cover" 
+            src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80" 
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center text-white mb-16 space-y-3">
+            <span className="material-symbols-outlined text-[#00a2e8] text-3xl">sentiment_satisfied</span>
+            <p className="text-[#00a2e8] font-bold text-xs uppercase tracking-widest">RELAX AND ENJOY</p>
+            <h2 className="text-white text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
+              HAPPY TRAVELERS
+            </h2>
+            <div className="h-[2px] w-12 bg-[#00a2e8] mx-auto mt-3"></div>
+          </div>
+
+          {/* Testimonial Cards Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Card 1 */}
+            <div className="bg-white p-10 shadow-lg text-center relative border border-gray-100 flex flex-col items-center">
+              <span className="material-symbols-outlined text-gray-200 text-5xl absolute top-6 right-6">format_quote</span>
+              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#f5f7fa] mb-6">
+                <img 
+                  alt="Tehmina Hassan portrait" 
+                  className="w-full h-full object-cover" 
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80" 
+                />
+              </div>
+              <h5 className="text-[#0f2e5c] font-black text-sm uppercase tracking-wider">Tehmina Hassan</h5>
+              <p className="text-[#00a2e8] text-[9px] font-bold tracking-widest uppercase mb-4">Rawalpindi, Pakistan</p>
+              <p className="text-gray-500 italic text-xs leading-relaxed max-w-sm">
+                "Our Turkey package was outstanding. Flight scheduling, domestic connections in Cappadocia, hotel stays, and local historical guides were perfectly taken care of. I didn't have to worry about a single detail."
               </p>
             </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
-              <div className="space-y-4 group">
-                <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto group-hover:bg-[#CD9933] transition-all duration-300">
-                  <span className="material-symbols-outlined text-[#CD9933] text-3xl group-hover:text-primary">verified_user</span>
-                </div>
-                <p className="font-label text-xs uppercase tracking-widest font-bold">Approved Agency</p>
-              </div>
-              <div className="space-y-4 group">
-                <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto group-hover:bg-[#CD9933] transition-all duration-300">
-                  <span className="material-symbols-outlined text-[#CD9933] text-3xl group-hover:text-primary">distance</span>
-                </div>
-                <p className="font-label text-xs uppercase tracking-widest font-bold">Haram Proximity</p>
-              </div>
-              <div className="space-y-4 group">
-                <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto group-hover:bg-[#CD9933] transition-all duration-300">
-                  <span className="material-symbols-outlined text-[#CD9933] text-3xl group-hover:text-primary">payments</span>
-                </div>
-                <p className="font-label text-xs uppercase tracking-widest font-bold">Affordable Prices</p>
-              </div>
-              <div className="space-y-4 group">
-                <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto group-hover:bg-[#CD9933] transition-all duration-300">
-                  <span className="material-symbols-outlined text-[#CD9933] text-3xl group-hover:text-primary">support_agent</span>
-                </div>
-                <p className="font-label text-xs uppercase tracking-widest font-bold">24/7 Support</p>
-              </div>
-              <div className="space-y-4 group">
-                <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto group-hover:bg-[#CD9933] transition-all duration-300">
-                  <span className="material-symbols-outlined text-[#CD9933] text-3xl group-hover:text-primary">hiking</span>
-                </div>
-                <p className="font-label text-xs uppercase tracking-widest font-bold">Expert Guides</p>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* International Tours Section */}
-        <section className="py-24 bg-surface-container-low">
-          <div className="container mx-auto px-6 max-w-7xl">
-            <div className="flex items-center gap-6 mb-16">
-              <h2 className="font-headline text-4xl text-primary font-bold shrink-0">International Escapes</h2>
-              <div className="h-[2px] w-full bg-[#CD9933]/20"></div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-              {/* Turkey */}
-              <div className="group cursor-pointer">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-none shadow-xl">
-                  <img 
-                    alt="The Blue Mosque in Istanbul at sunrise" 
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
-                    src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&q=80" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/85 to-transparent flex flex-col justify-end p-8">
-                    <span className="text-secondary-fixed text-xs font-bold uppercase tracking-widest mb-2">Starting PKR 190k</span>
-                    <h3 className="text-white font-headline text-3xl mb-2">Grand Turkey Tour</h3>
-                    <Link to="/international-tours" className="text-white/80 group-hover:text-[#CD9933] text-xs font-bold uppercase tracking-widest transition-all">Explore Tour →</Link>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Dubai */}
-              <div className="group cursor-pointer">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-none shadow-xl">
-                  <img 
-                    alt="Dubai skyline with Burj Khalifa reflecting in water" 
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
-                    src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/85 to-transparent flex flex-col justify-end p-8">
-                    <span className="text-secondary-fixed text-xs font-bold uppercase tracking-widest mb-2">Starting PKR 120k</span>
-                    <h3 className="text-white font-headline text-3xl mb-2">Luxury Dubai</h3>
-                    <Link to="/international-tours" className="text-white/80 group-hover:text-[#CD9933] text-xs font-bold uppercase tracking-widest transition-all">Explore Tour →</Link>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Thailand */}
-              <div className="group cursor-pointer">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-none shadow-xl">
-                  <img 
-                    alt="Tropical beach scene in Thailand with longtail boat" 
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
-                    src="https://images.unsplash.com/photo-1596422748573-cbb5bf090104?w=800&q=80" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/85 to-transparent flex flex-col justify-end p-8">
-                    <span className="text-secondary-fixed text-xs font-bold uppercase tracking-widest mb-2">Starting PKR 145k</span>
-                    <h3 className="text-white font-headline text-3xl mb-2">Siam Treasures</h3>
-                    <Link to="/international-tours" className="text-white/80 group-hover:text-[#CD9933] text-xs font-bold uppercase tracking-widest transition-all">Explore Tour →</Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Facts & Stats Section */}
-        <section className="py-20 bg-surface border-y border-outline-variant/10">
-          <div className="container mx-auto px-6 max-w-7xl">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
-              <div className="space-y-2">
-                <h4 className="text-4xl font-headline text-primary font-bold">17+</h4>
-                <p className="text-outline uppercase text-[10px] tracking-widest font-black">Flight Partners</p>
-                <p className="text-sm text-on-surface-variant font-light">Global airlines for flexible routes.</p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="text-4xl font-headline text-primary font-bold">500+</h4>
-                <p className="text-outline uppercase text-[10px] tracking-widest font-black">Happy Travelers</p>
-                <p className="text-sm text-on-surface-variant font-light">Join our growing community of voyagers.</p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="text-4xl font-headline text-primary font-bold">120+</h4>
-                <p className="text-outline uppercase text-[10px] tracking-widest font-black">Hotel Network</p>
-                <p className="text-sm text-on-surface-variant font-light">Curated stays from 3★ to 5★ luxury.</p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="text-4xl font-headline text-primary font-bold">25+</h4>
-                <p className="text-outline uppercase text-[10px] tracking-widest font-black">Years Expertise</p>
-                <p className="text-sm text-on-surface-variant font-light">Trusted heritage in travel planning.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Local Tours (Northern Pakistan) Section */}
-        <section className="py-24 bg-surface">
-          <div className="container mx-auto px-6 max-w-7xl">
-            <div className="mb-16 text-center">
-              <span className="text-secondary font-label tracking-[0.4em] uppercase text-xs font-bold block mb-4">Discover Home</span>
-              <h2 className="font-headline text-4xl text-primary font-bold">Discover Northern Pakistan</h2>
-            </div>
-            
-            <div className="flex flex-col md:flex-row gap-6">
-              {/* Swat */}
-              <div className="flex-1 relative group overflow-hidden h-[400px] shadow-lg rounded-none">
+            {/* Card 2 */}
+            <div className="bg-white p-10 shadow-lg text-center relative border border-gray-100 flex flex-col items-center">
+              <span className="material-symbols-outlined text-gray-200 text-5xl absolute top-6 right-6">format_quote</span>
+              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#f5f7fa] mb-6">
                 <img 
-                  alt="Swat Valley" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" 
+                  alt="Zubair Malik portrait" 
+                  className="w-full h-full object-cover" 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" 
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors"></div>
-                <div className="absolute bottom-6 left-6 text-white z-10">
-                  <h3 className="font-headline text-2xl mb-1 italic">Swat Valley</h3>
-                  <p className="text-xs uppercase tracking-widest text-white/80">The Switzerland of East</p>
-                </div>
               </div>
-              
-              {/* Naran */}
-              <div className="flex-1 relative group overflow-hidden h-[400px] shadow-lg rounded-none">
-                <img 
-                  alt="Naran & Kaghan" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  src="https://images.unsplash.com/photo-1502602892935-72c3ac7c352?w=800&q=80" 
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors"></div>
-                <div className="absolute bottom-6 left-6 text-white z-10">
-                  <h3 className="font-headline text-2xl mb-1 italic">Naran &amp; Kaghan</h3>
-                  <p className="text-xs uppercase tracking-widest text-white/80">Celestial Landscapes</p>
-                </div>
+              <h5 className="text-[#0f2e5c] font-black text-sm uppercase tracking-wider">Zubair Malik</h5>
+              <p className="text-[#00a2e8] text-[9px] font-bold tracking-widest uppercase mb-4">Islamabad, Pakistan</p>
+              <p className="text-gray-500 italic text-xs leading-relaxed max-w-sm">
+                "Booking airline tickets and private domestic tours in Swat and Naran Valley was incredibly fast and smooth. Wanderer operates with absolute elite professionalism. Will definitely travel with them again."
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. Stats Section ("A Fact of Wanderer") */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Side Stats */}
+          <div className="space-y-6">
+            <span className="text-[#00a2e8] font-bold text-xs uppercase tracking-widest block">PROUD NUMBERS</span>
+            <h2 className="text-[#0f2e5c] text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
+              A FACT OF WANDERER
+            </h2>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              We focus on expanding our partner relationships and logistics integrations every single day. Here are key markers of our historical service footprints:
+            </p>
+            
+            {/* 5 Statistics List */}
+            <div className="space-y-4 pt-4 text-xs font-bold text-gray-700 uppercase tracking-wider">
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-[#00a2e8] text-base">check_circle</span>
+                <span>15+ years experience in the travel field.</span>
               </div>
-              
-              {/* Neelum */}
-              <div className="flex-1 relative group overflow-hidden h-[400px] shadow-lg rounded-none">
-                <img 
-                  alt="Neelum Valley" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  src="https://images.unsplash.com/photo-1473163928189-394b13469e19?w=800&q=80" 
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors"></div>
-                <div className="absolute bottom-6 left-6 text-white z-10">
-                  <h3 className="font-headline text-2xl mb-1 italic">Neelum Valley</h3>
-                  <p className="text-xs uppercase tracking-widest text-white/80">Azad Kashmir Paradise</p>
-                </div>
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-[#00a2e8] text-base">check_circle</span>
+                <span>100+ happy customers enjoy traveling with Wanderer.</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-[#00a2e8] text-base">check_circle</span>
+                <span>15+ best local tourist destinations we explore.</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-[#00a2e8] text-base">check_circle</span>
+                <span>10+ international packages we offer.</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-[#00a2e8] text-base">check_circle</span>
+                <span>5+ best umrah packages we offer.</span>
               </div>
             </div>
           </div>
-        </section>
 
-        {/* Testimonials Section */}
-        <section className="py-24 bg-surface-container-low border-t border-outline-variant/20">
-          <div className="container mx-auto px-6 max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
-              <div className="lg:col-span-1">
-                <h2 className="font-headline text-4xl text-primary mb-6 leading-tight italic">Voices of Our <br/>Beloved Travelers</h2>
-                <div className="flex gap-1 text-[#CD9933] mb-4">
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                </div>
-                <p className="text-on-surface-variant font-body">
-                  Rated 4.9/5 by our community for exceptional service and reliability.
+          {/* Right Side Map */}
+          <div className="flex justify-center items-center">
+            {/* Styled Tan Minimalist World Map Outline Image */}
+            <img 
+              alt="Tan minimal global world map outline graphic travel network" 
+              className="w-full max-w-xl h-auto opacity-80" 
+              src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80" 
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 11. Contact Us Section (Snowy Mountain Split Backdrop) */}
+      <section className="relative bg-[#f5f7fa] overflow-hidden">
+        {/* Snowy Mountain Backdrop */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            alt="Alpine snowcapped mountains panorama peak" 
+            className="w-full h-full object-cover opacity-15" 
+            src="https://images.unsplash.com/photo-1482862549707-f63cb32c5fd9?w=1600&q=80" 
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-stretch min-h-[600px]">
+          {/* Left Column: Happy traveler photo cutout */}
+          <div className="relative hidden lg:block overflow-hidden min-h-[500px]">
+            <img 
+              alt="Happy smiling traveler holding camera passport boarding pass layout cutout" 
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[95%] w-auto object-contain" 
+              src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80" 
+            />
+          </div>
+
+          {/* Right Column: Dark Blue Contact Box */}
+          <div className="bg-[#0f2e5c] text-white p-12 md:p-16 flex flex-col justify-center space-y-8 shadow-2xl">
+            <div>
+              <h2 className="text-white text-3xl font-black tracking-widest uppercase font-sans">
+                CONTACT US
+              </h2>
+              <p className="text-[#00a2e8] text-xs font-bold uppercase tracking-wider mt-2">
+                Just, fill out form and Let's make your travel plan in minutes!
+              </p>
+            </div>
+
+            {submitted ? (
+              <div className="bg-white/5 border border-white/10 p-8 text-center space-y-4">
+                <span className="material-symbols-outlined text-[#00a2e8] text-5xl">mark_email_read</span>
+                <h4 className="text-white text-lg font-bold uppercase tracking-wider">Plan Request Submitted!</h4>
+                <p className="text-white/60 text-xs">
+                  Your customized details are sent to a Wanderer coordinator. We will reach back to you shortly.
                 </p>
               </div>
-              
-              <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Testimonial 1 */}
-                <div className="bg-surface p-10 editorial-shadow relative border border-outline-variant/5">
-                  <span className="material-symbols-outlined absolute top-6 right-6 text-primary/10 text-5xl">format_quote</span>
-                  <p className="text-on-surface mb-8 italic leading-relaxed font-manrope">
-                    "The Umrah journey was impeccably organized. From the visa process to the premium hotels in Makkah, everything was managed with extreme care. Highly recommended for families."
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full overflow-hidden">
-                      <img 
-                        alt="Ahmad Raza" 
-                        className="w-full h-full object-cover" 
-                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" 
-                      />
-                    </div>
-                    <div>
-                      <h5 className="font-bold text-primary text-sm">Ahmad Raza</h5>
-                      <p className="text-[10px] text-outline uppercase tracking-widest">Umrah Participant</p>
-                    </div>
-                  </div>
+            ) : (
+              <form onSubmit={handleContactSubmit} className="space-y-6">
+                <div>
+                  <input 
+                    required
+                    value={contactName}
+                    onChange={(e) => setContactName(e.target.value)}
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#00a2e8] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
+                    placeholder="Your Name" 
+                    type="text" 
+                  />
                 </div>
+                <div>
+                  <input 
+                    required
+                    value={contactPhone}
+                    onChange={(e) => setContactPhone(e.target.value)}
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#00a2e8] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
+                    placeholder="Your Contact Number" 
+                    type="tel" 
+                  />
+                </div>
+                <div>
+                  <input 
+                    required
+                    value={contactEmail}
+                    onChange={(e) => setContactEmail(e.target.value)}
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#00a2e8] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
+                    placeholder="Your Email Address" 
+                    type="email" 
+                  />
+                </div>
+                <div>
+                  <textarea 
+                    required
+                    value={contactMsg}
+                    onChange={(e) => setContactMsg(e.target.value)}
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#00a2e8] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors resize-none h-24" 
+                    placeholder="Your Message" 
+                  />
+                </div>
+                <button 
+                  type="submit"
+                  className="bg-[#00a2e8] hover:bg-white hover:text-[#0f2e5c] text-white font-bold text-xs uppercase tracking-widest py-4 px-8 transition-colors flex items-center justify-center gap-2 select-none"
+                >
+                  <span>SEND MESSAGE</span>
+                  <span className="material-symbols-outlined text-sm">send</span>
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
 
-                {/* Testimonial 2 */}
-                <div className="bg-surface p-10 editorial-shadow relative border border-outline-variant/5">
-                  <span className="material-symbols-outlined absolute top-6 right-6 text-primary/10 text-5xl">format_quote</span>
-                  <p className="text-on-surface mb-8 italic leading-relaxed font-manrope">
-                    "Our Turkey trip was the highlight of our year. The local guides were knowledgeable and the itinerary was perfectly balanced between sightseeing and relaxation."
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full overflow-hidden">
-                      <img 
-                        alt="Sara Khan" 
-                        className="w-full h-full object-cover" 
-                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" 
-                      />
-                    </div>
-                    <div>
-                      <h5 className="font-bold text-primary text-sm">Sara Khan</h5>
-                      <p className="text-[10px] text-outline uppercase tracking-widest">Turkey Tour</p>
-                    </div>
-                  </div>
-                </div>
+      {/* 12. Corporate Charcoal Footer */}
+      <footer className="bg-[#111111] text-white/50 py-16 px-6 border-t border-white/5 text-xs">
+        <div className="max-w-7xl mx-auto space-y-12">
+          {/* Centered Logo at the top */}
+          <div className="flex flex-col items-center text-center select-none group">
+            <span className="text-white text-3xl font-extrabold tracking-widest uppercase font-sans">
+              WANDERER
+              <span className="text-[#00a2e8]">/</span>
+            </span>
+            <span className="text-white/60 text-[9px] font-bold tracking-[0.38em] uppercase -mt-1 pl-[2px]">
+              WAY OF LIFE
+            </span>
+          </div>
+
+          <hr className="border-white/5" />
+
+          {/* 5 Clean Columns Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 text-left">
+            {/* Col 1 */}
+            <div className="space-y-4">
+              <h5 className="text-white font-bold tracking-widest uppercase">Contact Us</h5>
+              <div className="space-y-2.5 leading-relaxed">
+                <p>Main Boulevard, Gulberg III, Lahore, Pakistan</p>
+                <p>Tel: +92 300 1234567</p>
+                <p>Email: info@wanderertravels.com</p>
+              </div>
+            </div>
+
+            {/* Col 2 */}
+            <div className="space-y-4">
+              <h5 className="text-white font-bold tracking-widest uppercase">Book Now</h5>
+              <ul className="space-y-2.5">
+                <li><Link to="/flights" className="hover:text-[#00a2e8] transition-colors">Airline Tickets</Link></li>
+                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Domestic Tours</Link></li>
+                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">International Tours</Link></li>
+                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Umrah Services</Link></li>
+              </ul>
+            </div>
+
+            {/* Col 3 */}
+            <div className="space-y-4">
+              <h5 className="text-white font-bold tracking-widest uppercase">Explore</h5>
+              <ul className="space-y-2.5">
+                <li><Link to="/visa-services" className="hover:text-[#00a2e8] transition-colors">Visa Services</Link></li>
+                <li><Link to="/about" className="hover:text-[#00a2e8] transition-colors">Group Tours</Link></li>
+                <li><Link to="/blog" className="hover:text-[#00a2e8] transition-colors">Travel Blog</Link></li>
+                <li><Link to="/contact" className="hover:text-[#00a2e8] transition-colors">Careers</Link></li>
+              </ul>
+            </div>
+
+            {/* Col 4 */}
+            <div className="space-y-4">
+              <h5 className="text-white font-bold tracking-widest uppercase">Top Deals</h5>
+              <ul className="space-y-2.5">
+                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Dubai New Year Special</Link></li>
+                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Kashmir Autumn Retreat</Link></li>
+                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Turkey Spring Deal</Link></li>
+                <li><Link to="/packages" className="hover:text-[#00a2e8] transition-colors">Custom Group Quotes</Link></li>
+              </ul>
+            </div>
+
+            {/* Col 5 */}
+            <div className="space-y-4">
+              <h5 className="text-white font-bold tracking-widest uppercase">Newsletter</h5>
+              <p className="leading-relaxed">Subscribe to get alerts on flash flight bookings and destination price cuts.</p>
+              <div className="flex gap-2">
+                <input 
+                  className="bg-white/5 border border-white/10 text-white text-xs px-3.5 py-2.5 focus:border-[#00a2e8] outline-none flex-1" 
+                  placeholder="Your Email Address" 
+                  type="email" 
+                />
+                <button className="bg-[#00a2e8] hover:bg-white hover:text-[#0f2e5c] text-white px-4 py-2.5 transition-colors font-bold">
+                  GO
+                </button>
               </div>
             </div>
           </div>
-        </section>
 
-        {/* Contact Form Section */}
-        <section className="relative py-24 overflow-hidden bg-surface">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-surface via-surface/85 to-surface"></div>
-          </div>
-          <div className="container mx-auto px-6 relative z-10 max-w-5xl">
-            <div className="bg-primary rounded-none editorial-shadow overflow-hidden flex flex-col md:flex-row border border-white/5">
-              <div className="p-12 md:w-1/2 text-white bg-primary-container relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#013334]/90 to-primary/95"></div>
-                <div className="relative z-10">
-                  <h2 className="font-headline text-3xl mb-8 italic text-[#CD9933]">Let's Plan Your Next Journey</h2>
-                  <p className="text-white/70 mb-12 font-manrope text-sm leading-relaxed">
-                    Leave your details and our experienced travel consultants will get back to you within 24 hours.
-                  </p>
-                  <div className="space-y-6">
-                    <div className="flex items-start gap-4">
-                      <span className="material-symbols-outlined text-[#CD9933]">location_on</span>
-                      <div>
-                        <h6 className="font-bold text-sm">Visit Us</h6>
-                        <p className="text-white/60 text-xs leading-relaxed mt-1">
-                          Main Boulevard, Gulberg III,<br/>Lahore, Pakistan
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <span className="material-symbols-outlined text-[#CD9933]">phone_in_talk</span>
-                      <div>
-                        <h6 className="font-bold text-sm">Call Center</h6>
-                        <p className="text-white/60 text-xs mt-1">+92 300 1234567</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="p-12 md:w-1/2 bg-surface">
-                {submitted ? (
-                  <div className="flex flex-col items-center justify-center h-full text-center py-10">
-                    <span className="material-symbols-outlined text-green-500 text-6xl mb-4">check_circle</span>
-                    <h4 className="font-headline text-2xl text-primary font-bold mb-2">Message Sent Successfully!</h4>
-                    <p className="text-on-surface-variant text-sm font-manrope">
-                      Thank you for contacting Rehman Travels. Our travel expert will reach out to you shortly.
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleContactSubmit} className="space-y-6">
-                    <div>
-                      <label className="block text-[10px] font-bold uppercase tracking-widest text-outline mb-1">Full Name</label>
-                      <input 
-                        required
-                        value={contactName}
-                        onChange={(e) => setContactName(e.target.value)}
-                        className="w-full bg-transparent border-b border-outline-variant py-2 focus:border-secondary outline-none transition-colors text-on-surface text-sm" 
-                        placeholder="e.g. Abdullah Khan" 
-                        type="text"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[10px] font-bold uppercase tracking-widest text-outline mb-1">Email Address</label>
-                      <input 
-                        required
-                        value={contactEmail}
-                        onChange={(e) => setContactEmail(e.target.value)}
-                        className="w-full bg-transparent border-b border-outline-variant py-2 focus:border-secondary outline-none transition-colors text-on-surface text-sm" 
-                        placeholder="email@example.com" 
-                        type="email"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[10px] font-bold uppercase tracking-widest text-outline mb-1">I am interested in</label>
-                      <select 
-                        value={interest}
-                        onChange={(e) => setInterest(e.target.value)}
-                        className="w-full bg-transparent border-b border-outline-variant py-2 focus:border-secondary outline-none transition-colors text-on-surface text-sm"
-                      >
-                        <option value="Umrah Packages">Umrah Packages</option>
-                        <option value="International Tours">International Tours</option>
-                        <option value="Local Tours">Local Tours</option>
-                        <option value="Custom Itinerary">Custom Itinerary</option>
-                      </select>
-                    </div>
-                    <button 
-                      type="submit" 
-                      className="w-full bg-[#CD9933] text-primary font-bold uppercase tracking-widest text-xs py-4 hover:shadow-lg transition-all mt-4"
-                    >
-                      Send Message
-                    </button>
-                  </form>
-                )}
-              </div>
+          <hr className="border-white/5" />
+
+          {/* Bottom copyright row */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] tracking-wider uppercase font-medium">
+            <p>© 2026 WANDERER WAY OF LIFE. ALL RIGHTS RESERVED.</p>
+            <div className="flex items-center gap-4">
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </footer>
 
-      {/* Standard premium footer */}
-      <Footer />
     </div>
   )
 }
