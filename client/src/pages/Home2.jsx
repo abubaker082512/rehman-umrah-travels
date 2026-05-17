@@ -5,7 +5,7 @@ import logo from '../assets/Rehman Travel Logo.png'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
-// High-fidelity fallback package data matching screen_user.png layout in Rehman color scheme
+// High-fidelity fallback package data matching screen_user.png layout in Royal color scheme
 const staticInternationalTours = [
   {
     id: 101,
@@ -127,9 +127,9 @@ const Home2 = () => {
               <span className="material-symbols-outlined text-[14px]">phone_in_talk</span>
               <span>+92 300 1234567</span>
             </a>
-            <a href="mailto:info@rehmanumrah.com" className="flex items-center gap-2 hover:text-[#CD9933] transition-colors">
+            <a href="mailto:info@royalumrahandtravel.com" className="flex items-center gap-2 hover:text-[#CD9933] transition-colors">
               <span className="material-symbols-outlined text-[14px]">mail</span>
-              <span>info@rehmanumrah.com</span>
+              <span>info@royalumrahandtravel.com</span>
             </a>
           </div>
           <div className="hidden sm:flex items-center gap-4">
@@ -143,9 +143,9 @@ const Home2 = () => {
 
         {/* Main Navbar Overlay */}
         <nav className="px-6 md:px-12 py-5 flex justify-between items-center bg-transparent">
-          {/* Logo (Rehman Travel Logo image) */}
+          {/* Logo (Rehman Travel Logo image - alt updated to Royal) */}
           <Link to="/" className="flex items-center gap-2 select-none">
-            <img src={logo} alt="Rehman Umrah & Travels Logo" className="h-8 sm:h-10 w-auto" />
+            <img src={logo} alt="Royal Umrah & Travels Logo" className="h-8 sm:h-10 w-auto" />
           </Link>
 
           {/* Navigation Links */}
@@ -166,20 +166,20 @@ const Home2 = () => {
 
       {/* 2. Brand-Focused Hero Section */}
       <section className="relative h-[921px] flex items-center justify-center overflow-hidden">
-        {/* Background Image: Adventure flat-lay tabletop photo */}
+        {/* Background Image: Spectacular Kaaba photograph */}
         <div className="absolute inset-0 z-0">
           <img 
-            alt="Adventure travel flatlay layout tabletop scenery" 
+            alt="Majestic Holy Kaaba in Makkah spiritual scenery" 
             className="w-full h-full object-cover" 
-            src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1600&q=80" 
+            src="https://images.unsplash.com/photo-1591604021695-0c69b7c05981?w=1600&q=80" 
           />
-          <div className="absolute inset-0 bg-[#013334]/40"></div>
+          <div className="absolute inset-0 bg-[#001c1d]/65"></div>
         </div>
 
         {/* Minimalist Centered Brand Logo Overlay (Teal & Gold) */}
         <div className="relative z-10 text-center text-white px-6">
           <h1 className="text-white text-6xl md:text-8xl font-bold tracking-[0.25em] uppercase font-headline animate-fade-in">
-            REHMAN
+            ROYAL
           </h1>
           <div className="h-[2px] w-24 bg-[#CD9933] mx-auto my-4"></div>
           <p className="text-[#CD9933] text-sm md:text-base font-bold tracking-[0.45em] uppercase">
@@ -213,7 +213,7 @@ const Home2 = () => {
               BEST TRAVEL AGENCY IN RAWALPINDI & LAHORE
             </h2>
             <p className="text-gray-500 leading-relaxed text-sm">
-              At Rehman Umrah & Travels, we treat every travel plan as a customized masterclass of spiritual fulfillment, logistics comfort, and exploration freedom. Over the years, we have built key flight alignments and hotel partnerships worldwide to deliver high-fidelity journeys that stay with you forever.
+              At Royal Umrah & Travels, we treat every travel plan as a customized masterclass of spiritual fulfillment, logistics comfort, and exploration freedom. Over the years, we have built key flight alignments and hotel partnerships worldwide to deliver high-fidelity journeys that stay with you forever.
             </p>
             
             {/* Elegant 8-Item Double-Column List */}
@@ -482,13 +482,13 @@ const Home2 = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* Left Column typography block (Teal & Gold transition) */}
           <div className="bg-[#f5f7fa] py-28 px-12 md:px-24 flex flex-col justify-center space-y-4">
-            <h3 className="text-gray-300 text-7xl md:text-8xl font-bold tracking-widest uppercase select-none leading-none font-headline">
+            <h3 className="text-gray-300 text-7xl md:text-8xl font-bold tracking-widest uppercase select-none leading-none font-headline font-black">
               EXPLORE
             </h3>
-            <h3 className="text-[#CD9933] text-7xl md:text-8xl font-bold tracking-widest uppercase select-none leading-none font-headline">
+            <h3 className="text-[#CD9933] text-7xl md:text-8xl font-bold tracking-widest uppercase select-none leading-none font-headline font-black">
               DREAM
             </h3>
-            <h3 className="text-[#013334] text-7xl md:text-8xl font-bold tracking-widest uppercase select-none leading-none font-headline">
+            <h3 className="text-[#013334] text-7xl md:text-8xl font-bold tracking-widest uppercase select-none leading-none font-headline font-black">
               DISCOVER
             </h3>
           </div>
@@ -506,10 +506,10 @@ const Home2 = () => {
 
             <div className="relative z-10 bg-white p-8 md:p-12 shadow-2xl max-w-md w-full space-y-6">
               <h4 className="text-[#013334] font-bold text-2xl tracking-wide uppercase font-headline">
-                Epic Journeys From Rehman Travels
+                Epic Journeys From Royal Travels
               </h4>
               <p className="text-gray-500 text-xs leading-relaxed">
-                Rehman Travels' refining capacities and travel logistics are built for people who wish to travel with absolute peace of mind. We ensure that every schedule is aligned, transport is fully private, and stays are vetted.
+                Royal Travels' refining capacities and travel logistics are built for people who wish to travel with absolute peace of mind. We ensure that every schedule is aligned, transport is fully private, and stays are vetted.
               </p>
               <div className="flex gap-4 pt-2">
                 <a 
@@ -586,21 +586,21 @@ const Home2 = () => {
               <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">Zubair Malik</h5>
               <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase mb-4">Islamabad, Pakistan</p>
               <p className="text-gray-500 italic text-xs leading-relaxed max-w-sm">
-                "Booking airline tickets and private domestic tours in Swat and Naran Valley was incredibly fast and smooth. Rehman Travels operates with absolute elite professionalism. Will definitely travel with them again."
+                "Booking airline tickets and private domestic tours in Swat and Naran Valley was incredibly fast and smooth. Royal Travels operates with absolute elite professionalism. Will definitely travel with them again."
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 10. Stats Section ("A Fact of Rehman Travels") */}
+      {/* 10. Stats Section ("A Fact of Royal Travels") */}
       <section className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Side Stats */}
           <div className="space-y-6">
             <span className="text-[#CD9933] font-bold text-xs uppercase tracking-widest block">PROUD NUMBERS</span>
             <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
-              THE REHMAN LEGACY
+              THE ROYAL LEGACY
             </h2>
             <p className="text-gray-500 text-sm leading-relaxed">
               We focus on expanding our partner relationships and logistics integrations every single day. Here are key markers of our historical service footprints:
@@ -614,7 +614,7 @@ const Home2 = () => {
               </div>
               <div className="flex items-center gap-3">
                 <span className="material-symbols-outlined text-[#CD9933] text-base">check_circle</span>
-                <span>500+ happy customers enjoy traveling with Rehman Travels.</span>
+                <span>500+ happy customers enjoy traveling with Royal Travels.</span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="material-symbols-outlined text-[#CD9933] text-base">check_circle</span>
@@ -680,7 +680,7 @@ const Home2 = () => {
                 <span className="material-symbols-outlined text-[#CD9933] text-5xl">mark_email_read</span>
                 <h4 className="text-white text-lg font-bold uppercase tracking-wider">Plan Request Submitted!</h4>
                 <p className="text-white/60 text-xs">
-                  Your customized details are sent to a Rehman Travels coordinator. We will reach back to you shortly.
+                  Your customized details are sent to a Royal Travels coordinator. We will reach back to you shortly.
                 </p>
               </div>
             ) : (
@@ -743,7 +743,7 @@ const Home2 = () => {
           {/* Centered Logo at the top */}
           <div className="flex flex-col items-center text-center select-none">
             <span className="text-white text-3xl font-bold tracking-widest uppercase font-headline">
-              REHMAN
+              ROYAL
               <span className="text-[#CD9933]">/</span>
             </span>
             <span className="text-white/60 text-[9px] font-bold tracking-[0.38em] uppercase -mt-1 pl-[2px] font-manrope">
@@ -761,7 +761,7 @@ const Home2 = () => {
               <div className="space-y-2.5 leading-relaxed">
                 <p>Main Boulevard, Gulberg III, Lahore, Pakistan</p>
                 <p>Tel: +92 300 1234567</p>
-                <p>Email: info@rehmanumrah.com</p>
+                <p>Email: info@royalumrahandtravel.com</p>
               </div>
             </div>
 
@@ -819,7 +819,7 @@ const Home2 = () => {
 
           {/* Bottom copyright row */}
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] tracking-wider uppercase font-medium">
-            <p>© 2026 REHMAN UMRAH & TRAVELS. ALL RIGHTS RESERVED.</p>
+            <p>© 2026 ROYAL UMRAH & TRAVELS. ALL RIGHTS RESERVED.</p>
             <div className="flex items-center gap-4">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>

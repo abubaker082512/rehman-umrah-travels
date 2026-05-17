@@ -873,7 +873,7 @@ const ContentCMS = () => {
   })
 
   const [flightsContent, setFlightsContent] = useState({
-    heroTitle: 'BOOK YOUR DREAM JOURNEY WITH REHMAN UMRAH & TRAVELS',
+    heroTitle: 'BOOK YOUR DREAM JOURNEY WITH ROYAL UMRAH & TRAVELS',
     heroSubtitle: 'DISCOVER THE BEST DEALS ON FLIGHTS AND TRAVEL PACKAGES WORLDWIDE',
     adventureTitle: 'YOUR NEXT ADVENTURE BEGINS HERE!',
     adventureSubtitle: 'Discover the best flight deals and travel packages tailored to your needs.',
