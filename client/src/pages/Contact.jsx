@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: 'Umrah Packages', message: '' })
+  const [captchaValue, setCaptchaValue] = useState(null)
   const [pageMedia, setPageMedia] = useState({})
   const [cmsContent, setCmsContent] = useState({
     heroTitle: 'Get in Touch', heroSubtitle: 'Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you.',
@@ -44,6 +46,10 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (!captchaValue) {
+      alert('Please complete the Captcha validation.')
+      return
+    }
     // Handle form submission
     alert('Thank you for your message! Our team will contact you within 24 hours.')
   }
@@ -132,78 +138,88 @@ const Contact = () => {
               <h2 className="font-notoSerif text-3xl font-bold text-primary mb-2">Send Us a Message</h2>
               <p className="text-on-surface-variant text-sm mb-8">Fill out the form below and our travel consultants will get back to you within 24 hours.</p>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Full Name</label>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="relative group">
                     <input 
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-3 text-sm" 
-                      placeholder="Enter your name" 
+                      className="peer w-full bg-transparent border-0 border-b-2 border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-3 text-sm text-[#013334] placeholder-transparent outline-none" 
+                      placeholder="Full Name" 
                       type="text" 
                       required
                     />
+                    <label className="absolute left-0 -top-3.5 text-xs font-bold uppercase tracking-widest text-[#CD9933] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-outline peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#CD9933]">Full Name</label>
                   </div>
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Email Address</label>
+                  <div className="relative group">
                     <input 
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-3 text-sm" 
-                      placeholder="Enter your email" 
+                      className="peer w-full bg-transparent border-0 border-b-2 border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-3 text-sm text-[#013334] placeholder-transparent outline-none" 
+                      placeholder="Email Address" 
                       type="email" 
                       required
                     />
+                    <label className="absolute left-0 -top-3.5 text-xs font-bold uppercase tracking-widest text-[#CD9933] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-outline peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#CD9933]">Email Address</label>
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Phone Number</label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="relative group">
                     <input 
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-3 text-sm" 
-                      placeholder="+92 XXXXX XXXXX" 
+                      className="peer w-full bg-transparent border-0 border-b-2 border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-3 text-sm text-[#013334] placeholder-transparent outline-none" 
+                      placeholder="Phone Number" 
                       type="tel" 
                     />
+                    <label className="absolute left-0 -top-3.5 text-xs font-bold uppercase tracking-widest text-[#CD9933] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-outline peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#CD9933]">Phone Number</label>
                   </div>
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Subject</label>
+                  <div className="relative group">
                     <select 
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-3 text-sm appearance-none"
+                      className="peer w-full bg-transparent border-0 border-b-2 border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-3 text-sm text-[#013334] outline-none appearance-none"
                     >
                       <option>Umrah Packages</option>
                       <option>International Tours</option>
                       <option>Visa Services</option>
                       <option>General Inquiry</option>
                     </select>
+                    <label className="absolute left-0 -top-3.5 text-xs font-bold uppercase tracking-widest text-[#CD9933]">Subject</label>
+                    <div className="absolute right-0 top-3 pointer-events-none text-[#CD9933]">
+                      <span className="material-symbols-outlined text-sm">expand_more</span>
+                    </div>
                   </div>
                 </div>
                 
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Your Message</label>
+                <div className="relative group">
                   <textarea 
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-3 text-sm resize-none" 
-                    placeholder="Tell us about your travel plans or questions..." 
+                    className="peer w-full bg-transparent border-0 border-b-2 border-outline-variant focus:border-[#CD9933] focus:ring-0 transition-colors py-3 text-sm text-[#013334] placeholder-transparent resize-none outline-none" 
+                    placeholder="Your Message" 
                     rows={5}
                     required
                   ></textarea>
+                  <label className="absolute left-0 -top-3.5 text-xs font-bold uppercase tracking-widest text-[#CD9933] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:text-outline peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#CD9933]">Your Message</label>
+                </div>
+
+                <div className="flex justify-center md:justify-start">
+                  <ReCAPTCHA
+                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"}
+                    onChange={(val) => setCaptchaValue(val)}
+                  />
                 </div>
                 
-                <button type="submit" className="w-full bg-gradient-to-r from-[#7d5800] to-[#CD9933] text-white py-4 rounded-md font-bold text-sm tracking-widest uppercase shadow-lg shadow-[#7d5800]/20 hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+                <button type="submit" className="w-full bg-[#013334] text-white py-4 rounded-md font-bold text-sm tracking-widest uppercase shadow-xl hover:bg-[#CD9933] hover:shadow-[#CD9933]/30 transition-all duration-300 flex items-center justify-center gap-2 group">
                   Send Message
-                  <span className="material-symbols-outlined text-sm">send</span>
+                  <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">send</span>
                 </button>
               </form>
 
