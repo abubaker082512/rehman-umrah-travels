@@ -190,15 +190,16 @@ const Home2 = () => {
             We provide complete Umrah & International Travel Services with trusted guidance, premium comfort, and seamless support - so you can focus fully on your worship and sacred spiritual journey.
           </p>
         </div>
-
-        {/* Floating Banner Contact Form */}
-        <div className="absolute bottom-0 left-0 w-full translate-y-1/2 px-4 md:px-8 z-20">
-          <BannerContactForm />
         </div>
       </section>
 
+      {/* Floating Banner Contact Form */}
+      <div className="relative z-20 w-full px-4 md:px-8 -mt-24 sm:-mt-32 pb-8">
+        <BannerContactForm />
+      </div>
+
       {/* 3. Partner Logo Strip */}
-      <div className="bg-[#111111] pt-36 pb-8 px-6 overflow-hidden mt-24 md:mt-0">
+      <div className="bg-[#111111] py-8 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70">
           <span className="text-white font-extrabold tracking-widest text-sm uppercase">TURKISH AIRLINES</span>
           <span className="text-white font-extrabold tracking-widest text-sm uppercase">EMIRATES</span>
