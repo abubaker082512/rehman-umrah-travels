@@ -71,7 +71,7 @@ const Home2 = () => {
   const [packages, setPackages] = useState([])
   const [internationalTours, setInternationalTours] = useState(staticInternationalTours)
   const [localTours, setLocalTours] = useState(staticLocalTours)
-  
+
   // Form State
   const [contactName, setContactName] = useState('')
   const [contactPhone, setContactPhone] = useState('')
@@ -118,7 +118,7 @@ const Home2 = () => {
 
   return (
     <div className="bg-white font-manrope antialiased text-gray-700 min-h-screen">
-      
+
       {/* 1. Header & Navigation (Transparent Overlay Style - Teal & Gold Theme) */}
       <header className="absolute top-0 left-0 right-0 z-50 w-full">
         {/* Top Teal Info Bar */}
@@ -171,10 +171,10 @@ const Home2 = () => {
       <section className="relative h-[921px] flex items-center justify-center overflow-hidden">
         {/* Background Image: Spectacular Kaaba photograph */}
         <div className="absolute inset-0 z-0">
-          <img 
-            alt="Majestic Holy Kaaba in Makkah spiritual scenery" 
-            className="w-full h-full object-cover" 
-            src={background1} 
+          <img
+            alt="Majestic Holy Kaaba in Makkah spiritual scenery"
+            className="w-full h-full object-cover"
+            src={background1}
           />
           <div className="absolute inset-0 bg-[#001c1d]/65"></div>
         </div>
@@ -182,11 +182,11 @@ const Home2 = () => {
         {/* Minimalist Centered Brand Logo Overlay (Teal & Gold) */}
         <div className="relative z-10 text-center text-white px-6">
           <h1 className="text-white text-6xl md:text-8xl font-bold tracking-[0.25em] uppercase font-headline animate-fade-in">
-            ROYAL
+            THE GUESTS OF ALLAH
           </h1>
           <div className="h-[2px] w-24 bg-[#CD9933] mx-auto my-4"></div>
           <p className="text-[#CD9933] text-sm md:text-base font-bold tracking-[0.45em] uppercase">
-            UMRAH & TRAVELS
+            We provide complete Umrah & International Travel Services with trusted guidance, premium comfort, and seamless support - so you can focus fully on your worship and sacred spiritual journey.
           </p>
         </div>
       </section>
@@ -218,7 +218,7 @@ const Home2 = () => {
             <p className="text-gray-500 leading-relaxed text-sm">
               At Royal Umrah & Travels, we treat every travel plan as a customized masterclass of spiritual fulfillment, logistics comfort, and exploration freedom. Over the years, we have built key flight alignments and hotel partnerships worldwide to deliver high-fidelity journeys that stay with you forever.
             </p>
-            
+
             {/* Elegant 8-Item Double-Column List */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5 text-xs text-gray-600 font-bold uppercase tracking-wider">
               <div className="flex items-center gap-2.5">
@@ -254,9 +254,9 @@ const Home2 = () => {
                 <span>International Tour Packages</span>
               </div>
             </div>
-            
-            <Link 
-              to="/about" 
+
+            <Link
+              to="/about"
               className="inline-block bg-[#013334] hover:bg-[#CD9933] text-white px-8 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
             >
               READ MORE
@@ -266,10 +266,10 @@ const Home2 = () => {
           {/* Right Column Graphic Collage */}
           <div className="relative group">
             <div className="absolute inset-0 bg-[#CD9933] translate-x-3 translate-y-3 -z-10 group-hover:translate-x-1.5 group-hover:translate-y-1.5 transition-transform duration-300"></div>
-            <img 
-              alt="Luxury traveler collage illustration mockup landscape" 
-              className="w-full h-auto object-cover shadow-xl border border-gray-100" 
-              src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80" 
+            <img
+              alt="Luxury traveler collage illustration mockup landscape"
+              className="w-full h-auto object-cover shadow-xl border border-gray-100"
+              src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80"
             />
           </div>
         </div>
@@ -303,10 +303,10 @@ const Home2 = () => {
                 <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
                   {/* Top Image with Gold overlay Badge */}
                   <div className="relative h-64 overflow-hidden shrink-0">
-                    <img 
-                      alt={pkg.title} 
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
-                      src={img} 
+                    <img
+                      alt={pkg.title}
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                      src={img}
                     />
                     <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
                       {badge}
@@ -329,16 +329,16 @@ const Home2 = () => {
 
                     {/* Action Buttons */}
                     <div className="flex gap-4 mt-8 pt-6 border-t border-gray-100">
-                      <Link 
-                        to={`/package/${pkg.id || idx + 1}`} 
+                      <Link
+                        to={`/package/${pkg.id || idx + 1}`}
                         className="flex-1 bg-gray-900 hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                       >
                         READ MORE
                       </Link>
-                      <a 
-                        href="https://wa.me/923001234567" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href="https://wa.me/923001234567"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex-1 bg-[#013334] hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                       >
                         BOOK NOW
@@ -352,8 +352,8 @@ const Home2 = () => {
 
           {/* Centered Outline Button */}
           <div className="text-center mt-16">
-            <Link 
-              to="/packages" 
+            <Link
+              to="/packages"
               className="inline-block border-2 border-gray-300 hover:border-[#CD9933] text-gray-700 hover:text-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
             >
               MORE TOURS
@@ -366,10 +366,10 @@ const Home2 = () => {
       <section className="relative py-32 px-6 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img 
-            alt="Massive panoramic dark mountains wilderness" 
-            className="w-full h-full object-cover" 
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80" 
+          <img
+            alt="Massive panoramic dark mountains wilderness"
+            className="w-full h-full object-cover"
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80"
           />
           <div className="absolute inset-0 bg-[#013334]/85"></div>
         </div>
@@ -383,8 +383,8 @@ const Home2 = () => {
             We plan the logistics, align standard flights, secure accommodations, and details down to every tourist guide so that you can simply enjoy, relax, and discover.
           </p>
           <div className="pt-4">
-            <Link 
-              to="/packages" 
+            <Link
+              to="/packages"
               className="inline-block bg-[#CD9933] hover:bg-white hover:text-[#013334] text-white px-10 py-4 text-xs font-bold tracking-widest uppercase transition-all shadow-lg"
             >
               READ MORE
@@ -421,10 +421,10 @@ const Home2 = () => {
                 <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
                   {/* Top Image with Gold Badge */}
                   <div className="relative h-64 overflow-hidden shrink-0">
-                    <img 
-                      alt={pkg.title} 
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
-                      src={img} 
+                    <img
+                      alt={pkg.title}
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                      src={img}
                     />
                     <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
                       {badge}
@@ -447,16 +447,16 @@ const Home2 = () => {
 
                     {/* Action Buttons */}
                     <div className="flex gap-4 mt-8 pt-6 border-t border-gray-100">
-                      <Link 
-                        to={`/package/${pkg.id || idx + 1}`} 
+                      <Link
+                        to={`/package/${pkg.id || idx + 1}`}
                         className="flex-1 bg-gray-900 hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                       >
                         READ MORE
                       </Link>
-                      <a 
-                        href="https://wa.me/923001234567" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href="https://wa.me/923001234567"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex-1 bg-[#013334] hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                       >
                         BOOK NOW
@@ -470,8 +470,8 @@ const Home2 = () => {
 
           {/* Centered Outline Button */}
           <div className="text-center mt-16">
-            <Link 
-              to="/packages" 
+            <Link
+              to="/packages"
               className="inline-block border-2 border-gray-300 hover:border-[#CD9933] text-gray-700 hover:text-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
             >
               MORE TOURS
@@ -499,10 +499,10 @@ const Home2 = () => {
           {/* Right Column details card overlaying mountain image */}
           <div className="relative py-28 px-8 md:px-16 flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 z-0">
-              <img 
-                alt="Green pine mountain peak trees background" 
-                className="w-full h-full object-cover" 
-                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" 
+              <img
+                alt="Green pine mountain peak trees background"
+                className="w-full h-full object-cover"
+                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80"
               />
               <div className="absolute inset-0 bg-[#013334]/50"></div>
             </div>
@@ -515,16 +515,16 @@ const Home2 = () => {
                 Royal Travels' refining capacities and travel logistics are built for people who wish to travel with absolute peace of mind. We ensure that every schedule is aligned, transport is fully private, and stays are vetted.
               </p>
               <div className="flex gap-4 pt-2">
-                <a 
-                  href="https://wa.me/923001234567" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://wa.me/923001234567"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-[#CD9933] hover:bg-[#013334] text-white text-center px-6 py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                 >
                   BOOK NOW
                 </a>
-                <Link 
-                  to="/about" 
+                <Link
+                  to="/about"
                   className="border border-gray-300 hover:border-[#CD9933] text-gray-700 hover:text-[#CD9933] text-center px-6 py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
                 >
                   READ MORE
@@ -539,10 +539,10 @@ const Home2 = () => {
       <section className="relative py-24 px-6 overflow-hidden bg-[#013334]">
         {/* Shadow Overlay */}
         <div className="absolute inset-0 opacity-15 pointer-events-none">
-          <img 
-            alt="Mountains silhouette travel landscape" 
-            className="w-full h-full object-cover" 
-            src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80" 
+          <img
+            alt="Mountains silhouette travel landscape"
+            className="w-full h-full object-cover"
+            src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80"
           />
         </div>
 
@@ -563,10 +563,10 @@ const Home2 = () => {
             <div className="bg-white p-10 shadow-lg text-center relative border border-gray-100 flex flex-col items-center">
               <span className="material-symbols-outlined text-gray-200 text-5xl absolute top-6 right-6">format_quote</span>
               <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#f5f7fa] mb-6">
-                <img 
-                  alt="Tehmina Hassan portrait" 
-                  className="w-full h-full object-cover" 
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80" 
+                <img
+                  alt="Tehmina Hassan portrait"
+                  className="w-full h-full object-cover"
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80"
                 />
               </div>
               <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">Tehmina Hassan</h5>
@@ -580,10 +580,10 @@ const Home2 = () => {
             <div className="bg-white p-10 shadow-lg text-center relative border border-gray-100 flex flex-col items-center">
               <span className="material-symbols-outlined text-gray-200 text-5xl absolute top-6 right-6">format_quote</span>
               <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#f5f7fa] mb-6">
-                <img 
-                  alt="Zubair Malik portrait" 
-                  className="w-full h-full object-cover" 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" 
+                <img
+                  alt="Zubair Malik portrait"
+                  className="w-full h-full object-cover"
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80"
                 />
               </div>
               <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">Zubair Malik</h5>
@@ -608,7 +608,7 @@ const Home2 = () => {
             <p className="text-gray-500 text-sm leading-relaxed">
               We focus on expanding our partner relationships and logistics integrations every single day. Here are key markers of our historical service footprints:
             </p>
-            
+
             {/* 5 Statistics List */}
             <div className="space-y-4 pt-4 text-xs font-bold text-gray-700 uppercase tracking-wider">
               <div className="flex items-center gap-3">
@@ -637,10 +637,10 @@ const Home2 = () => {
           {/* Right Side Map */}
           <div className="flex justify-center items-center">
             {/* Styled Tan Minimalist World Map Outline */}
-            <img 
-              alt="Tan minimal global world map outline graphic travel network" 
-              className="w-full max-w-xl h-auto opacity-85" 
-              src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80" 
+            <img
+              alt="Tan minimal global world map outline graphic travel network"
+              className="w-full max-w-xl h-auto opacity-85"
+              src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80"
             />
           </div>
         </div>
@@ -650,20 +650,20 @@ const Home2 = () => {
       <section className="relative bg-[#f5f7fa] overflow-hidden">
         {/* Snowy Mountain Backdrop */}
         <div className="absolute inset-0 z-0">
-          <img 
-            alt="Alpine snowcapped mountains panorama peak" 
-            className="w-full h-full object-cover opacity-15" 
-            src="https://images.unsplash.com/photo-1482862549707-f63cb32c5fd9?w=1600&q=80" 
+          <img
+            alt="Alpine snowcapped mountains panorama peak"
+            className="w-full h-full object-cover opacity-15"
+            src="https://images.unsplash.com/photo-1482862549707-f63cb32c5fd9?w=1600&q=80"
           />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-stretch min-h-[600px]">
           {/* Left Column: Happy traveler photo cutout */}
           <div className="relative hidden lg:block overflow-hidden min-h-[500px]">
-            <img 
-              alt="Happy smiling traveler holding camera passport boarding pass layout cutout" 
-              className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[95%] w-auto object-contain" 
-              src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80" 
+            <img
+              alt="Happy smiling traveler holding camera passport boarding pass layout cutout"
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[95%] w-auto object-contain"
+              src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80"
             />
           </div>
 
@@ -689,45 +689,45 @@ const Home2 = () => {
             ) : (
               <form onSubmit={handleContactSubmit} className="space-y-6">
                 <div>
-                  <input 
+                  <input
                     required
                     value={contactName}
                     onChange={(e) => setContactName(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
-                    placeholder="Your Name" 
-                    type="text" 
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors"
+                    placeholder="Your Name"
+                    type="text"
                   />
                 </div>
                 <div>
-                  <input 
+                  <input
                     required
                     value={contactPhone}
                     onChange={(e) => setContactPhone(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
-                    placeholder="Your Contact Number" 
-                    type="tel" 
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors"
+                    placeholder="Your Contact Number"
+                    type="tel"
                   />
                 </div>
                 <div>
-                  <input 
+                  <input
                     required
                     value={contactEmail}
                     onChange={(e) => setContactEmail(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors" 
-                    placeholder="Your Email Address" 
-                    type="email" 
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors"
+                    placeholder="Your Email Address"
+                    type="email"
                   />
                 </div>
                 <div>
-                  <textarea 
+                  <textarea
                     required
                     value={contactMsg}
                     onChange={(e) => setContactMsg(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors resize-none h-24" 
-                    placeholder="Your Message" 
+                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors resize-none h-24"
+                    placeholder="Your Message"
                   />
                 </div>
-                <button 
+                <button
                   type="submit"
                   className="bg-[#CD9933] hover:bg-white hover:text-[#013334] text-primary font-bold text-xs uppercase tracking-widest py-4 px-8 transition-colors flex items-center justify-center gap-2 select-none"
                 >
@@ -806,10 +806,10 @@ const Home2 = () => {
               <h5 className="text-white font-bold tracking-widest uppercase">Newsletter</h5>
               <p className="leading-relaxed">Subscribe to get alerts on flash flight bookings and destination price cuts.</p>
               <div className="flex gap-2">
-                <input 
-                  className="bg-white/5 border border-white/10 text-white text-xs px-3.5 py-2.5 focus:border-[#CD9933] outline-none flex-1" 
-                  placeholder="Your Email Address" 
-                  type="email" 
+                <input
+                  className="bg-white/5 border border-white/10 text-white text-xs px-3.5 py-2.5 focus:border-[#CD9933] outline-none flex-1"
+                  placeholder="Your Email Address"
+                  type="email"
                 />
                 <button className="bg-[#CD9933] hover:bg-white hover:text-[#013334] text-primary px-4 py-2.5 transition-colors font-bold">
                   GO
