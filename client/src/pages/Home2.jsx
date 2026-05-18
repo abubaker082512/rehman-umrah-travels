@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import logo from '../assets/Rehman Travel Logo.png'
+import background1 from '../assets/background1.webp'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
@@ -149,8 +150,10 @@ const Home2 = () => {
           </Link>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-8 text-xs font-bold tracking-[0.2em] text-white">
+          <div className="hidden md:flex items-center gap-6 text-xs font-bold tracking-[0.15em] text-white">
             <Link to="/" className="hover:text-[#CD9933] transition-colors uppercase">HOME</Link>
+            <Link to="/home2" className="hover:text-[#CD9933] transition-colors uppercase text-[#CD9933]">HOME 2</Link>
+            <Link to="/home3" className="hover:text-[#CD9933] transition-colors uppercase">HOME 3</Link>
             <Link to="/flights" className="hover:text-[#CD9933] transition-colors uppercase">AIRLINE TICKETING</Link>
             <Link to="/visa-services" className="hover:text-[#CD9933] transition-colors uppercase">VISA INQUIRY</Link>
             <Link to="/about" className="hover:text-[#CD9933] transition-colors uppercase">PARTNERS</Link>
@@ -171,7 +174,7 @@ const Home2 = () => {
           <img 
             alt="Majestic Holy Kaaba in Makkah spiritual scenery" 
             className="w-full h-full object-cover" 
-            src="https://images.unsplash.com/photo-1591604021695-0c69b7c05981?w=1600&q=80" 
+            src={background1} 
           />
           <div className="absolute inset-0 bg-[#001c1d]/65"></div>
         </div>

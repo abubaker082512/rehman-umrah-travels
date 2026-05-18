@@ -164,12 +164,14 @@ const Home3 = () => {
           </Link>
 
           {/* Navigation Links (Home3 Premium Overlay style) */}
-          <div className="hidden lg:flex items-center gap-8 text-[11px] font-extrabold tracking-[0.25em] text-white">
+          <div className="hidden lg:flex items-center gap-6 text-[11px] font-extrabold tracking-[0.18em] text-white">
             <Link to="/" className="hover:text-[#CD9933] transition-colors uppercase">HOME</Link>
+            <Link to="/home2" className="hover:text-[#CD9933] transition-colors uppercase">HOME 2</Link>
+            <Link to="/home3" className="hover:text-[#CD9933] transition-colors uppercase text-[#CD9933] border-b border-[#CD9933] pb-0.5">HOME 3</Link>
             <Link to="/flights" className="hover:text-[#CD9933] transition-colors uppercase">AIRLINE TICKETING</Link>
             <Link to="/visa-services" className="hover:text-[#CD9933] transition-colors uppercase">VISA INQUIRY</Link>
             <Link to="/about" className="hover:text-[#CD9933] transition-colors uppercase">PARTNERS</Link>
-            <Link to="/contact" className="hover:text-[#CD9933] transition-colors uppercase text-[#CD9933] border-b border-[#CD9933] pb-1">CONTACT</Link>
+            <Link to="/contact" className="hover:text-[#CD9933] transition-colors uppercase">CONTACT</Link>
           </div>
 
           {/* Top Right 24/7 Support Badge Pill */}
