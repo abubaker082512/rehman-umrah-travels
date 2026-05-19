@@ -56,11 +56,12 @@ export default {
         "tertiary-fixed-dim": "#d7c4a6"
       },
       fontFamily: {
-        "notoSerif": ["Noto Serif", "serif"],
-        "manrope": ["Manrope", "sans-serif"],
-        "headline": ["Noto Serif"],
-        "body": ["Manrope"],
-        "label": ["Manrope"]
+        "notoSerif": ["Poppins", "sans-serif"],
+        "manrope": ["Poppins", "sans-serif"],
+        "headline": ["Poppins", "sans-serif"],
+        "body": ["Poppins", "sans-serif"],
+        "label": ["Poppins", "sans-serif"],
+        "poppins": ["Poppins", "sans-serif"]
       },
       borderRadius: {
         "DEFAULT": "0.125rem",

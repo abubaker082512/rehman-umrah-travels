@@ -189,7 +189,7 @@ const Home2 = () => {
 
         {/* Minimalist Centered Brand Logo Overlay (Teal & Gold) */}
         <div className="relative z-10 text-center text-white px-4 sm:px-6 mb-32 max-w-6xl mx-auto flex flex-col items-center">
-          <span className="font-manrope text-[#CD9933] font-bold text-[10px] md:text-xs tracking-[0.4em] uppercase mb-6 drop-shadow-md">Welcome to Royal Travels</span>
+          <span className="font-manrope text-[#CD9933] font-bold text-[10px] md:text-xs tracking-[0.4em] uppercase mb-6 drop-shadow-md">Proudly Serving</span>
           <h1 className="text-white text-5xl sm:text-7xl md:text-[6.5rem] font-black tracking-[0.15em] sm:tracking-[0.2em] uppercase font-notoSerif drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] leading-tight">
             THE GUESTS<br className="md:hidden" /> OF ALLAH
           </h1>

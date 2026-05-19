@@ -49,15 +49,15 @@
   --color-inverse-surface: #2e3132;
   --color-tertiary-fixed-dim: #d7c4a6;
 
-  --font-noto-serif: "Noto Serif", serif;
-  --font-manrope: "Manrope", sans-serif;
-  --font-headline: "Noto Serif", serif;
-  --font-body: "Manrope", sans-serif;
-  --font-label: "Manrope", sans-serif;
+  --font-noto-serif: "Poppins", sans-serif;
+  --font-manrope: "Poppins", sans-serif;
+  --font-headline: "Poppins", sans-serif;
+  --font-body: "Poppins", sans-serif;
+  --font-label: "Poppins", sans-serif;
 }
 
 :root {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .material-symbols-outlined {
