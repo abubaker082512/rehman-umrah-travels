@@ -177,17 +177,19 @@ const Home2 = () => {
             className="w-full h-full object-cover"
             src={background1}
           />
-          <div className="absolute inset-0 bg-[#001c1d]/65"></div>
+          {/* Dynamic Gradient Overlay for better contrast and premium feel */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#013334]/90 via-[#013334]/40 to-[#013334]/90"></div>
         </div>
 
         {/* Minimalist Centered Brand Logo Overlay (Teal & Gold) */}
-        <div className="relative z-10 text-center text-white px-6 mb-32">
-          <h1 className="text-white text-6xl md:text-8xl font-bold tracking-[0.25em] uppercase font-headline animate-fade-in">
-            THE GUESTS OF ALLAH
+        <div className="relative z-10 text-center text-white px-4 sm:px-6 mb-32 max-w-6xl mx-auto flex flex-col items-center">
+          <span className="font-manrope text-[#CD9933] font-bold text-[10px] md:text-xs tracking-[0.4em] uppercase mb-6 drop-shadow-md">Welcome to Royal Travels</span>
+          <h1 className="text-white text-5xl sm:text-7xl md:text-[6.5rem] font-black tracking-[0.15em] sm:tracking-[0.2em] uppercase font-notoSerif drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] leading-tight">
+            THE GUESTS<br className="md:hidden" /> OF ALLAH
           </h1>
-          <div className="h-[2px] w-24 bg-[#CD9933] mx-auto my-4"></div>
-          <p className="text-[#CD9933] text-sm md:text-base font-bold tracking-[0.45em] uppercase">
-            We provide complete Umrah & International Travel Services with trusted guidance, premium comfort, and seamless support - so you can focus fully on your worship and sacred spiritual journey.
+          <div className="h-[3px] w-32 bg-gradient-to-r from-transparent via-[#CD9933] to-transparent mx-auto my-8 sm:my-10 opacity-90"></div>
+          <p className="font-manrope text-white/90 text-xs sm:text-sm md:text-base font-semibold tracking-[0.2em] md:tracking-[0.3em] uppercase leading-relaxed max-w-4xl text-center drop-shadow-md">
+            We provide complete Umrah & International Travel Services with trusted guidance, premium comfort, and seamless support — so you can focus fully on your worship and sacred spiritual journey.
           </p>
         </div>
 
