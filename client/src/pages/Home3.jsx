@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import logo from '../assets/Rehman Travel Logo.png'
+import background1 from '../assets/background1.webp'
+import BannerContactForm from '../components/BannerContactForm'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
@@ -135,174 +137,77 @@ const Home3 = () => {
   return (
     <div className="bg-white font-manrope antialiased text-gray-700 min-h-screen">
       
-      {/* 1. Hero Section matching screenshot layout precisely */}
-      <section className="relative min-h-[960px] flex flex-col justify-between overflow-hidden bg-[#001c1d]">
-        {/* Background Image: Holy Kaaba at Makkah Sunset */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            alt="Scenic view of the Holy Kaaba sunset background" 
-            className="w-full h-full object-cover object-right md:object-center" 
-            src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1600&q=80" 
+      {/* 1. Header (Home3 style, but absolute overlay) */}
+      <header className="absolute top-0 left-0 right-0 z-50 w-full px-6 md:px-12 py-6 flex justify-between items-center bg-transparent">
+        {/* Logo Brand matching screenshot: Gold crescent mosque badge and elegant serif wordmark */}
+        <Link to="/" className="flex items-center gap-3 select-none">
+          <GoldLogoIcon />
+          <div className="text-left leading-none">
+            <span className="text-white text-xl font-bold tracking-[0.25em] font-headline block">
+              ROYAL UMRAH
+            </span>
+            <span className="text-[#CD9933] text-[9px] font-bold tracking-[0.38em] uppercase mt-1 pl-[2px] block">
+              — AND TRAVELS —
+            </span>
+          </div>
+        </Link>
+
+        {/* Navigation Links (Home3 Premium Overlay style) */}
+        <div className="hidden lg:flex items-center gap-6 text-[11px] font-extrabold tracking-[0.18em] text-white">
+          <Link to="/" className="hover:text-[#CD9933] transition-colors uppercase">HOME</Link>
+          <Link to="/home2" className="hover:text-[#CD9933] transition-colors uppercase">HOME 2</Link>
+          <Link to="/home3" className="hover:text-[#CD9933] transition-colors uppercase text-[#CD9933] border-b border-[#CD9933] pb-0.5">HOME 3</Link>
+          <Link to="/flights" className="hover:text-[#CD9933] transition-colors uppercase">AIRLINE TICKETING</Link>
+          <Link to="/visa-services" className="hover:text-[#CD9933] transition-colors uppercase">VISA INQUIRY</Link>
+          <Link to="/about" className="hover:text-[#CD9933] transition-colors uppercase">PARTNERS</Link>
+          <Link to="/contact" className="hover:text-[#CD9933] transition-colors uppercase">CONTACT</Link>
+        </div>
+
+        {/* Top Right 24/7 Support Badge Pill */}
+        <div className="bg-black/35 backdrop-blur-md border border-white/10 px-5 py-2.5 rounded-full flex items-center gap-3 shadow-lg select-none">
+          <div className="w-8 h-8 rounded-full bg-[#CD9933]/25 flex items-center justify-center text-[#CD9933]">
+            <span className="material-symbols-outlined text-base">phone_in_talk</span>
+          </div>
+          <div className="text-left leading-tight">
+            <p className="text-white text-[11px] font-black tracking-wide font-manrope">24/7 Support</p>
+            <p className="text-white/60 text-[9px]">We're Here to Help</p>
+          </div>
+        </div>
+      </header>
+
+      {/* 2. Brand-Focused Hero Section (Copied from Home 2) */}
+      <section className="relative h-[921px] flex items-center justify-center">
+        {/* Background Image: Spectacular Kaaba photograph */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            alt="Majestic Holy Kaaba in Makkah spiritual scenery"
+            className="w-full h-full object-cover"
+            src={background1}
           />
-          {/* Sophisticated dark teal horizontal gradient matching screenshot side-split */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#001c1d] via-[#001c1d]/95 via-45% md:via-55% to-transparent"></div>
+          {/* Dynamic Gradient Overlay for better contrast and premium feel */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#013334]/90 via-[#013334]/40 to-[#013334]/90"></div>
         </div>
 
-        {/* Custom Header Overlay inside Hero Section */}
-        <header className="relative z-20 w-full px-6 md:px-12 py-6 flex justify-between items-center bg-transparent">
-          {/* Logo Brand matching screenshot: Gold crescent mosque badge and elegant serif wordmark */}
-          <Link to="/" className="flex items-center gap-3 select-none">
-            <GoldLogoIcon />
-            <div className="text-left leading-none">
-              <span className="text-white text-xl font-bold tracking-[0.25em] font-headline block">
-                ROYAL UMRAH
-              </span>
-              <span className="text-[#CD9933] text-[9px] font-bold tracking-[0.38em] uppercase mt-1 pl-[2px] block">
-                — AND TRAVELS —
-              </span>
-            </div>
-          </Link>
-
-          {/* Navigation Links (Home3 Premium Overlay style) */}
-          <div className="hidden lg:flex items-center gap-6 text-[11px] font-extrabold tracking-[0.18em] text-white">
-            <Link to="/" className="hover:text-[#CD9933] transition-colors uppercase">HOME</Link>
-            <Link to="/home2" className="hover:text-[#CD9933] transition-colors uppercase">HOME 2</Link>
-            <Link to="/home3" className="hover:text-[#CD9933] transition-colors uppercase text-[#CD9933] border-b border-[#CD9933] pb-0.5">HOME 3</Link>
-            <Link to="/flights" className="hover:text-[#CD9933] transition-colors uppercase">AIRLINE TICKETING</Link>
-            <Link to="/visa-services" className="hover:text-[#CD9933] transition-colors uppercase">VISA INQUIRY</Link>
-            <Link to="/about" className="hover:text-[#CD9933] transition-colors uppercase">PARTNERS</Link>
-            <Link to="/contact" className="hover:text-[#CD9933] transition-colors uppercase">CONTACT</Link>
-          </div>
-
-          {/* Top Right 24/7 Support Badge Pill */}
-          <div className="bg-black/35 backdrop-blur-md border border-white/10 px-5 py-2.5 rounded-full flex items-center gap-3 shadow-lg select-none">
-            <div className="w-8 h-8 rounded-full bg-[#CD9933]/25 flex items-center justify-center text-[#CD9933]">
-              <span className="material-symbols-outlined text-base">phone_in_talk</span>
-            </div>
-            <div className="text-left leading-tight">
-              <p className="text-white text-[11px] font-black tracking-wide font-manrope">24/7 Support</p>
-              <p className="text-white/60 text-[9px]">We're Here to Help</p>
-            </div>
-          </div>
-        </header>
-
-        {/* Hero Main Content (Split left layout) */}
-        <div className="relative z-10 container mx-auto px-6 md:px-12 pt-28 pb-12 flex-1 flex flex-col justify-center items-start text-left">
-          {/* Label matching screenshot */}
-          <div className="flex items-center gap-3 text-[#CD9933] font-bold text-xs uppercase tracking-[0.4em] mb-5">
-            <span>BEGIN YOUR</span>
-            <div className="h-[1px] w-20 bg-[#CD9933]/70"></div>
-          </div>
-
-          {/* Headline matching screenshot */}
-          <h1 className="font-notoSerif text-5xl md:text-7xl font-bold text-white mb-6 leading-tight max-w-2xl drop-shadow-md">
-            Sacred Journey <br />
-            <span className="text-[#CD9933]">With Comfort & Trust</span>
+        {/* Minimalist Centered Brand Logo Overlay (Teal & Gold) */}
+        <div className="relative z-10 text-center text-white px-4 sm:px-6 mb-32 max-w-6xl mx-auto flex flex-col items-center">
+          <span className="font-manrope text-[#CD9933] font-bold text-[10px] md:text-xs tracking-[0.4em] uppercase mb-6 drop-shadow-md">Proudly Serving</span>
+          <h1 className="text-white text-5xl sm:text-7xl md:text-[6.5rem] font-black tracking-[0.15em] sm:tracking-[0.2em] uppercase font-notoSerif drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] leading-tight">
+            THE GUESTS<br className="md:hidden" /> OF ALLAH
           </h1>
-
-          {/* Description copy */}
-          <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-xl mb-10 font-light font-manrope">
-            We provide complete Umrah and international travel services with trusted guidance, premium comfort, and seamless support so you can focus fully on your worship and spiritual journey.
+          <div className="h-[3px] w-32 bg-gradient-to-r from-transparent via-[#CD9933] to-transparent mx-auto my-8 sm:my-10 opacity-90"></div>
+          <p className="font-manrope text-white/90 text-xs sm:text-sm md:text-base font-semibold tracking-[0.2em] md:tracking-[0.3em] uppercase leading-relaxed max-w-4xl text-center drop-shadow-md">
+            We provide complete Umrah & International Travel Services with trusted guidance, premium comfort, and seamless support — so you can focus fully on your worship and sacred spiritual journey.
           </p>
-
-          {/* Elegant Custom Action Buttons */}
-          <div className="flex flex-wrap gap-4 mb-20">
-            <Link 
-              to="/packages" 
-              className="bg-[#CD9933] hover:bg-white hover:text-[#001c1d] text-white font-bold text-xs uppercase tracking-widest py-4 px-8 rounded-lg flex items-center gap-2.5 shadow-xl transition-all"
-            >
-              <span className="material-symbols-outlined text-base">calendar_month</span>
-              <span>Explore Packages</span>
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </Link>
-            <Link 
-              to="/contact" 
-              className="border border-[#CD9933]/70 hover:border-[#CD9933] text-white hover:bg-white/5 font-bold text-xs uppercase tracking-widest py-4 px-8 rounded-lg flex items-center gap-2.5 transition-all"
-            >
-              <span className="material-symbols-outlined text-base">call</span>
-              <span>Contact Us</span>
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </Link>
-          </div>
         </div>
 
-        {/* Floating Bottom Card Strip Overlay & Crescent Banner */}
-        <div className="relative z-10 w-full px-6 md:px-12 pb-10 mt-auto">
-          {/* Transparent Floating Features Strip Container */}
-          <div className="bg-black/35 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-2xl max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mx-auto shadow-2xl">
-            
-            {/* Card 1: Happy Pilgrims */}
-            <div className="flex gap-4 items-start text-left">
-              <div className="w-12 h-12 rounded-full bg-[#CD9933]/15 border border-[#CD9933]/30 flex items-center justify-center text-[#CD9933] shrink-0">
-                <span className="material-symbols-outlined text-xl">groups</span>
-              </div>
-              <div className="space-y-1">
-                <h3 className="text-white text-base font-bold tracking-wide">
-                  1000+ <span className="font-light text-white/90">Happy Pilgrims</span>
-                </h3>
-                <p className="text-white/60 text-xs leading-relaxed font-light font-manrope">
-                  Trusted by thousands of pilgrims worldwide.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 2: IATA Certified */}
-            <div className="flex gap-4 items-start text-left">
-              <div className="w-12 h-12 rounded-full bg-[#CD9933]/15 border border-[#CD9933]/30 flex items-center justify-center text-[#CD9933] shrink-0">
-                <span className="material-symbols-outlined text-xl">verified_user</span>
-              </div>
-              <div className="space-y-1">
-                <h3 className="text-white text-base font-bold tracking-wide">
-                  IATA <span className="font-light text-white/90">Certified</span>
-                </h3>
-                <p className="text-white/60 text-xs leading-relaxed font-light font-manrope">
-                  Fully licensed and industry approved.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 3: Visa Assistance */}
-            <div className="flex gap-4 items-start text-left">
-              <div className="w-12 h-12 rounded-full bg-[#CD9933]/15 border border-[#CD9933]/30 flex items-center justify-center text-[#CD9933] shrink-0">
-                <span className="material-symbols-outlined text-xl">assignment</span>
-              </div>
-              <div className="space-y-1">
-                <h3 className="text-white text-base font-bold tracking-wide">
-                  Visa Assistance <span className="font-light text-white/90">Included</span>
-                </h3>
-                <p className="text-white/60 text-xs leading-relaxed font-light font-manrope">
-                  Hassle-free visa processing support.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 4: 24/7 Support */}
-            <div className="flex gap-4 items-start text-left">
-              <div className="w-12 h-12 rounded-full bg-[#CD9933]/15 border border-[#CD9933]/30 flex items-center justify-center text-[#CD9933] shrink-0">
-                <span className="material-symbols-outlined text-xl">support_agent</span>
-              </div>
-              <div className="space-y-1">
-                <h3 className="text-white text-base font-bold tracking-wide">
-                  24/7 Support <span className="font-light text-white/90">Always Available</span>
-                </h3>
-                <p className="text-white/60 text-xs leading-relaxed font-light font-manrope">
-                  Dedicated support whenever you need us.
-                </p>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Bottom Gold Crescent Star Signature Banner */}
-          <div className="flex items-center justify-center gap-2 text-[#CD9933] font-bold text-xs tracking-[0.4em] uppercase mt-8 select-none">
-            <span className="material-symbols-outlined text-base">star_rate</span>
-            <span>YOUR JOURNEY. OUR RESPONSIBILITY.</span>
-          </div>
+        {/* Floating Banner Contact Form */}
+        <div className="absolute bottom-0 left-0 w-full translate-y-1/2 px-4 md:px-8 z-20">
+          <BannerContactForm />
         </div>
       </section>
 
-      {/* 2. Partner Logo Strip */}
-      <div className="bg-[#111111] py-8 px-6 overflow-hidden">
+      {/* 3. Partner Logo Strip */}
+      <div className="bg-[#111111] pt-36 pb-8 px-6 overflow-hidden mt-24 md:mt-0 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70">
           <span className="text-white font-extrabold tracking-widest text-sm uppercase">TURKISH AIRLINES</span>
           <span className="text-white font-extrabold tracking-widest text-sm uppercase">EMIRATES</span>
