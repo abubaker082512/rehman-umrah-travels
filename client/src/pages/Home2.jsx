@@ -145,26 +145,32 @@ const Home2 = () => {
 
         {/* Main Navbar Overlay */}
         <nav className="px-6 md:px-12 py-5 flex justify-between items-center bg-transparent">
-          {/* Logo (Rehman Travel Logo image - alt updated to Royal) */}
+          {/* Logo (Rehman Travel Logo image - alt updated to Royal) - Doubled Size */}
           <Link to="/" className="flex items-center gap-2 select-none">
-            <img src={logo} alt="Royal Umrah & Travels Logo" className="h-8 sm:h-10 w-auto" />
+            <img src={logo} alt="Royal Umrah & Travels Logo" className="h-16 sm:h-20 w-auto" />
           </Link>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-6 text-xs font-bold tracking-[0.15em] text-white">
-            <Link to="/" className="hover:text-[#CD9933] transition-colors uppercase">HOME</Link>
-            <Link to="/home2" className="hover:text-[#CD9933] transition-colors uppercase text-[#CD9933]">HOME 2</Link>
-            <Link to="/home3" className="hover:text-[#CD9933] transition-colors uppercase">HOME 3</Link>
-            <Link to="/flights" className="hover:text-[#CD9933] transition-colors uppercase">AIRLINE TICKETING</Link>
-            <Link to="/visa-services" className="hover:text-[#CD9933] transition-colors uppercase">VISA INQUIRY</Link>
-            <Link to="/about" className="hover:text-[#CD9933] transition-colors uppercase">PARTNERS</Link>
-            <Link to="/contact" className="hover:text-[#CD9933] transition-colors uppercase">CONTACT</Link>
+          {/* Navigation Links & Book Now Button */}
+          <div className="hidden lg:flex items-center gap-8">
+            <div className="flex items-center gap-6 text-xs font-bold tracking-[0.15em] text-white font-manrope">
+              <Link to="/" className="hover:text-[#CD9933] transition-colors uppercase">HOME</Link>
+              <Link to="/home2" className="hover:text-[#CD9933] transition-colors uppercase text-[#CD9933]">HOME 2</Link>
+              <Link to="/home3" className="hover:text-[#CD9933] transition-colors uppercase">HOME 3</Link>
+              <Link to="/flights" className="hover:text-[#CD9933] transition-colors uppercase">AIRLINE TICKETING</Link>
+              <Link to="/visa-services" className="hover:text-[#CD9933] transition-colors uppercase">VISA INQUIRY</Link>
+              <Link to="/about" className="hover:text-[#CD9933] transition-colors uppercase">PARTNERS</Link>
+              <Link to="/contact" className="hover:text-[#CD9933] transition-colors uppercase">CONTACT</Link>
+            </div>
+            <Link to="/packages" className="bg-[#CD9933] text-white px-5 py-2.5 rounded-md font-manrope text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-[#013334] transition-all duration-300">Book Now</Link>
           </div>
 
-          {/* Mobile Menu Icon */}
-          <Link to="/contact" className="md:hidden text-white hover:text-[#CD9933] transition-colors">
-            <span className="material-symbols-outlined text-2xl">menu</span>
-          </Link>
+          <div className="flex items-center gap-4 lg:hidden">
+            <Link to="/packages" className="bg-[#CD9933] text-white px-3 py-1.5 rounded-md font-manrope text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-[#013334] transition-all duration-300">Book Now</Link>
+            {/* Mobile Menu Icon */}
+            <Link to="/contact" className="text-white hover:text-[#CD9933] transition-colors">
+              <span className="material-symbols-outlined text-2xl">menu</span>
+            </Link>
+          </div>
         </nav>
       </header>
 
@@ -838,6 +844,22 @@ const Home2 = () => {
           </div>
         </div>
       </footer>
+
+      {/* Floating WhatsApp Button */}
+      <a 
+        href="https://wa.me/923001234567" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:bg-[#128C7E] transition-all duration-300 group"
+        aria-label="Chat on WhatsApp"
+      >
+        <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24">
+          <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.37 5.028L2 22l5.147-1.346a9.926 9.926 0 004.859 1.262h.005c5.505 0 9.99-4.478 9.99-9.985 0-2.667-1.037-5.176-2.923-7.062A9.919 9.919 0 0012.012 2zm5.757 14.072c-.25.705-1.458 1.34-2.008 1.425-.503.078-1.157.144-3.328-.755-2.777-1.149-4.57-3.978-4.71-4.164-.139-.185-1.127-1.499-1.127-2.862 0-1.363.708-2.03.96-2.302.251-.271.554-.34.739-.34h.53c.172 0 .402.003.582.414.195.446.666 1.635.726 1.758.06.124.1.268.017.433-.082.165-.124.268-.247.412-.124.145-.262.32-.375.43-.124.12-.254.25-.11.498.145.247.643 1.058 1.38 1.714.948.844 1.748 1.106 1.996 1.229.248.123.392.103.536-.062.145-.165.62-.722.785-.97.166-.247.33-.206.558-.124.23.083 1.45.682 1.7 1.805.02.103.015.207-.005.31z"/>
+        </svg>
+        <span className="absolute right-16 bg-[#013334] text-white text-xs font-bold px-3 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-md border border-white/10">
+          Chat with Us
+        </span>
+      </a>
 
     </div>
   )

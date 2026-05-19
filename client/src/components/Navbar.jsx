@@ -28,7 +28,7 @@ const Navbar = ({ isVersion2 = false }) => {
     <nav className={`fixed top-0 left-0 right-0 z-50 ${isVersion2 ? 'bg-[#013334]/80 backdrop-blur-md' : 'bg-[#013334] dark:bg-[#001c1d]'} shadow-[0_8px_40px_rgba(1,51,52,0.06)]`}>
       <div className="flex justify-between items-center w-full px-4 sm:px-6 md:px-8 py-3 md:py-4 max-w-screen-2xl mx-auto">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Royal Travel & Tours Logo" className="h-8 sm:h-10 w-auto" />
+          <img src={logo} alt="Royal Travel & Tours Logo" className="h-16 sm:h-20 w-auto" />
         </Link>
         <div className="hidden md:flex items-center gap-6">
           {links.map((l) => (
