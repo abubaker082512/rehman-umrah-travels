@@ -1,55 +1,66 @@
-# Code Index
+# 🗂 Rehman Umrah & Travels Code Index
 
-Project: Rehman Umrah & Travels
+Welcome to the central developer navigation index for **Rehman Umrah & Travels** (branded as **Royal Travels & Tours**). This file maps key files, architecture paths, database schemas, and references to specialized guides in this repository.
 
-This repository contains a Node/Express API backed by Supabase and a React client (Vite) with Tailwind. The code is organized into a server folder and a client folder, plus design/docs references.
+---
 
-Directory overview
-- server: API, data models, and routes
-- client: UI, Vite config, Tailwind setup
-- Design & Code: design system reference documents
-- root package.json provides a monorepo-style dev flow that can boot both server and client
+## 📖 System Guides & Documentation Directory
 
-Directory Index
-- server/
-  - index.js: Express server bootstrap, Supabase client creation, routes mounting
-  - routes/authRoutes.js: Simple admin login using JWT
-  - routes/packageRoutes.js: CRUD operations backed by Supabase for "packages" and a seed endpoint
-  - models/Package.js: Mongoose schema for a package (note: project uses Supabase for data; this provides an additional model example)
-  - package.json: server dependencies (Express, Supabase client, JWT, etc.)
-- client/
-  - package.json: client dependencies and scripts (vite, react, tailwind, etc.)
-  - vite.config.js: Vite config with React plugin and a proxy to the server API
-  - README.md: brief client-side project guide (provided by template)
-- Design & Code/
-  - sacred_horizon/DESIGN.md: design system reference guidelines for the project
+We have created highly-detailed guides to explain every aspect of the codebase. Click the links below to view the relevant documentation:
 
-Key files (brief summaries)
-- server/index.js: Creates an Express app, initializes Supabase client, attaches it to req, and mounts routes at /api/auth and /api/packages
-- server/routes/authRoutes.js: Admin login: validates hard-coded credentials and issues a JWT; demonstrates auth flow
-- server/routes/packageRoutes.js: GET /api/packages, GET /api/packages/:id, POST /api/packages, POST /api/packages/seed, DELETE /api/packages/:id; uses req.supabase to interact with the database
-- server/models/Package.js: Mongoose schema for a Package (title, description, price, category, itinerary, etc.)
-- client/vite.config.js: React plugin setup and Tailwind integration; dev server proxy to /api
-- client/README.md: template notes for React + Vite setup
-- Design & Code/DESIGN.md: design system and visual language guidelines
+*   **🏛 [System Architecture & File Tree](file:///d:/Rehman%20Umrah%20&%20Travels/docs/ARCHITECTURE.md)**: Outlines the high-fidelity tech stack, folder layouts, and system request flows (both standalone and serverless environments).
+*   **🗄 [Database & Security System](file:///d:/Rehman%20Umrah%20&%20Travels/docs/DATABASE.md)**: A complete data dictionary covering the 6 active tables, fields, types, RLS (Row Level Security) policies, and storage setup.
+*   **🔌 [Backend API Reference Manual](file:///d:/Rehman%20Umrah%20&%20Travels/docs/API_REFERENCE.md)**: Comprehensive specification of serverless endpoints (`api/*`) and server routes (`server/*`), detailing request structures, methods, authentication, and responses.
+*   **🎨 [Frontend Client Developer Guide](file:///d:/Rehman%20Umrah%20&%20Travels/docs/FRONTEND_GUIDE.md)**: Deep dive into the client directory (`client/`), covering client routes, layout differences (Home 1, 2, & 3), custom features (doubled logo, Poppins font remapping), and the interactive floating WhatsApp button.
+*   **🛠 [Local Setup & Vercel Deployment](file:///d:/Rehman%20Umrah%20&%20Travels/docs/DEVELOPMENT_DEPLOYMENT.md)**: Step-by-step instructions on running the environment locally with concurrent dev servers, loading database SQL setup configurations, and deploying serverless environments in Vercel.
 
-Run locally
-1) Install dependencies at the repo root to enable the monorepo dev flow:
-   - npm install
-2) Start both server and client (development):
-   - npm run dev
-   This runs the server and the client concurrently as defined in the root package.json
-3) Environment setup (required for the API to talk to Supabase):
-   - SUPABASE_URL: your Supabase project URL
-   - SUPABASE_KEY: your Supabase anon/public key
-   - JWT_SECRET: secret key for signing JWT tokens (optional default is 'secretkey' in code)
+---
 
-Notes
-- The server uses Supabase for data operations in packageRoutes.js. The server/models/Package.js file provides a Mongoose schema example; the current API routes do not rely on it directly but it may be useful for reference or future migrations.
-- The client proxy in vite.config.js forwards /api requests to http://localhost:5000, so the server should be started at that port or adjust the environment/server configuration accordingly.
+## 📁 Main Folders & Code Indexes
 
-If you want a quick starting point, run the following commands:
-- npm install
-- npm run dev
+Below is an overview of the key directories and their active code files:
 
-If you need a static index of files or want to customize the index, tell me and I can regenerate it with more/less detail.
+### 1. `api/` (Vercel Serverless Backends)
+*   [api/packages.js](file:///d:/Rehman%20Umrah%20&%20Travels/api/packages.js): Handles all CRUD actions and database sync operations for packages, backed by Supabase.
+*   [api/auth/login.js](file:///d:/Rehman%20Umrah%20&%20Travels/api/auth/login.js): Encodes JWT login tokens matching secure credentials.
+*   [api/_utils/supabase.js](file:///d:/Rehman%20Umrah%20&%20Travels/api/_utils/supabase.js): Connects to the primary public client and the admin client (which bypasses RLS using the service role key).
+*   [api/tours.js](file:///d:/Rehman%20Umrah%20&%20Travels/api/tours.js), [api/visa.js](file:///d:/Rehman%20Umrah%20&%20Travels/api/visa.js), [api/gallery.js](file:///d:/Rehman%20Umrah%20&%20Travels/api/gallery.js), [api/blog.js](file:///d:/Rehman%20Umrah%20&%20Travels/api/blog.js): Database interactions for the various frontend segments.
+
+### 2. `client/` (Vite + React App)
+*   [client/src/App.jsx](file:///d:/Rehman%20Umrah%20&%20Travels/client/src/App.jsx): Declares page routes and browser routers.
+*   [client/src/index.css](file:///d:/Rehman%20Umrah%20&%20Travels/client/src/index.css): Sets base variables and imports standard Tailwind utility modules.
+*   [client/tailwind.config.js](file:///d:/Rehman%20Umrah%20&%20Travels/client/tailwind.config.js): Remaps and synchronizes the global Poppins typography classes.
+*   [client/vite.config.js](file:///d:/Rehman%20Umrah%20&%20Travels/client/vite.config.js): Configuration for dev servers and backend API proxies.
+
+#### 🧩 Custom Client Components
+*   [client/src/components/Navbar.jsx](file:///d:/Rehman%20Umrah%20&%20Travels/client/src/components/Navbar.jsx): Global header widget containing the scaled corporate logo and the gold "Book Now" action link.
+*   [client/src/components/Footer.jsx](file:///d:/Rehman%20Umrah%20&%20Travels/client/src/components/Footer.jsx): Global footer presenting details fetched from CMS configurations.
+*   [client/src/components/BannerContactForm.jsx](file:///d:/Rehman%20Umrah%20&%20Travels/client/src/components/BannerContactForm.jsx): High-fidelity booking form integrated with dynamic math captcha validations.
+
+#### 🖥 Layout Variants & Pages
+*   [client/src/pages/Home.jsx](file:///d:/Rehman%20Umrah%20&%20Travels/client/src/pages/Home.jsx): Classic green/gold homepage layout.
+*   [client/src/pages/Home2.jsx](file:///d:/Rehman%20Umrah%20&%20Travels/client/src/pages/Home2.jsx): Modern homepage with "Proudly Serving" sub-headline.
+*   [client/src/pages/Home3.jsx](file:///d:/Rehman%20Umrah%20&%20Travels/client/src/pages/Home3.jsx): Visual landscape design with custom background import configurations.
+*   [client/src/pages/Admin/Dashboard.jsx](file:///d:/Rehman%20Umrah%20&%20Travels/client/src/pages/Admin/Dashboard.jsx): Extensive workspace console letting administrators upload images, catalog travel dates, and manage packages.
+
+### 3. `server/` (Standalone Node/Express Server)
+*   [server/index.js](file:///d:/Rehman%20Umrah%20&%20Travels/server/index.js): Express server entry point.
+*   [server/routes/packageRoutes.js](file:///d:/Rehman%20Umrah%20&%20Travels/server/routes/packageRoutes.js): Endpoint routes handling data modifications.
+*   [server/middleware/auth.js](file:///d:/Rehman%20Umrah%20&%20Travels/server/middleware/auth.js): Intercepts requests to validate admin tokens.
+
+---
+
+## ⚡ Fast-Track Launch CLI Reference
+
+To get started quickly, run these commands in the root workspace folder:
+
+```bash
+# 1. Install dependencies across the project
+npm install
+
+# 2. Spin up the Express server and Vite React client concurrently
+npm run dev
+```
+
+*   **API Local Root**: `http://localhost:5000`
+*   **Vite Local Root**: `http://localhost:5173`
