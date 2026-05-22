@@ -4,6 +4,7 @@ import axios from 'axios'
 import logo from '../assets/Rehman Travel Logo.png'
 import background3 from '../assets/home-3.jpg'
 import BannerContactForm from '../components/BannerContactForm'
+import WhatsAppButton from '../components/WhatsAppButton';
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
@@ -419,7 +420,7 @@ const Home3 = () => {
 
           {/* 3-Column Card Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredUmrah.map((pkg, idx) => {
+            {filteredUmrah.slice(0, 9).map((pkg, idx) => {
               const isStatic = !pkg.hasOwnProperty('image_url')
               const img = isStatic ? pkg.image : (pkg.image_url || staticUmrahPackages[idx % 4].image)
               const badge = isStatic ? pkg.badge : (pkg.category || 'UMRAH')
@@ -1017,6 +1018,7 @@ const Home3 = () => {
         </div>
       </footer>
 
+    <WhatsAppButton />
     </div>
   )
 }
