@@ -285,7 +285,7 @@ const AdminDashboard = () => {
   const [packageForm, setPackageForm] = useState({
     title: '', description: '', price: '', category: 'Economy',
     duration: '', location: '', hotel_name: '', distance_from_haram: '',
-    image_url: '', airline: '', stars: 4, badge: ''
+    image_url: '', airline: '', stars: 4, badge: '', visa_included: false
   })
   const [tourForm, setTourForm] = useState({ title: '', subtitle: '', description: '', price: '', duration: '', image_url: '', highlights: '' })
   const [visaForm, setVisaForm] = useState({ title: '', description: '', processing_time: '', fee: '', documents: '' })
@@ -355,14 +355,16 @@ const AdminDashboard = () => {
 
   const fetchData = fetchAll
 
-  const handleAddPackage = async (e) => {
+    const handleAddPackage = async (e) => {
     e.preventDefault()
     try {
       await axios.post(`${API_BASE}/api/packages`, { ...packageForm, price: parseFloat(packageForm.price) || 0 }, { headers: authHdr() })
-      setPackageForm({ title: '', description: '', price: '', category: 'Economy', duration: '', location: '', hotel_name: '', distance_from_haram: '', image_url: '', airline: '', stars: 4, badge: '' })
+      setPackageForm({ title: '', description: '', price: '', category: 'Economy', duration: '', location: '', hotel_name: '', distance_from_haram: '', image_url: '', airline: '', stars: 4, badge: '', visa_included: false })
       fetchAll()
       alert('Package added successfully!')
-    } catch (err) { alert('Error: ' + (err.response?.data?.message || err.message)) }
+    } catch (err) {
+      alert('Error: ' + (err.response?.data?.message || err.message))
+    }
   }
 
   const handleDeletePackage = async (id) => {
@@ -540,8 +542,13 @@ const AdminDashboard = () => {
                       label="Package Image"
                     />
                   </div>
-
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Badge (e.g., Best Seller)" value={packageForm.badge} onChange={e => setPackageForm({...packageForm, badge: e.target.value})} />
+                  <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Include Visa</label>
+                  <div className="flex items-center mb-2">
+                    <input type="checkbox" className="mr-2" checked={packageForm.visa_included} onChange={e => setPackageForm({ ...packageForm, visa_included: e.target.checked })} />
+                    <span className="text-sm">Visa Included</span>
+                  </div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Badge (e.g., Best Seller)</label>
+                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Badge (e.g., Best Seller)" value={packageForm.badge} onChange={e => setPackageForm({ ...packageForm, badge: e.target.value })} />
                   <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Description" rows={3} value={packageForm.description} onChange={e => setPackageForm({...packageForm, description: e.target.value})} required />
                   <button type="submit" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Add Package</button>
                 </form>

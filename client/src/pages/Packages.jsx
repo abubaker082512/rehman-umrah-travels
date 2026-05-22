@@ -162,6 +162,9 @@ const Packages = () => {
                       {badge && (
                         <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded`}>{badge}</div>
                       )}
+                      {pkg.visa_included && (
+                        <div className="absolute top-4 right-4 bg-[#013334] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded">Visa Included</div>
+                      )}
                     </div>
                     <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col">
                       <div className="flex flex-col sm:flex-row sm:justify-between gap-2 mb-4">

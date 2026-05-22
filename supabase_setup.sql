@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS packages (
   description TEXT,
   price NUMERIC NOT NULL DEFAULT 0,
   category TEXT DEFAULT 'Economy',
+  visa_included BOOLEAN DEFAULT false,
   duration TEXT,
   location TEXT,
   imageUrl TEXT,

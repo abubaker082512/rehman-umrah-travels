@@ -205,6 +205,29 @@ const Home2 = () => {
         </div>
       </section>
 
+      {/* 5. Umrah Packages Section */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 space-y-3">
+            <h2 className="text-3xl font-bold text-[#013334] tracking-wider uppercase">Umrah Packages</h2>
+            <p className="text-gray-600 text-sm">Explore our curated Umrah experiences.</p>
+          </div>
+          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {packages.filter(p => p.category?.toLowerCase() === 'umrah').map(pkg => (
+              <div key={pkg.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow">
+                <img src={pkg.image_url || ''} alt={pkg.title} className="w-full h-48 object-cover" />
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-[#013334] mb-2">{pkg.title}</h3>
+                  <p className="text-sm text-gray-600 mb-4">{pkg.description}</p>
+                  <p className="text-lg font-bold text-[#CD9933] mb-2">PKR {pkg.price?.toLocaleString()}</p>
+                  <button className="mt-2 w-full bg-[#CD9933] text-white py-2 rounded hover:bg-[#013334] transition-colors">Book Now</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 3. Partner Logo Strip */}
       <div className="bg-[#111111] pt-36 pb-8 px-6 overflow-hidden mt-24 md:mt-0 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70">

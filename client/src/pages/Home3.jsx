@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import logo from '../assets/Rehman Travel Logo.png'
 import background3 from '../assets/home-3.jpg'
+import BannerContactForm from '../components/BannerContactForm'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
@@ -67,6 +68,49 @@ const staticLocalTours = [
   }
 ]
 
+const staticUmrahPackages = [
+  {
+    id: 301,
+    title: '5-STAR EXECUTIVE COMFORT UMRAH PACKAGE',
+    price: 345000,
+    duration: '15 Days (7 Makkah / 8 Madinah)',
+    badge: '5-STAR ACCOMMODATION',
+    visa_included: true,
+    description: 'Perform Umrah with the ultimate luxury. Includes Swissotel Makkah stay, business class flight bookings, luxury private transport, and guided tours.',
+    image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80'
+  },
+  {
+    id: 302,
+    title: '4-STAR PREMIUM UMRAH PACKAGE',
+    price: 265000,
+    duration: '15 Days (10 Makkah / 5 Madinah)',
+    badge: '4-STAR HOTEL STAYS',
+    visa_included: true,
+    description: 'A premium comfort package offering hotel stays within walking distance of Haram, standard flights, buffet breakfast, and dedicated ground support.',
+    image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80'
+  },
+  {
+    id: 303,
+    title: 'ECONOMY SAVER LAND PACKAGE',
+    price: 175000,
+    duration: '15 Days',
+    badge: 'ECONOMY HOTELS',
+    visa_included: false,
+    description: 'An affordable package including budget hotel accommodation in Makkah & Madinah, standard shared bus transport, and local Ziyaraat. Flights & Visa are not included.',
+    image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80'
+  },
+  {
+    id: 304,
+    title: 'DELUXE STAR UMRAH PACKAGE',
+    price: 410000,
+    duration: '10 Days',
+    badge: 'LUXURY VIP PACKAGE',
+    visa_included: true,
+    description: 'VIP luxury short-stay package. Perfect for families looking for top-tier lodging near the Haram and exclusive VIP private transport.',
+    image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80'
+  }
+]
+
 const GoldLogoIcon = () => (
   <svg className="w-12 h-12 text-[#CD9933]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="50" cy="50" r="45" stroke="#CD9933" strokeWidth="1.5" />
@@ -88,6 +132,14 @@ const Home3 = () => {
   const [packages, setPackages] = useState([])
   const [internationalTours, setInternationalTours] = useState(staticInternationalTours)
   const [localTours, setLocalTours] = useState(staticLocalTours)
+  const [umrahPackages, setUmrahPackages] = useState(staticUmrahPackages)
+  const [umrahFilter, setUmrahFilter] = useState('all')
+
+  const filteredUmrah = umrahPackages.filter(pkg => {
+    if (umrahFilter === 'visa-included') return pkg.visa_included === true;
+    if (umrahFilter === 'visa-excluded') return pkg.visa_included === false;
+    return true;
+  });
 
   // Form State
   const [contactName, setContactName] = useState('')
@@ -110,9 +162,14 @@ const Home3 = () => {
             setInternationalTours(fetchedInt.slice(0, 3))
           }
           // Filter domestic/local
-          const fetchedLocal = res.data.filter(p => p.category?.toLowerCase() === 'domestic' || p.category?.toLowerCase() === 'local' || p.category?.toLowerCase() === 'umrah')
+          const fetchedLocal = res.data.filter(p => p.category?.toLowerCase() === 'domestic' || p.category?.toLowerCase() === 'local')
           if (fetchedLocal.length > 0) {
             setLocalTours(fetchedLocal.slice(0, 3))
+          }
+          // Filter umrah
+          const fetchedUmrah = res.data.filter(p => p.category?.toLowerCase() === 'umrah')
+          if (fetchedUmrah.length > 0) {
+            setUmrahPackages(fetchedUmrah)
           }
         }
       })
@@ -219,10 +276,15 @@ const Home3 = () => {
           </div>
         </div>
 
-        {/* Floating Bottom Card Strip Overlay & Crescent Banner */}
-        <div className="relative z-10 w-full px-6 md:px-12 pb-10 mt-auto">
+        {/* Banner Contact Form placed below hero content */}
+        <BannerContactForm />
+      </section>
+
+      {/* 1.5 Features & Crescent Star Banner (Moved below Form) */}
+      <section className="bg-[#001c1d] pt-36 pb-12 px-6 md:px-12 relative z-10">
+        <div className="max-w-7xl mx-auto">
           {/* Transparent Floating Features Strip Container */}
-          <div className="bg-black/35 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-2xl max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mx-auto shadow-2xl">
+          <div className="bg-black/35 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-2xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 shadow-2xl">
 
             {/* Card 1: Happy Pilgrims */}
             <div className="flex gap-4 items-start text-left">
@@ -295,7 +357,7 @@ const Home3 = () => {
       </section>
 
       {/* 2. Partner Logo Strip */}
-      <div className="bg-[#111111] py-8 px-6 overflow-hidden">
+      <div className="bg-[#111111] py-8 px-6 overflow-hidden relative z-10">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70">
           <span className="text-white font-extrabold tracking-widest text-sm uppercase">TURKISH AIRLINES</span>
           <span className="text-white font-extrabold tracking-widest text-sm uppercase">EMIRATES</span>
@@ -305,6 +367,132 @@ const Home3 = () => {
           <span className="text-white font-extrabold tracking-widest text-sm uppercase">AIR ASIA</span>
         </div>
       </div>
+
+      {/* 2.5 Umrah Packages Section */}
+      <section className="py-24 px-6 bg-[#f5f7fa] relative z-10">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-8 space-y-3">
+            <div className="flex items-center justify-center gap-2 text-[#CD9933]">
+              <span className="material-symbols-outlined text-sm">mosque</span>
+              <span className="font-bold text-xs uppercase tracking-widest">SACRED JOURNEYS</span>
+            </div>
+            <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
+              UMRAH PACKAGES
+            </h2>
+            <div className="h-[2px] w-16 bg-[#CD9933] mx-auto mt-4"></div>
+          </div>
+
+          {/* Tab Filters */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            <button
+              onClick={() => setUmrahFilter('all')}
+              className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-all ${
+                umrahFilter === 'all'
+                  ? 'bg-[#CD9933] text-white shadow-md'
+                  : 'bg-white text-[#013334] border border-gray-200 hover:border-[#CD9933]'
+              }`}
+            >
+              All Packages
+            </button>
+            <button
+              onClick={() => setUmrahFilter('visa-included')}
+              className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-all ${
+                umrahFilter === 'visa-included'
+                  ? 'bg-[#CD9933] text-white shadow-md'
+                  : 'bg-white text-[#013334] border border-gray-200 hover:border-[#CD9933]'
+              }`}
+            >
+              Visa Included
+            </button>
+            <button
+              onClick={() => setUmrahFilter('visa-excluded')}
+              className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-all ${
+                umrahFilter === 'visa-excluded'
+                  ? 'bg-[#CD9933] text-white shadow-md'
+                  : 'bg-white text-[#013334] border border-gray-200 hover:border-[#CD9933]'
+              }`}
+            >
+              Visa Excluded
+            </button>
+          </div>
+
+          {/* 3-Column Card Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredUmrah.map((pkg, idx) => {
+              const isStatic = !pkg.hasOwnProperty('image_url')
+              const img = isStatic ? pkg.image : (pkg.image_url || staticUmrahPackages[idx % 4].image)
+              const badge = isStatic ? pkg.badge : (pkg.category || 'UMRAH')
+              const duration = isStatic ? pkg.duration : (pkg.duration || '15 Days')
+              const price = pkg.price
+
+              return (
+                <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col relative group">
+                  {/* Top Image with Gold overlay Badge */}
+                  <div className="relative h-64 overflow-hidden shrink-0">
+                    <img
+                      alt={pkg.title}
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                      src={img}
+                    />
+                    <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider z-10">
+                      {badge}
+                    </div>
+                    {pkg.visa_included !== undefined && (
+                      <div className={`absolute top-4 right-4 text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider z-10 ${pkg.visa_included ? 'bg-[#013334]' : 'bg-gray-600'}`}>
+                        {pkg.visa_included ? 'Visa Included' : 'Visa Excluded'}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Card Content details */}
+                  <div className="p-8 flex-1 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <h3 className="text-[#013334] font-bold text-lg tracking-wide uppercase font-headline line-clamp-2">
+                        {pkg.title}
+                      </h3>
+                      <p className="text-[#CD9933] font-bold text-sm uppercase tracking-wider">
+                        PKR {price.toLocaleString()} | {duration}
+                      </p>
+                      <p className="text-gray-500 text-xs leading-relaxed line-clamp-3">
+                        {pkg.description || 'Experience highly curated schedules, flight alignments, and premier accommodations organized with travel security and luxury.'}
+                      </p>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-4 mt-8 pt-6 border-t border-gray-100 font-manrope">
+                      <Link
+                        to={`/package/${pkg.id || idx + 1}`}
+                        className="flex-1 bg-gray-900 hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                      >
+                        READ MORE
+                      </Link>
+                      <a
+                        href="https://wa.me/923001234567"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-[#013334] hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
+                      >
+                        BOOK NOW
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Centered Outline Button */}
+          <div className="text-center mt-16">
+            <Link
+              to="/packages"
+              className="inline-block border-2 border-gray-300 hover:border-[#CD9933] text-gray-700 hover:text-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+            >
+              MORE PACKAGES
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* 3. About Us Section */}
       <section className="py-24 px-6 bg-white">
