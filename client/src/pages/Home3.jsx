@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import logo from '../assets/Rehman Travel Logo.png'
@@ -160,6 +160,18 @@ const Home3 = () => {
   const [star3Packages, setStar3Packages] = useState(staticStar3Packages)
   const [star4Packages, setStar4Packages] = useState(staticStar4Packages)
   const [star5Packages, setStar5Packages] = useState(staticStar5Packages)
+
+  const economyRef = useRef(null)
+  const star3Ref = useRef(null)
+  const star4Ref = useRef(null)
+  const star5Ref = useRef(null)
+
+  const scrollCarousel = (ref, direction) => {
+    if (ref.current) {
+      const scrollAmount = direction === 'left' ? -ref.current.offsetWidth : ref.current.offsetWidth
+      ref.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+    }
+  }
 
   // Form State
   const [contactName, setContactName] = useState('')
@@ -372,37 +384,66 @@ const Home3 = () => {
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Spiritual Journeys</h6>
                 <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Low Budget / Economy Umrah Packages</h2>
               </div>
-              <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 mt-6 md:mt-0 transition-all hover:pr-4" to="/packages">View All Packages</Link>
+              <div className="flex items-center gap-4 mt-6 md:mt-0">
+                <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4 animate-pulse" to="/packages">View All</Link>
+                <div className="flex items-center gap-2">
+                  <button 
+                    onClick={() => scrollCarousel(economyRef, 'left')} 
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    aria-label="Previous"
+                  >
+                    <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
+                  </button>
+                  <button 
+                    onClick={() => scrollCarousel(economyRef, 'right')} 
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    aria-label="Next"
+                  >
+                    <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          
+          <div 
+            ref={economyRef}
+            className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {economyPackages.slice(0, 12).map((pkg, idx) => (
-              <ScrollReveal 
+              <div 
                 key={pkg.id} 
-                delay={(idx % 4) * 120} 
-                animation="fade-up"
-                duration={700}
+                className="snap-start flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
               >
-                <Link to={`/package/${pkg.id}`} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
-                  <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
-                    <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
-                  </div>
-                  <div className="p-4 md:p-6">
-                    <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
-                    <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
-                    <div className="flex items-center justify-between mt-4">
-                      <div>
-                        <span className="block text-xs text-gray-400">Starting from</span>
-                        <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
-                      </div>
-                      <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                <ScrollReveal 
+                  key={pkg.id} 
+                  delay={(idx % 4) * 80} 
+                  animation="fade-up"
+                  duration={700}
+                >
+                  <Link to={`/package/${pkg.id}`} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                    <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                      <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
-                  </div>
-                </Link>
-              </ScrollReveal>
+                    <div className="p-4 md:p-6">
+                      <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
+                      <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                      <div className="flex items-center justify-between mt-4">
+                        <div>
+                          <span className="block text-xs text-gray-400">Starting from</span>
+                          <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
+                        </div>
+                        <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                      </div>
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              </div>
             ))}
           </div>
+
           <ScrollReveal animation="fade-up" delay={200} duration={600}>
             <div className="text-center mt-12">
               <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL ECONOMY PACKAGES</Link>
@@ -420,37 +461,66 @@ const Home3 = () => {
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ground Packages</h6>
                 <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 3 Star</h2>
               </div>
-              <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 mt-6 md:mt-0 transition-all hover:pr-4" to="/packages">View All Packages</Link>
+              <div className="flex items-center gap-4 mt-6 md:mt-0">
+                <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4 animate-pulse" to="/packages">View All</Link>
+                <div className="flex items-center gap-2">
+                  <button 
+                    onClick={() => scrollCarousel(star3Ref, 'left')} 
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    aria-label="Previous"
+                  >
+                    <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
+                  </button>
+                  <button 
+                    onClick={() => scrollCarousel(star3Ref, 'right')} 
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    aria-label="Next"
+                  >
+                    <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          
+          <div 
+            ref={star3Ref}
+            className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {star3Packages.slice(0, 12).map((pkg, idx) => (
-              <ScrollReveal 
+              <div 
                 key={pkg.id} 
-                delay={(idx % 4) * 120} 
-                animation="fade-up"
-                duration={700}
+                className="snap-start flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
               >
-                <Link to={`/package/${pkg.id}`} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
-                  <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
-                    <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
-                  </div>
-                  <div className="p-4 md:p-6">
-                    <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
-                    <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
-                    <div className="flex items-center justify-between mt-4">
-                      <div>
-                        <span className="block text-xs text-gray-400">Starting from</span>
-                        <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
-                      </div>
-                      <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                <ScrollReveal 
+                  key={pkg.id} 
+                  delay={(idx % 4) * 80} 
+                  animation="fade-up"
+                  duration={700}
+                >
+                  <Link to={`/package/${pkg.id}`} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                    <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                      <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
-                  </div>
-                </Link>
-              </ScrollReveal>
+                    <div className="p-4 md:p-6">
+                      <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
+                      <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                      <div className="flex items-center justify-between mt-4">
+                        <div>
+                          <span className="block text-xs text-gray-400">Starting from</span>
+                          <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
+                        </div>
+                        <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                      </div>
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              </div>
             ))}
           </div>
+
           <ScrollReveal animation="fade-up" delay={200} duration={600}>
             <div className="text-center mt-12">
               <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 3 STAR PACKAGES</Link>
@@ -468,37 +538,66 @@ const Home3 = () => {
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Premium Ground</h6>
                 <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 4 Star</h2>
               </div>
-              <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 mt-6 md:mt-0 transition-all hover:pr-4" to="/packages">View All Packages</Link>
+              <div className="flex items-center gap-4 mt-6 md:mt-0">
+                <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4 animate-pulse" to="/packages">View All</Link>
+                <div className="flex items-center gap-2">
+                  <button 
+                    onClick={() => scrollCarousel(star4Ref, 'left')} 
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    aria-label="Previous"
+                  >
+                    <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
+                  </button>
+                  <button 
+                    onClick={() => scrollCarousel(star4Ref, 'right')} 
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    aria-label="Next"
+                  >
+                    <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          
+          <div 
+            ref={star4Ref}
+            className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {star4Packages.slice(0, 12).map((pkg, idx) => (
-              <ScrollReveal 
+              <div 
                 key={pkg.id} 
-                delay={(idx % 4) * 120} 
-                animation="fade-up"
-                duration={700}
+                className="snap-start flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
               >
-                <Link to={`/package/${pkg.id}`} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
-                  <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
-                    <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
-                  </div>
-                  <div className="p-4 md:p-6">
-                    <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
-                    <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
-                    <div className="flex items-center justify-between mt-4">
-                      <div>
-                        <span className="block text-xs text-gray-400">Starting from</span>
-                        <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
-                      </div>
-                      <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                <ScrollReveal 
+                  key={pkg.id} 
+                  delay={(idx % 4) * 80} 
+                  animation="fade-up"
+                  duration={700}
+                >
+                  <Link to={`/package/${pkg.id}`} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                    <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                      <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
-                  </div>
-                </Link>
-              </ScrollReveal>
+                    <div className="p-4 md:p-6">
+                      <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
+                      <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                      <div className="flex items-center justify-between mt-4">
+                        <div>
+                          <span className="block text-xs text-gray-400">Starting from</span>
+                          <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
+                        </div>
+                        <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                      </div>
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              </div>
             ))}
           </div>
+
           <ScrollReveal animation="fade-up" delay={200} duration={600}>
             <div className="text-center mt-12">
               <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 4 STAR PACKAGES</Link>
@@ -516,37 +615,66 @@ const Home3 = () => {
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Luxury Ground</h6>
                 <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 5 Star</h2>
               </div>
-              <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 mt-6 md:mt-0 transition-all hover:pr-4" to="/packages">View All Packages</Link>
+              <div className="flex items-center gap-4 mt-6 md:mt-0">
+                <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4 animate-pulse" to="/packages">View All</Link>
+                <div className="flex items-center gap-2">
+                  <button 
+                    onClick={() => scrollCarousel(star5Ref, 'left')} 
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    aria-label="Previous"
+                  >
+                    <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
+                  </button>
+                  <button 
+                    onClick={() => scrollCarousel(star5Ref, 'right')} 
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    aria-label="Next"
+                  >
+                    <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          
+          <div 
+            ref={star5Ref}
+            className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {star5Packages.slice(0, 12).map((pkg, idx) => (
-              <ScrollReveal 
+              <div 
                 key={pkg.id} 
-                delay={(idx % 4) * 120} 
-                animation="fade-up"
-                duration={700}
+                className="snap-start flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
               >
-                <Link to={`/package/${pkg.id}`} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
-                  <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                    <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
-                    <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
-                  </div>
-                  <div className="p-4 md:p-6">
-                    <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
-                    <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
-                    <div className="flex items-center justify-between mt-4">
-                      <div>
-                        <span className="block text-xs text-gray-400">Starting from</span>
-                        <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
-                      </div>
-                      <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                <ScrollReveal 
+                  key={pkg.id} 
+                  delay={(idx % 4) * 80} 
+                  animation="fade-up"
+                  duration={700}
+                >
+                  <Link to={`/package/${pkg.id}`} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                    <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                      <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
-                  </div>
-                </Link>
-              </ScrollReveal>
+                    <div className="p-4 md:p-6">
+                      <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
+                      <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                      <div className="flex items-center justify-between mt-4">
+                        <div>
+                          <span className="block text-xs text-gray-400">Starting from</span>
+                          <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
+                        </div>
+                        <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                      </div>
+                    </div>
+                  </Link>
+                </ScrollReveal>
+              </div>
             ))}
           </div>
+
           <ScrollReveal animation="fade-up" delay={200} duration={600}>
             <div className="text-center mt-12">
               <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 5 STAR PACKAGES</Link>
