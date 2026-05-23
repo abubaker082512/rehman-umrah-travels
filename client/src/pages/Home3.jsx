@@ -69,47 +69,68 @@ const staticLocalTours = [
   }
 ]
 
-const staticUmrahPackages = [
-  {
-    id: 301,
-    title: '5-STAR EXECUTIVE COMFORT UMRAH PACKAGE',
-    price: 345000,
-    duration: '15 Days (7 Makkah / 8 Madinah)',
-    badge: '5-STAR ACCOMMODATION',
-    visa_included: true,
-    description: 'Perform Umrah with the ultimate luxury. Includes Swissotel Makkah stay, business class flight bookings, luxury private transport, and guided tours.',
-    image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80'
-  },
-  {
-    id: 302,
-    title: '4-STAR PREMIUM UMRAH PACKAGE',
-    price: 265000,
-    duration: '15 Days (10 Makkah / 5 Madinah)',
-    badge: '4-STAR HOTEL STAYS',
-    visa_included: true,
-    description: 'A premium comfort package offering hotel stays within walking distance of Haram, standard flights, buffet breakfast, and dedicated ground support.',
-    image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80'
-  },
-  {
-    id: 303,
-    title: 'ECONOMY SAVER LAND PACKAGE',
-    price: 175000,
-    duration: '15 Days',
-    badge: 'ECONOMY HOTELS',
-    visa_included: false,
-    description: 'An affordable package including budget hotel accommodation in Makkah & Madinah, standard shared bus transport, and local Ziyaraat. Flights & Visa are not included.',
-    image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80'
-  },
-  {
-    id: 304,
-    title: 'DELUXE STAR UMRAH PACKAGE',
-    price: 410000,
-    duration: '10 Days',
-    badge: 'LUXURY VIP PACKAGE',
-    visa_included: true,
-    description: 'VIP luxury short-stay package. Perfect for families looking for top-tier lodging near the Haram and exclusive VIP private transport.',
-    image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80'
-  }
+// ── Low Budget / Economy Umrah Packages ──────────────────────────────────────
+const staticEconomyPackages = [
+  { id: 401, title: 'Economy Saver Umrah', location: 'Saraya Iman Makkah', price: 125000, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 402, title: 'Budget Ground Package', location: 'Al-Naseem Hotel Makkah', price: 145000, duration: '21 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 403, title: 'Economy Ramadan Umrah', location: 'Al Kiswah Tower Makkah', price: 155000, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
+  { id: 404, title: 'Student Umrah Special', location: 'Makkah Grand Hotel', price: 115000, duration: '10 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
+  { id: 405, title: 'Family Economy Package', location: 'Saraya Makkah Tower', price: 130000, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
+  { id: 406, title: 'Economy Extended Stay', location: 'Al Noor Hotel Madinah', price: 140000, duration: '21 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
+  { id: 407, title: 'Winter Budget Umrah', location: 'Dar Al Noor Makkah', price: 120000, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 408, title: 'Economy Group Package', location: 'Al Ansar Hotel Madinah', price: 110000, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 409, title: 'Budget Umrah & Ziyaraat', location: 'Makkah Towers Hotel', price: 135000, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
+  { id: 410, title: 'Economy Visa Package', location: 'Jabal Omar Makkah', price: 160000, duration: '21 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
+  { id: 411, title: 'Saver Plus Umrah Deal', location: 'Al Rawabi Madinah', price: 127000, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
+  { id: 412, title: 'Economy Senior Umrah', location: 'Hala Inn Makkah', price: 118000, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
+]
+
+// ── Ground Umrah Packages — 3 Star ───────────────────────────────────────────
+const staticStar3Packages = [
+  { id: 501, title: '3-Star Standard Comfort', location: 'Dar Al Eiman Grand', price: 195000, duration: '15 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 502, title: '3-Star Ramadan Package', location: 'Saja Hotel Makkah', price: 225000, duration: '15 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 503, title: '3-Star Family Umrah', location: 'Makkah Tower Hotel', price: 205000, duration: '21 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
+  { id: 504, title: '3-Star Group Package', location: 'Mira Al Jood Hotel', price: 185000, duration: '15 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
+  { id: 505, title: '3-Star Extended Stay', location: 'Shaza Makkah Hotel', price: 215000, duration: '21 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
+  { id: 506, title: '3-Star Senior Package', location: 'Ajyad Makkah Hotel', price: 198000, duration: '15 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
+  { id: 507, title: '3-Star Premium Ground', location: 'Millennium Madinah', price: 220000, duration: '15 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 508, title: '3-Star Comfort Plus', location: 'Al Shohada Hotel', price: 200000, duration: '15 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 509, title: '3-Star Umrah & Ziyaraat', location: 'Dur Mirage Hotel', price: 210000, duration: '21 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
+  { id: 510, title: '3-Star Student Umrah', location: 'Noor Hotel Makkah', price: 175000, duration: '10 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
+  { id: 511, title: '3-Star Couple Package', location: 'Al Marwa Rayhaan', price: 230000, duration: '15 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
+  { id: 512, title: '3-Star Winter Special', location: 'Gulf Millennium Makkah', price: 190000, duration: '15 Days', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
+]
+
+// ── Ground Umrah Packages — 4 Star ───────────────────────────────────────────
+const staticStar4Packages = [
+  { id: 601, title: '4-Star Premium Comfort', location: 'Swissotel Makkah', price: 285000, duration: '15 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 602, title: '4-Star Executive Package', location: 'Movenpick Hotel Makkah', price: 310000, duration: '15 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 603, title: '4-Star Ramadan Special', location: 'Hilton Suites Makkah', price: 330000, duration: '15 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
+  { id: 604, title: '4-Star VIP Group Umrah', location: 'Al Zahra Grand Hotel', price: 295000, duration: '21 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
+  { id: 605, title: '4-Star 10 Day Special', location: 'Le Meridien Towers', price: 275000, duration: '10 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
+  { id: 606, title: '4-Star Family Suite', location: 'Al Saha Hotel Makkah', price: 305000, duration: '15 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
+  { id: 607, title: '4-Star Business Class', location: 'Conrad Makkah Hotel', price: 325000, duration: '15 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 608, title: '4-Star Heritage Stay', location: 'Raffles Makkah Palace', price: 315000, duration: '15 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 609, title: '4-Star Group Special', location: 'Elaf Ajyad Makkah', price: 270000, duration: '15 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
+  { id: 610, title: '4-Star Extended Comfort', location: 'Al Marwa Rayhaan', price: 350000, duration: '21 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
+  { id: 611, title: '4-Star Senior Package', location: 'Oberoi Madina Hotel', price: 290000, duration: '15 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
+  { id: 612, title: '4-Star Couples Retreat', location: 'Wyndham Makkah Hotel', price: 300000, duration: '15 Days', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
+]
+
+// ── Ground Umrah Packages — 5 Star ───────────────────────────────────────────
+const staticStar5Packages = [
+  { id: 701, title: '5-Star Luxury Executive', location: 'Fairmont Clock Tower', price: 485000, duration: '15 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 702, title: '5-Star Royal Suite Umrah', location: 'Pullman ZamZam Makkah', price: 520000, duration: '15 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 703, title: '5-Star Ramadan Special', location: 'Swissotel Al Maqam', price: 550000, duration: '15 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
+  { id: 704, title: '5-Star VIP Experience', location: 'InterContinental Dar Al Iman', price: 495000, duration: '07 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
+  { id: 705, title: '5-Star Family Deluxe', location: 'Hyatt Regency Makkah', price: 510000, duration: '15 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
+  { id: 706, title: '5-Star Presidential Suite', location: 'Raffles Makkah Palace', price: 600000, duration: '10 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
+  { id: 707, title: '5-Star Extended Royal', location: 'Al Shohada Hotel', price: 540000, duration: '21 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 708, title: '5-Star Honeymoon Package', location: 'Elaf Ajyad Makkah', price: 475000, duration: '10 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 709, title: '5-Star Business Class', location: 'Jumeirah Abraj Al Sultan', price: 560000, duration: '15 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
+  { id: 710, title: '5-Star Group Luxury', location: 'Oberoi Madina Hotel', price: 500000, duration: '15 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
+  { id: 711, title: '5-Star Senior Special', location: 'Conrad Makkah Hotel', price: 490000, duration: '15 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
+  { id: 712, title: '5-Star Ultra Premium', location: 'Four Seasons Makkah', price: 650000, duration: '07 Days', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
 ]
 
 const GoldLogoIcon = () => (
@@ -133,14 +154,10 @@ const Home3 = () => {
   const [packages, setPackages] = useState([])
   const [internationalTours, setInternationalTours] = useState(staticInternationalTours)
   const [localTours, setLocalTours] = useState(staticLocalTours)
-  const [umrahPackages, setUmrahPackages] = useState(staticUmrahPackages)
-  const [umrahFilter, setUmrahFilter] = useState('all')
-
-  const filteredUmrah = umrahPackages.filter(pkg => {
-    if (umrahFilter === 'visa-included') return pkg.visa_included === true;
-    if (umrahFilter === 'visa-excluded') return pkg.visa_included === false;
-    return true;
-  });
+  const [economyPackages, setEconomyPackages] = useState(staticEconomyPackages)
+  const [star3Packages, setStar3Packages] = useState(staticStar3Packages)
+  const [star4Packages, setStar4Packages] = useState(staticStar4Packages)
+  const [star5Packages, setStar5Packages] = useState(staticStar5Packages)
 
   // Form State
   const [contactName, setContactName] = useState('')
@@ -167,11 +184,15 @@ const Home3 = () => {
           if (fetchedLocal.length > 0) {
             setLocalTours(fetchedLocal.slice(0, 3))
           }
-          // Filter umrah
-          const fetchedUmrah = res.data.filter(p => p.category?.toLowerCase() === 'umrah')
-          if (fetchedUmrah.length > 0) {
-            setUmrahPackages(fetchedUmrah)
-          }
+          // Filter umrah by sub-category
+          const fetchedEconomy = res.data.filter(p => ['economy', 'low budget', 'budget'].includes(p.category?.toLowerCase()))
+          if (fetchedEconomy.length > 0) setEconomyPackages(fetchedEconomy)
+          const fetched3Star = res.data.filter(p => p.category?.toLowerCase().includes('3 star') || p.category?.toLowerCase().includes('3star'))
+          if (fetched3Star.length > 0) setStar3Packages(fetched3Star)
+          const fetched4Star = res.data.filter(p => p.category?.toLowerCase().includes('4 star') || p.category?.toLowerCase().includes('4star'))
+          if (fetched4Star.length > 0) setStar4Packages(fetched4Star)
+          const fetched5Star = res.data.filter(p => p.category?.toLowerCase().includes('5 star') || p.category?.toLowerCase().includes('5star'))
+          if (fetched5Star.length > 0) setStar5Packages(fetched5Star)
         }
       })
       .catch(err => {
@@ -369,131 +390,155 @@ const Home3 = () => {
         </div>
       </div>
 
-      {/* 2.5 Umrah Packages Section */}
-      <section className="py-24 px-6 bg-[#f5f7fa] relative z-10">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-8 space-y-3">
-            <div className="flex items-center justify-center gap-2 text-[#CD9933]">
-              <span className="material-symbols-outlined text-sm">mosque</span>
-              <span className="font-bold text-xs uppercase tracking-widest">SACRED JOURNEYS</span>
+      {/* ── LOW BUDGET / ECONOMY UMRAH PACKAGES ── */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-white relative z-10">
+        <div className="max-w-screen-2xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
+            <div className="max-w-2xl">
+              <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Spiritual Journeys</h6>
+              <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Low Budget / Economy Umrah Packages</h2>
             </div>
-            <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
-              UMRAH PACKAGES
-            </h2>
-            <div className="h-[2px] w-16 bg-[#CD9933] mx-auto mt-4"></div>
+            <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 mt-6 md:mt-0 transition-all hover:pr-4" to="/packages">View All Packages</Link>
           </div>
-
-          {/* Tab Filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            <button
-              onClick={() => setUmrahFilter('all')}
-              className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-all ${
-                umrahFilter === 'all'
-                  ? 'bg-[#CD9933] text-white shadow-md'
-                  : 'bg-white text-[#013334] border border-gray-200 hover:border-[#CD9933]'
-              }`}
-            >
-              All Packages
-            </button>
-            <button
-              onClick={() => setUmrahFilter('visa-included')}
-              className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-all ${
-                umrahFilter === 'visa-included'
-                  ? 'bg-[#CD9933] text-white shadow-md'
-                  : 'bg-white text-[#013334] border border-gray-200 hover:border-[#CD9933]'
-              }`}
-            >
-              Visa Included
-            </button>
-            <button
-              onClick={() => setUmrahFilter('visa-excluded')}
-              className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest transition-all ${
-                umrahFilter === 'visa-excluded'
-                  ? 'bg-[#CD9933] text-white shadow-md'
-                  : 'bg-white text-[#013334] border border-gray-200 hover:border-[#CD9933]'
-              }`}
-            >
-              Visa Excluded
-            </button>
-          </div>
-
-          {/* 3-Column Card Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredUmrah.slice(0, 9).map((pkg, idx) => {
-              const isStatic = !pkg.hasOwnProperty('image_url')
-              const img = isStatic ? pkg.image : (pkg.image_url || staticUmrahPackages[idx % 4].image)
-              const badge = isStatic ? pkg.badge : (pkg.category || 'UMRAH')
-              const duration = isStatic ? pkg.duration : (pkg.duration || '15 Days')
-              const price = pkg.price
-
-              return (
-                <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col relative group">
-                  {/* Top Image with Gold overlay Badge */}
-                  <div className="relative h-64 overflow-hidden shrink-0">
-                    <img
-                      alt={pkg.title}
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                      src={img}
-                    />
-                    <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider z-10">
-                      {badge}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {economyPackages.slice(0, 12).map((pkg) => (
+              <Link to={`/package/${pkg.id}`} key={pkg.id} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                  <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                  <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
+                </div>
+                <div className="p-4 md:p-6">
+                  <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
+                  <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                  <div className="flex items-center justify-between mt-4">
+                    <div>
+                      <span className="block text-xs text-gray-400">Starting from</span>
+                      <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
                     </div>
-                    {pkg.visa_included !== undefined && (
-                      <div className={`absolute top-4 right-4 text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider z-10 ${pkg.visa_included ? 'bg-[#013334]' : 'bg-gray-600'}`}>
-                        {pkg.visa_included ? 'Visa Included' : 'Visa Excluded'}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Card Content details */}
-                  <div className="p-8 flex-1 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <h3 className="text-[#013334] font-bold text-lg tracking-wide uppercase font-headline line-clamp-2">
-                        {pkg.title}
-                      </h3>
-                      <p className="text-[#CD9933] font-bold text-sm uppercase tracking-wider">
-                        PKR {price.toLocaleString()} | {duration}
-                      </p>
-                      <p className="text-gray-500 text-xs leading-relaxed line-clamp-3">
-                        {pkg.description || 'Experience highly curated schedules, flight alignments, and premier accommodations organized with travel security and luxury.'}
-                      </p>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex gap-4 mt-8 pt-6 border-t border-gray-100 font-manrope">
-                      <Link
-                        to={`/package/${pkg.id || idx + 1}`}
-                        className="flex-1 bg-gray-900 hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
-                      >
-                        READ MORE
-                      </Link>
-                      <a
-                        href="https://wa.me/923001234567"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 bg-[#013334] hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
-                      >
-                        BOOK NOW
-                      </a>
-                    </div>
+                    <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
                   </div>
                 </div>
-              )
-            })}
+              </Link>
+            ))}
           </div>
-
-          {/* Centered Outline Button */}
-          <div className="text-center mt-16">
-            <Link
-              to="/packages"
-              className="inline-block border-2 border-gray-300 hover:border-[#CD9933] text-gray-700 hover:text-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
-            >
-              MORE PACKAGES
-            </Link>
+          <div className="text-center mt-12">
+            <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL ECONOMY PACKAGES</Link>
           </div>
         </div>
       </section>
+
+      {/* ── GROUND UMRAH PACKAGES | 3 STAR ── */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#f5f7fa] relative z-10">
+        <div className="max-w-screen-2xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
+            <div className="max-w-2xl">
+              <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ground Packages</h6>
+              <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 3 Star</h2>
+            </div>
+            <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 mt-6 md:mt-0 transition-all hover:pr-4" to="/packages">View All Packages</Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {star3Packages.slice(0, 12).map((pkg) => (
+              <Link to={`/package/${pkg.id}`} key={pkg.id} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                  <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                  <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
+                </div>
+                <div className="p-4 md:p-6">
+                  <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
+                  <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                  <div className="flex items-center justify-between mt-4">
+                    <div>
+                      <span className="block text-xs text-gray-400">Starting from</span>
+                      <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
+                    </div>
+                    <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 3 STAR PACKAGES</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── GROUND UMRAH PACKAGES | 4 STAR ── */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-white relative z-10">
+        <div className="max-w-screen-2xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
+            <div className="max-w-2xl">
+              <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Premium Ground</h6>
+              <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 4 Star</h2>
+            </div>
+            <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 mt-6 md:mt-0 transition-all hover:pr-4" to="/packages">View All Packages</Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {star4Packages.slice(0, 12).map((pkg) => (
+              <Link to={`/package/${pkg.id}`} key={pkg.id} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                  <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                  <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
+                </div>
+                <div className="p-4 md:p-6">
+                  <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
+                  <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                  <div className="flex items-center justify-between mt-4">
+                    <div>
+                      <span className="block text-xs text-gray-400">Starting from</span>
+                      <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
+                    </div>
+                    <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 4 STAR PACKAGES</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── GROUND UMRAH PACKAGES | 5 STAR ── */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#f5f7fa] relative z-10">
+        <div className="max-w-screen-2xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
+            <div className="max-w-2xl">
+              <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Luxury Ground</h6>
+              <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 5 Star</h2>
+            </div>
+            <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 mt-6 md:mt-0 transition-all hover:pr-4" to="/packages">View All Packages</Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {star5Packages.slice(0, 12).map((pkg) => (
+              <Link to={`/package/${pkg.id}`} key={pkg.id} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block">
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                  <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                  <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
+                </div>
+                <div className="p-4 md:p-6">
+                  <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
+                  <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                  <div className="flex items-center justify-between mt-4">
+                    <div>
+                      <span className="block text-xs text-gray-400">Starting from</span>
+                      <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
+                    </div>
+                    <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 5 STAR PACKAGES</Link>
+          </div>
+        </div>
+      </section>
+
+
 
       {/* 3. About Us Section */}
       <section className="py-24 px-6 bg-white">
