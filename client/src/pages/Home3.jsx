@@ -6,6 +6,7 @@ import background3 from '../assets/home-3.jpg'
 import BannerContactForm from '../components/BannerContactForm'
 import WhatsAppButton from '../components/WhatsAppButton';
 import ScrollReveal from '../components/ScrollReveal'
+import Navbar from '../components/Navbar'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
@@ -215,6 +216,7 @@ const Home3 = () => {
 
   return (
     <div className="bg-white font-manrope antialiased text-gray-700 min-h-screen">
+      <Navbar isVersion2={true} />
 
       {/* 1. Hero Section matching screenshot layout precisely */}
       <section className="relative min-h-[960px] flex flex-col justify-between overflow-hidden bg-[#001c1d]">
@@ -228,36 +230,6 @@ const Home3 = () => {
           {/* Sophisticated dark teal horizontal gradient matching screenshot side-split */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#001c1d] via-[#001c1d]/95 via-45% md:via-55% to-transparent"></div>
         </div>
-
-        {/* Custom Header Overlay inside Hero Section */}
-        <header className="relative z-20 w-full px-6 md:px-12 py-6 flex justify-between items-center bg-transparent">
-          {/* Logo Brand matching screenshot: Gold crescent mosque badge and elegant serif wordmark */}
-          <Link to="/" className="flex items-center gap-2 select-none">
-            <img src={logo} alt="Royal Umrah & Travels Logo" className="h-16 sm:h-20 w-auto" />
-          </Link>
-
-          {/* Navigation Links (Home3 Premium Overlay style) */}
-          <div className="hidden lg:flex items-center gap-6 text-[11px] font-extrabold tracking-[0.18em] text-white">
-            <Link to="/" className="hover:text-[#CD9933] transition-colors uppercase">HOME</Link>
-            <Link to="/home2" className="hover:text-[#CD9933] transition-colors uppercase">HOME 2</Link>
-            <Link to="/home3" className="hover:text-[#CD9933] transition-colors uppercase text-[#CD9933] border-b border-[#CD9933] pb-0.5">HOME 3</Link>
-            <Link to="/flights" className="hover:text-[#CD9933] transition-colors uppercase">AIRLINE TICKETING</Link>
-            <Link to="/visa-services" className="hover:text-[#CD9933] transition-colors uppercase">VISA INQUIRY</Link>
-            <Link to="/about" className="hover:text-[#CD9933] transition-colors uppercase">PARTNERS</Link>
-            <Link to="/contact" className="hover:text-[#CD9933] transition-colors uppercase">CONTACT</Link>
-          </div>
-
-          {/* Top Right 24/7 Support Badge Pill */}
-          <div className="bg-black/35 backdrop-blur-md border border-white/10 px-5 py-2.5 rounded-full flex items-center gap-3 shadow-lg select-none">
-            <div className="w-8 h-8 rounded-full bg-[#CD9933]/25 flex items-center justify-center text-[#CD9933]">
-              <span className="material-symbols-outlined text-base">phone_in_talk</span>
-            </div>
-            <div className="text-left leading-tight">
-              <p className="text-white text-[11px] font-black tracking-wide font-manrope">24/7 Support</p>
-              <p className="text-white/60 text-[9px]">We're Here to Help</p>
-            </div>
-          </div>
-        </header>
 
         {/* Hero Main Content (Split left layout) */}
         <div className="relative z-10 container mx-auto px-6 md:px-12 pt-28 pb-12 flex-1 flex flex-col justify-center items-start text-left">
