@@ -535,23 +535,25 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation="fade-up"
+                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"} 
                   duration={700}
                 >
-                  <Link to={`/package/${pkg.id}`} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                  <Link to={`/package/${pkg.id}`} className="bg-[#013334] border border-white/10 group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
-                      <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
+                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">{pkg.badge}</div>
                     </div>
-                    <div className="p-4 md:p-6">
-                      <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
-                      <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
-                      <div className="flex items-center justify-between mt-4">
+                    <div className="p-4 md:p-6 text-left">
+                      <h3 className="font-notoSerif text-lg font-bold text-[#CD9933] mb-2 line-clamp-1 group-hover:text-white transition-colors">{pkg.title}</h3>
+                      <p className="text-gray-300 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                      <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
                         <div>
-                          <span className="block text-xs text-gray-400">Starting from</span>
+                          <span className="block text-xs text-gray-400 uppercase tracking-wider">Starting from</span>
                           <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
                         </div>
-                        <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                        <div className="w-9 h-9 rounded-full bg-[#CD9933]/10 border border-[#CD9933]/30 flex items-center justify-center text-[#CD9933] group-hover:bg-[#CD9933] group-hover:text-white transition-all">
+                          <span className="material-symbols-outlined text-sm font-bold group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                        </div>
                       </div>
                     </div>
                   </Link>
@@ -612,23 +614,25 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation="fade-up"
+                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"} 
                   duration={700}
                 >
-                  <Link to={`/package/${pkg.id}`} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                  <Link to={`/package/${pkg.id}`} className="bg-[#013334] border border-white/10 group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
-                      <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
+                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">{pkg.badge}</div>
                     </div>
-                    <div className="p-4 md:p-6">
-                      <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
-                      <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
-                      <div className="flex items-center justify-between mt-4">
+                    <div className="p-4 md:p-6 text-left">
+                      <h3 className="font-notoSerif text-lg font-bold text-[#CD9933] mb-2 line-clamp-1 group-hover:text-white transition-colors">{pkg.title}</h3>
+                      <p className="text-gray-300 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                      <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
                         <div>
-                          <span className="block text-xs text-gray-400">Starting from</span>
+                          <span className="block text-xs text-gray-400 uppercase tracking-wider">Starting from</span>
                           <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
                         </div>
-                        <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                        <div className="w-9 h-9 rounded-full bg-[#CD9933]/10 border border-[#CD9933]/30 flex items-center justify-center text-[#CD9933] group-hover:bg-[#CD9933] group-hover:text-white transition-all">
+                          <span className="material-symbols-outlined text-sm font-bold group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                        </div>
                       </div>
                     </div>
                   </Link>
@@ -689,23 +693,25 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation="fade-up"
+                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"} 
                   duration={700}
                 >
-                  <Link to={`/package/${pkg.id}`} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                  <Link to={`/package/${pkg.id}`} className="bg-[#013334] border border-white/10 group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
-                      <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
+                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">{pkg.badge}</div>
                     </div>
-                    <div className="p-4 md:p-6">
-                      <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
-                      <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
-                      <div className="flex items-center justify-between mt-4">
+                    <div className="p-4 md:p-6 text-left">
+                      <h3 className="font-notoSerif text-lg font-bold text-[#CD9933] mb-2 line-clamp-1 group-hover:text-white transition-colors">{pkg.title}</h3>
+                      <p className="text-gray-300 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                      <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
                         <div>
-                          <span className="block text-xs text-gray-400">Starting from</span>
+                          <span className="block text-xs text-gray-400 uppercase tracking-wider">Starting from</span>
                           <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
                         </div>
-                        <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                        <div className="w-9 h-9 rounded-full bg-[#CD9933]/10 border border-[#CD9933]/30 flex items-center justify-center text-[#CD9933] group-hover:bg-[#CD9933] group-hover:text-white transition-all">
+                          <span className="material-symbols-outlined text-sm font-bold group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                        </div>
                       </div>
                     </div>
                   </Link>
@@ -766,23 +772,25 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation="fade-up"
+                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"} 
                   duration={700}
                 >
-                  <Link to={`/package/${pkg.id}`} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                  <Link to={`/package/${pkg.id}`} className="bg-[#013334] border border-white/10 group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
-                      <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
+                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">{pkg.badge}</div>
                     </div>
-                    <div className="p-4 md:p-6">
-                      <h3 className="font-notoSerif text-lg font-bold text-[#013334] mb-2 line-clamp-1">{pkg.title}</h3>
-                      <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
-                      <div className="flex items-center justify-between mt-4">
+                    <div className="p-4 md:p-6 text-left">
+                      <h3 className="font-notoSerif text-lg font-bold text-[#CD9933] mb-2 line-clamp-1 group-hover:text-white transition-colors">{pkg.title}</h3>
+                      <p className="text-gray-300 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                      <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
                         <div>
-                          <span className="block text-xs text-gray-400">Starting from</span>
+                          <span className="block text-xs text-gray-400 uppercase tracking-wider">Starting from</span>
                           <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
                         </div>
-                        <span className="material-symbols-outlined text-[#CD9933] group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                        <div className="w-9 h-9 rounded-full bg-[#CD9933]/10 border border-[#CD9933]/30 flex items-center justify-center text-[#CD9933] group-hover:bg-[#CD9933] group-hover:text-white transition-all">
+                          <span className="material-symbols-outlined text-sm font-bold group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                        </div>
                       </div>
                     </div>
                   </Link>

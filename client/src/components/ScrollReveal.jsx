@@ -48,6 +48,8 @@ const ScrollReveal = ({
     switch (animation) {
       case 'fade-up':
         return 'opacity-0 translate-y-10 scale-98'
+      case 'fade-down':
+        return 'opacity-0 -translate-y-10 scale-98'
       case 'fade-in':
         return 'opacity-0'
       case 'zoom-in':
