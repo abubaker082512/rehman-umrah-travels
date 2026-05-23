@@ -110,7 +110,7 @@ const Navbar = ({ isVersion2 = false }) => {
 
             {/* WhatsApp Chat Button */}
             <a
-              href="https://wa.me/923041115530?text=Hello%20Rehman%20Travels,%20I%20would%20like%20to%20inquire%20about%20Umrah%20packages."
+              href="https://wa.me/923041115530?text=Hello%20Royal%20Umrah%20%26%20Travels,%20I%20would%20like%20to%20inquire%20about%20Umrah%20packages."
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-lg bg-[#25D366] text-white font-bold text-xs uppercase tracking-wider shadow-md hover:bg-[#20ba5a] hover:scale-[1.03] transition-all"
@@ -190,7 +190,7 @@ const Navbar = ({ isVersion2 = false }) => {
               Book Pilgrimage
             </Link>
             <p className="text-[10px] text-white/40 text-center mt-4">
-              &copy; {new Date().getFullYear()} Rehman Umrah & Travels
+              &copy; {new Date().getFullYear()} Royal Umrah & Travels
             </p>
           </div>
         </div>
