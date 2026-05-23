@@ -42,10 +42,8 @@ const Navbar = ({ isVersion2 = false }) => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 h-20 sm:h-24 transition-all duration-500 ease-in-out border-b ${
           isScrolled
-            ? 'bg-white border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.05)] text-gray-800'
-            : isVersion2
-            ? 'bg-[#013334]/80 backdrop-blur-md border-transparent text-white'
-            : 'bg-[#013334] border-white/5 text-white'
+            ? 'bg-[#013334] border-[#CD9933]/20 shadow-[0_15px_40px_rgba(0,28,29,0.35)] text-white'
+            : 'bg-[#013334]/15 backdrop-blur-md border-transparent text-white'
         }`}
       >
         <div className="relative w-full h-full flex justify-between items-center px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">
@@ -55,11 +53,7 @@ const Navbar = ({ isVersion2 = false }) => {
             {/* Elegant Gold-Teal Burger Button */}
             <button
               onClick={() => setDrawerOpen(true)}
-              className={`flex items-center justify-center p-3 rounded-lg border transition-all duration-300 ${
-                isScrolled
-                  ? 'bg-[#013334]/5 border-[#013334]/10 text-[#013334] hover:bg-[#013334]/10'
-                  : 'bg-[#CD9933]/15 border-[#CD9933]/25 text-[#CD9933] hover:bg-[#CD9933]/30'
-              }`}
+              className="flex items-center justify-center p-3 rounded-lg border transition-all duration-300 bg-[#CD9933]/15 border-[#CD9933]/25 text-[#CD9933] hover:bg-[#CD9933]/30"
               aria-label="Open side menu"
             >
               <span className="material-symbols-outlined font-bold">menu</span>
@@ -98,11 +92,7 @@ const Navbar = ({ isVersion2 = false }) => {
             {/* Call Support Button */}
             <a
               href="tel:+923041115530"
-              className={`hidden sm:flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-lg border font-bold text-xs uppercase tracking-wider transition-all duration-300 ${
-                isScrolled
-                  ? 'border-[#013334]/20 text-[#013334] hover:bg-[#013334] hover:text-white'
-                  : 'border-[#CD9933]/35 text-[#CD9933] hover:bg-[#CD9933] hover:text-white'
-              }`}
+              className="hidden sm:flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-lg border border-[#CD9933]/35 text-[#CD9933] hover:bg-[#CD9933] hover:text-white font-bold text-xs uppercase tracking-wider transition-all duration-300"
             >
               <span className="material-symbols-outlined text-sm font-bold">call</span>
               <span>0304 111 5530</span>
