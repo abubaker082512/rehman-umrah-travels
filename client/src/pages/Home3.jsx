@@ -375,6 +375,105 @@ const Home3 = () => {
         </div>
       </div>
 
+      {/* ── WHY CHOOSE ROYAL UMRAH & TRAVELS ── */}
+      <section className="py-20 md:py-28 px-4 sm:px-6 md:px-8 bg-[#f5f7fa] relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            {/* Left Graphic Grid Collage */}
+            <ScrollReveal animation="slide-left" duration={800}>
+              <div className="relative group">
+                <div className="absolute inset-0 bg-[#CD9933] translate-x-4 translate-y-4 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300 rounded-xl"></div>
+                <img 
+                  alt="Beautiful sunset view of Holy Kaaba in Makkah" 
+                  className="w-full h-auto object-cover shadow-2xl border border-white/20 rounded-xl"
+                  src="https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80"
+                />
+                
+                {/* Visual badge highlight */}
+                <div className="absolute -bottom-8 -right-4 bg-[#013334] text-white p-6 rounded-lg shadow-xl border border-[#CD9933]/30 hidden sm:block">
+                  <p className="text-xl font-extrabold text-[#CD9933]">20+</p>
+                  <p className="text-[10px] uppercase font-bold tracking-widest text-white/85">Years Combined Experience</p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Right details content */}
+            <ScrollReveal animation="slide-right" duration={800}>
+              <div className="space-y-6">
+                <div className="flex items-center gap-3">
+                  <span className="text-[#CD9933] font-bold text-xs uppercase tracking-[0.3em] font-manrope">Best Travel Agency in Pakistan</span>
+                  <div className="h-[1px] w-12 bg-[#CD9933]"></div>
+                </div>
+                <h2 className="text-[#013334] text-3xl md:text-5xl font-bold tracking-wide uppercase font-notoSerif leading-tight">
+                  Why Choose <br />
+                  <span className="text-[#CD9933]">Royal Umrah</span> & Travels?
+                </h2>
+                <p className="text-gray-500 leading-relaxed text-sm">
+                  We specialize in crafting seamless spiritual itineraries for families across Pakistan. From direct flight alignments to booking hand-selected hotels mere steps from the gates of Haram, we take care of the details so you can focus entirely on worship.
+                </p>
+
+                {/* 4 Premium Value Grid Items */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                  {/* Item 1 */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#013334]/10 flex items-center justify-center text-[#CD9933]">
+                        <span className="material-symbols-outlined text-sm font-bold">hotel</span>
+                      </div>
+                      <h4 className="font-bold text-[#013334] text-sm uppercase">Proximity Stays</h4>
+                    </div>
+                    <p className="text-gray-400 text-xs leading-relaxed">
+                      Hotels hand-picked to be within 100m to 250m from Makkah and Madinah mosque entrances.
+                    </p>
+                  </div>
+
+                  {/* Item 2 */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#013334]/10 flex items-center justify-center text-[#CD9933]">
+                        <span className="material-symbols-outlined text-sm font-bold">verified</span>
+                      </div>
+                      <h4 className="font-bold text-[#013334] text-sm uppercase">100% Certified</h4>
+                    </div>
+                    <p className="text-gray-400 text-xs leading-relaxed">
+                      Approved by Ministry of Hajj & Umrah for hassle-free e-visa and group clearance.
+                    </p>
+                  </div>
+
+                  {/* Item 3 */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#013334]/10 flex items-center justify-center text-[#CD9933]">
+                        <span className="material-symbols-outlined text-sm font-bold">flight_takeoff</span>
+                      </div>
+                      <h4 className="font-bold text-[#013334] text-sm uppercase">Elite Flights</h4>
+                    </div>
+                    <p className="text-gray-400 text-xs leading-relaxed">
+                      Direct bookings with top airlines like Saudi Airlines, Emirates, and Qatar Airways.
+                    </p>
+                  </div>
+
+                  {/* Item 4 */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#013334]/10 flex items-center justify-center text-[#CD9933]">
+                        <span className="material-symbols-outlined text-sm font-bold">support_agent</span>
+                      </div>
+                      <h4 className="font-bold text-[#013334] text-sm uppercase">On-Ground Support</h4>
+                    </div>
+                    <p className="text-gray-400 text-xs leading-relaxed">
+                      Experienced tour managers staying on-site in Makkah & Madinah for direct coordination.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
+          </div>
+        </div>
+      </section>
+
       {/* ── LOW BUDGET / ECONOMY UMRAH PACKAGES ── */}
       <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-white relative z-10">
         <div className="max-w-screen-2xl mx-auto">
@@ -684,6 +783,107 @@ const Home3 = () => {
       </section>
 
 
+
+      {/* ── VISUAL 4-STEP UMRAH GUIDE ── */}
+      <section className="py-20 md:py-28 px-4 sm:px-6 md:px-8 bg-[#013334] text-white relative z-10 overflow-hidden">
+        {/* Subtle geometric gold background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#CD9933]/5 blur-[120px] pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          
+          {/* Header */}
+          <ScrollReveal animation="fade-up" duration={600}>
+            <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
+              <span className="text-[#CD9933] font-bold text-xs uppercase tracking-[0.3em] font-manrope">Performing the Pilgrimage</span>
+              <h2 className="text-white text-3xl md:text-5xl font-bold tracking-wide uppercase font-notoSerif leading-tight">
+                Step-by-Step <br />
+                <span className="text-[#CD9933]">Umrah Guide</span>
+              </h2>
+              <div className="h-[2px] w-12 bg-[#CD9933] mx-auto mt-4"></div>
+              <p className="text-white/60 text-xs leading-relaxed max-w-md mx-auto">
+                A simple and complete visual overview of the major rituals required to perform your holy pilgrimage correctly.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* 4 Steps Columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+            
+            {/* Step 1 */}
+            <ScrollReveal animation="fade-up" delay={0} duration={700}>
+              <div className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 p-8 rounded-xl relative group transition-all duration-300 hover:-translate-y-1 h-full text-left">
+                <div className="absolute -top-6 left-8 w-12 h-12 bg-[#CD9933] text-[#013334] font-black text-xl flex items-center justify-center rounded-xl shadow-lg border-2 border-[#013334]">
+                  01
+                </div>
+                <div className="pt-4 space-y-4">
+                  <div className="w-10 h-10 rounded-full bg-[#CD9933]/10 flex items-center justify-center text-[#CD9933] group-hover:scale-110 transition-transform">
+                    <span className="material-symbols-outlined text-base">styler</span>
+                  </div>
+                  <h3 className="text-white font-bold text-lg uppercase tracking-wide">Ihram</h3>
+                  <p className="text-white/60 text-xs leading-relaxed font-light">
+                    Enter the state of spiritual purity by wearing the white garments at the designated Miqat boundary and declaring your Niyyah (intention) with the Talbiyah prayer.
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Step 2 */}
+            <ScrollReveal animation="fade-up" delay={150} duration={700}>
+              <div className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 p-8 rounded-xl relative group transition-all duration-300 hover:-translate-y-1 h-full text-left">
+                <div className="absolute -top-6 left-8 w-12 h-12 bg-[#CD9933] text-[#013334] font-black text-xl flex items-center justify-center rounded-xl shadow-lg border-2 border-[#013334]">
+                  02
+                </div>
+                <div className="pt-4 space-y-4">
+                  <div className="w-10 h-10 rounded-full bg-[#CD9933]/10 flex items-center justify-center text-[#CD9933] group-hover:scale-110 transition-transform">
+                    <span className="material-symbols-outlined text-base">all_inclusive</span>
+                  </div>
+                  <h3 className="text-white font-bold text-lg uppercase tracking-wide">Tawaf</h3>
+                  <p className="text-white/60 text-xs leading-relaxed font-light">
+                    Circumambulate the Holy Kaaba seven times counter-clockwise, starting from the Black Stone (Hajar al-Aswad) with dhikr, du'as, and prayers of humility.
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Step 3 */}
+            <ScrollReveal animation="fade-up" delay={300} duration={700}>
+              <div className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 p-8 rounded-xl relative group transition-all duration-300 hover:-translate-y-1 h-full text-left">
+                <div className="absolute -top-6 left-8 w-12 h-12 bg-[#CD9933] text-[#013334] font-black text-xl flex items-center justify-center rounded-xl shadow-lg border-2 border-[#013334]">
+                  03
+                </div>
+                <div className="pt-4 space-y-4">
+                  <div className="w-10 h-10 rounded-full bg-[#CD9933]/10 flex items-center justify-center text-[#CD9933] group-hover:scale-110 transition-transform">
+                    <span className="material-symbols-outlined text-base">directions_walk</span>
+                  </div>
+                  <h3 className="text-white font-bold text-lg uppercase tracking-wide">Sa'i</h3>
+                  <p className="text-white/60 text-xs leading-relaxed font-light">
+                    Walk seven times between the historic hills of Safa and Marwa, commemorating the devotional search for water by Hajra (A.S) for her infant Ismail (A.S).
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Step 4 */}
+            <ScrollReveal animation="fade-up" delay={450} duration={700}>
+              <div className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 p-8 rounded-xl relative group transition-all duration-300 hover:-translate-y-1 h-full text-left">
+                <div className="absolute -top-6 left-8 w-12 h-12 bg-[#CD9933] text-[#013334] font-black text-xl flex items-center justify-center rounded-xl shadow-lg border-2 border-[#013334]">
+                  04
+                </div>
+                <div className="pt-4 space-y-4">
+                  <div className="w-10 h-10 rounded-full bg-[#CD9933]/10 flex items-center justify-center text-[#CD9933] group-hover:scale-110 transition-transform">
+                    <span className="material-symbols-outlined text-base">content_cut</span>
+                  </div>
+                  <h3 className="text-white font-bold text-lg uppercase tracking-wide">Halq / Taqsir</h3>
+                  <p className="text-white/60 text-xs leading-relaxed font-light">
+                    Formally complete your pilgrimage by shaving the head (Halq) or clipping a small lock of hair (Taqsir) to exit the sacred state of Ihram.
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+          </div>
+        </div>
+      </section>
 
       {/* 3. About Us Section */}
       <section className="py-24 px-6 bg-white">
