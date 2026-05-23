@@ -3,51 +3,56 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
+import ScrollReveal from '../components/ScrollReveal'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const staticPackages = [
   {
-    id: 1,
-    title: 'Premium 5-Star Executive',
-    location: 'Pullman ZamZam (150m from Haram)',
-    price: 485000,
-    days: '15 Days',
-    airline: 'Qatar Airways',
-    badge: 'Best Seller',
-    badgeColor: 'bg-[#CD9933]',
-    image: 'https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=800',
+    id: 401,
+    title: '21 Nights Saver Economy Umrah',
+    location: 'Fundaq Mayer Mayassar (Makkah)',
+    price: 209500,
+    days: '21 Days',
+    duration: '21 Days',
+    airline: 'Air Blue',
+    badge: 'Best Price',
+    badgeColor: 'bg-[#013334]',
+    image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800',
   },
   {
-    id: 2,
-    title: 'Silver 4-Star Comfort',
-    location: 'Al-Shohada Hotel (300m from Haram)',
-    price: 325000,
-    days: '10 Days',
-    airline: 'Saudi Airlines',
-    badge: 'Popular Choice',
-    badgeColor: 'bg-[#013334]',
+    id: 501,
+    title: '14 Nights 3 Star Comfort Umrah',
+    location: 'Al Aseel Ajyad (Makkah)',
+    price: 245500,
+    days: '14 Nights',
+    duration: '14 Nights',
+    airline: 'PIA',
+    badge: 'Best Seller',
+    badgeColor: 'bg-[#CD9933]',
     image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800',
   },
   {
-    id: 3,
-    title: 'Spiritual Ramadan 2024',
-    location: 'Full Ramadan in Makkah & Madinah',
-    price: 750000,
-    days: '30 Days',
-    airline: 'Full Iftar/Suhur',
-    badge: 'Limited',
-    badgeColor: 'bg-[#CD9933]',
-    image: 'https://images.unslash.com/photo-1580338834642-8a3acf79b1b8?w=800',
+    id: 601,
+    title: '14 Nights 4 Star Premium Umrah',
+    location: 'Ramada Dar Al Faiyzeen (Makkah)',
+    price: 284000,
+    days: '14 Nights',
+    duration: '14 Nights',
+    airline: 'Saudi Airlines',
+    badge: 'Premium Comfort',
+    badgeColor: 'bg-[#013334]',
+    image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800',
   },
   {
-    id: 4,
-    title: 'Royal Suites Collection',
-    location: 'Raffles Makkah (Inside Clock Tower)',
-    price: 980000,
-    days: '07 Days',
-    airline: 'Private GMC Transfer',
-    badge: 'Gold Standard',
+    id: 701,
+    title: '14 Nights 5 Star Cheap Luxury',
+    location: 'Holiday Inn Makkah (Makkah)',
+    price: 289500,
+    days: '14 Nights',
+    duration: '14 Nights',
+    airline: 'Emirates',
+    badge: 'Cheap Luxury',
     badgeColor: 'bg-[#CD9933]',
     image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800',
   }
@@ -156,44 +161,51 @@ const Packages = () => {
                 const price = typeof pkg.price === 'number' ? pkg.price : (parseFloat(String(pkg.price).replace(/[^0-9.]/g, '')) || 0)
 
                 return (
-                  <div key={pkg.id || i} className="bg-surface-container-lowest editorial-shadow overflow-hidden flex flex-col group cursor-pointer transition-transform hover:-translate-y-1">
-                    <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={image} alt={pkg.title || pkg.name} />
-                      {badge && (
-                        <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded`}>{badge}</div>
-                      )}
-                      {pkg.visa_included && (
-                        <div className="absolute top-4 right-4 bg-[#013334] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded">Visa Included</div>
-                      )}
-                    </div>
-                    <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col">
-                      <div className="flex flex-col sm:flex-row sm:justify-between gap-2 mb-4">
-                        <div>
-                          <h3 className="font-notoSerif text-2xl text-primary font-bold">{pkg.title || pkg.name}</h3>
-                          <div className="flex items-center mt-1 text-on-surface-variant text-sm">
-                            <span className="material-symbols-outlined text-sm mr-2">location_on</span>
-                            <span>{pkg.location || pkg.hotel || 'Makkah & Madinah'}</span>
+                  <ScrollReveal
+                    key={pkg.id || i}
+                    delay={(i % 2) * 150}
+                    animation="fade-up"
+                    duration={700}
+                  >
+                    <div className="bg-surface-container-lowest editorial-shadow overflow-hidden flex flex-col group cursor-pointer transition-transform hover:-translate-y-1 h-full">
+                      <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden">
+                        <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={image} alt={pkg.title || pkg.name} />
+                        {badge && (
+                          <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded`}>{badge}</div>
+                        )}
+                        {pkg.visa_included && (
+                          <div className="absolute top-4 right-4 bg-[#013334] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded">Visa Included</div>
+                        )}
+                      </div>
+                      <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col">
+                        <div className="flex flex-col sm:flex-row sm:justify-between gap-2 mb-4">
+                          <div>
+                            <h3 className="font-notoSerif text-2xl text-primary font-bold">{pkg.title || pkg.name}</h3>
+                            <div className="flex items-center mt-1 text-on-surface-variant text-sm">
+                              <span className="material-symbols-outlined text-sm mr-2">location_on</span>
+                              <span>{pkg.location || pkg.hotel || 'Makkah & Madinah'}</span>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-xs text-on-surface-variant uppercase font-bold tracking-tighter">Starting from</div>
+                            <div className="text-2xl font-notoSerif font-bold text-[#CD9933]">PKR {price > 0 ? price.toLocaleString() : 'N/A'}</div>
                           </div>
                         </div>
-                        <div className="text-right">
-                          <div className="text-xs text-on-surface-variant uppercase font-bold tracking-tighter">Starting from</div>
-                          <div className="text-2xl font-notoSerif font-bold text-[#CD9933]">PKR {price > 0 ? price.toLocaleString() : 'N/A'}</div>
+                        <div className="flex gap-4 mb-8 flex-wrap">
+                          <div className="bg-surface-container flex items-center px-3 py-1 rounded text-xs font-medium">
+                            <span className="material-symbols-outlined text-sm mr-2">calendar_today</span>{days}
+                          </div>
+                          <div className="bg-surface-container flex items-center px-3 py-1 rounded text-xs font-medium">
+                            <span className="material-symbols-outlined text-sm mr-2">flight</span>{airline}
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex gap-4 mb-8 flex-wrap">
-                        <div className="bg-surface-container flex items-center px-3 py-1 rounded text-xs font-medium">
-                          <span className="material-symbols-outlined text-sm mr-2">calendar_today</span>{days}
+                        <div className="mt-auto grid grid-cols-2 gap-4">
+                          <Link to={`/package/${pkg.id || pkg._id || i + 1}`} className="py-3 bg-[#CD9933]/10 text-[#CD9933] font-bold rounded-md hover:bg-[#CD9933]/20 transition-colors border border-[#CD9933]/20 text-sm text-center">View Details</Link>
+                          <Link to="/contact" className="py-3 bg-[#013334] text-white font-bold rounded-md hover:bg-[#002c2e] transition-colors text-sm text-center">Book Now</Link>
                         </div>
-                        <div className="bg-surface-container flex items-center px-3 py-1 rounded text-xs font-medium">
-                          <span className="material-symbols-outlined text-sm mr-2">flight</span>{airline}
-                        </div>
-                      </div>
-                      <div className="mt-auto grid grid-cols-2 gap-4">
-                        <Link to={`/package/${pkg.id || pkg._id || i + 1}`} className="py-3 bg-[#CD9933]/10 text-[#CD9933] font-bold rounded-md hover:bg-[#CD9933]/20 transition-colors border border-[#CD9933]/20 text-sm text-center">View Details</Link>
-                        <Link to="/contact" className="py-3 bg-[#013334] text-white font-bold rounded-md hover:bg-[#002c2e] transition-colors text-sm text-center">Book Now</Link>
                       </div>
                     </div>
-                  </div>
+                  </ScrollReveal>
                 )
               })}
             </div>

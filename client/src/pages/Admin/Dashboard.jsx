@@ -285,8 +285,11 @@ const AdminDashboard = () => {
   const [packageForm, setPackageForm] = useState({
     title: '', description: '', price: '', category: 'Economy',
     duration: '', location: '', hotel_name: '', distance_from_haram: '',
-    image_url: '', airline: '', stars: 4, badge: '', visa_included: false
+    image_url: '', airline: '', stars: 4, badge: '', visa_included: false,
+    includes: '',
+    itinerary: []
   })
+  const [newItineraryDay, setNewItineraryDay] = useState({ day: '', title: '', description: '' })
   const [tourForm, setTourForm] = useState({ title: '', subtitle: '', description: '', price: '', duration: '', image_url: '', highlights: '' })
   const [visaForm, setVisaForm] = useState({ title: '', description: '', processing_time: '', fee: '', documents: '' })
   const [flightForm, setFlightForm] = useState({ name: '', description: '', image_url: '', price_start: '', category: 'Most Popular', booking_url: '' })
@@ -355,11 +358,26 @@ const AdminDashboard = () => {
 
   const fetchData = fetchAll
 
-    const handleAddPackage = async (e) => {
+  const handleAddPackage = async (e) => {
     e.preventDefault()
     try {
-      await axios.post(`${API_BASE}/api/packages`, { ...packageForm, price: parseFloat(packageForm.price) || 0 }, { headers: authHdr() })
-      setPackageForm({ title: '', description: '', price: '', category: 'Economy', duration: '', location: '', hotel_name: '', distance_from_haram: '', image_url: '', airline: '', stars: 4, badge: '', visa_included: false })
+      const includesArray = packageForm.includes
+        ? packageForm.includes.split(',').map(item => item.trim()).filter(Boolean)
+        : []
+      
+      const payload = {
+        ...packageForm,
+        price: parseFloat(packageForm.price) || 0,
+        includes: includesArray,
+        itinerary: packageForm.itinerary || []
+      }
+      await axios.post(`${API_BASE}/api/packages`, payload, { headers: authHdr() })
+      setPackageForm({ 
+        title: '', description: '', price: '', category: 'Economy', 
+        duration: '', location: '', hotel_name: '', distance_from_haram: '', 
+        image_url: '', airline: '', stars: 4, badge: '', visa_included: false,
+        includes: '', itinerary: []
+      })
       fetchAll()
       alert('Package added successfully!')
     } catch (err) {
@@ -550,7 +568,108 @@ const AdminDashboard = () => {
                   <label className="block text-xs font-bold uppercase tracking-widest text-outline mb-2">Badge (e.g., Best Seller)</label>
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Badge (e.g., Best Seller)" value={packageForm.badge} onChange={e => setPackageForm({ ...packageForm, badge: e.target.value })} />
                   <textarea className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm md:col-span-2" placeholder="Description" rows={3} value={packageForm.description} onChange={e => setPackageForm({...packageForm, description: e.target.value})} required />
-                  <button type="submit" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all">Add Package</button>
+                  
+                  {/* Comma-separated Inclusions */}
+                  <div className="md:col-span-2 mt-2">
+                    <label className="block text-xs font-bold uppercase tracking-widest text-[#CD9933] mb-2">Package Inclusions (comma-separated)</label>
+                    <textarea 
+                      className="w-full bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" 
+                      placeholder="e.g., E-Visa Processing, Shared Transport, Makkah Ziyaraat, Scholar Guidance" 
+                      rows={2} 
+                      value={packageForm.includes || ''} 
+                      onChange={e => setPackageForm({...packageForm, includes: e.target.value})} 
+                    />
+                  </div>
+
+                  {/* Day-by-day Itinerary Builder */}
+                  <div className="md:col-span-2 border-t border-outline-variant/30 pt-6 mt-4">
+                    <h4 className="font-notoSerif text-lg font-bold text-[#013334] mb-4 flex items-center gap-2">
+                      <span className="material-symbols-outlined text-[#CD9933]">calendar_month</span>
+                      Day-by-Day Itinerary Planner
+                    </h4>
+                    
+                    {/* List of currently added days */}
+                    {packageForm.itinerary && packageForm.itinerary.length > 0 ? (
+                      <div className="space-y-3 mb-6 bg-[#f5f7fa] p-4 rounded-lg border border-outline-variant/20 max-h-60 overflow-y-auto">
+                        {packageForm.itinerary.map((item, idx) => (
+                          <div key={idx} className="flex justify-between items-start bg-white p-3 rounded shadow-sm border border-outline-variant/10">
+                            <div className="flex-1">
+                              <span className="inline-block bg-[#CD9933] text-white text-[10px] font-bold px-2 py-0.5 rounded mr-2 uppercase">{item.day}</span>
+                              <strong className="text-sm text-[#013334]">{item.title}</strong>
+                              <p className="text-xs text-gray-500 mt-1">{item.description}</p>
+                            </div>
+                            <button 
+                              type="button" 
+                              onClick={() => {
+                                const updated = packageForm.itinerary.filter((_, i) => i !== idx)
+                                setPackageForm({...packageForm, itinerary: updated})
+                              }} 
+                              className="text-red-500 hover:text-red-700 ml-2"
+                            >
+                              <span className="material-symbols-outlined text-sm">delete</span>
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-xs text-gray-500 italic mb-6">No itinerary days added yet. Use the fields below to construct the day-by-day plan.</p>
+                    )}
+
+                    {/* Inputs to add a new day */}
+                    <div className="bg-[#f5f7fa] p-4 rounded-lg border border-outline-variant/30 grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-[10px] font-bold uppercase tracking-widest text-[#013334] mb-1">Day / Duration Label</label>
+                        <input 
+                          type="text" 
+                          className="w-full bg-white border border-outline-variant focus:border-[#CD9933] py-1.5 px-3 text-xs rounded outline-none" 
+                          placeholder="e.g., Day 01 or Day 02 - 12" 
+                          value={newItineraryDay.day}
+                          onChange={e => setNewItineraryDay({...newItineraryDay, day: e.target.value})}
+                        />
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className="block text-[10px] font-bold uppercase tracking-widest text-[#013334] mb-1">Day Title</label>
+                        <input 
+                          type="text" 
+                          className="w-full bg-white border border-outline-variant focus:border-[#CD9933] py-1.5 px-3 text-xs rounded outline-none" 
+                          placeholder="e.g., Arrival & Makkah Check-in" 
+                          value={newItineraryDay.title}
+                          onChange={e => setNewItineraryDay({...newItineraryDay, title: e.target.value})}
+                        />
+                      </div>
+                      <div className="md:col-span-3">
+                        <label className="block text-[10px] font-bold uppercase tracking-widest text-[#013334] mb-1">Day Description</label>
+                        <textarea 
+                          className="w-full bg-white border border-outline-variant focus:border-[#CD9933] py-1.5 px-3 text-xs rounded resize-none outline-none" 
+                          placeholder="Detailed breakdown of what happens on this day..." 
+                          rows={2}
+                          value={newItineraryDay.description}
+                          onChange={e => setNewItineraryDay({...newItineraryDay, description: e.target.value})}
+                        />
+                      </div>
+                      <div className="md:col-span-3 flex justify-end">
+                        <button 
+                          type="button" 
+                          onClick={() => {
+                            if (!newItineraryDay.day || !newItineraryDay.title || !newItineraryDay.description) {
+                              alert('Please fill out Day, Title, and Description to add an itinerary entry.')
+                              return
+                            }
+                            setPackageForm({
+                              ...packageForm,
+                              itinerary: [...(packageForm.itinerary || []), newItineraryDay]
+                            })
+                            setNewItineraryDay({ day: '', title: '', description: '' })
+                          }} 
+                          className="bg-[#013334] text-white hover:bg-[#CD9933] px-4 py-2 text-xs font-bold tracking-widest uppercase transition-all rounded shadow-sm"
+                        >
+                          Add Day to Itinerary
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="submit" className="bg-[#CD9933] text-white py-3 rounded font-bold text-sm md:col-span-2 hover:brightness-110 transition-all mt-4">Add Package</button>
                 </form>
               </div>
 
