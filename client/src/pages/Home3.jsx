@@ -155,8 +155,12 @@ const GoldLogoIcon = () => (
 const getProxyUrl = (url) => {
   if (!url) return '';
   if (url.startsWith('http')) {
-    if (url.includes('weserv.nl')) return url;
-    return `https://images.weserv.nl/?url=${encodeURIComponent(url)}`;
+    if (url.includes('/api/image?url=')) return url;
+    try {
+      return `/api/image?url=${btoa(url)}`;
+    } catch (e) {
+      return url;
+    }
   }
   return url;
 };

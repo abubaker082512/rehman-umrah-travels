@@ -6,6 +6,19 @@ import axios from 'axios'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
+const getProxyUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http')) {
+    if (url.includes('/api/image?url=')) return url;
+    try {
+      return `/api/image?url=${btoa(url)}`;
+    } catch (e) {
+      return url;
+    }
+  }
+  return url;
+};
+
 const staticPackages = [
   {
     id: 1,
@@ -131,7 +144,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-screen flex items-center pt-20 pb-24 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src={pageMedia.home_hero_image || "https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=1600&q=80"} alt="Makkah" />
+          <img className="w-full h-full object-cover" src={getProxyUrl(pageMedia.home_hero_image || "https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=1600&q=80")} alt="Makkah" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
@@ -219,7 +232,7 @@ const Home = () => {
             return (
               <Link to={`/package/${pkg.id || pkg._id || staticPkg.id}`} key={pkg.id || i} className="bg-surface-container-low group cursor-pointer overflow-hidden editorial-shadow transition-transform hover:-translate-y-1 block">
                 <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                  <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={image} alt={pkg.title} />
+                  <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={getProxyUrl(image)} alt={pkg.title} />
                   <div className={`absolute top-4 left-4 ${badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{badge}</div>
                 </div>
                 <div className="p-4 md:p-6">

@@ -7,6 +7,19 @@ import ScrollReveal from '../components/ScrollReveal'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
+const getProxyUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http')) {
+    if (url.includes('/api/image?url=')) return url;
+    try {
+      return `/api/image?url=${btoa(url)}`;
+    } catch (e) {
+      return url;
+    }
+  }
+  return url;
+};
+
 const staticPackages = [
   {
     id: 401,
@@ -100,7 +113,7 @@ const Packages = () => {
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src={pageMedia.packages_hero_image || "https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=1600"} alt="Makkah" />
+          <img className="w-full h-full object-cover" src={getProxyUrl(pageMedia.packages_hero_image || "https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=1600")} alt="Makkah" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
@@ -169,7 +182,7 @@ const Packages = () => {
                   >
                     <div className="bg-surface-container-lowest editorial-shadow overflow-hidden flex flex-col group cursor-pointer transition-transform hover:-translate-y-1 h-full">
                       <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden">
-                        <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={image} alt={pkg.title || pkg.name} />
+                        <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={getProxyUrl(image)} alt={pkg.title || pkg.name} />
                         {badge && (
                           <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded`}>{badge}</div>
                         )}

@@ -15,6 +15,7 @@
     { "source": "/api/blog",        "destination": "/api/blog" },
     { "source": "/api/cms",         "destination": "/api/cms" },
     { "source": "/api/health",      "destination": "/api/health" },
+    { "source": "/api/image",       "destination": "/api/image" },
     { "source": "/(.*)",            "destination": "/index.html" }
   ]
 }

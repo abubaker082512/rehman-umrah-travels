@@ -6,6 +6,19 @@ import axios from 'axios'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
+const getProxyUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http')) {
+    if (url.includes('/api/image?url=')) return url;
+    try {
+      return `/api/image?url=${btoa(url)}`;
+    } catch (e) {
+      return url;
+    }
+  }
+  return url;
+};
+
 const staticPackages = [
   {
     id: 401,
@@ -168,7 +181,7 @@ const PackageDetail = () => {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src={pkg.image_url || pkg.image || staticPackages[0].image} alt={pkg.title} />
+          <img className="w-full h-full object-cover" src={getProxyUrl(pkg.image_url || pkg.image || staticPackages[0].image)} alt={pkg.title} />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
@@ -348,7 +361,7 @@ const PackageDetail = () => {
             {staticPackages.filter(p => p.id !== parseInt(id)).slice(0, 3).map(p => (
               <Link to={`/package/${p.id}`} key={p.id} className="bg-surface-container-lowest editorial-shadow overflow-hidden group cursor-pointer transition-transform hover:-translate-y-1 block">
                 <div className="relative h-48 overflow-hidden">
-                  <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src={p.image} alt={p.title} />
+                  <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src={getProxyUrl(p.image)} alt={p.title} />
                   <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded">{p.badge}</div>
                 </div>
                 <div className="p-6">
