@@ -123,18 +123,8 @@ const Navbar = ({ isVersion2 = false }) => {
             </a>
           </div>
 
-          {/* RIGHT: Quick Action link (hides mobile, slides in desktop on scroll) */}
+          {/* RIGHT container left empty or for future use */}
           <div className="flex items-center gap-4">
-            <Link
-              to="/packages"
-              className={`hidden lg:inline-block px-5 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition-all duration-300 ${
-                isScrolled
-                  ? 'bg-[#013334] text-white hover:brightness-110 shadow-md'
-                  : 'bg-[#CD9933] text-white hover:opacity-90 shadow-md shadow-[#CD9933]/15'
-              }`}
-            >
-              Book Now
-            </Link>
           </div>
         </div>
       </header>
