@@ -1963,13 +1963,13 @@ const SiteSettings = () => {
   
   const [settings, setSettings] = useState({
     siteName: 'Royal Umrah & Travels',
-    tagline: 'Your Trusted Partner for Umrah & International Tours',
+    tagline: 'Proudly Serving The Guests of ALLAH',
     email: 'info@royalumrahandtravel.com',
     phone: '+92 300 123 4567',
     whatsapp: '+92 300 123 4567',
     address: 'Main Boulevard, Gulberg III, Lahore, Pakistan',
     workingHours: 'Mon - Sat: 9:00 AM - 8:00 PM',
-    metaTitle: 'Royal Umrah & Travels - Your Trusted Partner for Umrah & International Tours',
+    metaTitle: 'Royal Umrah & Travels - Proudly Serving The Guests of ALLAH',
     metaDescription: 'Experience premium Umrah packages and international tours with Royal Umrah & Travels. Approved by Ministry of Hajj & Umrah.',
     metaKeywords: 'umrah, packages, makkah, madinah, hajj, travel, tours, pakistan',
   })
