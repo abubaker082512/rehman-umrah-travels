@@ -523,7 +523,7 @@ const Home3 = () => {
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image_url || pkg.image} alt={pkg.title} />
                       <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6">
@@ -600,7 +600,7 @@ const Home3 = () => {
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image_url || pkg.image} alt={pkg.title} />
                       <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6">
@@ -677,7 +677,7 @@ const Home3 = () => {
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image_url || pkg.image} alt={pkg.title} />
                       <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6">
@@ -754,7 +754,7 @@ const Home3 = () => {
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image_url || pkg.image} alt={pkg.title} />
                       <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6">
@@ -895,7 +895,7 @@ const Home3 = () => {
               <div className="h-[1px] w-12 bg-[#CD9933]"></div>
             </div>
             <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
-              BEST TRAVEL AGENCY IN RAWALPINDI & LAHORE
+              BEST TRAVEL AGENCY IN PAKISTAN
             </h2>
             <p className="text-gray-500 leading-relaxed text-sm">
               At Royal Umrah & Travels, we treat every travel plan as a customized masterclass of spiritual fulfillment, logistics comfort, and exploration freedom. Over the years, we have built key flight alignments and hotel partnerships worldwide to deliver high-fidelity journeys that stay with you forever.
