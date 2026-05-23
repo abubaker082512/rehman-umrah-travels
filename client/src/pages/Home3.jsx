@@ -152,6 +152,15 @@ const GoldLogoIcon = () => (
   </svg>
 )
 
+const getProxyUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http')) {
+    if (url.includes('weserv.nl')) return url;
+    return `https://images.weserv.nl/?url=${encodeURIComponent(url)}`;
+  }
+  return url;
+};
+
 const Home3 = () => {
   const [packages, setPackages] = useState([])
   const [internationalTours, setInternationalTours] = useState(staticInternationalTours)
@@ -387,7 +396,7 @@ const Home3 = () => {
                 <img 
                   alt="Beautiful sunset view of Holy Kaaba in Makkah" 
                   className="w-full h-auto object-cover shadow-2xl border border-white/20 rounded-xl"
-                  src="https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80"
+                  src={getProxyUrl("https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80")}
                 />
                 
                 {/* Visual badge highlight */}
@@ -523,7 +532,7 @@ const Home3 = () => {
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image_url || pkg.image} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={getProxyUrl(pkg.image_url || pkg.image)} alt={pkg.title} />
                       <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6">
@@ -600,7 +609,7 @@ const Home3 = () => {
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image_url || pkg.image} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={getProxyUrl(pkg.image_url || pkg.image)} alt={pkg.title} />
                       <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6">
@@ -677,7 +686,7 @@ const Home3 = () => {
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-[#f5f7fa] group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image_url || pkg.image} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={getProxyUrl(pkg.image_url || pkg.image)} alt={pkg.title} />
                       <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6">
@@ -754,7 +763,7 @@ const Home3 = () => {
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-white group cursor-pointer overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={pkg.image_url || pkg.image} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={getProxyUrl(pkg.image_url || pkg.image)} alt={pkg.title} />
                       <div className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase`}>{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6">
@@ -951,7 +960,7 @@ const Home3 = () => {
             <img
               alt="Luxury traveler collage illustration mockup landscape"
               className="w-full h-auto object-cover shadow-xl border border-gray-100"
-              src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80"
+              src={getProxyUrl("https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80")}
             />
           </div>
         </div>
@@ -976,7 +985,7 @@ const Home3 = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {internationalTours.map((pkg, idx) => {
               const isStatic = !pkg.hasOwnProperty('image_url')
-              const img = isStatic ? pkg.image : (pkg.image_url || staticInternationalTours[idx % 3].image)
+              const img = getProxyUrl(isStatic ? pkg.image : (pkg.image_url || staticInternationalTours[idx % 3].image))
               const badge = isStatic ? pkg.badge : (pkg.category || 'FOR 2 PERSONS')
               const duration = isStatic ? pkg.duration : (pkg.duration || '5 Days 4 Nights')
               const price = pkg.price
@@ -1051,7 +1060,7 @@ const Home3 = () => {
           <img
             alt="Massive panoramic dark mountains wilderness"
             className="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80"
+            src={getProxyUrl("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80")}
           />
           <div className="absolute inset-0 bg-[#013334]/85"></div>
         </div>
@@ -1094,7 +1103,7 @@ const Home3 = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {localTours.map((pkg, idx) => {
               const isStatic = !pkg.hasOwnProperty('image_url')
-              const img = isStatic ? pkg.image : (pkg.image_url || staticLocalTours[idx % 3].image)
+              const img = getProxyUrl(isStatic ? pkg.image : (pkg.image_url || staticLocalTours[idx % 3].image))
               const badge = isStatic ? pkg.badge : (pkg.category || 'FOR 1 PERSON')
               const duration = isStatic ? pkg.duration : (pkg.duration || '3 Days 2 Nights')
               const price = pkg.price
@@ -1169,7 +1178,7 @@ const Home3 = () => {
           <img
             alt="Mountains silhouette travel landscape"
             className="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80"
+            src={getProxyUrl("https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600&q=80")}
           />
         </div>
 
@@ -1193,7 +1202,7 @@ const Home3 = () => {
                 <img
                   alt="Tehmina Hassan portrait"
                   className="w-full h-full object-cover"
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80"
+                  src={getProxyUrl("https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80")}
                 />
               </div>
               <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">Tehmina Hassan</h5>
@@ -1210,7 +1219,7 @@ const Home3 = () => {
                 <img
                   alt="Zubair Malik portrait"
                   className="w-full h-full object-cover"
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80"
+                  src={getProxyUrl("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80")}
                 />
               </div>
               <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">Zubair Malik</h5>
@@ -1230,7 +1239,7 @@ const Home3 = () => {
           <img
             alt="Alpine snowcapped mountains panorama peak"
             className="w-full h-full object-cover opacity-15"
-            src="https://images.unsplash.com/photo-1482862549707-f63cb32c5fd9?w=1600&q=80"
+            src={getProxyUrl("https://images.unsplash.com/photo-1482862549707-f63cb32c5fd9?w=1600&q=80")}
           />
         </div>
 
@@ -1240,7 +1249,7 @@ const Home3 = () => {
             <img
               alt="Happy smiling traveler holding camera passport boarding pass layout cutout"
               className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[95%] w-auto object-contain"
-              src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80"
+              src={getProxyUrl("https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80")}
             />
           </div>
 
