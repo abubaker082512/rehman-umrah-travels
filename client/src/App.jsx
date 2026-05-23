@@ -21,9 +21,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home2" element={<Home2 />} />
-        <Route path="/home3" element={<Home3 />} />
+        <Route path="/" element={<Home3 />} />
+        {/* <Route path="/home2" element={<Home2 />} /> */}
+        {/* <Route path="/home3" element={<Home3 />} /> */}
         <Route path="/flights" element={<Flights />} />
         <Route path="/packages" element={<Packages />} />
         <Route path="/package/:id" element={<PackageDetail />} />

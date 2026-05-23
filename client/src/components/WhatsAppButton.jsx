@@ -1,7 +1,7 @@
 import React from 'react';
 
 const WhatsAppButton = () => {
-  const whatsappNumber = '923001234567'; // Replace with actual number
+  const whatsappNumber = '923220725064'; // Replace with actual number
   const message = encodeURIComponent('Hello, I would like to inquire about Umrah packages.');
   const link = `https://wa.me/${whatsappNumber}?text=${message}`;
   const style = {

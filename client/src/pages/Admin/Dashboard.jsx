@@ -1966,7 +1966,7 @@ const SiteSettings = () => {
     tagline: 'Proudly Serving The Guests of ALLAH',
     email: 'info@royalumrahandtravel.com',
     phone: '+92 300 123 4567',
-    whatsapp: '+92 300 123 4567',
+    whatsapp: '+92 322 072 5064',
     address: 'Main Boulevard, Gulberg III, Lahore, Pakistan',
     workingHours: 'Mon - Sat: 9:00 AM - 8:00 PM',
     metaTitle: 'Royal Umrah & Travels - Proudly Serving The Guests of ALLAH',
