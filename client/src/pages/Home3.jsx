@@ -7,6 +7,12 @@ import kaabaPackages from '../assets/kaaba_packages.png'
 import toursScenic from '../assets/tours_scenic.png'
 import travelerPortrait from '../assets/traveler_portrait.png'
 import aboutImage from '../assets/3.jpg'
+import economyPackagesImg from '../assets/economy_packages.png'
+import star3PackagesImg from '../assets/star3_packages.png'
+import star4PackagesImg from '../assets/star4_packages.png'
+import star5PackagesImg from '../assets/star5_packages.png'
+import internationalToursImg from '../assets/international_tours.png'
+import localToursImg from '../assets/local_tours.png'
 import BannerContactForm from '../components/BannerContactForm'
 import WhatsAppButton from '../components/WhatsAppButton';
 import ScrollReveal from '../components/ScrollReveal'
@@ -535,12 +541,12 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation="fade-down"
+                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"}
                   duration={700}
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={economyPackagesImg} alt={pkg.title} />
                       <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase rounded-md shadow-md">{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6 text-left">
@@ -614,12 +620,12 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation="fade-down"
+                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"}
                   duration={700}
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={star3PackagesImg} alt={pkg.title} />
                       <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase rounded-md shadow-md">{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6 text-left">
@@ -693,12 +699,12 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation="fade-down"
+                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"}
                   duration={700}
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={star4PackagesImg} alt={pkg.title} />
                       <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase rounded-md shadow-md">{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6 text-left">
@@ -772,12 +778,12 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation="fade-down"
+                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"}
                   duration={700}
                 >
                   <Link to={`/package/${pkg.id}`} className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
-                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
+                      <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={star5PackagesImg} alt={pkg.title} />
                       <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase rounded-md shadow-md">{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6 text-left">
@@ -1003,7 +1009,7 @@ const Home3 = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {internationalTours.map((pkg, idx) => {
               const isStatic = !pkg.hasOwnProperty('image_url')
-              const img = toursScenic
+              const img = internationalToursImg
               const badge = isStatic ? pkg.badge : (pkg.category || 'FOR 2 PERSONS')
               const duration = isStatic ? pkg.duration : (pkg.duration || '5 Days 4 Nights')
               const price = pkg.price
@@ -1012,7 +1018,7 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id || idx} 
                   delay={(idx % 3) * 100} 
-                  animation="fade-down"
+                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"} 
                   duration={700}
                 >
                   <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl hover:border-[#CD9933]/40 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden h-full group">
@@ -1132,7 +1138,7 @@ const Home3 = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {localTours.map((pkg, idx) => {
               const isStatic = !pkg.hasOwnProperty('image_url')
-              const img = toursScenic
+              const img = localToursImg
               const badge = isStatic ? pkg.badge : (pkg.category || 'FOR 1 PERSON')
               const duration = isStatic ? pkg.duration : (pkg.duration || '3 Days 2 Nights')
               const price = pkg.price
@@ -1141,7 +1147,7 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id || idx} 
                   delay={(idx % 3) * 100} 
-                  animation="fade-down"
+                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"} 
                   duration={700}
                 >
                   <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl hover:border-[#CD9933]/40 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden h-full group">
