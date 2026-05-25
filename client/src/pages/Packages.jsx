@@ -180,41 +180,41 @@ const Packages = () => {
                     animation="fade-up"
                     duration={700}
                   >
-                    <div className="bg-surface-container-lowest editorial-shadow overflow-hidden flex flex-col group cursor-pointer transition-transform hover:-translate-y-1 h-full">
+                    <div className="bg-[#013334] border border-[#CD9933]/15 hover:border-[#CD9933]/40 rounded-xl overflow-hidden flex flex-col group cursor-pointer transition-transform hover:-translate-y-1 h-full shadow-lg hover:shadow-2xl text-white">
                       <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden">
                         <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={getProxyUrl(image)} alt={pkg.title || pkg.name} />
                         {badge && (
-                          <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded`}>{badge}</div>
+                          <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded shadow-md`}>{badge}</div>
                         )}
                         {pkg.visa_included && (
-                          <div className="absolute top-4 right-4 bg-[#013334] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded">Visa Included</div>
+                          <div className="absolute top-4 right-4 bg-[#CD9933] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded shadow-md">Visa Included</div>
                         )}
                       </div>
-                      <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col">
-                        <div className="flex flex-col sm:flex-row sm:justify-between gap-2 mb-4">
+                      <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col justify-between">
+                        <div className="flex flex-col sm:flex-row sm:justify-between gap-4 mb-6">
                           <div>
-                            <h3 className="font-notoSerif text-2xl text-primary font-bold">{pkg.title || pkg.name}</h3>
-                            <div className="flex items-center mt-1 text-on-surface-variant text-sm">
-                              <span className="material-symbols-outlined text-sm mr-2">location_on</span>
+                            <h3 className="font-notoSerif text-2xl text-[#CD9933] font-bold group-hover:text-white transition-colors">{pkg.title || pkg.name}</h3>
+                            <div className="flex items-center mt-1 text-white/70 text-sm">
+                              <span className="material-symbols-outlined text-sm mr-2 text-[#CD9933]">location_on</span>
                               <span>{pkg.location || pkg.hotel || 'Makkah & Madinah'}</span>
                             </div>
                           </div>
-                          <div className="text-right">
-                            <div className="text-xs text-on-surface-variant uppercase font-bold tracking-tighter">Starting from</div>
+                          <div className="text-left sm:text-right">
+                            <div className="text-xs text-white/50 uppercase font-bold tracking-tighter">Starting from</div>
                             <div className="text-2xl font-notoSerif font-bold text-[#CD9933]">PKR {price > 0 ? price.toLocaleString() : 'N/A'}</div>
                           </div>
                         </div>
                         <div className="flex gap-4 mb-8 flex-wrap">
-                          <div className="bg-surface-container flex items-center px-3 py-1 rounded text-xs font-medium">
-                            <span className="material-symbols-outlined text-sm mr-2">calendar_today</span>{days}
+                          <div className="bg-white/5 border border-white/10 text-white flex items-center px-3 py-1 rounded text-xs font-medium">
+                            <span className="material-symbols-outlined text-sm mr-2 text-[#CD9933]">calendar_today</span>{days}
                           </div>
-                          <div className="bg-surface-container flex items-center px-3 py-1 rounded text-xs font-medium">
-                            <span className="material-symbols-outlined text-sm mr-2">flight</span>{airline}
+                          <div className="bg-white/5 border border-white/10 text-white flex items-center px-3 py-1 rounded text-xs font-medium">
+                            <span className="material-symbols-outlined text-sm mr-2 text-[#CD9933]">flight</span>{airline}
                           </div>
                         </div>
                         <div className="mt-auto grid grid-cols-2 gap-4">
-                          <Link to={`/package/${pkg.id || pkg._id || i + 1}`} className="py-3 bg-[#CD9933]/10 text-[#CD9933] font-bold rounded-md hover:bg-[#CD9933]/20 transition-colors border border-[#CD9933]/20 text-sm text-center">View Details</Link>
-                          <Link to="/contact" className="py-3 bg-[#013334] text-white font-bold rounded-md hover:bg-[#002c2e] transition-colors text-sm text-center">Book Now</Link>
+                          <Link to={`/package/${pkg.id || pkg._id || i + 1}`} className="py-3 bg-white/5 text-white font-bold rounded-md hover:bg-[#CD9933] hover:text-[#013334] border border-white/10 hover:border-[#CD9933] transition-all text-sm text-center">View Details</Link>
+                          <Link to="/contact" className="py-3 bg-[#CD9933] text-white font-bold rounded-md hover:bg-[#b08025] transition-colors text-sm text-center">Book Now</Link>
                         </div>
                       </div>
                     </div>
