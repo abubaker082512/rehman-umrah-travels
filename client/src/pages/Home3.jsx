@@ -590,14 +590,14 @@ const Home3 = () => {
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(star3Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-gray-200 hover:border-[#CD9933] text-[#013334] hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Previous"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
                   </button>
                   <button 
                     onClick={() => scrollCarousel(star3Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-gray-200 hover:border-[#CD9933] text-[#013334] hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Next"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
@@ -649,7 +649,7 @@ const Home3 = () => {
 
           <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#013334] text-[#013334] hover:bg-[#013334] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 3 STAR PACKAGES</Link>
+              <Link to="/packages" className="inline-block border-2 border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 3 STAR PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
@@ -748,14 +748,14 @@ const Home3 = () => {
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(star5Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-gray-200 hover:border-[#CD9933] text-[#013334] hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Previous"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
                   </button>
                   <button 
                     onClick={() => scrollCarousel(star5Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-gray-200 hover:border-[#CD9933] text-[#013334] hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Next"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
@@ -807,7 +807,7 @@ const Home3 = () => {
 
           <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#013334] text-[#013334] hover:bg-[#013334] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 5 STAR PACKAGES</Link>
+              <Link to="/packages" className="inline-block border-2 border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 5 STAR PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
@@ -1206,7 +1206,7 @@ const Home3 = () => {
             <div className="text-center mt-16">
               <Link
                 to="/packages"
-                className="inline-block border-2 border-[#013334] text-[#013334] hover:bg-[#013334] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+                className="inline-block border-2 border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
               >
                 MORE TOURS
               </Link>
