@@ -498,7 +498,7 @@ const Home3 = () => {
       </section>
 
       {/* ── LOW BUDGET / ECONOMY UMRAH PACKAGES ── */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#002526] text-white relative z-10">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#013334] text-white relative z-10">
         <div className="max-w-screen-2xl mx-auto">
           <ScrollReveal animation="fade-down" duration={600}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
@@ -577,27 +577,27 @@ const Home3 = () => {
       </section>
 
       {/* ── GROUND UMRAH PACKAGES | 3 STAR ── */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#013334] text-white relative z-10">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-white text-gray-800 relative z-10">
         <div className="max-w-screen-2xl mx-auto">
           <ScrollReveal animation="fade-down" duration={600}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
               <div className="max-w-2xl">
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ground Packages</h6>
-                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">Ground Umrah Packages | 3 Star</h2>
+                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 3 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
-                <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
+                <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(star3Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-gray-200 hover:border-[#CD9933] text-[#013334] hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Previous"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
                   </button>
                   <button 
                     onClick={() => scrollCarousel(star3Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-gray-200 hover:border-[#CD9933] text-[#013334] hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Next"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
@@ -623,20 +623,20 @@ const Home3 = () => {
                   animation={idx % 2 === 0 ? "fade-down" : "fade-up"}
                   duration={700}
                 >
-                  <Link to={`/package/${pkg.id}`} className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                  <Link to={`/package/${pkg.id}`} className="bg-[#f8fafc] border border-gray-100 hover:border-[#CD9933]/40 rounded-xl group cursor-pointer overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={star3PackagesImg} alt={pkg.title} />
                       <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase rounded-md shadow-md">{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6 text-left">
-                      <h3 className="font-notoSerif text-lg font-bold text-[#CD9933] mb-2 line-clamp-1 group-hover:text-white transition-colors">{pkg.title}</h3>
-                      <p className="text-gray-300 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
-                      <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
+                      <h3 className="font-notoSerif text-lg font-bold text-[#013334] group-hover:text-[#CD9933] mb-2 line-clamp-1 transition-colors">{pkg.title}</h3>
+                      <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                      <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
                         <div>
                           <span className="block text-xs text-gray-400 uppercase tracking-wider">Starting from</span>
                           <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
                         </div>
-                        <div className="w-9 h-9 rounded-full bg-[#CD9933]/10 border border-[#CD9933]/30 flex items-center justify-center text-[#CD9933] group-hover:bg-[#CD9933] group-hover:text-white transition-all">
+                        <div className="w-9 h-9 rounded-full bg-[#013334]/5 border border-[#013334]/10 flex items-center justify-center text-[#013334] group-hover:bg-[#CD9933] group-hover:text-white group-hover:border-[#CD9933] transition-all">
                           <span className="material-symbols-outlined text-sm font-bold group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
                         </div>
                       </div>
@@ -649,14 +649,14 @@ const Home3 = () => {
 
           <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 3 STAR PACKAGES</Link>
+              <Link to="/packages" className="inline-block border-2 border-[#013334] text-[#013334] hover:bg-[#013334] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 3 STAR PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
       {/* ── GROUND UMRAH PACKAGES | 4 STAR ── */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#002526] text-white relative z-10">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#013334] text-white relative z-10">
         <div className="max-w-screen-2xl mx-auto">
           <ScrollReveal animation="fade-down" duration={600}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
@@ -735,27 +735,27 @@ const Home3 = () => {
       </section>
 
       {/* ── GROUND UMRAH PACKAGES | 5 STAR ── */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#013334] text-white relative z-10">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-white text-gray-800 relative z-10">
         <div className="max-w-screen-2xl mx-auto">
           <ScrollReveal animation="fade-down" duration={600}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
               <div className="max-w-2xl">
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Luxury Ground</h6>
-                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">Ground Umrah Packages | 5 Star</h2>
+                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 5 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
-                <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
+                <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(star5Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-gray-200 hover:border-[#CD9933] text-[#013334] hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Previous"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
                   </button>
                   <button 
                     onClick={() => scrollCarousel(star5Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-gray-200 hover:border-[#CD9933] text-[#013334] hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Next"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
@@ -781,20 +781,20 @@ const Home3 = () => {
                   animation={idx % 2 === 0 ? "fade-down" : "fade-up"}
                   duration={700}
                 >
-                  <Link to={`/package/${pkg.id}`} className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                  <Link to={`/package/${pkg.id}`} className="bg-[#f8fafc] border border-gray-100 hover:border-[#CD9933]/40 rounded-xl group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={star5PackagesImg} alt={pkg.title} />
                       <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase rounded-md shadow-md">{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6 text-left">
-                      <h3 className="font-notoSerif text-lg font-bold text-[#CD9933] mb-2 line-clamp-1 group-hover:text-white transition-colors">{pkg.title}</h3>
-                      <p className="text-gray-300 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
-                      <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
+                      <h3 className="font-notoSerif text-lg font-bold text-[#013334] group-hover:text-[#CD9933] mb-2 line-clamp-1 transition-colors">{pkg.title}</h3>
+                      <p className="text-gray-500 text-sm mb-4 line-clamp-1">{pkg.location} • {pkg.duration}</p>
+                      <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
                         <div>
                           <span className="block text-xs text-gray-400 uppercase tracking-wider">Starting from</span>
                           <span className="text-xl font-extrabold text-[#CD9933]">PKR {pkg.price.toLocaleString()}</span>
                         </div>
-                        <div className="w-9 h-9 rounded-full bg-[#CD9933]/10 border border-[#CD9933]/30 flex items-center justify-center text-[#CD9933] group-hover:bg-[#CD9933] group-hover:text-white transition-all">
+                        <div className="w-9 h-9 rounded-full bg-[#013334]/5 border border-[#013334]/10 flex items-center justify-center text-[#013334] group-hover:bg-[#CD9933] group-hover:text-white group-hover:border-[#CD9933] transition-all">
                           <span className="material-symbols-outlined text-sm font-bold group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
                         </div>
                       </div>
@@ -807,7 +807,7 @@ const Home3 = () => {
 
           <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 5 STAR PACKAGES</Link>
+              <Link to="/packages" className="inline-block border-2 border-[#013334] text-[#013334] hover:bg-[#013334] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 5 STAR PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
@@ -989,7 +989,7 @@ const Home3 = () => {
       </section>
 
       {/* 4. International Tours Grid */}
-      <section className="py-24 px-6 bg-[#002526] text-white relative z-10">
+      <section className="py-24 px-6 bg-[#013334] text-white relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <ScrollReveal animation="fade-down" duration={600}>
@@ -1118,7 +1118,7 @@ const Home3 = () => {
       </section>
 
       {/* 6. Local Tours Grid */}
-      <section className="py-24 px-6 bg-[#013334] text-white relative z-10">
+      <section className="py-24 px-6 bg-white text-gray-800 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <ScrollReveal animation="fade-down" duration={600}>
@@ -1127,7 +1127,7 @@ const Home3 = () => {
                 <span className="material-symbols-outlined text-sm">terrain</span>
                 <span className="font-bold text-xs uppercase tracking-widest">PACKAGES AND GO</span>
               </div>
-              <h2 className="text-white text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
+              <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
                 LOCAL TOURS
               </h2>
               <div className="h-[2px] w-16 bg-[#CD9933] mx-auto mt-4"></div>
@@ -1150,7 +1150,7 @@ const Home3 = () => {
                   animation={idx % 2 === 0 ? "fade-down" : "fade-up"} 
                   duration={700}
                 >
-                  <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl hover:border-[#CD9933]/40 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden h-full group">
+                  <div className="bg-[#f8fafc] border border-gray-100 rounded-xl hover:border-[#CD9933]/40 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden h-full group shadow-md hover:shadow-xl">
                     {/* Top Image with Gold Badge */}
                     <div className="relative h-64 overflow-hidden shrink-0">
                       <img
@@ -1166,22 +1166,22 @@ const Home3 = () => {
                     {/* Card Content details */}
                     <div className="p-8 flex-1 flex flex-col justify-between">
                       <div className="space-y-4">
-                        <h3 className="text-white group-hover:text-[#CD9933] font-bold text-lg tracking-wide uppercase font-headline line-clamp-2 transition-colors">
+                        <h3 className="text-[#013334] group-hover:text-[#CD9933] font-bold text-lg tracking-wide uppercase font-headline line-clamp-2 transition-colors">
                           {pkg.title}
                         </h3>
                         <p className="text-[#CD9933] font-bold text-sm uppercase tracking-wider">
                           PKR {price.toLocaleString()} | {duration}
                         </p>
-                        <p className="text-gray-300 text-xs leading-relaxed line-clamp-3">
+                        <p className="text-gray-500 text-xs leading-relaxed line-clamp-3">
                           {pkg.description || 'Explore the magnificent mountain views, fresh stream walks, and celestial landscapes of Northern Pakistan.'}
                         </p>
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex gap-4 mt-8 pt-6 border-t border-white/10">
+                      <div className="flex gap-4 mt-8 pt-6 border-t border-gray-100">
                         <Link
                           to={`/package/${pkg.id || idx + 1}`}
-                          className="flex-1 bg-white/5 border border-white/10 hover:bg-[#CD9933] hover:border-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-all rounded-lg"
+                          className="flex-1 bg-[#013334]/5 border border-[#013334]/10 hover:bg-[#013334] hover:border-[#013334] text-[#013334] hover:text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-all rounded-lg"
                         >
                           READ MORE
                         </Link>
@@ -1206,7 +1206,7 @@ const Home3 = () => {
             <div className="text-center mt-16">
               <Link
                 to="/packages"
-                className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+                className="inline-block border-2 border-[#013334] text-[#013334] hover:bg-[#013334] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
               >
                 MORE TOURS
               </Link>

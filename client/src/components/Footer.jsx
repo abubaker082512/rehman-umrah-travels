@@ -62,111 +62,107 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-[#013334] text-white border-t border-white/5 relative z-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12 px-6 sm:px-8 md:px-12 py-12 md:py-20 w-full max-w-screen-2xl mx-auto">
-        
-        {/* Column 1: Logo and Brand Description */}
-        <div className="space-y-6 lg:col-span-1">
-          <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
-            <img src={logo} alt="Royal Umrah & Travels Logo" className="h-16 sm:h-20 w-auto" />
-          </Link>
-          <p className="text-white/60 text-xs sm:text-sm leading-relaxed font-manrope font-light">
-            {footerContent.description}
-          </p>
+    <footer className="bg-[#013334] text-white/50 py-16 px-6 border-t border-white/5 text-xs relative z-10">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Centered Logo at the top */}
+        <div className="flex flex-col items-center text-center select-none">
+          <span className="text-white text-3xl font-bold tracking-widest uppercase font-headline">
+            ROYAL
+            <span className="text-[#CD9933]">/</span>
+          </span>
+          <span className="text-white/60 text-[9px] font-bold tracking-[0.38em] uppercase -mt-1 pl-[2px] font-manrope">
+            UMRAH & TRAVELS
+          </span>
         </div>
 
-        {/* Column 2: Explore (Gold Heading) */}
-        <div>
-          <h5 className="font-notoSerif text-base sm:text-lg text-[#CD9933] font-bold mb-6 tracking-wide uppercase">Explore</h5>
-          <ul className="space-y-3.5">
-            {footerContent.quickLinks.map((link, idx) => (
-              <li key={idx}>
-                <Link to={linkMap[link] || '/'} className="text-white/60 hover:text-[#CD9933] transition-all text-xs sm:text-sm font-manrope font-medium">
-                  {link}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <hr className="border-white/5" />
 
-        {/* Column 3: Book Now & Top Deals (Gold Heading) */}
-        <div>
-          <h5 className="font-notoSerif text-base sm:text-lg text-[#CD9933] font-bold mb-6 tracking-wide uppercase">Book Now</h5>
-          <ul className="space-y-3.5 text-white/60 text-xs sm:text-sm font-manrope font-medium">
-            <li>
-              <Link to="/packages" className="hover:text-[#CD9933] transition-all">
-                Economy Umrah Packages
-              </Link>
-            </li>
-            <li>
-              <Link to="/packages" className="hover:text-[#CD9933] transition-all">
-                3 Star Ground Packages
-              </Link>
-            </li>
-            <li>
-              <Link to="/packages" className="hover:text-[#CD9933] transition-all">
-                4 Star Premium Packages
-              </Link>
-            </li>
-            <li>
-              <Link to="/packages" className="hover:text-[#CD9933] transition-all">
-                5 Star Luxury Packages
-              </Link>
-            </li>
-            <li>
-              <Link to="/local-tours" className="hover:text-[#CD9933] transition-all text-[#CD9933]">
-                Pakistan Northern Tours
-              </Link>
-            </li>
-          </ul>
-        </div>
+        {/* 5 Clean Columns Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 text-left font-manrope">
+          {/* Col 1: Contact Us */}
+          <div className="space-y-4">
+            <h5 className="text-[#CD9933] font-bold tracking-widest uppercase text-sm sm:text-base font-headline">Contact Us</h5>
+            <div className="space-y-2.5 leading-relaxed text-white/60 text-xs sm:text-sm font-manrope font-light">
+              <p>{settings.address}</p>
+              {settings.address2 && <p>{settings.address2}</p>}
+              <p className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[#CD9933] text-xs">call</span>
+                <a href="tel:+923041115530" className="hover:text-[#CD9933] transition-colors">0304 111 5530</a>
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[#CD9933] text-xs">call</span>
+                <a href="tel:+923220725064" className="hover:text-[#CD9933] transition-colors">+92 322 072 5064</a>
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[#CD9933] text-xs">mail</span>
+                <a href="mailto:info@royalumrahandtravel.com" className="hover:text-[#CD9933] transition-colors">info@royalumrahandtravel.com</a>
+              </p>
+            </div>
+          </div>
 
-        {/* Column 4: Contact Us (Gold Heading) */}
-        <div>
-          <h5 className="font-notoSerif text-base sm:text-lg text-[#CD9933] font-bold mb-6 tracking-wide uppercase">Contact Us</h5>
-          <ul className="space-y-4 text-white/60 text-xs sm:text-sm font-manrope font-light">
-            <li className="flex items-start gap-3">
-              <span className="material-symbols-outlined text-[#CD9933] text-sm mt-1 font-bold">location_on</span>
-              <span>{settings.address}</span>
-            </li>
-            {settings.address2 && (
-              <li className="flex items-start gap-3">
-                <span className="material-symbols-outlined text-[#CD9933] text-sm mt-1 font-bold">location_on</span>
-                <span>{settings.address2}</span>
-              </li>
-            )}
-            <li className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-[#CD9933] text-sm font-bold">call</span>
-              <a href="tel:+923041115530" className="hover:text-[#CD9933] transition-colors">0304 111 5530</a>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-[#CD9933] text-sm font-bold">mail</span>
-              <a href="mailto:info@royalumrahandtravel.com" className="hover:text-[#CD9933] transition-colors">info@royalumrahandtravel.com</a>
-            </li>
-          </ul>
-        </div>
+          {/* Col 2: Book Now */}
+          <div className="space-y-4">
+            <h5 className="text-[#CD9933] font-bold tracking-widest uppercase text-sm sm:text-base font-headline">Book Now</h5>
+            <ul className="space-y-2.5 text-white/60 text-xs sm:text-sm font-manrope font-medium">
+              <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Economy Umrah Packages</Link></li>
+              <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">3 Star Ground Packages</Link></li>
+              <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">4 Star Premium Packages</Link></li>
+              <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">5 Star Luxury Packages</Link></li>
+            </ul>
+          </div>
 
-        {/* Column 5: Newsletter (Gold Heading) */}
-        <div>
-          <h5 className="font-notoSerif text-base sm:text-lg text-[#CD9933] font-bold mb-6 tracking-wide uppercase">Newsletter</h5>
-          <p className="text-white/60 text-xs leading-relaxed font-manrope font-light mb-4">
-            Stay updated with the latest Umrah deals and Northern Pakistan group tour announcements.
-          </p>
-          <div className="flex gap-2">
-            <input 
-              className="bg-white/5 border-0 border-b border-white/20 text-white text-xs sm:text-sm py-2 px-3 w-full focus:ring-0 focus:border-[#CD9933] outline-none" 
-              placeholder="Email Address" 
-              type="email" 
-            />
-            <button className="text-[#CD9933] hover:scale-105 active:scale-95 transition-all">
-              <span className="material-symbols-outlined font-bold">send</span>
-            </button>
+          {/* Col 3: Explore */}
+          <div className="space-y-4">
+            <h5 className="text-[#CD9933] font-bold tracking-widest uppercase text-sm sm:text-base font-headline">Explore</h5>
+            <ul className="space-y-2.5">
+              {footerContent.quickLinks.map((link, idx) => (
+                <li key={idx}>
+                  <Link to={linkMap[link] || '/'} className="text-white/60 hover:text-[#CD9933] transition-colors text-xs sm:text-sm font-manrope font-medium">
+                    {link}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 4: Top Deals */}
+          <div className="space-y-4">
+            <h5 className="text-[#CD9933] font-bold tracking-widest uppercase text-sm sm:text-base font-headline">Top Deals</h5>
+            <ul className="space-y-2.5 text-white/60 text-xs sm:text-sm font-manrope font-medium">
+              <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Dubai New Year Special</Link></li>
+              <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Kashmir Autumn Retreat</Link></li>
+              <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Turkey Spring Deal</Link></li>
+              <li><Link to="/local-tours" className="hover:text-[#CD9933] transition-colors">Pakistan Northern Tours</Link></li>
+            </ul>
+          </div>
+
+          {/* Col 5: Newsletter */}
+          <div className="space-y-4">
+            <h5 className="text-[#CD9933] font-bold tracking-widest uppercase text-sm sm:text-base font-headline">Newsletter</h5>
+            <p className="leading-relaxed text-white/60 text-xs font-manrope font-light">Subscribe to get alerts on flash flight bookings and destination price cuts.</p>
+            <div className="flex gap-2">
+              <input
+                className="bg-white/5 border border-white/10 text-white text-xs px-3.5 py-2.5 focus:border-[#CD9933] outline-none flex-1"
+                placeholder="Your Email Address"
+                type="email"
+              />
+              <button className="bg-[#CD9933] hover:bg-white hover:text-[#013334] text-primary px-4 py-2.5 transition-colors font-bold text-xs uppercase tracking-widest cursor-pointer">
+                GO
+              </button>
+            </div>
           </div>
         </div>
 
-      </div>
-      <div className="border-t border-white/5 px-6 md:px-12 py-6 md:py-8 text-center bg-black/10">
-        <p className="text-white/40 text-xs font-manrope font-light">{footerContent.copyright}</p>
+        <hr className="border-white/5" />
+
+        {/* Bottom copyright row */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] tracking-wider uppercase font-medium text-white/40">
+          <p>{footerContent.copyright}</p>
+          <div className="flex items-center gap-4">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          </div>
+        </div>
       </div>
     </footer>
   )
