@@ -8,8 +8,6 @@ const Navbar = ({ isVersion2 = false }) => {
 
   const links = [
     { to: '/', label: 'Home' },
-    { to: '/home2', label: 'Home 2' },
-    { to: '/home3', label: 'Home 3' },
     { to: '/flights', label: 'Flights' },
     { to: '/packages', label: 'Umrah Packages' },
     { to: '/international-tours', label: 'International Tours' },

@@ -398,7 +398,7 @@ const Home3 = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             {/* Left Graphic Grid Collage */}
-            <ScrollReveal animation="slide-left" duration={800}>
+            <ScrollReveal animation="fade-down" duration={800}>
               <div className="relative group">
                 <div className="absolute inset-0 bg-[#CD9933] translate-x-4 translate-y-4 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300 rounded-xl"></div>
                 <img 
@@ -416,7 +416,7 @@ const Home3 = () => {
             </ScrollReveal>
 
             {/* Right details content */}
-            <ScrollReveal animation="slide-right" duration={800}>
+            <ScrollReveal animation="fade-down" duration={800}>
               <div className="space-y-6">
                 <div className="flex items-center gap-3">
                   <span className="text-[#CD9933] font-bold text-xs uppercase tracking-[0.3em] font-manrope">Best Travel Agency in Pakistan</span>
@@ -492,27 +492,27 @@ const Home3 = () => {
       </section>
 
       {/* ── LOW BUDGET / ECONOMY UMRAH PACKAGES ── */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-white relative z-10">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#002526] text-white relative z-10">
         <div className="max-w-screen-2xl mx-auto">
-          <ScrollReveal animation="fade-up" duration={600}>
+          <ScrollReveal animation="fade-down" duration={600}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
               <div className="max-w-2xl">
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Spiritual Journeys</h6>
-                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Low Budget / Economy Umrah Packages</h2>
+                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">Low Budget / Economy Umrah Packages</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
-                <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4 animate-pulse" to="/packages">View All</Link>
+                <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(economyRef, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Previous"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
                   </button>
                   <button 
                     onClick={() => scrollCarousel(economyRef, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Next"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
@@ -535,13 +535,13 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"} 
+                  animation="fade-down"
                   duration={700}
                 >
-                  <Link to={`/package/${pkg.id}`} className="bg-[#013334] border border-white/10 group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                  <Link to={`/package/${pkg.id}`} className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
-                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">{pkg.badge}</div>
+                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase rounded-md shadow-md">{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6 text-left">
                       <h3 className="font-notoSerif text-lg font-bold text-[#CD9933] mb-2 line-clamp-1 group-hover:text-white transition-colors">{pkg.title}</h3>
@@ -562,36 +562,36 @@ const Home3 = () => {
             ))}
           </div>
 
-          <ScrollReveal animation="fade-up" delay={200} duration={600}>
+          <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL ECONOMY PACKAGES</Link>
+              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL ECONOMY PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
       {/* ── GROUND UMRAH PACKAGES | 3 STAR ── */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#f5f7fa] relative z-10">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#013334] text-white relative z-10">
         <div className="max-w-screen-2xl mx-auto">
-          <ScrollReveal animation="fade-up" duration={600}>
+          <ScrollReveal animation="fade-down" duration={600}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
               <div className="max-w-2xl">
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ground Packages</h6>
-                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 3 Star</h2>
+                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">Ground Umrah Packages | 3 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
-                <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4 animate-pulse" to="/packages">View All</Link>
+                <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(star3Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Previous"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
                   </button>
                   <button 
                     onClick={() => scrollCarousel(star3Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Next"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
@@ -614,13 +614,13 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"} 
+                  animation="fade-down"
                   duration={700}
                 >
-                  <Link to={`/package/${pkg.id}`} className="bg-[#013334] border border-white/10 group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                  <Link to={`/package/${pkg.id}`} className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
-                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">{pkg.badge}</div>
+                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase rounded-md shadow-md">{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6 text-left">
                       <h3 className="font-notoSerif text-lg font-bold text-[#CD9933] mb-2 line-clamp-1 group-hover:text-white transition-colors">{pkg.title}</h3>
@@ -641,36 +641,36 @@ const Home3 = () => {
             ))}
           </div>
 
-          <ScrollReveal animation="fade-up" delay={200} duration={600}>
+          <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 3 STAR PACKAGES</Link>
+              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 3 STAR PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
       {/* ── GROUND UMRAH PACKAGES | 4 STAR ── */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-white relative z-10">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#002526] text-white relative z-10">
         <div className="max-w-screen-2xl mx-auto">
-          <ScrollReveal animation="fade-up" duration={600}>
+          <ScrollReveal animation="fade-down" duration={600}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
               <div className="max-w-2xl">
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Premium Ground</h6>
-                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 4 Star</h2>
+                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">Ground Umrah Packages | 4 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
-                <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4 animate-pulse" to="/packages">View All</Link>
+                <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(star4Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Previous"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
                   </button>
                   <button 
                     onClick={() => scrollCarousel(star4Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Next"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
@@ -693,13 +693,13 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"} 
+                  animation="fade-down"
                   duration={700}
                 >
-                  <Link to={`/package/${pkg.id}`} className="bg-[#013334] border border-white/10 group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                  <Link to={`/package/${pkg.id}`} className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
-                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">{pkg.badge}</div>
+                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase rounded-md shadow-md">{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6 text-left">
                       <h3 className="font-notoSerif text-lg font-bold text-[#CD9933] mb-2 line-clamp-1 group-hover:text-white transition-colors">{pkg.title}</h3>
@@ -720,36 +720,36 @@ const Home3 = () => {
             ))}
           </div>
 
-          <ScrollReveal animation="fade-up" delay={200} duration={600}>
+          <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 4 STAR PACKAGES</Link>
+              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 4 STAR PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
       {/* ── GROUND UMRAH PACKAGES | 5 STAR ── */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#f5f7fa] relative z-10">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#013334] text-white relative z-10">
         <div className="max-w-screen-2xl mx-auto">
-          <ScrollReveal animation="fade-up" duration={600}>
+          <ScrollReveal animation="fade-down" duration={600}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
               <div className="max-w-2xl">
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Luxury Ground</h6>
-                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 5 Star</h2>
+                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">Ground Umrah Packages | 5 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
-                <Link className="text-[#013334] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4 animate-pulse" to="/packages">View All</Link>
+                <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(star5Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Previous"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
                   </button>
                   <button 
                     onClick={() => scrollCarousel(star5Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-white shadow-sm cursor-pointer select-none active:scale-95"
+                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
                     aria-label="Next"
                   >
                     <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
@@ -772,13 +772,13 @@ const Home3 = () => {
                 <ScrollReveal 
                   key={pkg.id} 
                   delay={(idx % 4) * 80} 
-                  animation={idx % 2 === 0 ? "fade-down" : "fade-up"} 
+                  animation="fade-down"
                   duration={700}
                 >
-                  <Link to={`/package/${pkg.id}`} className="bg-[#013334] border border-white/10 group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
+                  <Link to={`/package/${pkg.id}`} className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 backdrop-blur-md rounded-xl group cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 block h-full">
                     <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <img className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src={kaabaPackages} alt={pkg.title} />
-                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase">{pkg.badge}</div>
+                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 tracking-widest uppercase rounded-md shadow-md">{pkg.badge}</div>
                     </div>
                     <div className="p-4 md:p-6 text-left">
                       <h3 className="font-notoSerif text-lg font-bold text-[#CD9933] mb-2 line-clamp-1 group-hover:text-white transition-colors">{pkg.title}</h3>
@@ -799,9 +799,9 @@ const Home3 = () => {
             ))}
           </div>
 
-          <ScrollReveal animation="fade-up" delay={200} duration={600}>
+          <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-[#013334] hover:bg-[#CD9933] hover:text-white px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 5 STAR PACKAGES</Link>
+              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 5 STAR PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
@@ -817,7 +817,7 @@ const Home3 = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           
           {/* Header */}
-          <ScrollReveal animation="fade-up" duration={600}>
+          <ScrollReveal animation="fade-down" duration={600}>
             <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
               <span className="text-[#CD9933] font-bold text-xs uppercase tracking-[0.3em] font-manrope">Performing the Pilgrimage</span>
               <h2 className="text-white text-3xl md:text-5xl font-bold tracking-wide uppercase font-notoSerif leading-tight">
@@ -835,7 +835,7 @@ const Home3 = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             
             {/* Step 1 */}
-            <ScrollReveal animation="fade-up" delay={0} duration={700}>
+            <ScrollReveal animation="fade-down" delay={0} duration={700}>
               <div className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 p-8 rounded-xl relative group transition-all duration-300 hover:-translate-y-1 h-full text-left">
                 <div className="absolute -top-6 left-8 w-12 h-12 bg-[#CD9933] text-[#013334] font-black text-xl flex items-center justify-center rounded-xl shadow-lg border-2 border-[#013334]">
                   01
@@ -853,7 +853,7 @@ const Home3 = () => {
             </ScrollReveal>
 
             {/* Step 2 */}
-            <ScrollReveal animation="fade-up" delay={150} duration={700}>
+            <ScrollReveal animation="fade-down" delay={150} duration={700}>
               <div className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 p-8 rounded-xl relative group transition-all duration-300 hover:-translate-y-1 h-full text-left">
                 <div className="absolute -top-6 left-8 w-12 h-12 bg-[#CD9933] text-[#013334] font-black text-xl flex items-center justify-center rounded-xl shadow-lg border-2 border-[#013334]">
                   02
@@ -871,7 +871,7 @@ const Home3 = () => {
             </ScrollReveal>
 
             {/* Step 3 */}
-            <ScrollReveal animation="fade-up" delay={300} duration={700}>
+            <ScrollReveal animation="fade-down" delay={300} duration={700}>
               <div className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 p-8 rounded-xl relative group transition-all duration-300 hover:-translate-y-1 h-full text-left">
                 <div className="absolute -top-6 left-8 w-12 h-12 bg-[#CD9933] text-[#013334] font-black text-xl flex items-center justify-center rounded-xl shadow-lg border-2 border-[#013334]">
                   03
@@ -889,7 +889,7 @@ const Home3 = () => {
             </ScrollReveal>
 
             {/* Step 4 */}
-            <ScrollReveal animation="fade-up" delay={450} duration={700}>
+            <ScrollReveal animation="fade-down" delay={450} duration={700}>
               <div className="bg-white/5 border border-white/10 hover:border-[#CD9933]/40 p-8 rounded-xl relative group transition-all duration-300 hover:-translate-y-1 h-full text-left">
                 <div className="absolute -top-6 left-8 w-12 h-12 bg-[#CD9933] text-[#013334] font-black text-xl flex items-center justify-center rounded-xl shadow-lg border-2 border-[#013334]">
                   04
@@ -983,19 +983,21 @@ const Home3 = () => {
       </section>
 
       {/* 4. International Tours Grid */}
-      <section className="py-24 px-6 bg-[#f5f7fa]">
+      <section className="py-24 px-6 bg-[#002526] text-white relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16 space-y-3">
-            <div className="flex items-center justify-center gap-2 text-[#CD9933]">
-              <span className="material-symbols-outlined text-sm">rocket_launch</span>
-              <span className="font-bold text-xs uppercase tracking-widest">PACKAGES AND GO</span>
+          <ScrollReveal animation="fade-down" duration={600}>
+            <div className="text-center mb-16 space-y-3">
+              <div className="flex items-center justify-center gap-2 text-[#CD9933]">
+                <span className="material-symbols-outlined text-sm">rocket_launch</span>
+                <span className="font-bold text-xs uppercase tracking-widest">PACKAGES AND GO</span>
+              </div>
+              <h2 className="text-white text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
+                INTERNATIONAL TOURS
+              </h2>
+              <div className="h-[2px] w-16 bg-[#CD9933] mx-auto mt-4"></div>
             </div>
-            <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
-              INTERNATIONAL TOURS
-            </h2>
-            <div className="h-[2px] w-16 bg-[#CD9933] mx-auto mt-4"></div>
-          </div>
+          </ScrollReveal>
 
           {/* 3-Column Card Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1007,65 +1009,74 @@ const Home3 = () => {
               const price = pkg.price
 
               return (
-                <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
-                  {/* Top Image with Gold overlay Badge */}
-                  <div className="relative h-64 overflow-hidden shrink-0">
-                    <img
-                      alt={pkg.title}
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                      src={img}
-                    />
-                    <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
-                      {badge}
-                    </div>
-                  </div>
-
-                  {/* Card Content details */}
-                  <div className="p-8 flex-1 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <h3 className="text-[#013334] font-bold text-lg tracking-wide uppercase font-headline line-clamp-2">
-                        {pkg.title}
-                      </h3>
-                      <p className="text-[#CD9933] font-bold text-sm uppercase tracking-wider">
-                        PKR {price.toLocaleString()} | {duration}
-                      </p>
-                      <p className="text-gray-500 text-xs leading-relaxed line-clamp-3">
-                        {pkg.description || 'Experience highly curated schedules, flight alignments, and premier accommodations organized with travel security and luxury.'}
-                      </p>
+                <ScrollReveal 
+                  key={pkg.id || idx} 
+                  delay={(idx % 3) * 100} 
+                  animation="fade-down"
+                  duration={700}
+                >
+                  <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl hover:border-[#CD9933]/40 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden h-full group">
+                    {/* Top Image with Gold overlay Badge */}
+                    <div className="relative h-64 overflow-hidden shrink-0">
+                      <img
+                        alt={pkg.title}
+                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                        src={img}
+                      />
+                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider rounded-md shadow-md">
+                        {badge}
+                      </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex gap-4 mt-8 pt-6 border-t border-gray-100">
-                      <Link
-                        to={`/package/${pkg.id || idx + 1}`}
-                        className="flex-1 bg-gray-900 hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
-                      >
-                        READ MORE
-                      </Link>
-                      <a
-                        href="https://wa.me/923220725064"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 bg-[#013334] hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
-                      >
-                        BOOK NOW
-                      </a>
+                    {/* Card Content details */}
+                    <div className="p-8 flex-1 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <h3 className="text-white group-hover:text-[#CD9933] font-bold text-lg tracking-wide uppercase font-headline line-clamp-2 transition-colors">
+                          {pkg.title}
+                        </h3>
+                        <p className="text-[#CD9933] font-bold text-sm uppercase tracking-wider">
+                          PKR {price.toLocaleString()} | {duration}
+                        </p>
+                        <p className="text-gray-300 text-xs leading-relaxed line-clamp-3">
+                          {pkg.description || 'Experience highly curated schedules, flight alignments, and premier accommodations organized with travel security and luxury.'}
+                        </p>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-4 mt-8 pt-6 border-t border-white/10">
+                        <Link
+                          to={`/package/${pkg.id || idx + 1}`}
+                          className="flex-1 bg-white/5 border border-white/10 hover:bg-[#CD9933] hover:border-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-all rounded-lg"
+                        >
+                          READ MORE
+                        </Link>
+                        <a
+                          href="https://wa.me/923220725064"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 bg-[#CD9933] hover:bg-[#b08025] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-all rounded-lg"
+                        >
+                          BOOK NOW
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </ScrollReveal>
               )
             })}
           </div>
 
           {/* Centered Outline Button */}
-          <div className="text-center mt-16">
-            <Link
-              to="/packages"
-              className="inline-block border-2 border-gray-300 hover:border-[#CD9933] text-gray-700 hover:text-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
-            >
-              MORE TOURS
-            </Link>
-          </div>
+          <ScrollReveal animation="fade-down" delay={150} duration={600}>
+            <div className="text-center mt-16">
+              <Link
+                to="/packages"
+                className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#002526] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+              >
+                MORE TOURS
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -1101,19 +1112,21 @@ const Home3 = () => {
       </section>
 
       {/* 6. Local Tours Grid */}
-      <section className="py-24 px-6 bg-[#f5f7fa]">
+      <section className="py-24 px-6 bg-[#013334] text-white relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16 space-y-3">
-            <div className="flex items-center justify-center gap-2 text-[#CD9933]">
-              <span className="material-symbols-outlined text-sm">terrain</span>
-              <span className="font-bold text-xs uppercase tracking-widest">PACKAGES AND GO</span>
+          <ScrollReveal animation="fade-down" duration={600}>
+            <div className="text-center mb-16 space-y-3">
+              <div className="flex items-center justify-center gap-2 text-[#CD9933]">
+                <span className="material-symbols-outlined text-sm">terrain</span>
+                <span className="font-bold text-xs uppercase tracking-widest">PACKAGES AND GO</span>
+              </div>
+              <h2 className="text-white text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
+                LOCAL TOURS
+              </h2>
+              <div className="h-[2px] w-16 bg-[#CD9933] mx-auto mt-4"></div>
             </div>
-            <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
-              LOCAL TOURS
-            </h2>
-            <div className="h-[2px] w-16 bg-[#CD9933] mx-auto mt-4"></div>
-          </div>
+          </ScrollReveal>
 
           {/* 3-Column Card Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1125,65 +1138,74 @@ const Home3 = () => {
               const price = pkg.price
 
               return (
-                <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
-                  {/* Top Image with Gold Badge */}
-                  <div className="relative h-64 overflow-hidden shrink-0">
-                    <img
-                      alt={pkg.title}
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                      src={img}
-                    />
-                    <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
-                      {badge}
-                    </div>
-                  </div>
-
-                  {/* Card Content details */}
-                  <div className="p-8 flex-1 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <h3 className="text-[#013334] font-bold text-lg tracking-wide uppercase font-headline line-clamp-2">
-                        {pkg.title}
-                      </h3>
-                      <p className="text-[#CD9933] font-bold text-sm uppercase tracking-wider">
-                        PKR {price.toLocaleString()} | {duration}
-                      </p>
-                      <p className="text-gray-500 text-xs leading-relaxed line-clamp-3">
-                        {pkg.description || 'Explore the magnificent mountain views, fresh stream walks, and celestial landscapes of Northern Pakistan.'}
-                      </p>
+                <ScrollReveal 
+                  key={pkg.id || idx} 
+                  delay={(idx % 3) * 100} 
+                  animation="fade-down"
+                  duration={700}
+                >
+                  <div className="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl hover:border-[#CD9933]/40 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden h-full group">
+                    {/* Top Image with Gold Badge */}
+                    <div className="relative h-64 overflow-hidden shrink-0">
+                      <img
+                        alt={pkg.title}
+                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                        src={img}
+                      />
+                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider rounded-md shadow-md">
+                        {badge}
+                      </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex gap-4 mt-8 pt-6 border-t border-gray-100">
-                      <Link
-                        to={`/package/${pkg.id || idx + 1}`}
-                        className="flex-1 bg-gray-900 hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
-                      >
-                        READ MORE
-                      </Link>
-                      <a
-                        href="https://wa.me/923220725064"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 bg-[#013334] hover:bg-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-colors"
-                      >
-                        BOOK NOW
-                      </a>
+                    {/* Card Content details */}
+                    <div className="p-8 flex-1 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <h3 className="text-white group-hover:text-[#CD9933] font-bold text-lg tracking-wide uppercase font-headline line-clamp-2 transition-colors">
+                          {pkg.title}
+                        </h3>
+                        <p className="text-[#CD9933] font-bold text-sm uppercase tracking-wider">
+                          PKR {price.toLocaleString()} | {duration}
+                        </p>
+                        <p className="text-gray-300 text-xs leading-relaxed line-clamp-3">
+                          {pkg.description || 'Explore the magnificent mountain views, fresh stream walks, and celestial landscapes of Northern Pakistan.'}
+                        </p>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-4 mt-8 pt-6 border-t border-white/10">
+                        <Link
+                          to={`/package/${pkg.id || idx + 1}`}
+                          className="flex-1 bg-white/5 border border-white/10 hover:bg-[#CD9933] hover:border-[#CD9933] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-all rounded-lg"
+                        >
+                          READ MORE
+                        </Link>
+                        <a
+                          href="https://wa.me/923220725064"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 bg-[#CD9933] hover:bg-[#b08025] text-white text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-all rounded-lg"
+                        >
+                          BOOK NOW
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </ScrollReveal>
               )
             })}
           </div>
 
           {/* Centered Outline Button */}
-          <div className="text-center mt-16">
-            <Link
-              to="/packages"
-              className="inline-block border-2 border-gray-300 hover:border-[#CD9933] text-gray-700 hover:text-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
-            >
-              MORE TOURS
-            </Link>
-          </div>
+          <ScrollReveal animation="fade-down" delay={150} duration={600}>
+            <div className="text-center mt-16">
+              <Link
+                to="/packages"
+                className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+              >
+                MORE TOURS
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
