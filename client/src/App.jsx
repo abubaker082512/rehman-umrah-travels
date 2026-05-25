@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Home2 from './pages/Home2'
 import Home3 from './pages/Home3'
-import Flights from './pages/Flights'
+import LocalTours from './pages/LocalTours'
 import Packages from './pages/Packages'
 import PackageDetail from './pages/PackageDetail'
 import AdminLogin from './pages/Admin/Login'
@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<Home3 />} />
         {/* <Route path="/home2" element={<Home2 />} /> */}
         {/* <Route path="/home3" element={<Home3 />} /> */}
-        <Route path="/flights" element={<Flights />} />
+        <Route path="/local-tours" element={<LocalTours />} />
         <Route path="/packages" element={<Packages />} />
         <Route path="/package/:id" element={<PackageDetail />} />
         <Route path="/admin/login" element={<AdminLogin />} />

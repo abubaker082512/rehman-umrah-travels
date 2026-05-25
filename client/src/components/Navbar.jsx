@@ -8,13 +8,11 @@ const Navbar = ({ isVersion2 = false }) => {
 
   const links = [
     { to: '/', label: 'Home' },
-    { to: '/flights', label: 'Flights' },
     { to: '/packages', label: 'Umrah Packages' },
     { to: '/international-tours', label: 'International Tours' },
-    { to: '/visa-services', label: 'Visa Services' },
+    { to: '/local-tours', label: 'Local Tours' },
     { to: '/gallery', label: 'Gallery' },
     { to: '/blog', label: 'Blog' },
-    { to: '/about', label: 'About Us' },
     { to: '/faq', label: 'FAQ' },
     { to: '/contact', label: 'Contact' },
   ]
@@ -74,10 +72,10 @@ const Navbar = ({ isVersion2 = false }) => {
             Desktop Animation Mechanic:
             - When unscrolled: centered absolute in the header.
             - When scrolled: glides smoothly to the far right.
-            Mobile: Centered on larger mobile, fits neatly on scroll.
+            Mobile: Hidden, replaced by clean right-aligned flex buttons to prevent overlapping.
           */}
           <div
-            className="absolute top-1/2 flex items-center gap-3 sm:gap-4 transition-all duration-700 select-none z-10"
+            className="absolute top-1/2 hidden md:flex items-center gap-3 sm:gap-4 transition-all duration-700 select-none z-10"
             style={{
               transform: 'translateY(-50%)',
               left: isScrolled
@@ -111,8 +109,29 @@ const Navbar = ({ isVersion2 = false }) => {
             </a>
           </div>
 
-          {/* RIGHT container left empty or for future use */}
-          <div className="flex items-center gap-4">
+          {/* RIGHT container: Mobile Actions (Visible only on mobile/tablet < md) */}
+          <div className="flex md:hidden items-center gap-3">
+            {/* Call Support Button */}
+            <a
+              href="tel:+923041115530"
+              className="flex items-center justify-center w-10 h-10 rounded-full border border-[#CD9933]/35 text-[#CD9933] hover:bg-[#CD9933]/15 transition-colors active:scale-95"
+              aria-label="Call Support"
+            >
+              <span className="material-symbols-outlined text-sm font-bold">call</span>
+            </a>
+
+            {/* WhatsApp Chat Button */}
+            <a
+              href="https://wa.me/923220725064?text=Hello%20Royal%20Umrah%20%26%20Travels,%20I%20would%20like%20to%20inquire%20about%20Umrah%20packages."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-[#25D366] text-white shadow-md hover:bg-[#20ba5a] active:scale-95 transition-all"
+              aria-label="Chat with Us on WhatsApp"
+            >
+              <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.004 2C6.51 2 2.014 6.5 2.014 12c0 2.13.67 4.19 1.93 5.92L2 22l4.24-1.35c1.67.92 3.56 1.4 5.48 1.4h.003c5.494 0 9.99-4.5 9.99-10S17.498 2 12.004 2zm5.72 13.9c-.24.7-1.42 1.3-1.95 1.4-.48.1-.96.2-2.92-.6-2.51-1-4.08-3.5-4.2-3.7-.12-.15-1.02-1.37-1.02-2.61 0-1.24.65-1.85.88-2.1.24-.25.53-.3.7-.3h.5c.18 0 .42-.07.65.48.24.6 1.15 2.8 1.24 3 .09.18.09.39-.03.6-.12.21-.26.35-.38.5-.12.15-.26.3-.1.57.34.6.76 1.1 1.25 1.5.64.55 1.18.8 1.5.97.32.17.5.1.7-.1.2-.24.88-1.02 1.11-1.37.24-.35.48-.3.8-.18.33.12 2.1 1 2.46 1.18.36.18.6.27.69.42.09.15.09.84-.15 1.54z"/>
+              </svg>
+            </a>
           </div>
         </div>
       </header>
