@@ -14,7 +14,6 @@ import star5PackagesImg from '../assets/star5_packages.png'
 import internationalToursImg from '../assets/international_tours.png'
 import localToursImg from '../assets/local_tours.png'
 import BannerContactForm from '../components/BannerContactForm'
-import WhatsAppButton from '../components/WhatsAppButton';
 import ScrollReveal from '../components/ScrollReveal'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -1371,10 +1370,7 @@ const Home3 = () => {
         </div>
       </section>
 
-      {/* 9. Branded Aligned Footer */}
       <Footer />
-
-    <WhatsAppButton />
     </div>
   )
 }
