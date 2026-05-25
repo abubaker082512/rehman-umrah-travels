@@ -17,6 +17,7 @@ import BannerContactForm from '../components/BannerContactForm'
 import WhatsAppButton from '../components/WhatsAppButton';
 import ScrollReveal from '../components/ScrollReveal'
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
@@ -1370,96 +1371,8 @@ const Home3 = () => {
         </div>
       </section>
 
-      {/* 9. Corporate Charcoal Footer */}
-      <footer className="bg-[#111111] text-white/50 py-16 px-6 border-t border-white/5 text-xs">
-        <div className="max-w-7xl mx-auto space-y-12">
-          {/* Centered Logo at the top */}
-          <div className="flex flex-col items-center text-center select-none">
-            <span className="text-white text-3xl font-bold tracking-widest uppercase font-headline">
-              ROYAL
-              <span className="text-[#CD9933]">/</span>
-            </span>
-            <span className="text-white/60 text-[9px] font-bold tracking-[0.38em] uppercase -mt-1 pl-[2px] font-manrope">
-              UMRAH & TRAVELS
-            </span>
-          </div>
-
-          <hr className="border-white/5" />
-
-          {/* 5 Clean Columns Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 text-left font-manrope">
-            {/* Col 1 */}
-            <div className="space-y-4">
-              <h5 className="text-white font-bold tracking-widest uppercase">Contact Us</h5>
-              <div className="space-y-2.5 leading-relaxed">
-                <p>Main Boulevard, Gulberg III, Lahore, Pakistan</p>
-                <p>Tel: +92 300 1234567</p>
-                <p>Email: info@royalumrahandtravel.com</p>
-              </div>
-            </div>
-
-            {/* Col 2 */}
-            <div className="space-y-4">
-              <h5 className="text-white font-bold tracking-widest uppercase">Book Now</h5>
-              <ul className="space-y-2.5">
-                <li><Link to="/flights" className="hover:text-[#CD9933] transition-colors">Airline Tickets</Link></li>
-                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Domestic Tours</Link></li>
-                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">International Tours</Link></li>
-                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Umrah Services</Link></li>
-              </ul>
-            </div>
-
-            {/* Col 3 */}
-            <div className="space-y-4">
-              <h5 className="text-white font-bold tracking-widest uppercase">Explore</h5>
-              <ul className="space-y-2.5">
-                <li><Link to="/visa-services" className="hover:text-[#CD9933] transition-colors">Visa Services</Link></li>
-                <li><Link to="/about" className="hover:text-[#CD9933] transition-colors">Group Tours</Link></li>
-                <li><Link to="/blog" className="hover:text-[#CD9933] transition-colors">Travel Blog</Link></li>
-                <li><Link to="/contact" className="hover:text-[#CD9933] transition-colors">Careers</Link></li>
-              </ul>
-            </div>
-
-            {/* Col 4 */}
-            <div className="space-y-4">
-              <h5 className="text-white font-bold tracking-widest uppercase">Top Deals</h5>
-              <ul className="space-y-2.5">
-                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Dubai New Year Special</Link></li>
-                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Kashmir Autumn Retreat</Link></li>
-                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Turkey Spring Deal</Link></li>
-                <li><Link to="/packages" className="hover:text-[#CD9933] transition-colors">Custom Group Quotes</Link></li>
-              </ul>
-            </div>
-
-            {/* Col 5 */}
-            <div className="space-y-4">
-              <h5 className="text-white font-bold tracking-widest uppercase">Newsletter</h5>
-              <p className="leading-relaxed">Subscribe to get alerts on flash flight bookings and destination price cuts.</p>
-              <div className="flex gap-2">
-                <input
-                  className="bg-white/5 border border-white/10 text-white text-xs px-3.5 py-2.5 focus:border-[#CD9933] outline-none flex-1"
-                  placeholder="Your Email Address"
-                  type="email"
-                />
-                <button className="bg-[#CD9933] hover:bg-white hover:text-[#013334] text-primary px-4 py-2.5 transition-colors font-bold">
-                  GO
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <hr className="border-white/5" />
-
-          {/* Bottom copyright row */}
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] tracking-wider uppercase font-medium">
-            <p>© 2026 ROYAL UMRAH & TRAVELS. ALL RIGHTS RESERVED.</p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      {/* 9. Branded Aligned Footer */}
+      <Footer />
 
     <WhatsAppButton />
     </div>
