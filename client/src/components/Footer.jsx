@@ -66,9 +66,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Centered Logo at the top */}
         <div className="flex flex-col items-center text-center select-none">
-          <span className="text-white text-3xl font-bold tracking-widest uppercase font-headline">
+          <span className="text-[#CD9933] text-3xl font-bold tracking-widest uppercase font-headline">
             ROYAL
-            <span className="text-[#CD9933]">/</span>
           </span>
           <span className="text-white/60 text-[9px] font-bold tracking-[0.38em] uppercase -mt-1 pl-[2px] font-manrope">
             UMRAH & TRAVELS
