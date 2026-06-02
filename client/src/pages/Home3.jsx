@@ -323,7 +323,7 @@ const Home3 = () => {
               </div>
               <div className="space-y-1">
                 <h3 className="text-white text-base font-bold tracking-wide">
-                  1000+ <span className="font-light text-white/90">Happy Pilgrims</span>
+                  5000+ <span className="font-light text-white/90">Happy Pilgrims</span>
                 </h3>
                 <p className="text-white/60 text-xs leading-relaxed font-light font-manrope">
                   Trusted by thousands of pilgrims worldwide.
@@ -583,7 +583,7 @@ const Home3 = () => {
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
               <div className="max-w-2xl">
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ground Packages</h6>
-                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 3 Star</h2>
+                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Classic Umrah Packages | 3 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
                 <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
@@ -661,8 +661,8 @@ const Home3 = () => {
           <ScrollReveal animation="fade-down" duration={600}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
               <div className="max-w-2xl">
-                <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Premium Ground</h6>
-                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">Ground Umrah Packages | 4 Star</h2>
+                <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ground Packages</h6>
+                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">Premium Umrah Packages | 4 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
                 <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
@@ -740,8 +740,8 @@ const Home3 = () => {
           <ScrollReveal animation="fade-down" duration={600}>
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
               <div className="max-w-2xl">
-                <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Luxury Ground</h6>
-                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Ground Umrah Packages | 5 Star</h2>
+                <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ground Packages</h6>
+                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Luxury Umrah Packages | 5 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
                 <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>

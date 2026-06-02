@@ -86,11 +86,7 @@ const Footer = () => {
               {settings.address2 && <p>{settings.address2}</p>}
               <p className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[#CD9933] text-xs">call</span>
-                <a href="tel:+923041115530" className="hover:text-[#CD9933] transition-colors">0304 111 5530</a>
-              </p>
-              <p className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-[#CD9933] text-xs">call</span>
-                <a href="tel:+923220725064" className="hover:text-[#CD9933] transition-colors">+92 322 072 5064</a>
+                <a href="tel:+923220725064" className="hover:text-[#CD9933] transition-colors">0322 072 5064</a>
               </p>
               <p className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[#CD9933] text-xs">mail</span>

@@ -994,7 +994,7 @@ const ContentCMS = () => {
 
   const [contactContent, setContactContent] = useState({
     heroTitle: 'Get in Touch', heroSubtitle: 'Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you.',
-    phone1: '0304 111 5530', phone2: '+92 322 072 5064', email: 'info@royalumrahandtravel.com', whatsapp: '+92 322 072 5064',
+    phone1: '0322 072 5064', phone2: '+92 322 072 5064', email: 'info@royalumrahandtravel.com', whatsapp: '+92 322 072 5064',
     addressLahore: 'Main Boulevard, Gulberg III, Lahore, Pakistan', addressKarachi: 'DHA Phase II, Karachi, Pakistan',
   })
 
@@ -1965,7 +1965,7 @@ const SiteSettings = () => {
     siteName: 'Royal Umrah & Travels',
     tagline: 'Proudly Serving The Guests of ALLAH',
     email: 'info@royalumrahandtravel.com',
-    phone: '0304 111 5530',
+    phone: '0322 072 5064',
     whatsapp: '+92 322 072 5064',
     address: 'Main Boulevard, Gulberg III, Lahore, Pakistan',
     workingHours: 'Mon - Sat: 9:00 AM - 8:00 PM',

@@ -13,7 +13,7 @@ const Contact = () => {
   const [pageMedia, setPageMedia] = useState({})
   const [cmsContent, setCmsContent] = useState({
     heroTitle: 'Get in Touch', heroSubtitle: 'Have questions about our Umrah packages or international tours? Our travel consultants are ready to assist you.',
-    phone1: '0304 111 5530', phone2: '+92 322 072 5064', email: 'info@royalumrahandtravel.com', whatsapp: '+92 322 072 5064',
+    phone1: '0322 072 5064', phone2: '+92 322 072 5064', email: 'info@royalumrahandtravel.com', whatsapp: '+92 322 072 5064',
     addressLahore: 'Main Boulevard, Gulberg III, Lahore, Pakistan', addressKarachi: 'DHA Phase II, Karachi, Pakistan',
   })
 

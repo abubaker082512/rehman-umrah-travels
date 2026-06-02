@@ -87,11 +87,11 @@ const Navbar = ({ isVersion2 = false }) => {
           >
             {/* Call Support Button */}
             <a
-              href="tel:+923041115530"
+              href="tel:+923220725064"
               className="hidden sm:flex items-center gap-2 px-4 py-2 sm:py-2.5 rounded-lg border border-[#CD9933]/35 text-[#CD9933] hover:bg-[#CD9933] hover:text-white font-bold text-xs uppercase tracking-wider transition-all duration-300"
             >
               <span className="material-symbols-outlined text-sm font-bold">call</span>
-              <span>0304 111 5530</span>
+              <span>0322 072 5064</span>
             </a>
 
             {/* WhatsApp Chat Button */}
@@ -113,7 +113,7 @@ const Navbar = ({ isVersion2 = false }) => {
           <div className="flex md:hidden items-center gap-3">
             {/* Call Support Button */}
             <a
-              href="tel:+923041115530"
+              href="tel:+923220725064"
               className="flex items-center justify-center w-10 h-10 rounded-full border border-[#CD9933]/35 text-[#CD9933] hover:bg-[#CD9933]/15 transition-colors active:scale-95"
               aria-label="Call Support"
             >
