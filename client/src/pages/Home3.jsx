@@ -530,7 +530,7 @@ const Home3 = () => {
           
           <div 
             ref={economyRef}
-            className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
+            className="flex gap-6 md:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {economyPackages.slice(0, 12).map((pkg, idx) => (
@@ -609,7 +609,7 @@ const Home3 = () => {
           
           <div 
             ref={star3Ref}
-            className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
+            className="flex gap-6 md:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {star3Packages.slice(0, 12).map((pkg, idx) => (
@@ -688,7 +688,7 @@ const Home3 = () => {
           
           <div 
             ref={star4Ref}
-            className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
+            className="flex gap-6 md:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {star4Packages.slice(0, 12).map((pkg, idx) => (
@@ -767,7 +767,7 @@ const Home3 = () => {
           
           <div 
             ref={star5Ref}
-            className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
+            className="flex gap-6 md:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {star5Packages.slice(0, 12).map((pkg, idx) => (
