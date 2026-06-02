@@ -254,7 +254,7 @@ const Home3 = () => {
       <Navbar isVersion2={true} />
 
       {/* 1. Hero Section matching screenshot layout precisely */}
-      <section className="relative min-h-[960px] flex flex-col justify-between overflow-hidden bg-[#001c1d]">
+      <section className="relative z-20 min-h-[960px] flex flex-col justify-between overflow-visible bg-[#001c1d]">
         {/* Background Image: Holy Kaaba at Makkah Sunset */}
         <div className="absolute inset-0 z-0">
           <img
