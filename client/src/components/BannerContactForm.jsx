@@ -190,8 +190,8 @@ const BannerContactForm = () => {
     }, 3000);
   };
 
-  const inputClass = "bg-[#054143] text-white placeholder-white/60 text-xs px-4 py-3 rounded-md outline-none focus:ring-1 focus:ring-[#CD9933] border border-transparent transition-all w-full";
-  const selectClass = "bg-[#054143] text-white text-xs px-4 py-3 rounded-md outline-none focus:ring-1 focus:ring-[#CD9933] border border-transparent transition-all w-full appearance-none cursor-pointer";
+  const inputClass = "bg-[#013334] text-white placeholder-white/70 text-xs px-4 py-3 rounded-md outline-none focus:ring-1 focus:ring-white border border-transparent transition-all w-full";
+  const selectClass = "bg-[#013334] text-white text-xs px-4 py-3 rounded-md outline-none focus:ring-1 focus:ring-white border border-transparent transition-all w-full appearance-none cursor-pointer";
 
   // Filter airports matching searchQuery
   const filteredAirports = searchQuery.trim() === '' || searchQuery === `${selectedAirport?.city} (${selectedAirport?.code})`
@@ -207,18 +207,18 @@ const BannerContactForm = () => {
     <div className="w-full max-w-6xl mx-auto drop-shadow-2xl font-manrope">
       <div className="flex flex-col md:flex-row items-end">
         {/* Left Tall Section */}
-        <div className="bg-[#013334] w-full md:w-[320px] pt-12 pb-6 px-6 rounded-t-[3rem] md:rounded-bl-[3rem] md:rounded-tr-none relative z-10">
+        <div className="bg-[#CD9933] w-full md:w-[320px] pt-12 pb-6 px-6 rounded-t-[3rem] md:rounded-bl-[3rem] md:rounded-tr-none relative z-10">
           {/* Mosque Illustration Outline */}
-          <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-40 opacity-40 pointer-events-none">
+          <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-40 opacity-20 pointer-events-none">
             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M50 10 C50 10, 45 30, 30 40 C30 40, 20 60, 20 80 L80 80 C80 60, 70 40, 70 40 C55 30, 50 10, 50 10 Z" stroke="#CD9933" strokeWidth="1" />
-              <path d="M30 40 L30 80 M70 40 L70 80" stroke="#CD9933" strokeWidth="1" />
-              <circle cx="50" cy="50" r="10" stroke="#CD9933" strokeWidth="1" />
-              <path d="M10 80 L90 80" stroke="#CD9933" strokeWidth="2" />
+              <path d="M50 10 C50 10, 45 30, 30 40 C30 40, 20 60, 20 80 L80 80 C80 60, 70 40, 70 40 C55 30, 50 10, 50 10 Z" stroke="#013334" strokeWidth="1" />
+              <path d="M30 40 L30 80 M70 40 L70 80" stroke="#013334" strokeWidth="1" />
+              <circle cx="50" cy="50" r="10" stroke="#013334" strokeWidth="1" />
+              <path d="M10 80 L90 80" stroke="#013334" strokeWidth="2" />
             </svg>
           </div>
 
-          <div className="bg-[#0a4648] p-5 rounded-2xl border border-white/5 relative z-20 mt-12 shadow-inner text-left">
+          <div className="bg-[#013334] p-5 rounded-2xl border border-white/5 relative z-20 mt-12 shadow-inner text-left">
             <p className="text-white/80 text-[11px] mb-2 font-semibold">From</p>
             <div className="relative">
               <input
@@ -264,7 +264,7 @@ const BannerContactForm = () => {
         </div>
 
         {/* Right Wide Section */}
-        <div className="bg-[#013334] flex-1 w-full p-6 md:p-8 rounded-b-[3rem] md:rounded-bl-none md:rounded-r-[3rem] md:rounded-tl-[3rem] relative -mt-6 md:mt-0 md:-ml-8 z-0">
+        <div className="bg-[#CD9933] flex-1 w-full p-6 md:p-8 rounded-b-[3rem] md:rounded-bl-none md:rounded-r-[3rem] md:rounded-tl-[3rem] relative -mt-6 md:mt-0 md:-ml-8 z-0">
           {submitted ? (
             <div className="h-full flex items-center justify-center p-8">
               <div className="text-center space-y-2">
@@ -343,14 +343,14 @@ const BannerContactForm = () => {
                 </div>
 
                 {/* Captcha Input */}
-                <div className="sm:col-span-1 relative flex items-center bg-[#054143] rounded-md overflow-hidden">
+                <div className="sm:col-span-1 relative flex items-center bg-[#013334] rounded-md overflow-hidden">
                   <input
                     name="captchaAns"
                     type="number"
                     value={formData.captchaAns}
                     onChange={handleChange}
                     placeholder="Ans*"
-                    className="bg-transparent text-white placeholder-white/60 text-xs px-4 py-3 outline-none w-full border-r border-white/10"
+                    className="bg-transparent text-white placeholder-white/70 text-xs px-4 py-3 outline-none w-full border-r border-white/10"
                     required
                   />
                   <div className="bg-[#0a4648] px-3 py-3 text-white text-xs font-bold whitespace-nowrap min-w-[50px] text-center">
@@ -360,7 +360,7 @@ const BannerContactForm = () => {
 
                 {/* Send Button */}
                 <div className="sm:col-span-2">
-                  <button type="submit" className="w-full bg-white text-[#013334] hover:bg-[#CD9933] hover:text-white font-bold text-xs uppercase tracking-widest py-3 px-6 rounded-md transition-all shadow-md flex items-center justify-center gap-2">
+                  <button type="submit" className="w-full bg-[#013334] hover:bg-white text-white hover:text-[#013334] font-bold text-xs uppercase tracking-widest py-3 px-6 rounded-md transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer">
                     SEND
                     <span className="material-symbols-outlined text-sm">arrow_forward</span>
                   </button>
