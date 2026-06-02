@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
@@ -74,6 +74,56 @@ const staticPackages = [
 const Packages = () => {
   const [packages, setPackages] = useState(staticPackages)
   const [pageMedia, setPageMedia] = useState({})
+  const [searchParams] = useSearchParams()
+  const [selectedCategories, setSelectedCategories] = useState([])
+
+  useEffect(() => {
+    const categoryParam = searchParams.get('category')
+    if (categoryParam) {
+      if (categoryParam === 'economy') {
+        setSelectedCategories(['Economy'])
+      } else if (categoryParam === '3star') {
+        setSelectedCategories(['3 Star Packages'])
+      } else if (categoryParam === '4star') {
+        setSelectedCategories(['4 Star Packages'])
+      } else if (categoryParam === '5star') {
+        setSelectedCategories(['5 Star Packages'])
+      }
+    }
+  }, [searchParams])
+
+  const handleCategoryChange = (categoryName) => {
+    setSelectedCategories(prev => {
+      if (prev.includes(categoryName)) {
+        return prev.filter(c => c !== categoryName)
+      } else {
+        return [...prev, categoryName]
+      }
+    })
+  }
+
+  const matchesCategory = (pkg) => {
+    if (selectedCategories.length === 0) return true
+    
+    const titleLower = (pkg.title || pkg.name || '').toLowerCase()
+    const categoryLower = (pkg.category || '').toLowerCase()
+    
+    return selectedCategories.some(cat => {
+      if (cat === 'Economy') {
+        return categoryLower.includes('economy') || titleLower.includes('economy')
+      }
+      if (cat === '3 Star Packages') {
+        return categoryLower.includes('3 star') || categoryLower.includes('3star') || titleLower.includes('3 star') || titleLower.includes('3star')
+      }
+      if (cat === '4 Star Packages') {
+        return categoryLower.includes('4 star') || categoryLower.includes('4star') || titleLower.includes('4 star') || titleLower.includes('4star')
+      }
+      if (cat === '5 Star Packages') {
+        return categoryLower.includes('5 star') || categoryLower.includes('5star') || titleLower.includes('5 star') || titleLower.includes('5star')
+      }
+      return false
+    })
+  }
 
   useEffect(() => {
     axios.get(`${API_BASE}/api/packages`)
@@ -138,18 +188,26 @@ const Packages = () => {
               <h2 className="font-notoSerif text-xl text-primary mb-8 border-b border-outline-variant/30 pb-4">Categories</h2>
               <nav className="space-y-6">
                 {[
-                  { label: 'Economy', checked: false },
-                  { label: '3 Star Packages', checked: false },
-                  { label: '4 Star Luxury', checked: false },
-                  { label: '5 Star Premium', checked: true },
-                  { label: 'Ramadan 2024', checked: false },
-                  { label: 'December Specials', checked: false },
-                ].map((cat, i) => (
-                  <label key={i} className="flex items-center group cursor-pointer">
-                    <input defaultChecked={cat.checked} className="rounded border-outline-variant text-[#CD9933] focus:ring-[#CD9933] w-5 h-5" type="checkbox" />
-                    <span className={`ml-4 font-manrope transition-colors ${cat.checked ? 'text-[#CD9933] font-bold' : 'text-on-surface group-hover:text-[#CD9933]'}`}>{cat.label}</span>
-                  </label>
-                ))}
+                  'Economy',
+                  '3 Star Packages',
+                  '4 Star Packages',
+                  '5 Star Packages'
+                ].map((cat, i) => {
+                  const isChecked = selectedCategories.includes(cat);
+                  return (
+                    <label key={i} className="flex items-center group cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={() => handleCategoryChange(cat)}
+                        className="rounded border-outline-variant text-[#CD9933] focus:ring-[#CD9933] w-5 h-5 cursor-pointer"
+                      />
+                      <span className={`ml-4 font-manrope transition-colors ${isChecked ? 'text-[#CD9933] font-bold' : 'text-on-surface group-hover:text-[#CD9933]'}`}>
+                        {cat}
+                      </span>
+                    </label>
+                  );
+                })}
               </nav>
               <div className="mt-12">
                 <div className="p-6 bg-[#013334] rounded-lg text-white">
@@ -164,63 +222,75 @@ const Packages = () => {
           {/* Package Grid */}
           <section className="flex-1">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-              {(packages.length > 0 ? packages : staticPackages).map((pkg, i) => {
-                const staticPkg = staticPackages[i % staticPackages.length]
-                const image = pkg.image_url || pkg.image || staticPkg?.image
-                const badge = pkg.badge || staticPkg?.badge || ''
-                const badgeColor = pkg.badgeColor || staticPkg?.badgeColor || 'bg-[#CD9933]'
-                const days = pkg.days || pkg.duration || staticPkg?.days || '15 Days'
-                const airline = pkg.airline || pkg.airline || staticPkg?.airline || 'Qatar Airways'
-                const price = typeof pkg.price === 'number' ? pkg.price : (parseFloat(String(pkg.price).replace(/[^0-9.]/g, '')) || 0)
+              {(() => {
+                const filtered = (packages.length > 0 ? packages : staticPackages).filter(matchesCategory);
+                if (filtered.length === 0) {
+                  return (
+                    <div className="col-span-full py-16 text-center text-white/50 bg-[#013334] rounded-xl border border-white/5 shadow-inner">
+                      <span className="material-symbols-outlined text-4xl text-[#CD9933] mb-4">info</span>
+                      <p className="font-notoSerif text-lg font-bold">No Packages Found</p>
+                      <p className="text-sm text-white/45 mt-2">Try adjusting your category filters.</p>
+                    </div>
+                  );
+                }
+                return filtered.map((pkg, i) => {
+                  const staticPkg = staticPackages[i % staticPackages.length]
+                  const image = pkg.image_url || pkg.image || staticPkg?.image
+                  const badge = pkg.badge || staticPkg?.badge || ''
+                  const badgeColor = pkg.badgeColor || staticPkg?.badgeColor || 'bg-[#CD9933]'
+                  const days = pkg.days || pkg.duration || staticPkg?.days || '15 Days'
+                  const airline = pkg.airline || pkg.airline || staticPkg?.airline || 'Qatar Airways'
+                  const price = typeof pkg.price === 'number' ? pkg.price : (parseFloat(String(pkg.price).replace(/[^0-9.]/g, '')) || 0)
 
-                return (
-                  <ScrollReveal
-                    key={pkg.id || i}
-                    delay={(i % 2) * 150}
-                    animation="fade-up"
-                    duration={700}
-                  >
-                    <div className="bg-[#013334] border border-[#CD9933]/15 hover:border-[#CD9933]/40 rounded-xl overflow-hidden flex flex-col group cursor-pointer transition-transform hover:-translate-y-1 h-full shadow-lg hover:shadow-2xl text-white">
-                      <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden">
-                        <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={getProxyUrl(image)} alt={pkg.title || pkg.name} />
-                        {badge && (
-                          <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded shadow-md`}>{badge}</div>
-                        )}
-                        {pkg.visa_included && (
-                          <div className="absolute top-4 right-4 bg-[#CD9933] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded shadow-md">Visa Included</div>
-                        )}
-                      </div>
-                      <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col justify-between">
-                        <div className="flex flex-col sm:flex-row sm:justify-between gap-4 mb-6">
-                          <div>
-                            <h3 className="font-notoSerif text-2xl text-[#CD9933] font-bold group-hover:text-white transition-colors">{pkg.title || pkg.name}</h3>
-                            <div className="flex items-center mt-1 text-white/70 text-sm">
-                              <span className="material-symbols-outlined text-sm mr-2 text-[#CD9933]">location_on</span>
-                              <span>{pkg.location || pkg.hotel || 'Makkah & Madinah'}</span>
+                  return (
+                    <ScrollReveal
+                      key={pkg.id || i}
+                      delay={(i % 2) * 150}
+                      animation="fade-up"
+                      duration={700}
+                    >
+                      <div className="bg-[#013334] border border-[#CD9933]/15 hover:border-[#CD9933]/40 rounded-xl overflow-hidden flex flex-col group cursor-pointer transition-transform hover:-translate-y-1 h-full shadow-lg hover:shadow-2xl text-white">
+                        <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden">
+                          <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={getProxyUrl(image)} alt={pkg.title || pkg.name} />
+                          {badge && (
+                            <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded shadow-md`}>{badge}</div>
+                          )}
+                          {pkg.visa_included && (
+                            <div className="absolute top-4 right-4 bg-[#CD9933] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded shadow-md">Visa Included</div>
+                          )}
+                        </div>
+                        <div className="p-4 md:p-6 lg:p-8 flex-1 flex flex-col justify-between">
+                          <div className="flex flex-col sm:flex-row sm:justify-between gap-4 mb-6">
+                            <div>
+                              <h3 className="font-notoSerif text-2xl text-[#CD9933] font-bold group-hover:text-white transition-colors">{pkg.title || pkg.name}</h3>
+                              <div className="flex items-center mt-1 text-white/70 text-sm">
+                                <span className="material-symbols-outlined text-sm mr-2 text-[#CD9933]">location_on</span>
+                                <span>{pkg.location || pkg.hotel || 'Makkah & Madinah'}</span>
+                              </div>
+                            </div>
+                            <div className="text-left sm:text-right">
+                              <div className="text-xs text-white/50 uppercase font-bold tracking-tighter">Starting from</div>
+                              <div className="text-2xl font-notoSerif font-bold text-[#CD9933]">PKR {price > 0 ? price.toLocaleString() : 'N/A'}</div>
                             </div>
                           </div>
-                          <div className="text-left sm:text-right">
-                            <div className="text-xs text-white/50 uppercase font-bold tracking-tighter">Starting from</div>
-                            <div className="text-2xl font-notoSerif font-bold text-[#CD9933]">PKR {price > 0 ? price.toLocaleString() : 'N/A'}</div>
+                          <div className="flex gap-4 mb-8 flex-wrap">
+                            <div className="bg-white/5 border border-white/10 text-white flex items-center px-3 py-1 rounded text-xs font-medium">
+                              <span className="material-symbols-outlined text-sm mr-2 text-[#CD9933]">calendar_today</span>{days}
+                            </div>
+                            <div className="bg-white/5 border border-white/10 text-white flex items-center px-3 py-1 rounded text-xs font-medium">
+                              <span className="material-symbols-outlined text-sm mr-2 text-[#CD9933]">flight</span>{airline}
+                            </div>
                           </div>
-                        </div>
-                        <div className="flex gap-4 mb-8 flex-wrap">
-                          <div className="bg-white/5 border border-white/10 text-white flex items-center px-3 py-1 rounded text-xs font-medium">
-                            <span className="material-symbols-outlined text-sm mr-2 text-[#CD9933]">calendar_today</span>{days}
+                          <div className="mt-auto grid grid-cols-2 gap-4">
+                            <Link to={`/package/${pkg.id || pkg._id || i + 1}`} className="py-3 bg-white/5 text-white font-bold rounded-md hover:bg-[#CD9933] hover:text-[#013334] border border-white/10 hover:border-[#CD9933] transition-all text-sm text-center">View Details</Link>
+                            <Link to="/contact" className="py-3 bg-[#CD9933] text-white font-bold rounded-md hover:bg-[#b08025] transition-colors text-sm text-center">Book Now</Link>
                           </div>
-                          <div className="bg-white/5 border border-white/10 text-white flex items-center px-3 py-1 rounded text-xs font-medium">
-                            <span className="material-symbols-outlined text-sm mr-2 text-[#CD9933]">flight</span>{airline}
-                          </div>
-                        </div>
-                        <div className="mt-auto grid grid-cols-2 gap-4">
-                          <Link to={`/package/${pkg.id || pkg._id || i + 1}`} className="py-3 bg-white/5 text-white font-bold rounded-md hover:bg-[#CD9933] hover:text-[#013334] border border-white/10 hover:border-[#CD9933] transition-all text-sm text-center">View Details</Link>
-                          <Link to="/contact" className="py-3 bg-[#CD9933] text-white font-bold rounded-md hover:bg-[#b08025] transition-colors text-sm text-center">Book Now</Link>
                         </div>
                       </div>
-                    </div>
-                  </ScrollReveal>
-                )
-              })}
+                    </ScrollReveal>
+                  );
+                });
+              })()}
             </div>
           </section>
         </div>

@@ -507,7 +507,7 @@ const Home3 = () => {
                 <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">Low Budget / Economy Umrah Packages</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
-                <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
+                <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=economy">View All</Link>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(economyRef, 'left')} 
@@ -570,7 +570,7 @@ const Home3 = () => {
 
           <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL ECONOMY PACKAGES</Link>
+              <Link to="/packages?category=economy" className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL ECONOMY PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
@@ -586,7 +586,7 @@ const Home3 = () => {
                 <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Classic Umrah Packages | 3 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
-                <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
+                <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=3star">View All</Link>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(star3Ref, 'left')} 
@@ -649,7 +649,7 @@ const Home3 = () => {
 
           <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 3 STAR PACKAGES</Link>
+              <Link to="/packages?category=3star" className="inline-block border-2 border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 3 STAR PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
@@ -665,7 +665,7 @@ const Home3 = () => {
                 <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">Premium Umrah Packages | 4 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
-                <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
+                <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=4star">View All</Link>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(star4Ref, 'left')} 
@@ -728,7 +728,7 @@ const Home3 = () => {
 
           <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 4 STAR PACKAGES</Link>
+              <Link to="/packages?category=4star" className="inline-block border-2 border-[#CD9933] text-white hover:bg-[#CD9933] hover:text-[#013334] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 4 STAR PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
@@ -744,7 +744,7 @@ const Home3 = () => {
                 <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Luxury Umrah Packages | 5 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
-                <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages">View All</Link>
+                <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=5star">View All</Link>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => scrollCarousel(star5Ref, 'left')} 
@@ -807,7 +807,7 @@ const Home3 = () => {
 
           <ScrollReveal animation="fade-down" delay={200} duration={600}>
             <div className="text-center mt-12">
-              <Link to="/packages" className="inline-block border-2 border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 5 STAR PACKAGES</Link>
+              <Link to="/packages?category=5star" className="inline-block border-2 border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors">VIEW ALL 5 STAR PACKAGES</Link>
             </div>
           </ScrollReveal>
         </div>
