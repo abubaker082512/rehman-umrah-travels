@@ -57,11 +57,11 @@ const getProxyUrl = (url) => {
 
 const staticPackages = [
   {
-    id: 1,
-    title: 'Economy Saver',
-    location: 'Saraya Iman (Makkah)',
-    price: 185000,
-    days: '15 Days',
+    id: 401,
+    title: '21 Nights Saver Economy Umrah',
+    location: 'Fundaq Mayer Mayassar (Makkah)',
+    price: 209500,
+    days: '21 Nights',
     badge: 'Economy',
     badgeColor: 'bg-[#013334]',
     image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80'

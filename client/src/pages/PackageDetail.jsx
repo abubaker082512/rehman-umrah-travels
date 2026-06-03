@@ -19,20 +19,26 @@ const staticPackages = [
   {
     id: 401,
     title: '21 Nights Saver Economy Umrah',
-    location: 'Fundaq Mayer Mayassar (Makkah)',
-    hotel_name: 'Fundaq Mayer Mayassar',
-    distance_from_haram: '800m from Haram',
+    location: 'Fundaq Mayer Mayassar & Fursan Al Madinah',
+    hotel_name: 'Fundaq Mayer Mayassar & Fursan Al Madinah',
+    distance_from_haram: '800m & 350m',
+    hotel_makkah: 'Fundaq Mayer Mayassar',
+    distance_makkah: '800m from Haram',
+    nights_makkah: 12,
+    hotel_madinah: 'Fursan Al Madinah',
+    distance_madinah: '350m from Nabawi',
+    nights_madinah: 8,
     price: 209500,
-    days: '21 Days',
-    duration: '21 Days',
+    days: '21 Nights',
+    duration: '21 Nights',
     airline: 'Air Blue',
     category: 'Economy',
     stars: 3,
-    badge: 'Best Price',
+    badge: '21 Nights',
     image: economyPackagesImg,
     image_url: economyPackagesImg,
     description: 'Perform your holy pilgrimage with our affordable 21-day Economy package. Staying at Mayer Mayassar Mecca and Fursan Al Madinah, offering clean and peaceful accommodation.',
-    includes: ['E-Visa Processing', 'Shared Ground Transport', 'Makkah Ziyaraat', '24/7 Tour Support', 'Multilingual Guides'],
+    includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
     itinerary: [
       { day: 'Day 01', title: 'Arrival & Makkah Check-in', description: 'Arrive at Jeddah, transfer to Fundaq Mayer Mayassar Makkah. Perform Umrah.' },
       { day: 'Day 02 - 12', title: 'Makkah Prayers', description: 'Daily prayers in Masjid Al-Haram. Guided Ziyarat of historical sites on Day 3.' },
@@ -41,11 +47,107 @@ const staticPackages = [
     ]
   },
   {
+    id: 402,
+    title: '21 Nights Comfort Economy Saver',
+    location: 'Jedat Al Khalil & Karam Ajyad Hotel',
+    hotel_name: 'Jedat Al Khalil & Karam Ajyad Hotel',
+    distance_from_haram: '750m & 400m',
+    hotel_makkah: 'Jedat Al Khalil',
+    distance_makkah: '750m from Haram',
+    nights_makkah: 12,
+    hotel_madinah: 'Karam Ajyad Hotel',
+    distance_madinah: '400m from Nabawi',
+    nights_madinah: 8,
+    price: 224500,
+    days: '21 Nights',
+    duration: '21 Nights',
+    airline: 'PIA',
+    category: 'Economy',
+    stars: 3,
+    badge: '21 Nights',
+    image: economyPackagesImg,
+    image_url: economyPackagesImg,
+    description: 'A high-value family-oriented economy saver package featuring Jedat Al Khalil Mecca hotel and Karam Ajyad in Madinah.',
+    includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
+    itinerary: [
+      { day: 'Day 01', title: 'Jeddah Arrival', description: 'Arrive at Jeddah Airport, transfer to Jedat Al Khalil Makkah.' },
+      { day: 'Day 02 - 12', title: 'Ibadah in Makkah', description: 'Perform 5 daily prayers in Haram. Guided group Ziyarat.' },
+      { day: 'Day 13 - 20', title: 'Madinah Serenity', description: 'Transfer to Karam Ajyad Madinah. Daily prayers in Nabawi.' },
+      { day: 'Day 21', title: 'Departure', description: 'Transfer to Jeddah airport for return flight.' }
+    ]
+  },
+  {
+    id: 403,
+    title: '21 Nights Ajyad Standard Economy',
+    location: 'Al Juhani Ajyad Hotel & Al Ikram Palace',
+    hotel_name: 'Al Juhani Ajyad Hotel & Al Ikram Palace',
+    distance_from_haram: '650m & 450m',
+    hotel_makkah: 'Al Juhani Ajyad Hotel',
+    distance_makkah: '650m from Haram',
+    nights_makkah: 12,
+    hotel_madinah: 'Al Ikram Palace',
+    distance_madinah: '450m from Nabawi',
+    nights_madinah: 8,
+    price: 235500,
+    days: '21 Nights',
+    duration: '21 Nights',
+    airline: 'Saudi Airlines',
+    category: 'Economy',
+    stars: 3,
+    badge: '21 Nights',
+    image: economyPackagesImg,
+    image_url: economyPackagesImg,
+    description: 'Highly popular choice for pilgrims looking for excellent standard services at a reasonable budget in Ajyad, Makkah.',
+    includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
+    itinerary: [
+      { day: 'Day 01', title: 'Makkah Arrival', description: 'Arrive at Jeddah, proceed to Al Juhani Ajyad Hotel Makkah.' },
+      { day: 'Day 02 - 12', title: 'Makkah Stays', description: 'Daily prayers at Haram. Historical Ziyarat tours.' },
+      { day: 'Day 13 - 20', title: 'Madinah Stays', description: 'Transfer to Al Ikram Madinah. Focus on prayers in Masjid Nabawi.' },
+      { day: 'Day 21', title: 'Departure', description: 'Return transfers to Jeddah Airport.' }
+    ]
+  },
+  {
+    id: 404,
+    title: '21 Nights Extended Special Economy',
+    location: 'Maather Al Jiwaar Hotel & Orjawan Al Madinah',
+    hotel_name: 'Maather Al Jiwaar Hotel & Orjawan Al Madinah',
+    distance_from_haram: '600m & 450m',
+    hotel_makkah: 'Maather Al Jiwaar Hotel',
+    distance_makkah: '600m from Haram',
+    nights_makkah: 12,
+    hotel_madinah: 'Orjawan Al Madinah',
+    distance_madinah: '450m from Nabawi',
+    nights_madinah: 8,
+    price: 251500,
+    days: '21 Nights',
+    duration: '21 Nights',
+    airline: 'Air Blue',
+    category: 'Economy',
+    stars: 3,
+    badge: '21 Nights',
+    image: economyPackagesImg,
+    image_url: economyPackagesImg,
+    description: 'Maximize your time in the holy land with our 21-night package. Features Maather Al Jiwaar Makkah and Orjawan Al Madinah.',
+    includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
+    itinerary: [
+      { day: 'Day 01', title: 'Welcome to Makkah', description: 'Arrive in Makkah, check-in to Maather Al Jiwaar Hotel. Complete Umrah.' },
+      { day: 'Day 02 - 12', title: 'Makkah Devotions', description: 'Spend peaceful days in Ibadah at Haram. Group Ziyarat.' },
+      { day: 'Day 13 - 20', title: 'Madinah Stays', description: 'Transfer to Orjawan Al Madinah. Rest and Ibadah in Masjid Nabawi.' },
+      { day: 'Day 21', title: 'Farewell', description: 'Departure transfer to Jeddah Airport.' }
+    ]
+  },
+  {
     id: 501,
     title: '14 Nights 3 Star Comfort Umrah',
-    location: 'Al Aseel Ajyad (Makkah)',
-    hotel_name: 'Al Aseel Ajyad',
-    distance_from_haram: '450m from Haram',
+    location: 'Al Aseel Ajyad (Makkah) & Al Shourfah Hotel (Madinah)',
+    hotel_name: 'Al Aseel Ajyad & Al Shourfah Hotel',
+    distance_from_haram: '450m & 300m',
+    hotel_makkah: 'Al Aseel Ajyad',
+    distance_makkah: '450m from Haram',
+    nights_makkah: 7,
+    hotel_madinah: 'Al Shourfah Hotel',
+    distance_madinah: '300m from Nabawi',
+    nights_madinah: 7,
     price: 245500,
     days: '14 Nights',
     duration: '14 Nights',
@@ -56,7 +158,7 @@ const staticPackages = [
     image: star3PackagesImg,
     image_url: star3PackagesImg,
     description: 'All-inclusive 3-Star Umrah package. Staying at Al Aseel Ajyad Mecca (7 Nights) and Al Shourfah Hotel Madinah (7 Nights). Fully guided and all ground transfers included.',
-    includes: ['E-Visa Processing', 'Return Flights (PIA)', 'Full Ground Transfer', 'Guided Ziyarat', 'Zamzam Water', 'Scholar Guidance'],
+    includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
     itinerary: [
       { day: 'Day 01', title: 'Arrival & Umrah', description: 'Arrive Jeddah Airport, direct transfer to Al Aseel Ajyad Makkah. Perform Umrah.' },
       { day: 'Day 02 - 07', title: 'Makkah Devotion', description: 'Spend daily prayers in Masjid Al-Haram. Guided Ziyarat of Makkah on Day 4.' },
@@ -67,9 +169,15 @@ const staticPackages = [
   {
     id: 601,
     title: '14 Nights 4 Star Premium Umrah',
-    location: 'Ramada Dar Al Faiyzeen (Makkah)',
-    hotel_name: 'Ramada Dar Al Faiyzeen',
-    distance_from_haram: '250m from Haram',
+    location: 'Ramada Dar Al Faiyzeen (Makkah) & Elaf Taibah (Madinah)',
+    hotel_name: 'Ramada Dar Al Faiyzeen & Elaf Taibah',
+    distance_from_haram: '250m & 150m',
+    hotel_makkah: 'Ramada Dar Al Faiyzeen',
+    distance_makkah: '250m from Haram',
+    nights_makkah: 7,
+    hotel_madinah: 'Elaf Taibah',
+    distance_madinah: '150m from Nabawi',
+    nights_madinah: 7,
     price: 284000,
     days: '14 Nights',
     duration: '14 Nights',
@@ -80,7 +188,7 @@ const staticPackages = [
     image: star4PackagesImg,
     image_url: star4PackagesImg,
     description: 'Indulge in a premium 4-Star Umrah journey. Features Ramada Dar Al Faiyzeen in Mecca and Elaf Taibah in Madinah. Includes premium flights, VIP transfers, and daily buffet breakfast.',
-    includes: ['E-Visa Processing', 'Return Flights (Saudia)', 'VIP GMC Ground Transfer', 'Daily Buffet Breakfast', 'Complete Guided Ziyarat Makkah & Madinah', '24/7 Customer Support'],
+    includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
     itinerary: [
       { day: 'Day 01', title: 'VIP Makkah Arrival', description: 'Arrive Jeddah, VIP GMC transfer to Ramada Makkah. Special group scholar joins for Umrah.' },
       { day: 'Day 02 - 07', title: 'Spiritual Devotion Makkah', description: 'Enjoy daily prayers at Haram. Special guided historical tours of Makkah sites on Day 3.' },
@@ -91,9 +199,15 @@ const staticPackages = [
   {
     id: 701,
     title: '14 Nights 5 Star Cheap Luxury',
-    location: 'Holiday Inn Makkah (Makkah)',
-    hotel_name: 'Holiday Inn Makkah',
-    distance_from_haram: '150m from Haram',
+    location: 'Holiday Inn Makkah (Makkah) & Province Al Sham (Madinah)',
+    hotel_name: 'Holiday Inn Makkah & Province Al Sham',
+    distance_from_haram: '150m & 100m',
+    hotel_makkah: 'Holiday Inn Makkah',
+    distance_makkah: '150m from Haram',
+    nights_makkah: 7,
+    hotel_madinah: 'Province Al Sham',
+    distance_madinah: '100m from Nabawi',
+    nights_madinah: 7,
     price: 289500,
     days: '14 Nights',
     duration: '14 Nights',
@@ -104,7 +218,7 @@ const staticPackages = [
     image: star5PackagesImg,
     image_url: star5PackagesImg,
     description: 'All-inclusive 5-Star luxury package on a budget. Stay at Holiday Inn Makkah (7 Nights) and Province Al Sham Madinah (7 Nights). Premium flights, private VIP GMC transport, and gourmet breakfasts.',
-    includes: ['E-Visa Processing', 'Return Flights (Emirates)', 'VIP GMC Ground Transfer', 'Gourmet Buffet Breakfast', 'Guided Holy Ziyarat Makkah & Madinah', '24/7 VIP Tour Manager Support'],
+    includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', 'FREE Breakfast', '24/7 Pilgrims Support'],
     itinerary: [
       { day: 'Day 01', title: 'VIP Arrival Makkah', description: 'Arrive Jeddah, private VIP GMC transfer to Holiday Inn Makkah. Personal guide facilitates Umrah.' },
       { day: 'Day 02 - 07', title: 'Makkah Devotions', description: 'Daily prayers in Masjid Al-Haram. Private VIP Ziyarat of holy landmarks on Day 3.' },
@@ -173,6 +287,50 @@ const getCategoryPresets = (categoryName, title) => {
   return null
 }
 
+const getNightsCount = (pkg) => {
+  if (!pkg) return { makkah: 0, madinah: 0 };
+  
+  if (pkg.nights_makkah !== undefined && pkg.nights_madinah !== undefined) {
+    return { makkah: pkg.nights_makkah, madinah: pkg.nights_madinah };
+  }
+  if (pkg.makkah_nights !== undefined && pkg.madinah_nights !== undefined) {
+    return { makkah: pkg.makkah_nights, madinah: pkg.madinah_nights };
+  }
+  
+  const title = (pkg.title || '').toLowerCase();
+  const desc = (pkg.description || '').toLowerCase();
+  
+  if (title.includes('21 nights') || desc.includes('21 nights') || title.includes('21 days') || desc.includes('21 days') || (pkg.duration && pkg.duration.includes('21'))) {
+    return { makkah: 12, madinah: 8 };
+  }
+  if (title.includes('15 nights') || title.includes('15 days') || (pkg.duration && pkg.duration.includes('15'))) {
+    return { makkah: 8, madinah: 7 };
+  }
+  if (title.includes('14 nights') || title.includes('14 days') || (pkg.duration && pkg.duration.includes('14'))) {
+    return { makkah: 7, madinah: 7 };
+  }
+  if (title.includes('12 nights') || title.includes('12 days') || (pkg.duration && pkg.duration.includes('12'))) {
+    return { makkah: 7, madinah: 5 };
+  }
+  if (title.includes('10 nights') || title.includes('10 days') || (pkg.duration && pkg.duration.includes('10'))) {
+    return { makkah: 5, madinah: 5 };
+  }
+  if (title.includes('7 nights') || title.includes('7 days') || (pkg.duration && pkg.duration.includes('7'))) {
+    return { makkah: 4, madinah: 3 };
+  }
+
+  const durationStr = (pkg.duration || pkg.days || '');
+  const match = durationStr.match(/(\d+)\s*(?:night|day)/i);
+  if (match) {
+    const total = parseInt(match[1]);
+    const makkah = Math.ceil(total * 0.6);
+    const madinah = total - makkah;
+    return { makkah, madinah };
+  }
+  
+  return { makkah: 7, madinah: 7 };
+}
+
 const PackageDetail = () => {
   const { id } = useParams()
   const [pkg, setPkg] = useState(null)
@@ -231,6 +389,7 @@ const PackageDetail = () => {
   const price = typeof pkg.price === 'number' ? pkg.price : (parseFloat(String(pkg.price).replace(/[^0-9.]/g, '')) || 0)
   const hotelName = pkg.hotel_name || pkg.hotelName || pkg.location || 'Premium Hotel'
   const distance = pkg.distance_from_haram || pkg.distanceFromHaram || 'Steps to Haram'
+  const { makkah: makkahNights, madinah: madinahNights } = getNightsCount(pkg)
 
   return (
     <div className="bg-surface font-manrope text-on-surface">
@@ -293,66 +452,88 @@ const PackageDetail = () => {
               </div>
             </div>
 
-            {/* Hotel Info */}
+            {/* Nights & Accommodations Section with Bigger View */}
             <div>
               <h2 className="font-notoSerif text-3xl mb-8 flex items-center gap-4">
-                {pkg.category === '5 Star' || pkg.category === '4 Star' ? 'Premium Accommodations' : 'Comfortable Stays'}
+                Nights & Accommodations
                 <span className="h-px flex-grow bg-outline-variant/30"></span>
               </h2>
-              {pkg.hotel_makkah || pkg.hotel_madinah ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {pkg.hotel_makkah && (
-                    <div className="bg-surface-container-lowest p-6 rounded-xl editorial-shadow">
-                      <div className="flex justify-between items-start mb-4">
-                        <div>
-                          <p className="text-[#CD9933] text-xs font-bold uppercase tracking-widest mb-1">Makkah Accommodation</p>
-                          <h4 className="font-notoSerif text-xl">{pkg.hotel_makkah}</h4>
-                        </div>
-                        {pkg.distance_makkah && <div className="bg-surface-container text-xs px-3 py-1 rounded font-bold">{pkg.distance_makkah}</div>}
-                      </div>
-                      <p className="text-on-surface-variant text-xs leading-relaxed mb-4">Premium stay located near Masjid Al-Haram in the holy city of Makkah.</p>
-                      <div className="flex flex-wrap gap-3">
-                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">wifi</span> Free WiFi</span>
-                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">restaurant</span> Breakfast Inc.</span>
-                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">ac_unit</span> Central AC</span>
-                      </div>
-                    </div>
-                  )}
-                  {pkg.hotel_madinah && (
-                    <div className="bg-surface-container-lowest p-6 rounded-xl editorial-shadow">
-                      <div className="flex justify-between items-start mb-4">
-                        <div>
-                          <p className="text-[#CD9933] text-xs font-bold uppercase tracking-widest mb-1">Madinah Accommodation</p>
-                          <h4 className="font-notoSerif text-xl">{pkg.hotel_madinah}</h4>
-                        </div>
-                        {pkg.distance_madinah && <div className="bg-surface-container text-xs px-3 py-1 rounded font-bold">{pkg.distance_madinah}</div>}
-                      </div>
-                      <p className="text-on-surface-variant text-xs leading-relaxed mb-4">Comfortable and serene stay located near Masjid An-Nabawi in Madinah.</p>
-                      <div className="flex flex-wrap gap-3">
-                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">wifi</span> Free WiFi</span>
-                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">restaurant</span> Breakfast Inc.</span>
-                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">ac_unit</span> Central AC</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className="bg-surface-container-lowest p-6 rounded-xl editorial-shadow">
-                  <div className="flex justify-between items-start mb-4">
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                {/* Makkah Card */}
+                <div className="relative overflow-hidden bg-[#013334] text-white p-8 rounded-2xl border border-[#CD9933]/20 shadow-xl group hover:border-[#CD9933]/50 transition-all duration-300">
+                  <div className="absolute top-0 right-0 -mt-6 -mr-6 w-32 h-32 bg-[#CD9933]/5 rounded-full blur-2xl group-hover:bg-[#CD9933]/10 transition-all duration-500"></div>
+                  
+                  <div className="relative z-10 flex flex-col justify-between h-full">
                     <div>
-                      <p className="text-[#CD9933] text-xs font-bold uppercase tracking-widest mb-1">Makkah & Madinah</p>
-                      <h4 className="font-notoSerif text-2xl">{hotelName}</h4>
+                      <div className="flex justify-between items-center mb-6">
+                        <span className="bg-[#CD9933] text-white text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded">Makkah Al-Mukarramah</span>
+                        {(pkg.distance_makkah || distance) && (
+                          <span className="text-white/60 text-xs font-bold flex items-center gap-1">
+                            <span className="material-symbols-outlined text-sm text-[#CD9933]">location_on</span> 
+                            {pkg.distance_makkah || distance}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {/* Big Nights View */}
+                      <div className="mb-6">
+                        <span className="block font-notoSerif text-5xl md:text-6xl font-extrabold text-[#CD9933] tracking-tight">
+                          {makkahNights} <span className="text-xl font-manrope font-light text-white/80">Nights</span>
+                        </span>
+                      </div>
+                      
+                      <h4 className="font-notoSerif text-2xl font-bold text-white mb-2">{pkg.hotel_makkah || hotelName}</h4>
+                      <p className="text-white/70 text-xs leading-relaxed mb-6 font-light">
+                        Experience deep spiritual devotion with clean, peaceful lodging located near the Holy Kaaba.
+                      </p>
                     </div>
-                    <div className="bg-surface-container text-xs px-3 py-1 rounded font-bold">{distance}</div>
-                  </div>
-                  <p className="text-on-surface-variant text-sm leading-relaxed mb-4">{pkg.description || 'Centrally located accommodations for your spiritual journey.'}</p>
-                  <div className="flex flex-wrap gap-3 md:gap-6">
-                    <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">wifi</span> Free WiFi</span>
-                    <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">restaurant</span> Breakfast Inc.</span>
-                    <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">ac_unit</span> Central AC</span>
+                    
+                    <div className="flex flex-wrap gap-4 pt-4 border-t border-white/10 text-white/80">
+                      <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm text-[#CD9933]">wifi</span> Free WiFi</span>
+                      <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm text-[#CD9933]">ac_unit</span> Central AC</span>
+                      <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm text-[#CD9933]">support_agent</span> Support</span>
+                    </div>
                   </div>
                 </div>
-              )}
+
+                {/* Madinah Card */}
+                <div className="relative overflow-hidden bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-xl group hover:border-[#CD9933]/30 transition-all duration-300">
+                  <div className="absolute top-0 right-0 -mt-6 -mr-6 w-32 h-32 bg-[#CD9933]/5 rounded-full blur-2xl group-hover:bg-[#CD9933]/10 transition-all duration-500"></div>
+                  
+                  <div className="relative z-10 flex flex-col justify-between h-full">
+                    <div>
+                      <div className="flex justify-between items-center mb-6">
+                        <span className="bg-[#013334] text-white text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded">Madinah Al-Munawwarah</span>
+                        {(pkg.distance_madinah || (pkg.hotel_madinah ? '350m from Nabawi' : '')) && (
+                          <span className="text-on-surface-variant text-xs font-bold flex items-center gap-1">
+                            <span className="material-symbols-outlined text-sm text-[#CD9933]">location_on</span> 
+                            {pkg.distance_madinah || '350m from Nabawi'}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {/* Big Nights View */}
+                      <div className="mb-6">
+                        <span className="block font-notoSerif text-5xl md:text-6xl font-extrabold text-[#CD9933] tracking-tight">
+                          {madinahNights} <span className="text-xl font-manrope font-light text-on-surface-variant">Nights</span>
+                        </span>
+                      </div>
+                      
+                      <h4 className="font-notoSerif text-2xl font-bold text-primary mb-2">{pkg.hotel_madinah || 'Fursan Al Madinah'}</h4>
+                      <p className="text-on-surface-variant text-xs leading-relaxed mb-6 font-light">
+                        Perform your prayers at Masjid An-Nabawi in comfort with tranquil stays prepared for your journey.
+                      </p>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-4 pt-4 border-t border-outline-variant/20 text-on-surface-variant">
+                      <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm text-[#CD9933]">wifi</span> Free WiFi</span>
+                      <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm text-[#CD9933]">ac_unit</span> Central AC</span>
+                      <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm text-[#CD9933]">support_agent</span> Support</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Services Checklist */}

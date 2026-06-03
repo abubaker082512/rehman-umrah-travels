@@ -98,18 +98,10 @@ const staticLocalTours = [
 
 // ── Low Budget / Economy Umrah Packages ──────────────────────────────────────
 const staticEconomyPackages = [
-  { id: 401, title: '21 Nights Saver Economy Umrah', location: 'Fundaq Mayer Mayassar', price: 209500, duration: '21 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
-  { id: 402, title: '21 Nights Comfort Economy Saver', location: 'Jedat Al Khalil', price: 224500, duration: '21 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
-  { id: 403, title: '21 Nights Johra Special Economy', location: 'Johra Majad Hotel', price: 229500, duration: '21 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
-  { id: 404, title: '21 Nights Ajyad Standard Economy', location: 'Al Juhani Ajyad Hotel', price: 235500, duration: '21 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
-  { id: 405, title: '21 Nights Extended Special Economy', location: 'Mather Al Jewar', price: 251500, duration: '21 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
-  { id: 406, title: '15 Nights Economy Saver Deal', location: 'Fundaq Mayer Mayassar', price: 189500, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
-  { id: 407, title: '15 Nights Comfort Economy Package', location: 'Jedat Al Khalil', price: 199500, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
-  { id: 408, title: '15 Nights Johra Standard Deal', location: 'Johra Majad Hotel', price: 204500, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
-  { id: 409, title: '15 Nights Ajyad Budget Choice', location: 'Al Juhani Ajyad Hotel', price: 209500, duration: '15 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
-  { id: 410, title: '10 Nights Economy Quick Saver', location: 'Fundaq Mayer Mayassar', price: 159500, duration: '10 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
-  { id: 411, title: '10 Nights Comfort Economy Quick', location: 'Jedat Al Khalil', price: 169500, duration: '10 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
-  { id: 412, title: '10 Nights Budget Extended Choice', location: 'Johra Majad Hotel', price: 174500, duration: '10 Days', badge: 'ECONOMY', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
+  { id: 401, title: '21 Nights Saver Economy Umrah', location: 'Fundaq Mayer Mayassar & Fursan Al Madinah', price: 209500, duration: '21 Nights', badge: '21 Nights', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 402, title: '21 Nights Comfort Economy Saver', location: 'Jedat Al Khalil & Karam Ajyad Hotel', price: 224500, duration: '21 Nights', badge: '21 Nights', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 403, title: '21 Nights Ajyad Standard Economy', location: 'Al Juhani Ajyad Hotel & Al Ikram Palace', price: 235500, duration: '21 Nights', badge: '21 Nights', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
+  { id: 404, title: '21 Nights Extended Special Economy', location: 'Maather Al Jiwaar Hotel & Orjawan Al Madinah', price: 251500, duration: '21 Nights', badge: '21 Nights', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
 ]
 
 // ── Ground Umrah Packages — 3 Star ───────────────────────────────────────────
