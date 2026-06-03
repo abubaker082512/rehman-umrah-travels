@@ -82,6 +82,15 @@ const staticInternationalTours = [
     badge: 'FOR 2 PERSONS - $1300',
     description: 'Ascend the Petronas Twin Towers, relax on sandy beaches in Langkawi, and experience rich cultural heritage.',
     image: 'https://images.unsplash.com/photo-1596422748573-cbb5bf090104?w=800&q=80'
+  },
+  {
+    id: 104,
+    title: 'THAILAND SPLENDOR - BANGKOK & PHUKET',
+    price: 155000,
+    duration: '6 Days 5 Nights',
+    badge: 'FOR 2 PERSONS - $1400',
+    description: 'Explore vibrant street life and ornate shrines in Bangkok, then relax on the sandy beaches of Phuket.',
+    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80'
   }
 ]
 
@@ -374,27 +383,23 @@ const Home2 = () => {
             <div className="h-[2px] w-16 bg-[#CD9933] mx-auto mt-4"></div>
           </div>
 
-          {/* 3-Column Card Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* 4-Column Card Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {internationalTours.map((pkg, idx) => {
               const isStatic = !pkg.hasOwnProperty('image_url')
-              const img = isStatic ? pkg.image : (pkg.image_url || staticInternationalTours[idx % 3].image)
-              const badge = isStatic ? pkg.badge : (pkg.category || 'FOR 2 PERSONS')
+              const img = isStatic ? pkg.image : (pkg.image_url || staticInternationalTours[idx % 4].image)
               const duration = isStatic ? pkg.duration : (pkg.duration || '5 Days 4 Nights')
               const price = pkg.price
 
               return (
                 <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
-                  {/* Top Image with Gold overlay Badge */}
+                  {/* Top Image */}
                   <div className="relative h-64 overflow-hidden shrink-0">
                     <img
                       alt={pkg.title}
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                       src={img}
                     />
-                    <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
-                      {badge}
-                    </div>
                   </div>
 
                   {/* Card Content details */}
@@ -503,16 +508,13 @@ const Home2 = () => {
 
               return (
                 <div key={pkg.id || idx} className="bg-white shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
-                  {/* Top Image with Gold Badge */}
+                  {/* Top Image */}
                   <div className="relative h-64 overflow-hidden shrink-0">
                     <img
                       alt={pkg.title}
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                       src={img}
                     />
-                    <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider">
-                      {badge}
-                    </div>
                   </div>
 
                   {/* Card Content details */}
