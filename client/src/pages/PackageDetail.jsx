@@ -127,10 +127,13 @@ const PackageDetail = () => {
     setLoading(true)
     axios.get(`${API_BASE}/api/packages/${id}`)
       .then(res => {
-        // Ensure includes is always an array
+        // Ensure includes and not_includes are always arrays
         const data = res.data
         if (data.includes && typeof data.includes === 'string') {
           data.includes = data.includes.split(',').map(s => s.trim())
+        }
+        if (data.not_includes && typeof data.not_includes === 'string') {
+          data.not_includes = data.not_includes.split(',').map(s => s.trim())
         }
         setPkg(data)
         setLoading(false)
@@ -220,7 +223,13 @@ const PackageDetail = () => {
               <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 rounded-xl editorial-shadow">
                 <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">hotel</span>
                 <h3 className="font-notoSerif text-lg mb-1">Accommodation</h3>
-                <p className="text-on-surface-variant text-sm">{hotelName}</p>
+                <p className="text-on-surface-variant text-sm truncate">
+                  {pkg.hotel_makkah && pkg.hotel_madinah ? (
+                    `Makkah & Madinah Hotels`
+                  ) : (
+                    hotelName
+                  )}
+                </p>
               </div>
               <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 rounded-xl editorial-shadow">
                 <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">flight</span>
@@ -235,21 +244,60 @@ const PackageDetail = () => {
                 {pkg.category === '5 Star' || pkg.category === '4 Star' ? 'Premium Accommodations' : 'Comfortable Stays'}
                 <span className="h-px flex-grow bg-outline-variant/30"></span>
               </h2>
-              <div className="bg-surface-container-lowest p-6 rounded-xl editorial-shadow">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <p className="text-[#CD9933] text-xs font-bold uppercase tracking-widest mb-1">Makkah & Madinah</p>
-                    <h4 className="font-notoSerif text-2xl">{hotelName}</h4>
+              {pkg.hotel_makkah || pkg.hotel_madinah ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {pkg.hotel_makkah && (
+                    <div className="bg-surface-container-lowest p-6 rounded-xl editorial-shadow">
+                      <div className="flex justify-between items-start mb-4">
+                        <div>
+                          <p className="text-[#CD9933] text-xs font-bold uppercase tracking-widest mb-1">Makkah Accommodation</p>
+                          <h4 className="font-notoSerif text-xl">{pkg.hotel_makkah}</h4>
+                        </div>
+                        {pkg.distance_makkah && <div className="bg-surface-container text-xs px-3 py-1 rounded font-bold">{pkg.distance_makkah}</div>}
+                      </div>
+                      <p className="text-on-surface-variant text-xs leading-relaxed mb-4">Premium stay located near Masjid Al-Haram in the holy city of Makkah.</p>
+                      <div className="flex flex-wrap gap-3">
+                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">wifi</span> Free WiFi</span>
+                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">restaurant</span> Breakfast Inc.</span>
+                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">ac_unit</span> Central AC</span>
+                      </div>
+                    </div>
+                  )}
+                  {pkg.hotel_madinah && (
+                    <div className="bg-surface-container-lowest p-6 rounded-xl editorial-shadow">
+                      <div className="flex justify-between items-start mb-4">
+                        <div>
+                          <p className="text-[#CD9933] text-xs font-bold uppercase tracking-widest mb-1">Madinah Accommodation</p>
+                          <h4 className="font-notoSerif text-xl">{pkg.hotel_madinah}</h4>
+                        </div>
+                        {pkg.distance_madinah && <div className="bg-surface-container text-xs px-3 py-1 rounded font-bold">{pkg.distance_madinah}</div>}
+                      </div>
+                      <p className="text-on-surface-variant text-xs leading-relaxed mb-4">Comfortable and serene stay located near Masjid An-Nabawi in Madinah.</p>
+                      <div className="flex flex-wrap gap-3">
+                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">wifi</span> Free WiFi</span>
+                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">restaurant</span> Breakfast Inc.</span>
+                        <span className="flex items-center gap-1.5 text-xs font-bold"><span className="material-symbols-outlined text-sm">ac_unit</span> Central AC</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="bg-surface-container-lowest p-6 rounded-xl editorial-shadow">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <p className="text-[#CD9933] text-xs font-bold uppercase tracking-widest mb-1">Makkah & Madinah</p>
+                      <h4 className="font-notoSerif text-2xl">{hotelName}</h4>
+                    </div>
+                    <div className="bg-surface-container text-xs px-3 py-1 rounded font-bold">{distance}</div>
                   </div>
-                  <div className="bg-surface-container text-xs px-3 py-1 rounded font-bold">{distance}</div>
+                  <p className="text-on-surface-variant text-sm leading-relaxed mb-4">{pkg.description || 'Centrally located accommodations for your spiritual journey.'}</p>
+                  <div className="flex flex-wrap gap-3 md:gap-6">
+                    <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">wifi</span> Free WiFi</span>
+                    <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">restaurant</span> Breakfast Inc.</span>
+                    <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">ac_unit</span> Central AC</span>
+                  </div>
                 </div>
-                <p className="text-on-surface-variant text-sm leading-relaxed mb-4">{pkg.description || 'Centrally located accommodations for your spiritual journey.'}</p>
-                <div className="flex flex-wrap gap-3 md:gap-6">
-                  <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">wifi</span> Free WiFi</span>
-                  <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">restaurant</span> Breakfast Inc.</span>
-                  <span className="flex items-center gap-2 text-sm font-bold"><span className="material-symbols-outlined">ac_unit</span> Central AC</span>
-                </div>
-              </div>
+              )}
             </div>
 
             {/* Services Checklist */}
@@ -268,23 +316,35 @@ const PackageDetail = () => {
               <div>
                 <h3 className="font-notoSerif text-xl mb-6">Not Included</h3>
                 <ul className="space-y-4">
-                  <li className="flex items-center gap-3 text-sm text-on-surface-variant">
-                    <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
-                    Personal shopping & extra meals
-                  </li>
-                  <li className="flex items-center gap-3 text-sm text-on-surface-variant">
-                    <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
-                    Travel and health insurance
-                  </li>
-                  <li className="flex items-center gap-3 text-sm text-on-surface-variant">
-                    <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
-                    Laundry and room service charges
-                  </li>
+                  {pkg.not_includes && pkg.not_includes.length > 0 ? (
+                    (Array.isArray(pkg.not_includes) ? pkg.not_includes : String(pkg.not_includes).split(',')).map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-3 text-sm text-on-surface-variant">
+                        <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
+                        {item}
+                      </li>
+                    ))
+                  ) : (
+                    <>
+                      <li className="flex items-center gap-3 text-sm text-on-surface-variant">
+                        <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
+                        Personal shopping & extra meals
+                      </li>
+                      <li className="flex items-center gap-3 text-sm text-on-surface-variant">
+                        <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
+                        Travel and health insurance
+                      </li>
+                      <li className="flex items-center gap-3 text-sm text-on-surface-variant">
+                        <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
+                        Laundry and room service charges
+                      </li>
+                    </>
+                  )}
                 </ul>
               </div>
             </div>
 
-            {/* Itinerary Timeline */}
+            {/* Itinerary Timeline - HIDDEN FOR NOW */}
+            {/* 
             {pkg.itinerary && pkg.itinerary.length > 0 && (
               <div>
                 <h2 className="font-notoSerif text-3xl mb-8">Journey Itinerary</h2>
@@ -303,6 +363,7 @@ const PackageDetail = () => {
                 </div>
               </div>
             )}
+            */}
           </div>
 
           {/* Right Column: Booking Form */}

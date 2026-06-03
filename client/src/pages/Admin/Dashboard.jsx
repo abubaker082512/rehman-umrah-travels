@@ -283,10 +283,13 @@ const AdminDashboard = () => {
   const [mediaSaving, setMediaSaving] = useState(false)
 
   const [packageForm, setPackageForm] = useState({
-    title: '', description: '', price: '', category: 'Economy',
+    title: '', description: '', price: '', category: 'Economy Package',
     duration: '', location: '', hotel_name: '', distance_from_haram: '',
+    hotel_makkah: '', distance_makkah: '',
+    hotel_madinah: '', distance_madinah: '',
     image_url: '', airline: '', stars: 4, badge: '', visa_included: false,
-    includes: '',
+    includes: 'Return Flight, E-Visa Processing, Shared Ground Transport, Accomodations, 24/7 Pilgrims Support',
+    not_includes: 'Meals, Travel and health insurance, Laundry and room service charges',
     itinerary: []
   })
   const [newItineraryDay, setNewItineraryDay] = useState({ day: '', title: '', description: '' })
@@ -358,6 +361,32 @@ const AdminDashboard = () => {
 
   const fetchData = fetchAll
 
+  const handleCategoryChange = (e) => {
+    const cat = e.target.value
+    let newForm = { ...packageForm, category: cat }
+    
+    const PRESETS = {
+      'Economy Package': {
+        includes: 'Return Flight, E-Visa Processing, Shared Ground Transport, Accomodations, 24/7 Pilgrims Support',
+        not_includes: 'Meals, Travel and health insurance, Laundry and room service charges'
+      },
+      'Ground Classic & Premium Packages': {
+        includes: 'E-Visa Processing, Ground Transport, Accomodations, 24/7 Pilgrims Support',
+        not_includes: 'Return Flight, Meals, Travel and health insurance, Laundry and room service charges'
+      },
+      'Ground Luxury Packages': {
+        includes: 'E-Visa Processing, Ground Transport, Accomodations, FREE Breakfast, 24/7 Pilgrims Support',
+        not_includes: 'Return Flight, Laundry and room service charges, Travel and health insurance'
+      }
+    }
+    
+    if (PRESETS[cat]) {
+      newForm.includes = PRESETS[cat].includes
+      newForm.not_includes = PRESETS[cat].not_includes
+    }
+    setPackageForm(newForm)
+  }
+
   const handleAddPackage = async (e) => {
     e.preventDefault()
     try {
@@ -365,18 +394,29 @@ const AdminDashboard = () => {
         ? packageForm.includes.split(',').map(item => item.trim()).filter(Boolean)
         : []
       
+      const notIncludesArray = packageForm.not_includes
+        ? packageForm.not_includes.split(',').map(item => item.trim()).filter(Boolean)
+        : []
+      
       const payload = {
         ...packageForm,
         price: parseFloat(packageForm.price) || 0,
         includes: includesArray,
-        itinerary: packageForm.itinerary || []
+        not_includes: notIncludesArray,
+        itinerary: packageForm.itinerary || [],
+        hotel_name: packageForm.hotel_makkah || packageForm.hotel_name,
+        distance_from_haram: packageForm.distance_makkah || packageForm.distance_from_haram
       }
       await axios.post(`${API_BASE}/api/packages`, payload, { headers: authHdr() })
       setPackageForm({ 
-        title: '', description: '', price: '', category: 'Economy', 
+        title: '', description: '', price: '', category: 'Economy Package', 
         duration: '', location: '', hotel_name: '', distance_from_haram: '', 
+        hotel_makkah: '', distance_makkah: '',
+        hotel_madinah: '', distance_madinah: '',
         image_url: '', airline: '', stars: 4, badge: '', visa_included: false,
-        includes: '', itinerary: []
+        includes: 'Return Flight, E-Visa Processing, Shared Ground Transport, Accomodations, 24/7 Pilgrims Support',
+        not_includes: 'Meals, Travel and health insurance, Laundry and room service charges',
+        itinerary: []
       })
       fetchAll()
       alert('Package added successfully!')
@@ -540,15 +580,65 @@ const AdminDashboard = () => {
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Price (PKR)" type="number" value={packageForm.price} onChange={e => setPackageForm({...packageForm, price: e.target.value})} required />
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Location" value={packageForm.location} onChange={e => setPackageForm({...packageForm, location: e.target.value})} />
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Duration (e.g., 10 Days)" value={packageForm.duration} onChange={e => setPackageForm({...packageForm, duration: e.target.value})} required />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Hotel Name" value={packageForm.hotel_name} onChange={e => setPackageForm({...packageForm, hotel_name: e.target.value})} />
-                  <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Distance from Haram" value={packageForm.distance_from_haram} onChange={e => setPackageForm({...packageForm, distance_from_haram: e.target.value})} />
-                  <select className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" value={packageForm.category} onChange={e => setPackageForm({...packageForm, category: e.target.value})}>
-                    <option>Economy</option>
-                    <option>3 Star</option>
-                    <option>4 Star</option>
-                    <option>5 Star</option>
-                    <option>Ramadan</option>
-                    <option>December</option>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:col-span-2 bg-[#fcf9f2] p-4 rounded-lg border border-[#CD9933]/20">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-bold text-[#013334]">Makkah Hotel</label>
+                      <input className="bg-white border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 px-3 text-sm rounded text-black" placeholder="Makkah Hotel Name" value={packageForm.hotel_makkah} onChange={e => setPackageForm({...packageForm, hotel_makkah: e.target.value})} />
+                      <select className="bg-white border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 px-3 text-sm rounded text-black" value={packageForm.distance_makkah} onChange={e => setPackageForm({...packageForm, distance_makkah: e.target.value})}>
+                        <option value="">Select Makkah Distance</option>
+                        <option value="Steps to Haram">Steps to Haram</option>
+                        <option value="100m from Haram">100m from Haram</option>
+                        <option value="120m from Haram">120m from Haram</option>
+                        <option value="150m from Haram">150m from Haram</option>
+                        <option value="180m from Haram">180m from Haram</option>
+                        <option value="200m from Haram">200m from Haram</option>
+                        <option value="250m from Haram">250m from Haram</option>
+                        <option value="300m from Haram">300m from Haram</option>
+                        <option value="350m from Haram">350m from Haram</option>
+                        <option value="400m from Haram">400m from Haram</option>
+                        <option value="450m from Haram">450m from Haram</option>
+                        <option value="500m from Haram">500m from Haram</option>
+                        <option value="600m from Haram">600m from Haram</option>
+                        <option value="700m from Haram">700m from Haram</option>
+                        <option value="750m from Haram">750m from Haram</option>
+                        <option value="800m from Haram">800m from Haram</option>
+                        <option value="1km from Haram">1km from Haram</option>
+                      </select>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-xs font-bold text-[#013334]">Madinah Hotel</label>
+                      <input className="bg-white border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 px-3 text-sm rounded text-black" placeholder="Madinah Hotel Name" value={packageForm.hotel_madinah} onChange={e => setPackageForm({...packageForm, hotel_madinah: e.target.value})} />
+                      <select className="bg-white border border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 px-3 text-sm rounded text-black" value={packageForm.distance_madinah} onChange={e => setPackageForm({...packageForm, distance_madinah: e.target.value})}>
+                        <option value="">Select Madinah Distance</option>
+                        <option value="Steps to Haram">Steps to Haram</option>
+                        <option value="100m from Haram">100m from Haram</option>
+                        <option value="120m from Haram">120m from Haram</option>
+                        <option value="150m from Haram">150m from Haram</option>
+                        <option value="180m from Haram">180m from Haram</option>
+                        <option value="200m from Haram">200m from Haram</option>
+                        <option value="250m from Haram">250m from Haram</option>
+                        <option value="300m from Haram">300m from Haram</option>
+                        <option value="350m from Haram">350m from Haram</option>
+                        <option value="400m from Haram">400m from Haram</option>
+                        <option value="450m from Haram">450m from Haram</option>
+                        <option value="500m from Haram">500m from Haram</option>
+                        <option value="600m from Haram">600m from Haram</option>
+                        <option value="700m from Haram">700m from Haram</option>
+                        <option value="750m from Haram">750m from Haram</option>
+                        <option value="800m from Haram">800m from Haram</option>
+                        <option value="1km from Haram">1km from Haram</option>
+                      </select>
+                    </div>
+                  </div>
+                  <select className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" value={packageForm.category} onChange={handleCategoryChange}>
+                    <option value="Economy Package">Economy Package</option>
+                    <option value="Ground Classic & Premium Packages">Ground Classic & Premium Packages</option>
+                    <option value="Ground Luxury Packages">Ground Luxury Packages</option>
+                    <option value="3 Star">3 Star</option>
+                    <option value="4 Star">4 Star</option>
+                    <option value="5 Star">5 Star</option>
+                    <option value="Ramadan">Ramadan</option>
+                    <option value="December">December</option>
                   </select>
                   <input className="bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" placeholder="Airline" value={packageForm.airline} onChange={e => setPackageForm({...packageForm, airline: e.target.value})} />
                   
@@ -578,6 +668,18 @@ const AdminDashboard = () => {
                       rows={2} 
                       value={packageForm.includes || ''} 
                       onChange={e => setPackageForm({...packageForm, includes: e.target.value})} 
+                    />
+                  </div>
+
+                  {/* Comma-separated Exclusions */}
+                  <div className="md:col-span-2 mt-2">
+                    <label className="block text-xs font-bold uppercase tracking-widest text-[#CD9933] mb-2">Package Exclusions (comma-separated)</label>
+                    <textarea 
+                      className="w-full bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" 
+                      placeholder="e.g., Meals, Travel and health insurance, Laundry and room service charges" 
+                      rows={2} 
+                      value={packageForm.not_includes || ''} 
+                      onChange={e => setPackageForm({...packageForm, not_includes: e.target.value})} 
                     />
                   </div>
 
@@ -691,7 +793,10 @@ const AdminDashboard = () => {
                         <div className="flex-1">
                           <h4 className="font-bold text-primary">{pkg.title}</h4>
                           <p className="text-sm text-on-surface-variant font-medium">{pkg.category} • {pkg.duration}</p>
-                          <p className="text-[#CD9933] font-bold">PKR {(pkg.price || 0).toLocaleString()}</p>
+                          {pkg.hotel_makkah && <p className="text-xs text-on-surface-variant">Makkah: {pkg.hotel_makkah} ({pkg.distance_makkah})</p>}
+                          {pkg.hotel_madinah && <p className="text-xs text-on-surface-variant">Madinah: {pkg.hotel_madinah} ({pkg.distance_madinah})</p>}
+                          {!pkg.hotel_makkah && pkg.hotel_name && <p className="text-xs text-on-surface-variant">Hotel: {pkg.hotel_name} ({pkg.distance_from_haram})</p>}
+                          <p className="text-[#CD9933] font-bold mt-1">PKR {(pkg.price || 0).toLocaleString()}</p>
                           <p className="text-[10px] text-outline mt-1 font-mono uppercase truncate max-w-[150px]">{pkg.id}</p>
                         </div>
                         <button onClick={() => handleDeletePackage(pkg.id)} className="self-start text-red-500 hover:text-red-700 transition-colors">

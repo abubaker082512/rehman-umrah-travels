@@ -6,7 +6,7 @@ import background3 from '../assets/home-3.jpg'
 import kaabaPackages from '../assets/kaaba_packages.png'
 import toursScenic from '../assets/tours_scenic.png'
 import travelerPortrait from '../assets/traveler_portrait.png'
-import aboutImage from '../assets/3.jpg'
+import aboutImage from '../assets/about-us.jpg'
 import economyPackagesImg from '../assets/economy_packages.png'
 import star3PackagesImg from '../assets/star3_packages.png'
 import star4PackagesImg from '../assets/star4_packages.png'
@@ -222,7 +222,7 @@ const Home3 = () => {
             setLocalTours(fetchedLocal.slice(0, 3))
           }
           // Filter umrah by sub-category
-          const fetchedEconomy = res.data.filter(p => ['economy', 'low budget', 'budget'].includes(p.category?.toLowerCase()))
+          const fetchedEconomy = res.data.filter(p => ['economy', 'low budget', 'budget', 'economy package'].includes(p.category?.toLowerCase()) || p.category?.toLowerCase().includes('economy'))
           if (fetchedEconomy.length > 0) setEconomyPackages(fetchedEconomy)
           const fetched3Star = res.data.filter(p => p.category?.toLowerCase().includes('3 star') || p.category?.toLowerCase().includes('3star'))
           if (fetched3Star.length > 0) setStar3Packages(fetched3Star)
@@ -741,7 +741,7 @@ const Home3 = () => {
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-16">
               <div className="max-w-2xl">
                 <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Ground Packages</h6>
-                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Luxury Umrah Packages | 5 Star</h2>
+                <h2 className="font-notoSerif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#013334] leading-tight">Luxury Umrah Packages 5 Star</h2>
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
                 <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=5star">View All</Link>

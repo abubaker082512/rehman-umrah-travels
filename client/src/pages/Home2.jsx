@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import logo from '../assets/Rehman Travel Logo.png'
 import background1 from '../assets/background1.webp'
+import aboutImage from '../assets/about-us.jpg'
 import BannerContactForm from '../components/BannerContactForm'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
@@ -306,7 +307,7 @@ const Home2 = () => {
             <img
               alt="Luxury traveler collage illustration mockup landscape"
               className="w-full h-auto object-cover shadow-xl border border-gray-100"
-              src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80"
+              src={aboutImage}
             />
           </div>
         </div>

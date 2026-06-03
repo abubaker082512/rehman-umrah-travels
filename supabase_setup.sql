@@ -1,4 +1,3 @@
--- Create the packages table
 CREATE TABLE IF NOT EXISTS packages (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   title TEXT NOT NULL,
@@ -9,6 +8,11 @@ CREATE TABLE IF NOT EXISTS packages (
   duration TEXT,
   location TEXT,
   imageUrl TEXT,
+  hotel_makkah TEXT,
+  distance_makkah TEXT,
+  hotel_madinah TEXT,
+  distance_madinah TEXT,
+  not_includes TEXT[],
   created_at TIMESTAMPTZ DEFAULT now()
 );
 

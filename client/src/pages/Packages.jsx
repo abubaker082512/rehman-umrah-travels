@@ -109,8 +109,14 @@ const Packages = () => {
     const categoryLower = (pkg.category || '').toLowerCase()
     
     return selectedCategories.some(cat => {
-      if (cat === 'Economy') {
+      if (cat === 'Economy' || cat === 'Economy Package') {
         return categoryLower.includes('economy') || titleLower.includes('economy')
+      }
+      if (cat === 'Ground Classic & Premium Packages') {
+        return categoryLower.includes('ground classic') || categoryLower.includes('classic & premium') || titleLower.includes('ground classic')
+      }
+      if (cat === 'Ground Luxury Packages') {
+        return categoryLower.includes('ground luxury') || titleLower.includes('ground luxury')
       }
       if (cat === '3 Star Packages') {
         return categoryLower.includes('3 star') || categoryLower.includes('3star') || titleLower.includes('3 star') || titleLower.includes('3star')
@@ -188,7 +194,9 @@ const Packages = () => {
               <h2 className="font-notoSerif text-xl text-primary mb-8 border-b border-outline-variant/30 pb-4">Categories</h2>
               <nav className="space-y-6">
                 {[
-                  'Economy',
+                  'Economy Package',
+                  'Ground Classic & Premium Packages',
+                  'Ground Luxury Packages',
                   '3 Star Packages',
                   '4 Star Packages',
                   '5 Star Packages'
