@@ -3,8 +3,53 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
+import sabaKhanImg from '../assets/testimonials/saba_khan.png'
+import ahmedRazaImg from '../assets/testimonials/ahmed_raza.png'
+import zubairMalikImg from '../assets/testimonials/zubair_malik.png'
+import tehminaHassanImg from '../assets/testimonials/tehmina_hassan.png'
+import mohammadAliImg from '../assets/testimonials/mohammad_ali.png'
+import ayeshaSiddiquiImg from '../assets/testimonials/ayesha_siddiqui.png'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
+
+const staticTestimonials = [
+  {
+    name: 'Saba Khan',
+    city: 'Lahore',
+    text: 'I booked the Turkey tour for my family. The guide was incredibly knowledgeable and the itinerary wasn\'t rushed. A truly premium experience from start to finish.',
+    image: sabaKhanImg
+  },
+  {
+    name: 'Ahmed Raza',
+    city: 'Karachi',
+    text: 'Our Umrah journey with Royal Travels was flawless. From the visa process to the hotels being so close to the Haram, everything was perfectly managed. May Allah reward them.',
+    image: ahmedRazaImg
+  },
+  {
+    name: 'Zubair Malik',
+    city: 'Lahore',
+    text: 'Booking airline tickets and private domestic tours in Swat and Naran Valley was incredibly fast and smooth. Royal Travels operates with absolute elite professionalism. Will definitely travel with them again.',
+    image: zubairMalikImg
+  },
+  {
+    name: 'Tehmina Hassan',
+    city: 'Rawalpindi',
+    text: 'Our Turkey package was outstanding. Flight scheduling, domestic connections in Cappadocia, hotel stays, and local historical guides were perfectly taken care of. I didn\'t have to worry about a single detail.',
+    image: tehminaHassanImg
+  },
+  {
+    name: 'Dr. Mohammad Ali',
+    city: 'Islamabad',
+    text: 'The ground staff in Makkah were like family. They helped us with our elderly parents during Tawaaf. I highly recommend Royal Travels for their compassion.',
+    image: mohammadAliImg
+  },
+  {
+    name: 'Ayesha Siddiqui',
+    city: 'Lahore',
+    text: 'Alhamdulillah, performed Umrah using their premium package. Extremely smooth transport from Jeddah to Makkah and Madinah. Vetted hotels with delicious breakfast included!',
+    image: ayeshaSiddiquiImg
+  }
+]
 
 const getProxyUrl = (url) => {
   return url || '';
@@ -351,52 +396,24 @@ const Home = () => {
             <h6 className="font-manrope text-[#CD9933] font-bold text-sm tracking-[0.2em] uppercase mb-4">Client Feedback</h6>
             <h2 className="font-notoSerif text-3xl sm:text-4xl font-bold text-primary">Voices of Gratitude</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            <div className="bg-surface-container-lowest p-4 md:p-8 rounded-xl editorial-shadow">
-              <div className="flex gap-1 text-[#CD9933] mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                ))}
-              </div>
-              <p className="italic text-primary mb-8 leading-relaxed font-manrope">"Our Umrah journey with Royal Travels was flawless. From the visa process to the hotels being so close to the Haram, everything was perfectly managed. May Allah reward them."</p>
-              <div className="flex items-center gap-4">
-                <img className="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Customer" />
-                <div>
-                  <span className="block font-bold text-primary">Ahmed Raza</span>
-                  <span className="text-xs text-outline uppercase">Karachi</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {staticTestimonials.map((t, idx) => (
+              <div key={idx} className="bg-surface-container-lowest p-4 md:p-8 rounded-xl editorial-shadow">
+                <div className="flex gap-1 text-[#CD9933] mb-6">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                  ))}
+                </div>
+                <p className="italic text-primary mb-8 leading-relaxed font-manrope">"{t.text}"</p>
+                <div className="flex items-center gap-4">
+                  <img className="w-12 h-12 rounded-full object-cover" src={t.image} alt={t.name} />
+                  <div>
+                    <span className="block font-bold text-primary">{t.name}</span>
+                    <span className="text-xs text-outline uppercase">{t.city}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="bg-surface-container-lowest p-4 md:p-8 rounded-xl editorial-shadow">
-              <div className="flex gap-1 text-[#CD9933] mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                ))}
-              </div>
-              <p className="italic text-primary mb-8 leading-relaxed font-manrope">"I booked the Turkey tour for my family. The guide was incredibly knowledgeable and the itinerary wasn't rushed. A truly premium experience from start to finish."</p>
-              <div className="flex items-center gap-4">
-                <img className="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Customer" />
-                <div>
-                  <span className="block font-bold text-primary">Saba Khan</span>
-                  <span className="text-xs text-outline uppercase">Lahore</span>
-                </div>
-              </div>
-            </div>
-            <div className="bg-surface-container-lowest p-4 md:p-8 rounded-xl editorial-shadow">
-              <div className="flex gap-1 text-[#CD9933] mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                ))}
-              </div>
-              <p className="italic text-primary mb-8 leading-relaxed font-manrope">"The ground staff in Makkah were like family. They helped us with our elderly parents during Tawaaf. I highly recommend Royal Travels for their compassion."</p>
-              <div className="flex items-center gap-4">
-                <img className="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Customer" />
-                <div>
-                  <span className="block font-bold text-primary">Dr. Mohammad Ali</span>
-                  <span className="text-xs text-outline uppercase">Islamabad</span>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

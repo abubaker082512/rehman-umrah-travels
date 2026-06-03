@@ -5,6 +5,51 @@ import logo from '../assets/Rehman Travel Logo.png'
 import background1 from '../assets/background1.webp'
 import aboutImage from '../assets/about-us.jpg'
 import BannerContactForm from '../components/BannerContactForm'
+import sabaKhanImg from '../assets/testimonials/saba_khan.png'
+import ahmedRazaImg from '../assets/testimonials/ahmed_raza.png'
+import zubairMalikImg from '../assets/testimonials/zubair_malik.png'
+import tehminaHassanImg from '../assets/testimonials/tehmina_hassan.png'
+import mohammadAliImg from '../assets/testimonials/mohammad_ali.png'
+import ayeshaSiddiquiImg from '../assets/testimonials/ayesha_siddiqui.png'
+
+const staticTestimonials = [
+  {
+    name: 'Saba Khan',
+    city: 'Lahore, Pakistan',
+    text: 'I booked the Turkey tour for my family. The guide was incredibly knowledgeable and the itinerary wasn\'t rushed. A truly premium experience from start to finish.',
+    image: sabaKhanImg
+  },
+  {
+    name: 'Ahmed Raza',
+    city: 'Karachi, Pakistan',
+    text: 'Our Umrah journey with Royal Travels was flawless. From the visa process to the hotels being so close to the Haram, everything was perfectly managed. May Allah reward them.',
+    image: ahmedRazaImg
+  },
+  {
+    name: 'Zubair Malik',
+    city: 'Lahore, Pakistan',
+    text: 'Booking airline tickets and private domestic tours in Swat and Naran Valley was incredibly fast and smooth. Royal Travels operates with absolute elite professionalism. Will definitely travel with them again.',
+    image: zubairMalikImg
+  },
+  {
+    name: 'Tehmina Hassan',
+    city: 'Rawalpindi, Pakistan',
+    text: 'Our Turkey package was outstanding. Flight scheduling, domestic connections in Cappadocia, hotel stays, and local historical guides were perfectly taken care of. I didn\'t have to worry about a single detail.',
+    image: tehminaHassanImg
+  },
+  {
+    name: 'Dr. Mohammad Ali',
+    city: 'Islamabad, Pakistan',
+    text: 'The ground staff in Makkah were like family. They helped us with our elderly parents during Tawaaf. I highly recommend Royal Travels for their compassion.',
+    image: mohammadAliImg
+  },
+  {
+    name: 'Ayesha Siddiqui',
+    city: 'Lahore, Pakistan',
+    text: 'Alhamdulillah, performed Umrah using their premium package. Extremely smooth transport from Jeddah to Makkah and Madinah. Vetted hotels with delicious breakfast included!',
+    image: ayeshaSiddiquiImg
+  }
+]
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
@@ -596,40 +641,24 @@ const Home2 = () => {
           </div>
 
           {/* Testimonial Cards Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Card 1 */}
-            <div className="bg-white p-10 shadow-lg text-center relative border border-gray-100 flex flex-col items-center">
-              <span className="material-symbols-outlined text-gray-200 text-5xl absolute top-6 right-6">format_quote</span>
-              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#f5f7fa] mb-6">
-                <img
-                  alt="Tehmina Hassan portrait"
-                  className="w-full h-full object-cover"
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80"
-                />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {staticTestimonials.map((t, idx) => (
+              <div key={idx} className="bg-white p-10 shadow-lg text-center relative border border-gray-100 flex flex-col items-center">
+                <span className="material-symbols-outlined text-gray-200 text-5xl absolute top-6 right-6">format_quote</span>
+                <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#f5f7fa] mb-6">
+                  <img
+                    alt={`${t.name} portrait`}
+                    className="w-full h-full object-cover"
+                    src={t.image}
+                  />
+                </div>
+                <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">{t.name}</h5>
+                <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase mb-4">{t.city}</p>
+                <p className="text-gray-500 italic text-xs leading-relaxed max-w-sm">
+                  "{t.text}"
+                </p>
               </div>
-              <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">Tehmina Hassan</h5>
-              <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase mb-4">Rawalpindi, Pakistan</p>
-              <p className="text-gray-500 italic text-xs leading-relaxed max-w-sm">
-                "Our Turkey package was outstanding. Flight scheduling, domestic connections in Cappadocia, hotel stays, and local historical guides were perfectly taken care of. I didn't have to worry about a single detail."
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white p-10 shadow-lg text-center relative border border-gray-100 flex flex-col items-center">
-              <span className="material-symbols-outlined text-gray-200 text-5xl absolute top-6 right-6">format_quote</span>
-              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#f5f7fa] mb-6">
-                <img
-                  alt="Zubair Malik portrait"
-                  className="w-full h-full object-cover"
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80"
-                />
-              </div>
-              <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">Zubair Malik</h5>
-              <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase mb-4">Islamabad, Pakistan</p>
-              <p className="text-gray-500 italic text-xs leading-relaxed max-w-sm">
-                "Booking airline tickets and private domestic tours in Swat and Naran Valley was incredibly fast and smooth. Royal Travels operates with absolute elite professionalism. Will definitely travel with them again."
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
