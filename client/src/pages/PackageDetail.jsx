@@ -118,9 +118,11 @@ const staticPackages = [
   }
 ]
 
-const getCategoryPresets = (categoryName) => {
+const getCategoryPresets = (categoryName, title) => {
   const cat = (categoryName || '').toLowerCase()
-  if (cat.includes('economy')) {
+  const tit = (title || '').toLowerCase()
+  
+  if (cat.includes('economy') || tit.includes('economy')) {
     return {
       includes: [
         'Return Flight',
@@ -135,7 +137,10 @@ const getCategoryPresets = (categoryName) => {
         'Laundry and room service charges'
       ]
     }
-  } else if (cat.includes('classic') || cat.includes('premium')) {
+  } else if (
+    cat.includes('classic') || cat.includes('premium') || cat.includes('3 star') || cat.includes('3star') || cat.includes('4 star') || cat.includes('4star') ||
+    tit.includes('classic') || tit.includes('premium') || tit.includes('3 star') || tit.includes('3star') || tit.includes('4 star') || tit.includes('4star')
+  ) {
     return {
       includes: [
         'E-Visa Processing',
@@ -150,7 +155,10 @@ const getCategoryPresets = (categoryName) => {
         'Laundry and room service charges'
       ]
     }
-  } else if (cat.includes('luxury')) {
+  } else if (
+    cat.includes('luxury') || cat.includes('5 star') || cat.includes('5star') ||
+    tit.includes('luxury') || tit.includes('5 star') || tit.includes('5star')
+  ) {
     return {
       includes: [
         'E-Visa Processing',
@@ -357,7 +365,7 @@ const PackageDetail = () => {
                 <h3 className="font-notoSerif text-xl mb-6">What's Included</h3>
                 <ul className="space-y-4">
                   {(() => {
-                    const presets = getCategoryPresets(pkg.category);
+                    const presets = getCategoryPresets(pkg.category, pkg.title);
                     const includesList = presets ? presets.includes : (Array.isArray(pkg.includes) ? pkg.includes : String(pkg.includes || 'Visa Processing,Flights,Ground Transport,Guided Tours').split(',').map(s => s.trim()).filter(Boolean));
                     return includesList.map((item, idx) => (
                       <li key={idx} className="flex items-center gap-3 text-sm">
@@ -372,7 +380,7 @@ const PackageDetail = () => {
                 <h3 className="font-notoSerif text-xl mb-6">Not Included</h3>
                 <ul className="space-y-4">
                   {(() => {
-                    const presets = getCategoryPresets(pkg.category);
+                    const presets = getCategoryPresets(pkg.category, pkg.title);
                     const notIncludesList = presets ? presets.not_includes : (pkg.not_includes && pkg.not_includes.length > 0 ? (Array.isArray(pkg.not_includes) ? pkg.not_includes : String(pkg.not_includes).split(',').map(s => s.trim()).filter(Boolean)) : []);
                     const defaultNotIncludes = [
                       'Personal shopping & extra meals',
