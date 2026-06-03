@@ -118,6 +118,57 @@ const staticPackages = [
   }
 ]
 
+const getCategoryPresets = (categoryName) => {
+  const cat = (categoryName || '').toLowerCase()
+  if (cat.includes('economy')) {
+    return {
+      includes: [
+        'Return Flight',
+        'E-Visa Processing',
+        'Shared Ground Transport',
+        'Accomodations',
+        '24/7 Pilgrims Support'
+      ],
+      not_includes: [
+        'Meals',
+        'Travel and health insurance',
+        'Laundry and room service charges'
+      ]
+    }
+  } else if (cat.includes('classic') || cat.includes('premium')) {
+    return {
+      includes: [
+        'E-Visa Processing',
+        'Ground Transport',
+        'Accomodations',
+        '24/7 Pilgrims Support'
+      ],
+      not_includes: [
+        'Return Flight',
+        'Meals',
+        'Travel and health insurance',
+        'Laundry and room service charges'
+      ]
+    }
+  } else if (cat.includes('luxury')) {
+    return {
+      includes: [
+        'E-Visa Processing',
+        'Ground Transport',
+        'Accomodations',
+        'FREE Breakfast',
+        '24/7 Pilgrims Support'
+      ],
+      not_includes: [
+        'Return Flight',
+        'Laundry and room service charges',
+        'Travel and health insurance'
+      ]
+    }
+  }
+  return null
+}
+
 const PackageDetail = () => {
   const { id } = useParams()
   const [pkg, setPkg] = useState(null)
@@ -305,40 +356,37 @@ const PackageDetail = () => {
               <div>
                 <h3 className="font-notoSerif text-xl mb-6">What's Included</h3>
                 <ul className="space-y-4">
-                  {(Array.isArray(pkg.includes) ? pkg.includes : String(pkg.includes || 'Visa Processing,Flights,Ground Transport,Guided Tours').split(',')).map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-sm">
-                      <span className="material-symbols-outlined text-[#CD9933] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                      {item}
-                    </li>
-                  ))}
+                  {(() => {
+                    const presets = getCategoryPresets(pkg.category);
+                    const includesList = presets ? presets.includes : (Array.isArray(pkg.includes) ? pkg.includes : String(pkg.includes || 'Visa Processing,Flights,Ground Transport,Guided Tours').split(',').map(s => s.trim()).filter(Boolean));
+                    return includesList.map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-3 text-sm">
+                        <span className="material-symbols-outlined text-[#CD9933] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+                        {item}
+                      </li>
+                    ));
+                  })()}
                 </ul>
               </div>
               <div>
                 <h3 className="font-notoSerif text-xl mb-6">Not Included</h3>
                 <ul className="space-y-4">
-                  {pkg.not_includes && pkg.not_includes.length > 0 ? (
-                    (Array.isArray(pkg.not_includes) ? pkg.not_includes : String(pkg.not_includes).split(',')).map((item, idx) => (
+                  {(() => {
+                    const presets = getCategoryPresets(pkg.category);
+                    const notIncludesList = presets ? presets.not_includes : (pkg.not_includes && pkg.not_includes.length > 0 ? (Array.isArray(pkg.not_includes) ? pkg.not_includes : String(pkg.not_includes).split(',').map(s => s.trim()).filter(Boolean)) : []);
+                    const defaultNotIncludes = [
+                      'Personal shopping & extra meals',
+                      'Travel and health insurance',
+                      'Laundry and room service charges'
+                    ];
+                    const finalNotIncludes = notIncludesList.length > 0 ? notIncludesList : defaultNotIncludes;
+                    return finalNotIncludes.map((item, idx) => (
                       <li key={idx} className="flex items-center gap-3 text-sm text-on-surface-variant">
                         <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
                         {item}
                       </li>
-                    ))
-                  ) : (
-                    <>
-                      <li className="flex items-center gap-3 text-sm text-on-surface-variant">
-                        <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
-                        Personal shopping & extra meals
-                      </li>
-                      <li className="flex items-center gap-3 text-sm text-on-surface-variant">
-                        <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
-                        Travel and health insurance
-                      </li>
-                      <li className="flex items-center gap-3 text-sm text-on-surface-variant">
-                        <span className="material-symbols-outlined text-error/40 text-lg">cancel</span>
-                        Laundry and room service charges
-                      </li>
-                    </>
-                  )}
+                    ));
+                  })()}
                 </ul>
               </div>
             </div>

@@ -81,7 +81,7 @@ const Packages = () => {
     const categoryParam = searchParams.get('category')
     if (categoryParam) {
       if (categoryParam === 'economy') {
-        setSelectedCategories(['Economy'])
+        setSelectedCategories(['Economy Package'])
       } else if (categoryParam === '3star') {
         setSelectedCategories(['3 Star Packages'])
       } else if (categoryParam === '4star') {
@@ -112,20 +112,14 @@ const Packages = () => {
       if (cat === 'Economy' || cat === 'Economy Package') {
         return categoryLower.includes('economy') || titleLower.includes('economy')
       }
-      if (cat === 'Ground Classic & Premium Packages') {
-        return categoryLower.includes('ground classic') || categoryLower.includes('classic & premium') || titleLower.includes('ground classic')
-      }
-      if (cat === 'Ground Luxury Packages') {
-        return categoryLower.includes('ground luxury') || titleLower.includes('ground luxury')
-      }
       if (cat === '3 Star Packages') {
         return categoryLower.includes('3 star') || categoryLower.includes('3star') || titleLower.includes('3 star') || titleLower.includes('3star')
       }
       if (cat === '4 Star Packages') {
-        return categoryLower.includes('4 star') || categoryLower.includes('4star') || titleLower.includes('4 star') || titleLower.includes('4star')
+        return categoryLower.includes('4 star') || categoryLower.includes('4star') || titleLower.includes('4 star') || titleLower.includes('4star') || categoryLower.includes('classic') || categoryLower.includes('premium') || titleLower.includes('classic') || titleLower.includes('premium')
       }
       if (cat === '5 Star Packages') {
-        return categoryLower.includes('5 star') || categoryLower.includes('5star') || titleLower.includes('5 star') || titleLower.includes('5star')
+        return categoryLower.includes('5 star') || categoryLower.includes('5star') || titleLower.includes('5 star') || titleLower.includes('5star') || categoryLower.includes('luxury') || titleLower.includes('luxury')
       }
       return false
     })
@@ -195,8 +189,6 @@ const Packages = () => {
               <nav className="space-y-6">
                 {[
                   'Economy Package',
-                  'Ground Classic & Premium Packages',
-                  'Ground Luxury Packages',
                   '3 Star Packages',
                   '4 Star Packages',
                   '5 Star Packages'
