@@ -3,6 +3,11 @@ import { useParams, Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
+import background3 from '../assets/home-3.jpg'
+import economyPackagesImg from '../assets/economy_packages.png'
+import star3PackagesImg from '../assets/star3_packages.png'
+import star4PackagesImg from '../assets/star4_packages.png'
+import star5PackagesImg from '../assets/star5_packages.png'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
@@ -24,8 +29,8 @@ const staticPackages = [
     category: 'Economy',
     stars: 3,
     badge: 'Best Price',
-    image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800',
-    image_url: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800',
+    image: economyPackagesImg,
+    image_url: economyPackagesImg,
     description: 'Perform your holy pilgrimage with our affordable 21-day Economy package. Staying at Mayer Mayassar Mecca and Fursan Al Madinah, offering clean and peaceful accommodation.',
     includes: ['E-Visa Processing', 'Shared Ground Transport', 'Makkah Ziyaraat', '24/7 Tour Support', 'Multilingual Guides'],
     itinerary: [
@@ -48,8 +53,8 @@ const staticPackages = [
     category: '3 Star',
     stars: 3,
     badge: 'Best Seller',
-    image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800',
-    image_url: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800',
+    image: star3PackagesImg,
+    image_url: star3PackagesImg,
     description: 'All-inclusive 3-Star Umrah package. Staying at Al Aseel Ajyad Mecca (7 Nights) and Al Shourfah Hotel Madinah (7 Nights). Fully guided and all ground transfers included.',
     includes: ['E-Visa Processing', 'Return Flights (PIA)', 'Full Ground Transfer', 'Guided Ziyarat', 'Zamzam Water', 'Scholar Guidance'],
     itinerary: [
@@ -72,8 +77,8 @@ const staticPackages = [
     category: '4 Star',
     stars: 4,
     badge: 'Premium Comfort',
-    image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800',
-    image_url: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800',
+    image: star4PackagesImg,
+    image_url: star4PackagesImg,
     description: 'Indulge in a premium 4-Star Umrah journey. Features Ramada Dar Al Faiyzeen in Mecca and Elaf Taibah in Madinah. Includes premium flights, VIP transfers, and daily buffet breakfast.',
     includes: ['E-Visa Processing', 'Return Flights (Saudia)', 'VIP GMC Ground Transfer', 'Daily Buffet Breakfast', 'Complete Guided Ziyarat Makkah & Madinah', '24/7 Customer Support'],
     itinerary: [
@@ -96,8 +101,8 @@ const staticPackages = [
     category: '5 Star',
     stars: 5,
     badge: 'Cheap Luxury',
-    image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800',
-    image_url: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800',
+    image: star5PackagesImg,
+    image_url: star5PackagesImg,
     description: 'All-inclusive 5-Star luxury package on a budget. Stay at Holiday Inn Makkah (7 Nights) and Province Al Sham Madinah (7 Nights). Premium flights, private VIP GMC transport, and gourmet breakfasts.',
     includes: ['E-Visa Processing', 'Return Flights (Emirates)', 'VIP GMC Ground Transfer', 'Gourmet Buffet Breakfast', 'Guided Holy Ziyarat Makkah & Madinah', '24/7 VIP Tour Manager Support'],
     itinerary: [
@@ -234,7 +239,7 @@ const PackageDetail = () => {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src={getProxyUrl(pkg.image_url || pkg.image || staticPackages[0].image)} alt={pkg.title} />
+          <img className="w-full h-full object-cover" src={background3} alt={pkg.title} />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
