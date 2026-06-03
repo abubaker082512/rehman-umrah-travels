@@ -15,14 +15,54 @@ const staticPackages = [
   {
     id: 401,
     title: '21 Nights Saver Economy Umrah',
-    location: 'Fundaq Mayer Mayassar (Makkah)',
+    location: 'Fundaq Mayer Mayassar (Makkah) & Fursan Al Madinah (Madinah)',
     price: 209500,
     days: '21 Nights',
     duration: '21 Nights',
     airline: 'Air Blue',
     badge: '21 Nights',
     badgeColor: 'bg-[#013334]',
+    category: 'Economy',
     image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800',
+  },
+  {
+    id: 402,
+    title: '21 Nights Comfort Economy Saver',
+    location: 'Jedat Al Khalil (Makkah) & Karam Ajyad Hotel (Madinah)',
+    price: 224500,
+    days: '21 Nights',
+    duration: '21 Nights',
+    airline: 'PIA',
+    badge: '21 Nights',
+    badgeColor: 'bg-[#013334]',
+    category: 'Economy',
+    image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800',
+  },
+  {
+    id: 403,
+    title: '21 Nights Ajyad Standard Economy',
+    location: 'Al Juhani Ajyad Hotel (Makkah) & Al Ikram Palace (Madinah)',
+    price: 235500,
+    days: '21 Nights',
+    duration: '21 Nights',
+    airline: 'Saudi Airlines',
+    badge: '21 Nights',
+    badgeColor: 'bg-[#013334]',
+    category: 'Economy',
+    image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800',
+  },
+  {
+    id: 404,
+    title: '21 Nights Extended Special Economy',
+    location: 'Maather Al Jiwaar Hotel (Makkah) & Orjawan Al Madinah (Madinah)',
+    price: 251500,
+    days: '21 Nights',
+    duration: '21 Nights',
+    airline: 'Air Blue',
+    badge: '21 Nights',
+    badgeColor: 'bg-[#013334]',
+    category: 'Economy',
+    image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800',
   },
   {
     id: 501,
@@ -34,6 +74,7 @@ const staticPackages = [
     airline: 'PIA',
     badge: 'Best Seller',
     badgeColor: 'bg-[#CD9933]',
+    category: '3 Star',
     image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800',
   },
   {
@@ -46,6 +87,7 @@ const staticPackages = [
     airline: 'Saudi Airlines',
     badge: 'Premium Comfort',
     badgeColor: 'bg-[#013334]',
+    category: '4 Star',
     image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800',
   },
   {
@@ -58,6 +100,7 @@ const staticPackages = [
     airline: 'Emirates',
     badge: 'Cheap Luxury',
     badgeColor: 'bg-[#CD9933]',
+    category: '5 Star',
     image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800',
   }
 ]
@@ -96,21 +139,20 @@ const Packages = () => {
   const matchesCategory = (pkg) => {
     if (selectedCategories.length === 0) return true
     
-    const titleLower = (pkg.title || pkg.name || '').toLowerCase()
-    const categoryLower = (pkg.category || '').toLowerCase()
+    const categoryLower = (pkg.category || '').toLowerCase().trim()
     
     return selectedCategories.some(cat => {
-      if (cat === 'Economy' || cat === 'Economy Package') {
-        return categoryLower.includes('economy') || titleLower.includes('economy')
+      if (cat === 'Economy Package' || cat === 'Economy') {
+        return categoryLower === 'economy'
       }
-      if (cat === '3 Star Packages') {
-        return categoryLower.includes('3 star') || categoryLower.includes('3star') || titleLower.includes('3 star') || titleLower.includes('3star')
+      if (cat === '3 Star Packages' || cat === '3 Star') {
+        return categoryLower === '3 star'
       }
-      if (cat === '4 Star Packages') {
-        return categoryLower.includes('4 star') || categoryLower.includes('4star') || titleLower.includes('4 star') || titleLower.includes('4star') || categoryLower.includes('classic') || categoryLower.includes('premium') || titleLower.includes('classic') || titleLower.includes('premium')
+      if (cat === '4 Star Packages' || cat === '4 Star') {
+        return categoryLower === '4 star'
       }
-      if (cat === '5 Star Packages') {
-        return categoryLower.includes('5 star') || categoryLower.includes('5star') || titleLower.includes('5 star') || titleLower.includes('5star') || categoryLower.includes('luxury') || titleLower.includes('luxury')
+      if (cat === '5 Star Packages' || cat === '5 Star') {
+        return categoryLower === '5 star'
       }
       return false
     })

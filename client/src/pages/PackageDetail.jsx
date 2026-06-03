@@ -335,6 +335,7 @@ const PackageDetail = () => {
   const { id } = useParams()
   const [pkg, setPkg] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [morePackages, setMorePackages] = useState([])
 
   useEffect(() => {
     setLoading(true)
@@ -350,14 +351,44 @@ const PackageDetail = () => {
         }
         setPkg(data)
         setLoading(false)
+
+        // Fetch all packages to populate "More Packages" dynamically
+        return axios.get(`${API_BASE}/api/packages`)
+      })
+      .then(res => {
+        if (res && Array.isArray(res.data) && res.data.length > 0) {
+          const currentCategory = res.data.find(p => String(p.id) === String(id))?.category || ''
+          const filtered = res.data.filter(p => String(p.id) !== String(id))
+          const matching = filtered.filter(p => p.category?.toLowerCase().trim() === currentCategory.toLowerCase().trim())
+          if (matching.length >= 3) {
+            setMorePackages(matching.slice(0, 3))
+          } else {
+            const merged = [...matching, ...filtered.filter(p => p.category?.toLowerCase().trim() !== currentCategory.toLowerCase().trim())]
+            setMorePackages(merged.slice(0, 3))
+          }
+        } else {
+          const staticPkg = staticPackages.find(p => String(p.id) === String(id))
+          const currentCategory = staticPkg?.category || ''
+          const filtered = staticPackages.filter(p => String(p.id) !== String(id))
+          const matching = filtered.filter(p => p.category?.toLowerCase().trim() === currentCategory.toLowerCase().trim())
+          const merged = [...matching, ...filtered.filter(p => p.category?.toLowerCase().trim() !== currentCategory.toLowerCase().trim())]
+          setMorePackages(merged.slice(0, 3))
+        }
       })
       .catch(err => {
-        console.error('Error fetching package:', err)
-        const staticPkg = staticPackages.find(p => p.id === parseInt(id))
+        console.error('Error fetching package details or list:', err)
+        const staticPkg = staticPackages.find(p => String(p.id) === String(id))
         if (staticPkg) {
           setPkg(staticPkg)
         }
         setLoading(false)
+
+        // Fallback for more packages using static fallback array
+        const currentCategory = staticPkg?.category || ''
+        const filtered = staticPackages.filter(p => String(p.id) !== String(id))
+        const matching = filtered.filter(p => p.category?.toLowerCase().trim() === currentCategory.toLowerCase().trim())
+        const merged = [...matching, ...filtered.filter(p => p.category?.toLowerCase().trim() !== currentCategory.toLowerCase().trim())]
+        setMorePackages(merged.slice(0, 3))
       })
   }, [id])
 
@@ -652,19 +683,29 @@ const PackageDetail = () => {
         <div className="max-w-screen-2xl mx-auto">
           <h2 className="font-notoSerif text-3xl mb-8">More Packages</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {staticPackages.filter(p => p.id !== parseInt(id)).slice(0, 3).map(p => (
-              <Link to={`/package/${p.id}`} key={p.id} className="bg-surface-container-lowest editorial-shadow overflow-hidden group cursor-pointer transition-transform hover:-translate-y-1 block">
-                <div className="relative h-48 overflow-hidden">
-                  <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src={getProxyUrl(p.image)} alt={p.title} />
-                  <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded">{p.badge}</div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-notoSerif text-lg font-bold text-primary mb-1">{p.title}</h3>
-                  <p className="text-on-surface-variant text-sm mb-3">{p.days}</p>
-                  <span className="text-xl font-extrabold text-[#CD9933]">PKR {p.price.toLocaleString()}</span>
-                </div>
-              </Link>
-            ))}
+            {morePackages.map(p => {
+              const staticPkg = staticPackages.find(sp => String(sp.id) === String(p.id))
+              const image = p.image_url || p.image || staticPkg?.image || economyPackagesImg
+              const badge = p.badge || staticPkg?.badge || ''
+              const duration = p.duration || p.days || staticPkg?.days || '15 Days'
+              const price = typeof p.price === 'number' ? p.price : (parseFloat(String(p.price).replace(/[^0-9.]/g, '')) || 0)
+
+              return (
+                <Link to={`/package/${p.id}`} key={p.id} className="bg-surface-container-lowest editorial-shadow overflow-hidden group cursor-pointer transition-transform hover:-translate-y-1 block">
+                  <div className="relative h-48 overflow-hidden">
+                    <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src={getProxyUrl(image)} alt={p.title} />
+                    {badge && (
+                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded">{badge}</div>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-notoSerif text-lg font-bold text-primary mb-1 line-clamp-1">{p.title}</h3>
+                    <p className="text-on-surface-variant text-sm mb-3">{duration}</p>
+                    <span className="text-xl font-extrabold text-[#CD9933]">PKR {price.toLocaleString()}</span>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         </div>
       </section>

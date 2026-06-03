@@ -64,6 +64,7 @@ const staticPackages = [
     days: '21 Nights',
     badge: 'Economy',
     badgeColor: 'bg-[#013334]',
+    category: 'Economy',
     image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80'
   },
   {
@@ -74,6 +75,7 @@ const staticPackages = [
     days: '15 Days',
     badge: '3 Star',
     badgeColor: 'bg-[#CD9933]',
+    category: '3 Star',
     image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80'
   },
   {
@@ -84,6 +86,7 @@ const staticPackages = [
     days: '10 Days',
     badge: '4 Star',
     badgeColor: 'bg-primary',
+    category: '4 Star',
     image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80'
   },
   {
@@ -94,6 +97,7 @@ const staticPackages = [
     days: '7 Days',
     badge: 'Luxury',
     badgeColor: 'bg-[#CD9933]',
+    category: '5 Star',
     image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80'
   }
 ]
@@ -113,7 +117,23 @@ const Home = () => {
     axios.get(`${API_BASE}/api/packages`)
       .then(res => {
         if (Array.isArray(res.data) && res.data.length > 0) {
-          setPackages(res.data)
+          const economy = res.data.find(p => p.category?.toLowerCase().trim() === 'economy')
+          const star3 = res.data.find(p => p.category?.toLowerCase().trim() === '3 star')
+          const star4 = res.data.find(p => p.category?.toLowerCase().trim() === '4 star')
+          const star5 = res.data.find(p => p.category?.toLowerCase().trim() === '5 star')
+          
+          const featured = [
+            economy,
+            star3,
+            star4,
+            star5
+          ].filter(Boolean)
+          
+          if (featured.length > 0) {
+            setPackages(featured)
+          } else {
+            setPackages(res.data)
+          }
         } else {
           setPackages(staticPackages)
         }
