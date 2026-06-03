@@ -1311,7 +1311,7 @@ const Home3 = () => {
           {/* Left Column: Happy traveler photo cutout */}
           <div className="relative hidden lg:block overflow-hidden min-h-[500px]">
             <img
-              alt="Happy smiling traveler holding camera passport boarding pass layout cutout"
+              alt="Friendly Pakistani travel consultant sitting at a modern office desk"
               className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[95%] w-auto object-contain"
               src={travelerPortrait}
             />

@@ -5,6 +5,7 @@ import logo from '../assets/Rehman Travel Logo.png'
 import background1 from '../assets/background1.webp'
 import aboutImage from '../assets/about-us.jpg'
 import BannerContactForm from '../components/BannerContactForm'
+import travelerPortrait from '../assets/traveler_portrait.png'
 import sabaKhanImg from '../assets/testimonials/saba_khan.png'
 import ahmedRazaImg from '../assets/testimonials/ahmed_raza.png'
 import zubairMalikImg from '../assets/testimonials/zubair_malik.png'
@@ -728,9 +729,9 @@ const Home2 = () => {
           {/* Left Column: Happy traveler photo cutout */}
           <div className="relative hidden lg:block overflow-hidden min-h-[500px]">
             <img
-              alt="Happy smiling traveler holding camera passport boarding pass layout cutout"
+              alt="Friendly Pakistani travel consultant sitting at a modern office desk"
               className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[95%] w-auto object-contain"
-              src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80"
+              src={travelerPortrait}
             />
           </div>
 
