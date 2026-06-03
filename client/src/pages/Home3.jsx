@@ -163,16 +163,7 @@ const GoldLogoIcon = () => (
 )
 
 const getProxyUrl = (url) => {
-  if (!url) return '';
-  if (url.startsWith('http')) {
-    if (url.includes('/api/image?url=')) return url;
-    try {
-      return `/api/image?url=${btoa(url)}`;
-    } catch (e) {
-      return url;
-    }
-  }
-  return url;
+  return url || '';
 };
 
 const Home3 = () => {
