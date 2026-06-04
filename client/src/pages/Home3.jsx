@@ -1169,16 +1169,13 @@ const Home3 = () => {
                   duration={700}
                 >
                   <div className="bg-[#013334] border border-[#CD9933]/15 rounded-xl hover:border-[#CD9933]/40 transition-all duration-300 hover:-translate-y-1 flex flex-col overflow-hidden h-full group shadow-md hover:shadow-xl text-white">
-                    {/* Top Image with Gold Badge */}
+                    {/* Top Image */}
                     <div className="relative h-64 overflow-hidden shrink-0">
                       <img
                         alt={pkg.title}
                         className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                         src={img}
                       />
-                      <div className="absolute top-4 left-4 bg-[#CD9933] text-white px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider rounded-md shadow-md">
-                        {badge}
-                      </div>
                     </div>
 
                     {/* Card Content details */}

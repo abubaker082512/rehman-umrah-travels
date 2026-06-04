@@ -144,7 +144,6 @@ const LocalTourDetail = () => {
           </Link>
           <div className="flex flex-wrap items-end gap-4 justify-between">
             <div>
-              <span className="inline-block bg-[#CD9933] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">{tour.badge}</span>
               <h1 className="font-notoSerif text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight max-w-3xl">{tour.title}</h1>
               <p className="text-white/70 mt-2 text-sm font-medium">{tour.destinations}</p>
             </div>
