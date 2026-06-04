@@ -36,10 +36,122 @@ module.exports = async function handler(req, res) {
         const { data, error } = await supabase.from('packages').select('*').order('created_at', { ascending: false });
         if (error) throw error;
 
-        // Perform self-cleaning delete in the background if service role is available
+        // Self-healing: if no economy packages containing "21 nights" are found in the DB, re-seed them!
+        const has21Nights = data && data.some(p => p.title?.toLowerCase().includes('21 nights'));
+        if (hasServiceRole && (!data || data.length === 0 || !has21Nights)) {
+          const seedEcon = [
+            {
+              title: '21 Nights Saver Economy Umrah',
+              description: 'Perform your holy pilgrimage with our affordable 21-day Economy package. Staying at Mayer Mayassar Mecca and Fursan Al Madinah, offering clean and peaceful accommodation.',
+              price: 209500,
+              category: 'Economy',
+              duration: '21 Days',
+              location: 'Makkah & Madinah',
+              hotel_name: 'Fundaq Mayer Mayassar',
+              distance_from_haram: '800m from Haram',
+              hotel_makkah: 'Fundaq Mayer Mayassar',
+              distance_makkah: '800m from Haram',
+              hotel_madinah: 'Fursan Al Madinah',
+              distance_madinah: '350m from Nabawi',
+              image_url: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80',
+              airline: 'Air Blue',
+              stars: 3,
+              badge: 'Best Price',
+              includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
+              itinerary: [
+                {day: 'Day 01', title: 'Arrival & Makkah Check-in', description: 'Arrive at Jeddah, transfer to Fundaq Mayer Mayassar Makkah. Perform Umrah.'},
+                {day: 'Day 02 - 12', title: 'Makkah Prayers', description: 'Daily prayers in Masjid Al-Haram. Guided Ziyarat of historical sites on Day 3.'},
+                {day: 'Day 13 - 20', title: 'Madinah Stay', description: 'Transfer to Madinah, check-in Fursan Al Madinah. Prayers at Masjid Nabawi.'},
+                {day: 'Day 21', title: 'Departure', description: 'Final prayers and check-out. Transfer to Jeddah Airport for return flight.'}
+              ]
+            },
+            {
+              title: '21 Nights Comfort Economy Saver',
+              description: 'A high-value family-oriented economy saver package featuring Jedat Al Khalil Mecca hotel and Karam Ajyad in Madinah.',
+              price: 224500,
+              category: 'Economy',
+              duration: '21 Days',
+              location: 'Makkah & Madinah',
+              hotel_name: 'Jedat Al Khalil',
+              distance_from_haram: '750m from Haram',
+              hotel_makkah: 'Jedat Al Khalil',
+              distance_makkah: '750m from Haram',
+              hotel_madinah: 'Karam Ajyad Hotel',
+              distance_madinah: '400m from Nabawi',
+              image_url: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80',
+              airline: 'PIA',
+              stars: 3,
+              badge: 'Popular Saver',
+              includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
+              itinerary: [
+                {day: 'Day 01', title: 'Jeddah Arrival', description: 'Arrive at Jeddah Airport, transfer to Jedat Al Khalil Makkah.'},
+                {day: 'Day 02 - 12', title: 'Ibadah in Makkah', description: 'Perform 5 daily prayers in Haram. Guided group Ziyarat.'},
+                {day: 'Day 13 - 20', title: 'Madinah Serenity', description: 'Transfer to Karam Ajyad Madinah. Daily prayers in Nabawi.'},
+                {day: 'Day 21', title: 'Departure', description: 'Transfer to Jeddah airport for return flight.'}
+              ]
+            },
+            {
+              title: '21 Nights Ajyad Standard Economy',
+              description: 'Highly popular choice for pilgrims looking for excellent standard services at a reasonable budget in Ajyad, Makkah.',
+              price: 235500,
+              category: 'Economy',
+              duration: '21 Days',
+              location: 'Makkah & Madinah',
+              hotel_name: 'Al Juhani Ajyad Hotel',
+              distance_from_haram: '650m from Haram',
+              hotel_makkah: 'Al Juhani Ajyad Hotel',
+              distance_makkah: '650m from Haram',
+              hotel_madinah: 'Al Ikram Palace',
+              distance_madinah: '450m from Nabawi',
+              image_url: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80',
+              airline: 'Saudi Airlines',
+              stars: 3,
+              badge: 'Ajyad Choice',
+              includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
+              itinerary: [
+                {day: 'Day 01', title: 'Makkah Arrival', description: 'Arrive at Jeddah, proceed to Al Juhani Ajyad Hotel Makkah.'},
+                {day: 'Day 02 - 12', title: 'Makkah Stays', description: 'Daily prayers at Haram. Guided historical Ziyarat tours.'},
+                {day: 'Day 13 - 20', title: 'Madinah Stays', description: 'Transfer to Al Ikram Madinah. Focus on prayers in Masjid Nabawi.'},
+                {day: 'Day 21', title: 'Departure', description: 'Return transfers to Jeddah Airport.'}
+              ]
+            },
+            {
+              title: '21 Nights Extended Special Economy',
+              description: 'Maximize your time in the holy land with our 21-night package. Features Maather Al Jiwaar Makkah and Orjawan Al Madinah.',
+              price: 251500,
+              category: 'Economy',
+              duration: '21 Days',
+              location: 'Makkah & Madinah',
+              hotel_name: 'Maather Al Jiwaar Hotel',
+              distance_from_haram: '600m from Haram',
+              hotel_makkah: 'Maather Al Jiwaar Hotel',
+              distance_makkah: '600m from Haram',
+              hotel_madinah: 'Orjawan Al Madinah',
+              distance_madinah: '450m from Nabawi',
+              image_url: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80',
+              airline: 'Air Blue',
+              stars: 3,
+              badge: 'Top Economy',
+              includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
+              itinerary: [
+                {day: 'Day 01', title: 'Welcome to Makkah', description: 'Arrive in Makkah, check-in to Maather Al Jiwaar Hotel. Complete Umrah.'},
+                {day: 'Day 02 - 12', title: 'Makkah Devotions', description: 'Spend peaceful days in Ibadah at Haram. Group Ziyarat.'},
+                {day: 'Day 13 - 20', title: 'Madinah Stays', description: 'Transfer to Orjawan Al Madinah. Rest and Ibadah in Masjid Nabawi.'},
+                {day: 'Day 21', title: 'Farewell', description: 'Departure transfer to Jeddah Airport.'}
+              ]
+            }
+          ];
+          await supabaseAdmin.from('packages').insert(seedEcon);
+          const { data: refetched, error: refetchErr } = await supabase.from('packages').select('*').order('created_at', { ascending: false });
+          if (!refetchErr && refetched) {
+            data = refetched;
+          }
+        }
+
+        // Perform self-cleaning delete in the background of other Economy packages
         if (hasServiceRole && data && data.length > 0) {
           const idsToDelete = data
-            .filter(p => p.category?.toLowerCase().includes('economy') && ![401, 402, 403, 404].includes(parseInt(p.id)))
+            .filter(p => p.category?.toLowerCase().includes('economy') && !p.title?.toLowerCase().includes('21 nights'))
             .map(p => p.id);
           
           if (idsToDelete.length > 0) {
@@ -55,7 +167,7 @@ module.exports = async function handler(req, res) {
         // Return only the approved packages (filters out old economy packages immediately on response)
         const cleanData = (data || []).filter(p => {
           if (p.category?.toLowerCase().includes('economy')) {
-            return [401, 402, 403, 404].includes(parseInt(p.id));
+            return p.title?.toLowerCase().includes('21 nights');
           }
           return true;
         });
