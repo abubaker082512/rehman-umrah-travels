@@ -199,33 +199,8 @@ const Footer = () => {
 
         </div>
 
-        {/* BOTTOM SECTION: PAYMENT CARDS & COPYRIGHT */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-8 border-t border-white/10">
-          {/* Payment Icons */}
-          <div className="flex items-center gap-3">
-            {/* Amex */}
-            <svg className="w-10 h-6 rounded bg-[#0177B8] p-1 flex items-center justify-center" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold" fontFamily="sans-serif" letterSpacing="0.5">AMEX</text>
-            </svg>
-            {/* Visa */}
-            <svg className="w-10 h-6 rounded bg-[#1A1F71] p-1.5 flex items-center justify-center" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 45L22 15H30L23 45H15Z" fill="#F7B600" />
-              <path d="M47.7 15.6C44.7 14.5 40.5 14 36.8 14C27.5 14 20.8 18.7 20.6 25.4C20.4 30.4 25.1 33.2 28.7 34.9C32.3 36.6 33.6 37.7 33.5 39.2C33.4 41.5 30.6 42.5 28 42.5C24.4 42.5 22.3 41.6 20.6 40.8L19.4 46.2C21 46.9 24.3 47.5 27.6 47.5C37.5 47.5 44 42.8 44.2 35.6C44.4 30.9 41.5 28.1 36.8 25.9C33 24.1 31.8 23.2 31.8 21.8C31.8 20.2 33.7 18.7 37 18.7C39.9 18.7 42.3 19.3 43.8 20L44.5 20.3L47.7 15.6ZM63.4 15H56L44 45H51.5L53 41H62.5L63.4 45H71L63.4 15ZM54.8 36L57.8 28L60.8 36H54.8ZM87.8 15L80.8 35.8L77.6 19.4C77.2 17.5 75.8 15.6 74 15H66V16.6C68.4 17.5 70.8 19 72.2 20.4L79 45H86.8L99 15H87.8Z" fill="white" />
-            </svg>
-            {/* Mastercard */}
-            <svg className="w-10 h-6 rounded bg-[#222222] p-1 flex items-center justify-center" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="40" cy="30" r="18" fill="#EB001B" fillOpacity="0.9" />
-              <circle cx="60" cy="30" r="18" fill="#F79E1B" fillOpacity="0.9" />
-              <path d="M50 18.7C46.8 21.6 44.8 25.6 44.8 30C44.8 34.4 46.8 38.4 50 41.3C53.2 38.4 55.2 34.4 55.2 30C55.2 25.6 53.2 21.6 50 18.7Z" fill="#FF5F00" />
-            </svg>
-            {/* UnionPay */}
-            <svg className="w-10 h-6 rounded bg-[#0C4E7E] p-1 flex items-center justify-center" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 15H50L40 45H5L15 15Z" fill="#C51A1B" />
-              <path d="M45 15H80L90 45H55L45 15Z" fill="#007F7F" />
-              <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="14" fontWeight="black" fontFamily="sans-serif">UP</text>
-            </svg>
-          </div>
-
+        {/* BOTTOM SECTION: COPYRIGHT */}
+        <div className="flex justify-center items-center pt-8 border-t border-white/10">
           {/* Copyright text */}
           <p className="text-[11px] text-white/40 tracking-wider">
             {footerContent.copyright}

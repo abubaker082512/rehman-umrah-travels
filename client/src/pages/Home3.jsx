@@ -33,12 +33,12 @@ const staticInternationalTours = [
   },
   {
     id: 102,
-    title: 'TURKEY ELEGANCE - CAPPADOCIA & ISTANBUL',
-    price: 210000,
-    duration: '7 Days 6 Nights',
-    badge: 'FEATURED',
-    description: 'Witness hot air balloons over fairy chimneys, explore Hagia Sophia, and cruise the majestic Bosphorus Strait.',
-    image: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&q=80'
+    title: 'BAKU TOUR - AZERBAIJAN FIRE & FLAME',
+    price: 165000,
+    duration: '5 Days 4 Nights',
+    badge: 'TRENDING',
+    description: 'Discover the Land of Fire — visit the iconic Flame Towers, ancient Old City Baku, and stunning Caspian Sea coastline.',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'
   },
   {
     id: 103,
@@ -84,9 +84,18 @@ const staticLocalTours = [
     title: 'NEELUM VALLEY KASHMIR HEAVENLY SERENITY',
     price: 50000,
     duration: '4 Days 3 Nights',
-    badge: 'FOR 1 PERSON - $300',
+    badge: 'FOR 1 PERSON',
     description: 'Explore lush green meadows, crystalline blue lakes, and historical forts in the heart of Azad Jammu & Kashmir.',
     image: 'https://images.unsplash.com/photo-1473163928189-394b13469e19?w=800&q=80'
+  },
+  {
+    id: 204,
+    title: 'SKARDU - THE ROOF OF THE WORLD',
+    price: 65000,
+    duration: '5 Days 4 Nights',
+    badge: 'ADVENTURE',
+    description: 'Stand at the foot of K2, explore Shangrila Resort, Satpara Lake, and the ancient Skardu Fort in the heart of Gilgit-Baltistan.',
+    image: 'https://images.unsplash.com/photo-1570458436416-b8fcccfe883f?w=800&q=80'
   }
 ]
 
@@ -1143,8 +1152,8 @@ const Home3 = () => {
             </div>
           </ScrollReveal>
 
-          {/* 3-Column Card Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* 4-Column Card Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {localTours.map((pkg, idx) => {
               const isStatic = !pkg.hasOwnProperty('image_url')
               const img = localToursImg
