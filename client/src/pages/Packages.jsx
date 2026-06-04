@@ -455,14 +455,7 @@ const Packages = () => {
                               <div className="text-2xl font-notoSerif font-bold text-[#CD9933]">PKR {price > 0 ? price.toLocaleString() : 'N/A'}</div>
                             </div>
                           </div>
-                          <div className="flex gap-4 mb-8 flex-wrap">
-                            <div className="bg-white/5 border border-white/10 text-white flex items-center px-3 py-1 rounded text-xs font-medium">
-                              <span className="material-symbols-outlined text-sm mr-2 text-[#CD9933]">calendar_today</span>{days}
-                            </div>
-                            <div className="bg-white/5 border border-white/10 text-white flex items-center px-3 py-1 rounded text-xs font-medium">
-                              <span className="material-symbols-outlined text-sm mr-2 text-[#CD9933]">flight</span>{airline}
-                            </div>
-                          </div>
+
                           <div className="mt-auto grid grid-cols-2 gap-4">
                             <Link to={`/package/${pkg.id || pkg._id || i + 1}`} className="py-3 bg-white/5 text-white font-bold rounded-md hover:bg-[#CD9933] hover:text-[#013334] border border-white/10 hover:border-[#CD9933] transition-all text-sm text-center">View Details</Link>
                             <Link to="/contact" className="py-3 bg-[#CD9933] text-white font-bold rounded-md hover:bg-[#b08025] transition-colors text-sm text-center">Book Now</Link>

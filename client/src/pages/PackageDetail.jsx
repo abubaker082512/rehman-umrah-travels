@@ -731,30 +731,7 @@ const PackageDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           {/* Left Column: Details */}
           <div className="lg:col-span-8 space-y-12 md:space-y-16">
-            {/* Quick Info */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 rounded-xl editorial-shadow">
-                <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">calendar_today</span>
-                <h3 className="font-notoSerif text-lg mb-1">Duration</h3>
-                <p className="text-on-surface-variant text-sm">{pkg.duration || pkg.days || 'Custom'}</p>
-              </div>
-              <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 rounded-xl editorial-shadow">
-                <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">hotel</span>
-                <h3 className="font-notoSerif text-lg mb-1">Accommodation</h3>
-                <p className="text-on-surface-variant text-sm truncate">
-                  {pkg.hotel_makkah && pkg.hotel_madinah ? (
-                    `Makkah & Madinah Hotels`
-                  ) : (
-                    hotelName
-                  )}
-                </p>
-              </div>
-              <div className="bg-surface-container-lowest p-4 md:p-6 lg:p-8 rounded-xl editorial-shadow">
-                <span className="material-symbols-outlined text-[#CD9933] text-3xl mb-4 block">flight</span>
-                <h3 className="font-notoSerif text-lg mb-1">Flight</h3>
-                <p className="text-on-surface-variant text-sm">{pkg.airline || 'Included'}</p>
-              </div>
-            </div>
+
 
             {/* Nights & Accommodations Section with Bigger View */}
             <div>
