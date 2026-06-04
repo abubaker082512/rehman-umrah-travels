@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
         stars: 3,
         badge: '21 Nights',
         includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Arrival & Makkah Check-in', description: 'Arrive at Jeddah, transfer to Fundaq Mayer Mayassar Makkah. Perform Umrah.'},
           {day: 'Day 02 - 12', title: 'Makkah Prayers', description: 'Daily prayers in Masjid Al-Haram. Guided Ziyarat of historical sites on Day 3.'},
@@ -69,7 +69,7 @@ router.get('/', async (req, res) => {
         stars: 3,
         badge: '21 Nights',
         includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Jeddah Arrival', description: 'Arrive at Jeddah Airport, transfer to Jedat Al Khalil Makkah.'},
           {day: 'Day 02 - 12', title: 'Ibadah in Makkah', description: 'Perform 5 daily prayers in Haram. Guided group Ziyarat.'},
@@ -95,7 +95,7 @@ router.get('/', async (req, res) => {
         stars: 3,
         badge: '21 Nights',
         includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Makkah Arrival', description: 'Arrive at Jeddah, proceed to Al Juhani Ajyad Hotel Makkah.'},
           {day: 'Day 02 - 12', title: 'Makkah Stays', description: 'Daily prayers at Haram. Guided historical Ziyarat tours.'},
@@ -121,7 +121,7 @@ router.get('/', async (req, res) => {
         stars: 3,
         badge: '21 Nights',
         includes: ['Return Flight', 'E-Visa Processing', 'Shared Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Welcome to Makkah', description: 'Arrive in Makkah, check-in to Maather Al Jiwaar Hotel. Complete Umrah.'},
           {day: 'Day 02 - 12', title: 'Makkah Devotions', description: 'Spend peaceful days in Ibadah at Haram. Group Ziyarat.'},
@@ -148,7 +148,7 @@ router.get('/', async (req, res) => {
         stars: 3,
         badge: '3 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Return Flight', 'Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Arrival & Umrah', description: 'Arrive at Jeddah, transfer to Al Aseel Ajyad Makkah. Perform Umrah.'},
           {day: 'Day 02 - 07', title: 'Makkah Prayers', description: 'Pray daily in Masjid Al-Haram. Guided Ziyarat tour on Day 4.'},
@@ -174,7 +174,7 @@ router.get('/', async (req, res) => {
         stars: 3,
         badge: '3 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Return Flight', 'Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Arrival Makkah', description: 'Arrive Jeddah, transfer to Dar El Eiman Al Khalil Makkah.'},
           {day: 'Day 02 - 06', title: 'Makkah Devotions', description: 'Daily prayers at Haram. Guided cave Hira visits.'},
@@ -200,7 +200,7 @@ router.get('/', async (req, res) => {
         stars: 3,
         badge: '3 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Return Flight', 'Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Arrival Makkah', description: 'Arrive Jeddah, transfer to Dorat Makkah. Perform Umrah.'},
           {day: 'Day 02 - 05', title: 'Makkah Prayers', description: 'Focus on daily prayers in Haram. Guided historical tours.'},
@@ -226,7 +226,7 @@ router.get('/', async (req, res) => {
         stars: 3,
         badge: '3 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Return Flight', 'Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Arrival & Umrah', description: 'Check-in Al Thuria Hotel Makkah. Perform Umrah.'},
           {day: 'Day 02 - 04', title: 'Makkah prayers', description: 'Daily prayers at Haram. Guided cave Ziyarat.'},
@@ -253,7 +253,7 @@ router.get('/', async (req, res) => {
         stars: 4,
         badge: '4 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Return Flight', 'Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Makkah Arrival', description: 'Arrive Jeddah, transfer to Ramada Makkah. Perform Umrah.'},
           {day: 'Day 02 - 07', title: 'Haram Devotions', description: 'Daily prayers at Haram. Guided group tours of historical sites.'},
@@ -279,7 +279,7 @@ router.get('/', async (req, res) => {
         stars: 4,
         badge: '4 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Return Flight', 'Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Arrival Makkah', description: 'Transfer to Nawazi Watheer Makkah. Perform Umrah.'},
           {day: 'Day 02 - 06', title: 'Makkah Stay', description: 'Daily prayers in Haram. Guided group Ziyarat.'},
@@ -305,7 +305,7 @@ router.get('/', async (req, res) => {
         stars: 4,
         badge: '4 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Return Flight', 'Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Welcome to Makkah', description: 'Arrive in Makkah, transfer to Dar El Eiman Grand Makkah. Complete Umrah.'},
           {day: 'Day 02 - 05', title: 'Makkah Prayers', description: 'Prayers in Haram. Group Ziyarat to Mina & Arafat.'},
@@ -331,7 +331,7 @@ router.get('/', async (req, res) => {
         stars: 4,
         badge: '4 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Meals', 'Travel and health insurance', 'Laundry and room service charges'],
+        not_includes: ['Return Flight', 'Meals', 'Travel insurance', 'Laundry and room service charges'],
         itinerary: [
           {day: 'Day 01', title: 'Arrive & Umrah', description: 'Check-in Amjad Al Diyafah Makkah. Complete Umrah.'},
           {day: 'Day 02 - 04', title: 'Makkah Devotions', description: 'Daily prayers at Haram. Guided cave Ziyarat.'},
@@ -358,7 +358,7 @@ router.get('/', async (req, res) => {
         stars: 5,
         badge: '5 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', 'FREE Breakfast', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Laundry and room service charges', 'Travel and health insurance'],
+        not_includes: ['Return Flight', 'Laundry and room service charges', 'Travel insurance'],
         itinerary: [
           {day: 'Day 01', title: 'VIP Arrival Makkah', description: 'Arrive Jeddah, private transfer to Holiday Inn Makkah. Complete Umrah.'},
           {day: 'Day 02 - 07', title: 'Makkah Devotions', description: 'Daily prayers in Masjid Al-Haram. Private Ziyarat of holy landmarks.'},
@@ -384,7 +384,7 @@ router.get('/', async (req, res) => {
         stars: 5,
         badge: '5 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', 'FREE Breakfast', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Laundry and room service charges', 'Travel and health insurance'],
+        not_includes: ['Return Flight', 'Laundry and room service charges', 'Travel insurance'],
         itinerary: [
           {day: 'Day 01', title: 'Arrival Makkah', description: 'Arrive Jeddah, transfer to Hyatt Regency Makkah. Perform Umrah.'},
           {day: 'Day 02 - 06', title: 'Makkah Prayers', description: 'Pray daily in Masjid Al-Haram. Guided Ziyarat of holy sites.'},
@@ -410,7 +410,7 @@ router.get('/', async (req, res) => {
         stars: 5,
         badge: '5 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', 'FREE Breakfast', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Laundry and room service charges', 'Travel and health insurance'],
+        not_includes: ['Return Flight', 'Laundry and room service charges', 'Travel insurance'],
         itinerary: [
           {day: 'Day 01', title: 'Makkah Check-in', description: 'Arrive Jeddah, transfer to Anjum Hotel Makkah. Perform Umrah.'},
           {day: 'Day 02 - 05', title: 'Makkah Prayers', description: 'Daily prayers at Haram. Historical Ziyarat tours.'},
@@ -436,7 +436,7 @@ router.get('/', async (req, res) => {
         stars: 5,
         badge: '5 STAR',
         includes: ['E-Visa Processing', 'Ground Transport', 'Accomodations', 'FREE Breakfast', '24/7 Pilgrims Support'],
-        not_includes: ['Return Flight', 'Laundry and room service charges', 'Travel and health insurance'],
+        not_includes: ['Return Flight', 'Laundry and room service charges', 'Travel insurance'],
         itinerary: [
           {day: 'Day 01', title: 'Arrival Makkah', description: 'Check-in Al Shohada Hotel Makkah. Complete Umrah under scholar guidance.'},
           {day: 'Day 02 - 04', title: 'Makkah Stays', description: 'Prayers at Masjid Al-Haram. Focus on Ibadah.'},

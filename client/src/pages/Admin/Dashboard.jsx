@@ -289,7 +289,7 @@ const AdminDashboard = () => {
     hotel_madinah: '', distance_madinah: '',
     image_url: '', airline: '', stars: 4, badge: '', visa_included: false,
     includes: 'Return Flight, E-Visa Processing, Shared Ground Transport, Accomodations, 24/7 Pilgrims Support',
-    not_includes: 'Meals, Travel and health insurance, Laundry and room service charges',
+    not_includes: 'Meals, Travel insurance, Laundry and room service charges',
     itinerary: []
   })
   const [newItineraryDay, setNewItineraryDay] = useState({ day: '', title: '', description: '' })
@@ -368,15 +368,15 @@ const AdminDashboard = () => {
     const PRESETS = {
       'Economy Package': {
         includes: 'Return Flight, E-Visa Processing, Shared Ground Transport, Accomodations, 24/7 Pilgrims Support',
-        not_includes: 'Meals, Travel and health insurance, Laundry and room service charges'
+        not_includes: 'Meals, Travel insurance, Laundry and room service charges'
       },
       'Ground Classic & Premium Packages': {
         includes: 'E-Visa Processing, Ground Transport, Accomodations, 24/7 Pilgrims Support',
-        not_includes: 'Return Flight, Meals, Travel and health insurance, Laundry and room service charges'
+        not_includes: 'Return Flight, Meals, Travel insurance, Laundry and room service charges'
       },
       'Ground Luxury Packages': {
         includes: 'E-Visa Processing, Ground Transport, Accomodations, FREE Breakfast, 24/7 Pilgrims Support',
-        not_includes: 'Return Flight, Laundry and room service charges, Travel and health insurance'
+        not_includes: 'Return Flight, Laundry and room service charges, Travel insurance'
       }
     }
     
@@ -415,7 +415,7 @@ const AdminDashboard = () => {
         hotel_madinah: '', distance_madinah: '',
         image_url: '', airline: '', stars: 4, badge: '', visa_included: false,
         includes: 'Return Flight, E-Visa Processing, Shared Ground Transport, Accomodations, 24/7 Pilgrims Support',
-        not_includes: 'Meals, Travel and health insurance, Laundry and room service charges',
+        not_includes: 'Meals, Travel insurance, Laundry and room service charges',
         itinerary: []
       })
       fetchAll()
@@ -676,7 +676,7 @@ const AdminDashboard = () => {
                     <label className="block text-xs font-bold uppercase tracking-widest text-[#CD9933] mb-2">Package Exclusions (comma-separated)</label>
                     <textarea 
                       className="w-full bg-surface border-0 border-b border-outline-variant focus:border-[#CD9933] focus:ring-0 py-2 text-sm" 
-                      placeholder="e.g., Meals, Travel and health insurance, Laundry and room service charges" 
+                      placeholder="e.g., Meals, Travel insurance, Laundry and room service charges" 
                       rows={2} 
                       value={packageForm.not_includes || ''} 
                       onChange={e => setPackageForm({...packageForm, not_includes: e.target.value})} 

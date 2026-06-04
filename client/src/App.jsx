@@ -16,6 +16,7 @@ import VisaServices from './pages/VisaServices'
 import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
 import InternationalTours from './pages/InternationalTours'
+import InternationalTourDetail from './pages/InternationalTourDetail'
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/international-tours" element={<InternationalTours />} />
+        <Route path="/international-tour/:id" element={<InternationalTourDetail />} />
       </Routes>
     </Router>
   )
