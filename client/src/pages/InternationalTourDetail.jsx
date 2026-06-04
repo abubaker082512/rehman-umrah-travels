@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import thailandTourImg from '../assets/thailand_tour.jpg'
 
 const TOURS = [
   {
@@ -23,38 +24,38 @@ const TOURS = [
     itinerary: [
       { day: 'Day 1', title: 'Arrival in Dubai', desc: 'Arrive at Dubai International Airport. Transfer to hotel. Evening free to explore.' },
       { day: 'Day 2', title: 'Dubai City Tour', desc: 'Visit Burj Khalifa, Dubai Mall, Dubai Fountain Show, and Gold Souk.' },
-      { day: 'Day 3', title: 'Desert Safari', desc: 'Morning free. Evening Desert Safari with dune bashing, camel riding, and BBQ dinner under the stars.' },
-      { day: 'Day 4', title: 'Abu Dhabi Day Trip', desc: 'Full-day excursion to Abu Dhabi — visit Sheikh Zayed Grand Mosque and Corniche.' },
-      { day: 'Day 5', title: 'Departure', desc: 'Morning leisure, last-minute shopping, then transfer to airport for return flight.' },
+      { day: 'Day 3', title: 'Desert Safari', desc: '4x4 Desert safari ride, dune bashing, camel riding, and BBQ buffet dinner with live performances.' },
+      { day: 'Day 4', title: 'Abu Dhabi Tour', desc: 'Full-day excursion to Abu Dhabi. Visit Sheikh Zayed Grand Mosque, Yas Island, and Date Market.' },
+      { day: 'Day 5', title: 'Departure', desc: 'Free time for shopping, then transfer to airport for departure flight.' },
     ]
   },
   {
     id: 102,
-    slug: 'baku-azerbaijan',
+    slug: 'baku-azerbaijan-fire-flame',
     title: 'Baku Tour – Azerbaijan Fire & Flame',
     country: 'Azerbaijan',
-    subtitle: 'Baku, Gabala, Sheki',
+    subtitle: 'Baku, Absheron, Gabala',
     duration: '5 Days 4 Nights',
     price: 'PKR 165,000',
     priceNote: 'Per Person (For 2 Persons)',
     badge: 'TRENDING',
     heroImage: 'https://content.r9cdn.net/rimg/dimg/4d/5a/a25ec4ac-city-33415-1732e873f4b.jpg?crop=true&width=1020&height=498',
     cardImage: 'https://content.r9cdn.net/rimg/dimg/4d/5a/a25ec4ac-city-33415-1732e873f4b.jpg?crop=true&width=1020&height=498',
-    description: 'Discover the Land of Fire — visit the iconic Flame Towers, explore the ancient walled Old City (Icherisheher), and take in the stunning Caspian Sea coastline. Baku is a city where medieval heritage meets ultra-modern architecture in breathtaking fashion.',
-    highlights: ['Flame Towers', 'Old City Baku (UNESCO)', 'Caspian Sea Waterfront', 'Heydar Aliyev Centre', 'Gobustan National Park'],
-    included: ['Return Airfare (Economy)', 'E-Visa Processing', '4-Star Hotel Accommodation', 'Airport Transfers', 'City Tour by Coach', 'Gobustan Day Trip', 'Health Insurance'],
+    description: 'Discover the Land of Fire — visit the iconic Flame Towers, ancient Old City Baku, and stunning Caspian Sea coastline. Azerbaijan seamlessly links East and West with unique architecture and ancient history.',
+    highlights: ['Flame Towers & Baku Boulevard', 'Icherisheher (Old City) Walking Tour', 'Gobustan National Park & Mud Volcanoes', 'Heydar Aliyev Center', 'Gabala Mountain Day Trip'],
+    included: ['Return Airfare (Economy)', 'Azerbaijan e-Visa', '4-Star Hotel Accommodation', 'Daily Breakfast', 'Airport Transfers', 'English-speaking Tour Guide', 'Gobustan & Gabala Excursions', 'Health Insurance'],
     notIncluded: ['Personal expenses', 'Tips & gratuities', 'Optional excursions', 'Meals not mentioned'],
     itinerary: [
-      { day: 'Day 1', title: 'Arrival in Baku', desc: 'Arrive at Heydar Aliyev International Airport. Transfer to hotel. Evening walk along Baku Boulevard on the Caspian Sea.' },
-      { day: 'Day 2', title: 'Old City & Flame Towers', desc: 'Explore the UNESCO-listed Old City (Icherisheher), Maiden Tower, and admire the iconic Flame Towers by night.' },
-      { day: 'Day 3', title: 'Gobustan & Mud Volcanoes', desc: 'Full-day excursion to Gobustan National Park — ancient petroglyphs and bubbling mud volcanoes of the Absheron Peninsula.' },
-      { day: 'Day 4', title: 'Heydar Aliyev Centre & Carpet Museum', desc: 'Visit the stunning Heydar Aliyev Centre, the Baku Carpet Museum, and enjoy Nizami Street shopping.' },
-      { day: 'Day 5', title: 'Departure', desc: 'Morning leisure with final views of the Caspian, then transfer to airport for return flight.' },
+      { day: 'Day 1', title: 'Arrival in Baku', desc: 'Arrive at Heydar Aliyev Airport. Meet, greet, and transfer to hotel. Free evening.' },
+      { day: 'Day 2', title: 'Baku City tour', desc: 'Visit Highland Park (panoramic views), Flame Towers, Martyrs\' Alley, Old City Baku (Maiden Tower, Palace of the Shirvanshahs).' },
+      { day: 'Day 3', title: 'Gobustan & Ateshgah', desc: 'Excursion to Gobustan rock art museum, active Mud Volcanoes, and Ateshgah Fire Temple.' },
+      { day: 'Day 4', title: 'Gabala Mountains Tour', desc: 'Full day trip to Gabala. Enjoy cable car rides at Tufandag mountain resort and visit Nohur Lake.' },
+      { day: 'Day 5', title: 'Departure', desc: 'Visit Heydar Aliyev Center design landmark, last-minute local shopping at Nizami Street, then airport transfer.' },
     ]
   },
   {
     id: 103,
-    slug: 'malaysia-kuala-lumpur',
+    slug: 'explore-malaysia-kuala-lumpur-langkawi',
     title: 'Explore Malaysia – Kuala Lumpur & Langkawi',
     country: 'Malaysia',
     subtitle: 'Kuala Lumpur, Langkawi, Penang',
@@ -64,9 +65,9 @@ const TOURS = [
     badge: 'BEST VALUE',
     heroImage: 'https://images.trvl-media.com/place/6152226/85d4bee2-2d41-4335-b5d1-581867e7d569.jpg',
     cardImage: 'https://images.trvl-media.com/place/6152226/85d4bee2-2d41-4335-b5d1-581867e7d569.jpg',
-    description: 'Ascend the iconic Petronas Twin Towers, relax on sandy beaches in Langkawi, and experience rich cultural heritage. Malaysia is a melting pot of Malay, Chinese, and Indian cultures, offering a vibrant mix of food, nature, and architecture.',
-    highlights: ['Petronas Twin Towers', 'Batu Caves', 'Langkawi Island Beach', 'Penang Street Food Trail', 'KL Bird Park'],
-    included: ['Return Airfare (Economy)', 'E-Visa on Arrival Assistance', '3-Star Hotel Accommodation', 'Airport Transfers', 'City Tour by Coach', 'Langkawi Ferry & Day Trip', 'Health Insurance'],
+    description: 'Ascend the Petronas Twin Towers, relax on sandy beaches in Langkawi, and experience rich cultural heritage. Malaysia offers a multi-ethnic marvel, rich rainforests, and a world-renowned culinary scene.',
+    highlights: ['Petronas Twin Towers (KLCC)', 'Batu Caves Hindu Temple', 'Langkawi Sky Bridge & Cable Car', 'Eagle Square Langkawi', 'Georgetown Penang Street Art'],
+    included: ['Return Airfare (Economy)', 'Domestic Flight (KL to Langkawi)', '4-Star Hotel Accommodation', 'Airport & Ferry Transfers', 'Kuala Lumpur Half-day City Tour', 'Langkawi Island Hopping', 'Health Insurance'],
     notIncluded: ['Personal expenses', 'Tips & gratuities', 'Optional excursions', 'Meals not mentioned'],
     itinerary: [
       { day: 'Day 1', title: 'Arrival in Kuala Lumpur', desc: 'Arrive at KLIA. Check in to hotel. Evening visit to KLCC Park and fountain show.' },
@@ -87,8 +88,8 @@ const TOURS = [
     price: 'PKR 155,000',
     priceNote: 'Per Person (For 2 Persons)',
     badge: 'NEW',
-    heroImage: 'https://cdn.forevervacation.com/uploads/blog/thailand-visitor-guide-things-to-do-4406.jpg',
-    cardImage: 'https://cdn.forevervacation.com/uploads/blog/thailand-visitor-guide-things-to-do-4406.jpg',
+    heroImage: thailandTourImg,
+    cardImage: thailandTourImg,
     description: 'Explore vibrant street life and ornate shrines in Bangkok, then relax on the sandy beaches of Phuket. Thailand is the land of smiles — where ancient temples meet turquoise waters, and vibrant markets burst with energy and colour.',
     highlights: ['Grand Palace & Wat Pho', 'Phi Phi Islands Boat Tour', 'Patong Beach Phuket', 'Floating Market', 'Muay Thai Show'],
     included: ['Return Airfare (Economy)', 'Visa on Arrival Assistance', '4-Star Hotel Accommodation', 'Airport Transfers', 'City Tour by Coach', 'Phi Phi Islands Day Trip', 'Health Insurance'],

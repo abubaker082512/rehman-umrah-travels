@@ -7,8 +7,18 @@ import kaabaPackages from '../assets/kaaba_packages.png'
 import toursScenic from '../assets/tours_scenic.png'
 import travelerPortrait from '../assets/hajj_umrah_travel_collage.png'
 import aboutImage from '../assets/about-us.jpg'
+
+// Testimonial avatars
+import tehminaPortrait from '../assets/testimonials/tehmina_hassan.png'
+import zubairPortrait from '../assets/testimonials/zubair_malik.png'
+import ayeshaPortrait from '../assets/testimonials/ayesha_siddiqui.png'
+import ahmedPortrait from '../assets/testimonials/ahmed_raza.png'
+
+// Thailand Tour Image
+import thailandTourImg from '../assets/thailand_tour.jpg'
+
 const economyPackagesImg = 'https://alkhidmat.org/backend/images/umrah/intro/177313446569afe2818d15e.png'
-const star3PackagesImg = 'https://premiotravels.com/wp-content/uploads/2018/08/Umrah-Platinum-3-Star-Package.jpg'
+const star3PackagesImg = kaabaPackages
 const star4PackagesImg = 'https://zamzam.com/blog/wp-content/uploads/2021/05/history-of-Umrah.jpg'
 const star5PackagesImg = 'https://newindoha.com/wp-content/uploads/2023/09/20230901_170048-1050x591.jpg'
 import internationalToursImg from '../assets/international_tours.png'
@@ -56,7 +66,7 @@ const staticInternationalTours = [
     duration: '6 Days 5 Nights',
     badge: 'NEW',
     description: 'Explore vibrant street life and ornate shrines in Bangkok, then relax on the sandy beaches of Phuket.',
-    image: 'https://cdn.forevervacation.com/uploads/blog/thailand-visitor-guide-things-to-do-4406.jpg'
+    image: thailandTourImg
   }
 ]
 
@@ -218,6 +228,7 @@ const Home3 = () => {
   const [contactName, setContactName] = useState('')
   const [contactPhone, setContactPhone] = useState('')
   const [contactEmail, setContactEmail] = useState('')
+  const [contactSubject, setContactSubject] = useState('Umrah Packages')
   const [contactMsg, setContactMsg] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
@@ -263,6 +274,7 @@ const Home3 = () => {
       setContactName('')
       setContactPhone('')
       setContactEmail('')
+      setContactSubject('Umrah Packages')
       setContactMsg('')
     }, 4000)
   }
@@ -1244,8 +1256,8 @@ const Home3 = () => {
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center text-white mb-16 space-y-3">
-            <span className="material-symbols-outlined text-[#f6bd54] text-3xl">sentiment_satisfied</span>
-            <p className="text-[#f6bd54] font-bold text-xs uppercase tracking-widest">RELAX AND ENJOY</p>
+            <span className="material-symbols-outlined text-[#CD9933] text-3xl">sentiment_satisfied</span>
+            <p className="text-[#CD9933] font-bold text-xs uppercase tracking-[0.2em]">CLIENT REVIEWS</p>
             <h2 className="text-white text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
               HAPPY TRAVELERS
             </h2>
@@ -1253,134 +1265,244 @@ const Home3 = () => {
           </div>
 
           {/* Testimonial Cards Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Card 1 */}
-            <div className="bg-white p-10 shadow-lg text-center relative border border-gray-100 flex flex-col items-center">
-              <span className="material-symbols-outlined text-gray-200 text-5xl absolute top-6 right-6">format_quote</span>
-              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#f5f7fa] mb-6">
-                <img
-                  alt="Tehmina Hassan portrait"
-                  className="w-full h-full object-cover"
-                  src={travelerPortrait}
-                />
+            <div className="backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl flex flex-col justify-between hover:border-[#CD9933]/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg text-left relative group">
+              <span className="material-symbols-outlined text-[#CD9933]/15 text-6xl absolute top-6 right-6 select-none font-light">format_quote</span>
+              <div>
+                <div className="flex gap-1 text-[#CD9933] mb-6">
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                </div>
+                <p className="text-white/85 italic text-sm leading-relaxed mb-6 font-manrope font-light">
+                  "Our Turkey package was outstanding. Flight scheduling, domestic connections in Cappadocia, hotel stays, and local historical guides were perfectly taken care of. I didn't have to worry about a single detail."
+                </p>
               </div>
-              <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">Tehmina Hassan</h5>
-              <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase mb-4">Rawalpindi, Pakistan</p>
-              <p className="text-gray-500 italic text-xs leading-relaxed max-w-sm">
-                "Our Turkey package was outstanding. Flight scheduling, domestic connections in Cappadocia, hotel stays, and local historical guides were perfectly taken care of. I didn't have to worry about a single detail."
-              </p>
+              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#CD9933]/40 shrink-0">
+                  <img
+                    alt="Tehmina Hassan portrait"
+                    className="w-full h-full object-cover"
+                    src={tehminaPortrait}
+                  />
+                </div>
+                <div>
+                  <h5 className="text-white font-bold text-xs uppercase tracking-wider font-headline">Tehmina Hassan</h5>
+                  <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase">Rawalpindi • Turkey Tour</p>
+                </div>
+              </div>
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white p-10 shadow-lg text-center relative border border-gray-100 flex flex-col items-center">
-              <span className="material-symbols-outlined text-gray-200 text-5xl absolute top-6 right-6">format_quote</span>
-              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#f5f7fa] mb-6">
-                <img
-                  alt="Zubair Malik portrait"
-                  className="w-full h-full object-cover"
-                  src={travelerPortrait}
-                />
+            <div className="backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl flex flex-col justify-between hover:border-[#CD9933]/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg text-left relative group">
+              <span className="material-symbols-outlined text-[#CD9933]/15 text-6xl absolute top-6 right-6 select-none font-light">format_quote</span>
+              <div>
+                <div className="flex gap-1 text-[#CD9933] mb-6">
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                </div>
+                <p className="text-white/85 italic text-sm leading-relaxed mb-6 font-manrope font-light">
+                  "Booking airline tickets and private domestic tours in Swat and Naran Valley was incredibly fast and smooth. Royal Travels operates with absolute elite professionalism. Will definitely travel with them again."
+                </p>
               </div>
-              <h5 className="text-[#013334] font-bold text-sm uppercase tracking-wider font-headline">Zubair Malik</h5>
-              <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase mb-4">Islamabad, Pakistan</p>
-              <p className="text-gray-500 italic text-xs leading-relaxed max-w-sm">
-                "Booking airline tickets and private domestic tours in Swat and Naran Valley was incredibly fast and smooth. Royal Travels operates with absolute elite professionalism. Will definitely travel with them again."
-              </p>
+              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#CD9933]/40 shrink-0">
+                  <img
+                    alt="Zubair Malik portrait"
+                    className="w-full h-full object-cover"
+                    src={zubairPortrait}
+                  />
+                </div>
+                <div>
+                  <h5 className="text-white font-bold text-xs uppercase tracking-wider font-headline">Zubair Malik</h5>
+                  <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase">Islamabad • Local Tours</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl flex flex-col justify-between hover:border-[#CD9933]/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg text-left relative group">
+              <span className="material-symbols-outlined text-[#CD9933]/15 text-6xl absolute top-6 right-6 select-none font-light">format_quote</span>
+              <div>
+                <div className="flex gap-1 text-[#CD9933] mb-6">
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                </div>
+                <p className="text-white/85 italic text-sm leading-relaxed mb-6 font-manrope font-light">
+                  "Alhamdulillah, our 14-day Standard Umrah trip was extremely well organized. The hotels were exactly as promised and the proximity to the Haram made it easy for my elderly parents. Highly recommended!"
+                </p>
+              </div>
+              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#CD9933]/40 shrink-0">
+                  <img
+                    alt="Ayesha Siddiqui portrait"
+                    className="w-full h-full object-cover"
+                    src={ayeshaPortrait}
+                  />
+                </div>
+                <div>
+                  <h5 className="text-white font-bold text-xs uppercase tracking-wider font-headline">Ayesha Siddiqui</h5>
+                  <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase">Lahore • Umrah Package</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 8. Contact Us Section */}
-      <section className="relative bg-[#f5f7fa] overflow-hidden">
-        {/* Snowy Mountain Backdrop */}
+      <section className="relative bg-[#f5f7fa] overflow-hidden py-16 md:py-24">
+        {/* Subtle Background Backdrop */}
         <div className="absolute inset-0 z-0">
           <img
             alt="Alpine snowcapped mountains panorama peak"
-            className="w-full h-full object-cover opacity-15"
+            className="w-full h-full object-cover opacity-10"
             src={toursScenic}
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-stretch min-h-[600px]">
-          {/* Left Column: Happy traveler photo cutout */}
-          <div className="relative hidden lg:block overflow-hidden min-h-[500px]">
-            <img
-              alt="Happy smiling traveler holding camera passport boarding pass layout cutout"
-              className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[95%] w-auto object-contain"
-              src={travelerPortrait}
-            />
-          </div>
-
-          {/* Right Column: Dark Teal Contact Box */}
-          <div className="bg-[#013334] text-white p-12 md:p-16 flex flex-col justify-center space-y-8 shadow-2xl">
-            <div>
-              <h2 className="text-white text-3xl font-bold tracking-widest uppercase font-headline">
-                CONTACT US
-              </h2>
-              <p className="text-[#f6bd54] text-xs font-bold uppercase tracking-wider mt-2 font-manrope">
-                Just fill out the form and let's make your travel plan in minutes!
-              </p>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl overflow-hidden shadow-2xl bg-[#013334]">
+            
+            {/* Left Column: All-Tours Collage Panel */}
+            <div className="lg:col-span-5 relative hidden lg:flex flex-col justify-end p-12 overflow-hidden min-h-[600px]">
+              <div className="absolute inset-0 z-0">
+                <img
+                  alt="Hajj, Umrah, International and Domestic Tours collage"
+                  className="w-full h-full object-cover"
+                  src={travelerPortrait}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#002526] via-[#013334]/80 to-transparent"></div>
+              </div>
+              
+              <div className="relative z-10 space-y-4">
+                <span className="text-[#CD9933] font-bold text-xs uppercase tracking-[0.25em] font-manrope">Elite Travel Partner</span>
+                <h3 className="text-white font-bold text-2xl lg:text-3xl font-headline leading-tight">
+                  YOUR JOURNEY <br />OUR COMMITMENT
+                </h3>
+                <p className="text-white/70 text-xs leading-relaxed max-w-sm">
+                  We specialize in crafting seamless travel experiences. Whether it's the sacred Hajj & Umrah pilgrimage, breathtaking domestic treks, or luxury international holidays, we handle every detail with absolute perfection.
+                </p>
+                <div className="h-[1px] w-24 bg-[#CD9933] mt-2"></div>
+              </div>
             </div>
 
-            {submitted ? (
-              <div className="bg-white/5 border border-white/10 p-8 text-center space-y-4">
-                <span className="material-symbols-outlined text-[#CD9933] text-5xl">mark_email_read</span>
-                <h4 className="text-white text-lg font-bold uppercase tracking-wider">Plan Request Submitted!</h4>
-                <p className="text-white/60 text-xs">
-                  Your customized details are sent to a Royal Travels coordinator. We will reach back to you shortly.
-                </p>
+            {/* Right Column: Dark Teal Contact Box */}
+            <div className="lg:col-span-7 bg-[#013334] text-white p-8 sm:p-12 md:p-16 flex flex-col justify-center space-y-8 relative border-t lg:border-t-0 lg:border-l border-white/5">
+              <div>
+                <span className="text-[#CD9933] font-bold text-xs uppercase tracking-[0.25em] font-manrope">GET IN TOUCH</span>
+                <h2 className="text-white text-3xl font-bold tracking-wide uppercase font-headline mt-1">
+                  PLAN YOUR NEXT TOUR
+                </h2>
+                <div className="h-[2px] w-12 bg-[#CD9933] mt-3"></div>
               </div>
-            ) : (
-              <form onSubmit={handleContactSubmit} className="space-y-6">
-                <div>
-                  <input
-                    required
-                    value={contactName}
-                    onChange={(e) => setContactName(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors"
-                    placeholder="Your Name"
-                    type="text"
-                  />
+
+              {submitted ? (
+                <div className="backdrop-blur-md bg-white/5 border border-[#CD9933]/30 p-10 text-center space-y-4 rounded-xl">
+                  <span className="material-symbols-outlined text-[#CD9933] text-5xl">mark_email_read</span>
+                  <h4 className="text-white text-lg font-bold uppercase tracking-wider">Plan Request Submitted!</h4>
+                  <p className="text-white/60 text-xs">
+                    Your details have been successfully shared with a Royal Travels advisor. We will connect with you via Phone/WhatsApp shortly.
+                  </p>
                 </div>
-                <div>
-                  <input
-                    required
-                    value={contactPhone}
-                    onChange={(e) => setContactPhone(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors"
-                    placeholder="Your Contact Number"
-                    type="tel"
-                  />
-                </div>
-                <div>
-                  <input
-                    required
-                    value={contactEmail}
-                    onChange={(e) => setContactEmail(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors"
-                    placeholder="Your Email Address"
-                    type="email"
-                  />
-                </div>
-                <div>
-                  <textarea
-                    required
-                    value={contactMsg}
-                    onChange={(e) => setContactMsg(e.target.value)}
-                    className="w-full bg-transparent border-b border-white/20 focus:border-[#CD9933] py-3 text-sm text-white placeholder-white/40 outline-none transition-colors resize-none h-24"
-                    placeholder="Your Message"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="bg-[#CD9933] hover:bg-white hover:text-[#013334] text-primary font-bold text-xs uppercase tracking-widest py-4 px-8 transition-colors flex items-center justify-center gap-2 select-none"
-                >
-                  <span>SEND MESSAGE</span>
-                  <span className="material-symbols-outlined text-sm">send</span>
-                </button>
-              </form>
-            )}
+              ) : (
+                <form onSubmit={handleContactSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-white/50">Full Name</label>
+                      <input
+                        required
+                        value={contactName}
+                        onChange={(e) => setContactName(e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 focus:border-[#CD9933] rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-colors"
+                        placeholder="e.g. Muhammad Ali"
+                        type="text"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-white/50">Contact Number</label>
+                      <input
+                        required
+                        value={contactPhone}
+                        onChange={(e) => setContactPhone(e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 focus:border-[#CD9933] rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-colors"
+                        placeholder="e.g. 0322 072 5064"
+                        type="tel"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-white/50">Email Address</label>
+                      <input
+                        required
+                        value={contactEmail}
+                        onChange={(e) => setContactEmail(e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 focus:border-[#CD9933] rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-colors"
+                        placeholder="e.g. client@email.com"
+                        type="email"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-white/50">Tour Category</label>
+                      <select
+                        value={contactSubject}
+                        onChange={(e) => setContactSubject(e.target.value)}
+                        className="w-full bg-[#013334] border border-white/10 focus:border-[#CD9933] rounded-lg px-4 py-3 text-sm text-white outline-none transition-colors cursor-pointer"
+                      >
+                        <option value="Umrah Packages">Umrah Packages</option>
+                        <option value="Hajj Packages">Hajj Packages</option>
+                        <option value="International Tours">International Tours</option>
+                        <option value="Domestic Local Tours">Domestic Local Tours</option>
+                        <option value="Visa Services">Visa Services</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-bold uppercase tracking-wider text-white/50">Your Message</label>
+                    <textarea
+                      required
+                      value={contactMsg}
+                      onChange={(e) => setContactMsg(e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 focus:border-[#CD9933] rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 outline-none transition-colors resize-none h-24"
+                      placeholder="Share details about group size, travel dates, and special requests..."
+                    />
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
+                    <button
+                      type="submit"
+                      className="w-full sm:w-auto bg-[#CD9933] hover:bg-white hover:text-[#013334] text-primary font-bold text-xs uppercase tracking-widest py-4 px-10 transition-colors flex items-center justify-center gap-2 select-none rounded-lg shadow-lg hover:shadow-[#CD9933]/20"
+                    >
+                      <span>SEND INQUIRY</span>
+                      <span className="material-symbols-outlined text-sm">send</span>
+                    </button>
+                    
+                    <a
+                      href="https://wa.me/923220725064"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto border border-white/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] font-bold text-xs uppercase tracking-widest py-4 px-8 transition-colors flex items-center justify-center gap-2 rounded-lg"
+                    >
+                      <span className="material-symbols-outlined text-sm">chat</span>
+                      <span>WHATSAPP SUPPORT</span>
+                    </a>
+                  </div>
+                </form>
+              )}
+            </div>
+
           </div>
         </div>
       </section>

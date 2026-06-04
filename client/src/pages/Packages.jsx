@@ -5,8 +5,9 @@ import Footer from '../components/Footer'
 import axios from 'axios'
 import ScrollReveal from '../components/ScrollReveal'
 import packagesHeroImg from '../assets/home-3.jpg'
+import kaabaPackages from '../assets/kaaba_packages.png'
 const economyPackagesImg = 'https://alkhidmat.org/backend/images/umrah/intro/177313446569afe2818d15e.png'
-const star3PackagesImg = 'https://premiotravels.com/wp-content/uploads/2018/08/Umrah-Platinum-3-Star-Package.jpg'
+const star3PackagesImg = kaabaPackages
 const star4PackagesImg = 'https://zamzam.com/blog/wp-content/uploads/2021/05/history-of-Umrah.jpg'
 const star5PackagesImg = 'https://newindoha.com/wp-content/uploads/2023/09/20230901_170048-1050x591.jpg'
 
