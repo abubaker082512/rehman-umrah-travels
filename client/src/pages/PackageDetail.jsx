@@ -509,11 +509,12 @@ const getCategoryPresets = (categoryName, title) => {
         'E-Visa Processing',
         'Shared Ground Transport',
         'Accomodations',
+        'Health Insurance',
         '24/7 Pilgrims Support'
       ],
       not_includes: [
         'Meals',
-        'Travel and health insurance',
+        'Travel insurance',
         'Laundry and room service charges'
       ]
     }
@@ -526,12 +527,13 @@ const getCategoryPresets = (categoryName, title) => {
         'E-Visa Processing',
         'Ground Transport',
         'Accomodations',
+        'Health Insurance',
         '24/7 Pilgrims Support'
       ],
       not_includes: [
         'Return Flight',
         'Meals',
-        'Travel and health insurance',
+        'Travel insurance',
         'Laundry and room service charges'
       ]
     }
@@ -545,12 +547,13 @@ const getCategoryPresets = (categoryName, title) => {
         'Ground Transport',
         'Accomodations',
         'FREE Breakfast',
+        'Health Insurance',
         '24/7 Pilgrims Support'
       ],
       not_includes: [
         'Return Flight',
         'Laundry and room service charges',
-        'Travel and health insurance'
+        'Travel insurance'
       ]
     }
   }
@@ -862,7 +865,7 @@ const PackageDetail = () => {
                     const notIncludesList = presets ? presets.not_includes : (pkg.not_includes && pkg.not_includes.length > 0 ? (Array.isArray(pkg.not_includes) ? pkg.not_includes : String(pkg.not_includes).split(',').map(s => s.trim()).filter(Boolean)) : []);
                     const defaultNotIncludes = [
                       'Personal shopping & extra meals',
-                      'Travel and health insurance',
+                      'Travel insurance',
                       'Laundry and room service charges'
                     ];
                     const finalNotIncludes = notIncludesList.length > 0 ? notIncludesList : defaultNotIncludes;
