@@ -6,8 +6,8 @@ import axios from 'axios'
 import background3 from '../assets/home-3.jpg'
 const economyPackagesImg = 'https://invent.trips.pk/Images/pageHeroSlides/Quetta9.webp'
 const star3PackagesImg = 'https://premiotravels.com/wp-content/uploads/2018/08/Umrah-Platinum-3-Star-Package.jpg'
-const star4PackagesImg = 'https://www.onlineumrah.in/blog-images/best-4-star-umrah-packages-india-bg.jpg'
-const star5PackagesImg = 'https://www.hotelsinmakkah.com/images/content-images/uploaded-image-1753077771488.jpg'
+const star4PackagesImg = 'https://zamzam.com/blog/wp-content/uploads/2021/05/history-of-Umrah.jpg'
+const star5PackagesImg = 'https://newindoha.com/wp-content/uploads/2023/09/20230901_170048-1050x591.jpg'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
