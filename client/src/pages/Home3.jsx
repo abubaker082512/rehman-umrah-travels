@@ -101,55 +101,31 @@ const staticEconomyPackages = [
   { id: 401, title: '21 Nights Saver Economy Umrah', location: 'Fundaq Mayer Mayassar & Fursan Al Madinah', price: 209500, duration: '21 Nights', badge: '21 Nights', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
   { id: 402, title: '21 Nights Comfort Economy Saver', location: 'Jedat Al Khalil & Karam Ajyad Hotel', price: 224500, duration: '21 Nights', badge: '21 Nights', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
   { id: 403, title: '21 Nights Ajyad Standard Economy', location: 'Al Juhani Ajyad Hotel & Al Ikram Palace', price: 235500, duration: '21 Nights', badge: '21 Nights', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
-  { id: 404, title: '21 Nights Extended Special Economy', location: 'Maather Al Jiwaar Hotel & Orjawan Al Madinah', price: 251500, duration: '21 Nights', badge: '21 Nights', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
+  { id: 404, title: '21 Nights Extended Special Economy', location: 'Maather Al Jiwaar Hotel & Orjawan Al Madinah', price: 251500, duration: '21 Nights', badge: '21 Nights', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' }
 ]
 
 // ── Ground Umrah Packages — 3 Star ───────────────────────────────────────────
 const staticStar3Packages = [
-  { id: 501, title: '14 Nights 3 Star Comfort Umrah', location: 'Al Aseel Ajyad', price: 245500, duration: '14 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
-  { id: 502, title: '12 Nights 3 Star Standard Package', location: 'Dar El Eiman Al Khalil', price: 235500, duration: '12 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
-  { id: 503, title: '10 Nights 3 Star Comfort Deal', location: 'Dorat Dar El Eiman', price: 225500, duration: '10 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
-  { id: 504, title: '7 Nights 3 Star Express Package', location: 'Al Thuria Hotel', price: 215500, duration: '7 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
-  { id: 505, title: '14 Nights 3 Star Premium Ground', location: 'Dar El Eiman Al Khalil', price: 254000, duration: '14 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
-  { id: 506, title: '14 Nights 3 Star Comfort Saver', location: 'Al Aseel Ajyad', price: 239500, duration: '14 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
-  { id: 507, title: '12 Nights 3 Star Saver Choice', location: 'Dorat Dar El Eiman', price: 229500, duration: '12 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
-  { id: 508, title: '12 Nights 3 Star Comfort Plus', location: 'Al Thuria Hotel', price: 242500, duration: '12 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
-  { id: 509, title: '10 Nights 3 Star Premium Package', location: 'Dar El Eiman Al Khalil', price: 232500, duration: '10 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
-  { id: 510, title: '10 Nights 3 Star Budget Standard', location: 'Al Aseel Ajyad', price: 219500, duration: '10 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
-  { id: 511, title: '7 Nights 3 Star Comfort Saver', location: 'Dorat Dar El Eiman', price: 211500, duration: '7 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
-  { id: 512, title: '7 Nights 3 Star Deluxe Ground', location: 'Al Thuria Hotel', price: 222500, duration: '7 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
+  { id: 501, title: '14 Nights 3 Star Comfort Umrah', location: 'Al Aseel Ajyad & Al Shourfah Hotel', price: 245500, duration: '14 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 502, title: '12 Nights 3 Star Standard Package', location: 'Dar El Eiman Al Khalil & Dar El Eiman Al Nour', price: 235500, duration: '12 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 503, title: '10 Nights 3 Star Comfort Deal', location: 'Dorat Dar El Eiman & Elaf Al Bustan', price: 225500, duration: '10 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
+  { id: 504, title: '7 Nights 3 Star Express Package', location: 'Al Thuria Hotel & Amjad Al Gharra', price: 215500, duration: '7 Nights', badge: '3 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' }
 ]
 
 // ── Ground Umrah Packages — 4 Star ───────────────────────────────────────────
 const staticStar4Packages = [
-  { id: 601, title: '14 Nights 4 Star Premium Umrah', location: 'Ramada Dar Al Faiyzeen', price: 284000, duration: '14 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
-  { id: 602, title: '12 Nights 4 Star Executive Umrah', location: 'Nawazi Watheer', price: 278000, duration: '12 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
-  { id: 603, title: '10 Nights 4 Star Comfort Deal', location: 'Dar El Eiman Grand', price: 267500, duration: '10 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
-  { id: 604, title: '7 Nights 4 Star Express Package', location: 'Amjad Al Diyafah', price: 255000, duration: '7 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
-  { id: 605, title: '14 Nights 4 Star Deluxe Ground', location: 'Nawazi Watheer', price: 295000, duration: '14 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
-  { id: 606, title: '14 Nights 4 Star Executive Saver', location: 'Ramada Dar Al Faiyzeen', price: 275000, duration: '14 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
-  { id: 607, title: '12 Nights 4 Star Saver Choice', location: 'Dar El Eiman Grand', price: 265000, duration: '12 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
-  { id: 608, title: '12 Nights 4 Star Comfort Plus', location: 'Amjad Al Diyafah', price: 272500, duration: '12 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
-  { id: 609, title: '10 Nights 4 Star Premium Package', location: 'Nawazi Watheer', price: 259500, duration: '10 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
-  { id: 610, title: '10 Nights 4 Star Budget Standard', location: 'Ramada Dar Al Faiyzeen', price: 249500, duration: '10 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
-  { id: 611, title: '7 Nights 4 Star Comfort Saver', location: 'Dar El Eiman Grand', price: 241500, duration: '7 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
-  { id: 612, title: '7 Nights 4 Star Deluxe Ground', location: 'Nawazi Watheer', price: 248500, duration: '7 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
+  { id: 601, title: '14 Nights 4 Star Premium Umrah', location: 'Ramada Dar Al Faiyzeen & Elaf Taibah', price: 284000, duration: '14 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 602, title: '12 Nights 4 Star Executive Umrah', location: 'Nawazi Watheer & Al Mukhtara', price: 278000, duration: '12 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 603, title: '10 Nights 4 Star Comfort Deal', location: 'Dar El Eiman Grand & Al Eiman Al Manar', price: 267500, duration: '10 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
+  { id: 604, title: '7 Nights 4 Star Express Package', location: 'Amjad Al Diyafah & Elaf Meshal Al Salam', price: 255000, duration: '7 Nights', badge: '4 STAR', badgeColor: 'bg-[#013334]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' }
 ]
 
 // ── Ground Umrah Packages — 5 Star ───────────────────────────────────────────
 const staticStar5Packages = [
-  { id: 701, title: '14 Nights 5 Star Cheap Luxury', location: 'Holiday Inn Makkah', price: 289500, duration: '14 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
-  { id: 702, title: '12 Nights 5 Star Royal Package', location: 'Hyatt Regency', price: 279500, duration: '12 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
-  { id: 703, title: '10 Nights 5 Star Executive Stay', location: 'Anjum Hotel', price: 269500, duration: '10 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
-  { id: 704, title: '7 Nights 5 Star Express Luxury', location: 'Al Shohada Makkah', price: 235500, duration: '7 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
-  { id: 705, title: '14 Nights 5 Star VIP Splendor', location: 'Hyatt Regency', price: 315000, duration: '14 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
-  { id: 706, title: '14 Nights 5 Star Luxury Saver', location: 'Holiday Inn Makkah', price: 295000, duration: '14 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
-  { id: 707, title: '12 Nights 5 Star Saver Choice', location: 'Anjum Hotel', price: 285000, duration: '12 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
-  { id: 708, title: '12 Nights 5 Star Royal Plus', location: 'Al Shohada Makkah', price: 292500, duration: '12 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
-  { id: 709, title: '10 Nights 5 Star Premium Package', location: 'Hyatt Regency', price: 279500, duration: '10 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
-  { id: 710, title: '10 Nights 5 Star Budget Luxury', location: 'Holiday Inn Makkah', price: 259500, duration: '10 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' },
-  { id: 711, title: '7 Nights 5 Star Comfort Saver', location: 'Anjum Hotel', price: 249500, duration: '7 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1518655044366-5c5abf0cf1f4?w=800&q=80' },
-  { id: 712, title: '7 Nights 5 Star Royal Ground', location: 'Hyatt Regency', price: 257500, duration: '7 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d8?w=800&q=80' },
+  { id: 701, title: '14 Nights 5 Star Cheap Umrah Package', location: 'Holiday Inn Makkah & Province Al Sham Hotel', price: 289500, duration: '14 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800&q=80' },
+  { id: 702, title: '12 Nights 5 Star Umrah Package', location: 'Hyatt Regency & Majlis Grand Mercure', price: 279500, duration: '12 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800&q=80' },
+  { id: 703, title: '10 Nights 5 Star Umrah Package', location: 'Anjum Hotel & Al Haram Hotel', price: 269500, duration: '10 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800&q=80' },
+  { id: 704, title: '7 Nights 5 Star Umrah Package', location: 'Al Shohada Makkah & Al Emaan Royal', price: 235500, duration: '7 Nights', badge: '5 STAR', badgeColor: 'bg-[#CD9933]', image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800&q=80' }
 ]
 
 const GoldLogoIcon = () => (
@@ -259,13 +235,13 @@ const Home3 = () => {
             setLocalTours(fetchedLocal.slice(0, 3))
           }
           // Filter umrah by sub-category
-          const fetchedEconomy = res.data.filter(p => p.category?.toLowerCase().includes('economy'))
+          const fetchedEconomy = res.data.filter(p => p.category?.toLowerCase().includes('economy') && p.title?.toLowerCase().includes('21 nights'))
           if (fetchedEconomy.length > 0) setEconomyPackages(fetchedEconomy)
-          const fetched3Star = res.data.filter(p => p.category?.toLowerCase().includes('3 star') || p.category?.toLowerCase().includes('3star'))
+          const fetched3Star = res.data.filter(p => (p.category?.toLowerCase().includes('3 star') || p.category?.toLowerCase().includes('3star')) && (p.title?.toLowerCase().includes('14 nights') || p.title?.toLowerCase().includes('12 nights') || p.title?.toLowerCase().includes('10 nights') || p.title?.toLowerCase().includes('7 nights')))
           if (fetched3Star.length > 0) setStar3Packages(fetched3Star)
-          const fetched4Star = res.data.filter(p => p.category?.toLowerCase().includes('4 star') || p.category?.toLowerCase().includes('4star'))
+          const fetched4Star = res.data.filter(p => (p.category?.toLowerCase().includes('4 star') || p.category?.toLowerCase().includes('4star')) && (p.title?.toLowerCase().includes('14 nights') || p.title?.toLowerCase().includes('12 nights') || p.title?.toLowerCase().includes('10 nights') || p.title?.toLowerCase().includes('7 nights')))
           if (fetched4Star.length > 0) setStar4Packages(fetched4Star)
-          const fetched5Star = res.data.filter(p => p.category?.toLowerCase().includes('5 star') || p.category?.toLowerCase().includes('5star'))
+          const fetched5Star = res.data.filter(p => (p.category?.toLowerCase().includes('5 star') || p.category?.toLowerCase().includes('5star')) && (p.title?.toLowerCase().includes('14 nights') || p.title?.toLowerCase().includes('12 nights') || p.title?.toLowerCase().includes('10 nights') || p.title?.toLowerCase().includes('7 nights')))
           if (fetched5Star.length > 0) setStar5Packages(fetched5Star)
         }
       })
@@ -604,35 +580,15 @@ const Home3 = () => {
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
                 <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=3star">View All</Link>
-                <div className="flex items-center gap-2">
-                  <button 
-                    onClick={() => scrollCarousel(star3Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Previous"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
-                  </button>
-                  <button 
-                    onClick={() => scrollCarousel(star3Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Next"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
-                  </button>
-                </div>
               </div>
             </div>
           </ScrollReveal>
           
-          <div 
-            ref={star3Ref}
-            className="flex gap-6 md:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {star3Packages.slice(0, 12).map((pkg, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 py-4">
+            {star3Packages.slice(0, 4).map((pkg, idx) => (
               <div 
                 key={pkg.id} 
-                className="snap-start flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+                className="w-full"
               >
                 <ScrollReveal 
                   key={pkg.id} 
@@ -683,35 +639,15 @@ const Home3 = () => {
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
                 <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=4star">View All</Link>
-                <div className="flex items-center gap-2">
-                  <button 
-                    onClick={() => scrollCarousel(star4Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Previous"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
-                  </button>
-                  <button 
-                    onClick={() => scrollCarousel(star4Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Next"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
-                  </button>
-                </div>
               </div>
             </div>
           </ScrollReveal>
           
-          <div 
-            ref={star4Ref}
-            className="flex gap-6 md:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {star4Packages.slice(0, 12).map((pkg, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 py-4">
+            {star4Packages.slice(0, 4).map((pkg, idx) => (
               <div 
                 key={pkg.id} 
-                className="snap-start flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+                className="w-full"
               >
                 <ScrollReveal 
                   key={pkg.id} 
@@ -762,35 +698,15 @@ const Home3 = () => {
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
                 <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=5star">View All</Link>
-                <div className="flex items-center gap-2">
-                  <button 
-                    onClick={() => scrollCarousel(star5Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Previous"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
-                  </button>
-                  <button 
-                    onClick={() => scrollCarousel(star5Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Next"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
-                  </button>
-                </div>
               </div>
             </div>
           </ScrollReveal>
           
-          <div 
-            ref={star5Ref}
-            className="flex gap-6 md:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {star5Packages.slice(0, 12).map((pkg, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 py-4">
+            {star5Packages.slice(0, 4).map((pkg, idx) => (
               <div 
                 key={pkg.id} 
-                className="snap-start flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+                className="w-full"
               >
                 <ScrollReveal 
                   key={pkg.id} 

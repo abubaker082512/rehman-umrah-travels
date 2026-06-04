@@ -20,7 +20,7 @@ const staticPackages = [
   {
     id: 401,
     title: '21 Nights Saver Economy Umrah',
-    location: 'Fundaq Mayer Mayassar (Makkah) & Fursan Al Madinah (Madinah)',
+    location: 'Fundaq Mayer Mayassar & Fursan Al Madinah',
     price: 209500,
     days: '21 Nights',
     duration: '21 Nights',
@@ -33,7 +33,7 @@ const staticPackages = [
   {
     id: 402,
     title: '21 Nights Comfort Economy Saver',
-    location: 'Jedat Al Khalil (Makkah) & Karam Ajyad Hotel (Madinah)',
+    location: 'Jedat Al Khalil & Karam Ajyad Hotel',
     price: 224500,
     days: '21 Nights',
     duration: '21 Nights',
@@ -46,7 +46,7 @@ const staticPackages = [
   {
     id: 403,
     title: '21 Nights Ajyad Standard Economy',
-    location: 'Al Juhani Ajyad Hotel (Makkah) & Al Ikram Palace (Madinah)',
+    location: 'Al Juhani Ajyad Hotel & Al Ikram Palace',
     price: 235500,
     days: '21 Nights',
     duration: '21 Nights',
@@ -59,7 +59,7 @@ const staticPackages = [
   {
     id: 404,
     title: '21 Nights Extended Special Economy',
-    location: 'Maather Al Jiwaar Hotel (Makkah) & Orjawan Al Madinah (Madinah)',
+    location: 'Maather Al Jiwaar Hotel & Orjawan Al Madinah',
     price: 251500,
     days: '21 Nights',
     duration: '21 Nights',
@@ -72,38 +72,155 @@ const staticPackages = [
   {
     id: 501,
     title: '14 Nights 3 Star Comfort Umrah',
-    location: 'Al Aseel Ajyad (Makkah)',
+    location: 'Al Aseel Ajyad & Al Shourfah Hotel',
     price: 245500,
     days: '14 Nights',
     duration: '14 Nights',
     airline: 'PIA',
-    badge: 'Best Seller',
+    badge: '3 STAR',
+    badgeColor: 'bg-[#CD9933]',
+    category: '3 Star',
+    image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800',
+  },
+  {
+    id: 502,
+    title: '12 Nights 3 Star Standard Package',
+    location: 'Dar El Eiman Al Khalil & Dar El Eiman Al Nour',
+    price: 235500,
+    days: '12 Nights',
+    duration: '12 Nights',
+    airline: 'Saudi Airlines',
+    badge: '3 STAR',
     badgeColor: 'bg-[#CD9933]',
     category: '3 Star',
     image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800',
   },
   {
+    id: 503,
+    title: '10 Nights 3 Star Comfort Deal',
+    location: 'Dorat Dar El Eiman & Elaf Al Bustan',
+    price: 225500,
+    days: '10 Nights',
+    duration: '10 Nights',
+    airline: 'Gulf Air',
+    badge: '3 STAR',
+    badgeColor: 'bg-[#CD9933]',
+    category: '3 Star',
+    image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800',
+  },
+  {
+    id: 504,
+    title: '7 Nights 3 Star Express Package',
+    location: 'Al Thuria Hotel & Amjad Al Gharra',
+    price: 215500,
+    days: '7 Nights',
+    duration: '7 Nights',
+    airline: 'PIA',
+    badge: '3 STAR',
+    badgeColor: 'bg-[#CD9933]',
+    category: '3 Star',
+    image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800',
+  },
+  {
     id: 601,
     title: '14 Nights 4 Star Premium Umrah',
-    location: 'Ramada Dar Al Faiyzeen (Makkah)',
+    location: 'Ramada Dar Al Faiyzeen & Elaf Taibah',
     price: 284000,
     days: '14 Nights',
     duration: '14 Nights',
     airline: 'Saudi Airlines',
-    badge: 'Premium Comfort',
+    badge: '4 STAR',
+    badgeColor: 'bg-[#013334]',
+    category: '4 Star',
+    image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800',
+  },
+  {
+    id: 602,
+    title: '12 Nights 4 Star Executive Umrah',
+    location: 'Nawazi Watheer & Al Mukhtara',
+    price: 278000,
+    days: '12 Nights',
+    duration: '12 Nights',
+    airline: 'Gulf Air',
+    badge: '4 STAR',
+    badgeColor: 'bg-[#013334]',
+    category: '4 Star',
+    image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800',
+  },
+  {
+    id: 603,
+    title: '10 Nights 4 Star Comfort Deal',
+    location: 'Dar El Eiman Grand & Al Eiman Al Manar',
+    price: 267500,
+    days: '10 Nights',
+    duration: '10 Nights',
+    airline: 'PIA',
+    badge: '4 STAR',
     badgeColor: 'bg-[#013334]',
     category: '4 Star',
     image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800',
   },
   {
+    id: 604,
+    title: '7 Nights 4 Star Express Package',
+    location: 'Amjad Al Diyafah & Elaf Meshal Al Salam',
+    price: 255000,
+    days: '7 Nights',
+    duration: '7 Nights',
+    airline: 'Saudi Airlines',
+    badge: '4 STAR',
+    badgeColor: 'bg-[#013334]',
+    category: '4 Star',
+    image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800',
+  },
+  {
     id: 701,
-    title: '14 Nights 5 Star Cheap Luxury',
-    location: 'Holiday Inn Makkah (Makkah)',
+    title: '14 Nights 5 Star Cheap Umrah Package',
+    location: 'Holiday Inn Makkah & Province Al Sham Hotel',
     price: 289500,
     days: '14 Nights',
     duration: '14 Nights',
     airline: 'Emirates',
-    badge: 'Cheap Luxury',
+    badge: '5 STAR',
+    badgeColor: 'bg-[#CD9933]',
+    category: '5 Star',
+    image: 'https://images.unsplash.com/photo-1591604129909-2b4ce4e6e6d2?w=800',
+  },
+  {
+    id: 702,
+    title: '12 Nights 5 Star Umrah Package',
+    location: 'Hyatt Regency & Majlis Grand Mercure',
+    price: 279500,
+    days: '12 Nights',
+    duration: '12 Nights',
+    airline: 'Saudi Airlines',
+    badge: '5 STAR',
+    badgeColor: 'bg-[#CD9933]',
+    category: '5 Star',
+    image: 'https://images.unsplash.com/photo-1564769662533-3f5aae93cec2?w=800',
+  },
+  {
+    id: 703,
+    title: '10 Nights 5 Star Umrah Package',
+    location: 'Anjum Hotel & Al Haram Hotel',
+    price: 269500,
+    days: '10 Nights',
+    duration: '10 Nights',
+    airline: 'Gulf Air',
+    badge: '5 STAR',
+    badgeColor: 'bg-[#CD9933]',
+    category: '5 Star',
+    image: 'https://images.unsplash.com/photo-1580338834642-8a3acf79b1b8?w=800',
+  },
+  {
+    id: 704,
+    title: '7 Nights 5 Star Umrah Package',
+    location: 'Al Shohada Makkah & Al Emaan Royal',
+    price: 235500,
+    days: '7 Nights',
+    duration: '7 Nights',
+    airline: 'Saudi Airlines',
+    badge: '5 STAR',
     badgeColor: 'bg-[#CD9933]',
     category: '5 Star',
     image: 'https://images.unsplash.com/photo-1596435688717-2d2f3b0fc47a?w=800',
@@ -168,7 +285,22 @@ const Packages = () => {
     axios.get(`${API_BASE}/api/packages`)
       .then(res => {
         if (Array.isArray(res.data) && res.data.length > 0) {
-          setPackages(res.data)
+          const conforming = res.data.filter(p => {
+            const cat = (p.category || '').toLowerCase();
+            const title = (p.title || '').toLowerCase();
+            if (cat.includes('economy')) return title.includes('21 nights');
+            if (cat.includes('3 star') || cat.includes('3star')) {
+              return title.includes('14 nights') || title.includes('12 nights') || title.includes('10 nights') || title.includes('7 nights');
+            }
+            if (cat.includes('4 star') || cat.includes('4star')) {
+              return title.includes('14 nights') || title.includes('12 nights') || title.includes('10 nights') || title.includes('7 nights');
+            }
+            if (cat.includes('5 star') || cat.includes('5star')) {
+              return title.includes('14 nights') || title.includes('12 nights') || title.includes('10 nights') || title.includes('7 nights');
+            }
+            return false;
+          });
+          setPackages(conforming.length > 0 ? conforming : staticPackages)
         }
       })
       .catch((err) => {
