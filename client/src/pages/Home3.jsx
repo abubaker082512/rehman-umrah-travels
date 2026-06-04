@@ -47,7 +47,7 @@ const staticInternationalTours = [
     duration: '6 Days 5 Nights',
     badge: 'BEST VALUE',
     description: 'Ascend the Petronas Twin Towers, relax on sandy beaches in Langkawi, and experience rich cultural heritage.',
-    image: 'https://images.unsplash.com/photo-1596422748573-cbb5bf090104?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1619546952812-520e98064a52?w=800&q=80'
   },
   {
     id: 104,
