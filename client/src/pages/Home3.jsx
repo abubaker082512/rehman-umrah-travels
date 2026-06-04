@@ -68,7 +68,7 @@ const staticLocalTours = [
     duration: '3 Days 2 Nights',
     badge: 'FOR 1 PERSON - $250',
     description: 'Unwind alongside pristine streams, visit historical Buddhist sites, and enjoy the snow-capped views of Malam Jabba.',
-    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80'
+    image: 'https://www.apricottours.pk/wp-content/uploads/2024/06/KALAM-VALLEY-3_resize.jpeg'
   },
   {
     id: 202,
@@ -77,7 +77,7 @@ const staticLocalTours = [
     duration: '4 Days 3 Nights',
     badge: 'FOR 2 PERSONS - $400',
     description: 'Journey to the breathtaking Lake Saif-ul-Muluk, cross Babusar Top, and rest by the sparkling Kunhar River.',
-    image: 'https://images.unsplash.com/photo-1502602892935-72c3ac7c352?w=800&q=80'
+    image: 'https://adventurertreks.pk/wp-content/uploads/2026/03/Naran-Kaghan-1024x683.webp'
   },
   {
     id: 203,
@@ -86,7 +86,7 @@ const staticLocalTours = [
     duration: '4 Days 3 Nights',
     badge: 'FOR 1 PERSON',
     description: 'Explore lush green meadows, crystalline blue lakes, and historical forts in the heart of Azad Jammu & Kashmir.',
-    image: 'https://images.unsplash.com/photo-1473163928189-394b13469e19?w=800&q=80'
+    image: 'https://upload.wikimedia.org/wikipedia/commons/a/aa/Neelum_Valley%2C_Azad_Jammu_%26_Kashmir%2C_Pakistan.jpg'
   },
   {
     id: 204,
@@ -95,7 +95,7 @@ const staticLocalTours = [
     duration: '5 Days 4 Nights',
     badge: 'ADVENTURE',
     description: 'Stand at the foot of K2, explore Shangrila Resort, Satpara Lake, and the ancient Skardu Fort in the heart of Gilgit-Baltistan.',
-    image: 'https://images.unsplash.com/photo-1570458436416-b8fcccfe883f?w=800&q=80'
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Shangrila_resort_skardu.jpg/1280px-Shangrila_resort_skardu.jpg'
   }
 ]
 
