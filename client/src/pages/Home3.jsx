@@ -29,7 +29,7 @@ const staticInternationalTours = [
     duration: '5 Days 4 Nights',
     badge: 'POPULAR',
     description: 'Ring in the New Year with stunning fireworks at Burj Khalifa, desert safaris, and premium city cruises in luxury.',
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80'
+    image: 'https://images.trvl-media.com/place/1079/7c70ab1d-5b73-4916-a4a6-3cfdd2e876b7.jpg'
   },
   {
     id: 102,
@@ -38,7 +38,7 @@ const staticInternationalTours = [
     duration: '5 Days 4 Nights',
     badge: 'TRENDING',
     description: 'Discover the Land of Fire — visit the iconic Flame Towers, ancient Old City Baku, and stunning Caspian Sea coastline.',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'
+    image: 'https://content.r9cdn.net/rimg/dimg/4d/5a/a25ec4ac-city-33415-1732e873f4b.jpg?crop=true&width=1020&height=498'
   },
   {
     id: 103,
@@ -47,7 +47,7 @@ const staticInternationalTours = [
     duration: '6 Days 5 Nights',
     badge: 'BEST VALUE',
     description: 'Ascend the Petronas Twin Towers, relax on sandy beaches in Langkawi, and experience rich cultural heritage.',
-    image: 'https://images.unsplash.com/photo-1619546952812-520e98064a52?w=800&q=80'
+    image: 'https://images.trvl-media.com/place/6152226/85d4bee2-2d41-4335-b5d1-581867e7d569.jpg'
   },
   {
     id: 104,
@@ -56,7 +56,7 @@ const staticInternationalTours = [
     duration: '6 Days 5 Nights',
     badge: 'NEW',
     description: 'Explore vibrant street life and ornate shrines in Bangkok, then relax on the sandy beaches of Phuket.',
-    image: 'https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=800&q=80'
+    image: 'https://cdn.forevervacation.com/uploads/blog/thailand-visitor-guide-things-to-do-4406.jpg'
   }
 ]
 
