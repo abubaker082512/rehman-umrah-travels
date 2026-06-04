@@ -117,10 +117,10 @@ const Home = () => {
     axios.get(`${API_BASE}/api/packages`)
       .then(res => {
         if (Array.isArray(res.data) && res.data.length > 0) {
-          const economy = res.data.find(p => p.category?.toLowerCase().trim() === 'economy')
-          const star3 = res.data.find(p => p.category?.toLowerCase().trim() === '3 star')
-          const star4 = res.data.find(p => p.category?.toLowerCase().trim() === '4 star')
-          const star5 = res.data.find(p => p.category?.toLowerCase().trim() === '5 star')
+          const economy = res.data.find(p => p.category?.toLowerCase().includes('economy'))
+          const star3 = res.data.find(p => p.category?.toLowerCase().includes('3 star') || p.category?.toLowerCase().includes('3star'))
+          const star4 = res.data.find(p => p.category?.toLowerCase().includes('4 star') || p.category?.toLowerCase().includes('4star'))
+          const star5 = res.data.find(p => p.category?.toLowerCase().includes('5 star') || p.category?.toLowerCase().includes('5star'))
           
           const featured = [
             economy,

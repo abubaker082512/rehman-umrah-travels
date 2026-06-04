@@ -259,13 +259,13 @@ const Home3 = () => {
             setLocalTours(fetchedLocal.slice(0, 3))
           }
           // Filter umrah by sub-category
-          const fetchedEconomy = res.data.filter(p => p.category?.toLowerCase().trim() === 'economy')
+          const fetchedEconomy = res.data.filter(p => p.category?.toLowerCase().includes('economy'))
           if (fetchedEconomy.length > 0) setEconomyPackages(fetchedEconomy)
-          const fetched3Star = res.data.filter(p => p.category?.toLowerCase().trim() === '3 star')
+          const fetched3Star = res.data.filter(p => p.category?.toLowerCase().includes('3 star') || p.category?.toLowerCase().includes('3star'))
           if (fetched3Star.length > 0) setStar3Packages(fetched3Star)
-          const fetched4Star = res.data.filter(p => p.category?.toLowerCase().trim() === '4 star')
+          const fetched4Star = res.data.filter(p => p.category?.toLowerCase().includes('4 star') || p.category?.toLowerCase().includes('4star'))
           if (fetched4Star.length > 0) setStar4Packages(fetched4Star)
-          const fetched5Star = res.data.filter(p => p.category?.toLowerCase().trim() === '5 star')
+          const fetched5Star = res.data.filter(p => p.category?.toLowerCase().includes('5 star') || p.category?.toLowerCase().includes('5star'))
           if (fetched5Star.length > 0) setStar5Packages(fetched5Star)
         }
       })

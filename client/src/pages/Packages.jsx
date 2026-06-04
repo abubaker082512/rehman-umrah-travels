@@ -149,16 +149,16 @@ const Packages = () => {
     
     return selectedCategories.some(cat => {
       if (cat === 'Economy Package' || cat === 'Economy') {
-        return categoryLower === 'economy'
+        return categoryLower.includes('economy')
       }
       if (cat === '3 Star Packages' || cat === '3 Star') {
-        return categoryLower === '3 star'
+        return categoryLower.includes('3 star') || categoryLower.includes('3star')
       }
       if (cat === '4 Star Packages' || cat === '4 Star') {
-        return categoryLower === '4 star'
+        return categoryLower.includes('4 star') || categoryLower.includes('4star')
       }
       if (cat === '5 Star Packages' || cat === '5 Star') {
-        return categoryLower === '5 star'
+        return categoryLower.includes('5 star') || categoryLower.includes('5star')
       }
       return false
     })

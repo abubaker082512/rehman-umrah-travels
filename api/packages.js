@@ -39,7 +39,7 @@ module.exports = async function handler(req, res) {
         // Perform self-cleaning delete in the background if service role is available
         if (hasServiceRole && data && data.length > 0) {
           const idsToDelete = data
-            .filter(p => p.category?.toLowerCase().trim() === 'economy' && ![401, 402, 403, 404].includes(parseInt(p.id)))
+            .filter(p => p.category?.toLowerCase().includes('economy') && ![401, 402, 403, 404].includes(parseInt(p.id)))
             .map(p => p.id);
           
           if (idsToDelete.length > 0) {
@@ -54,7 +54,7 @@ module.exports = async function handler(req, res) {
 
         // Return only the approved packages (filters out old economy packages immediately on response)
         const cleanData = (data || []).filter(p => {
-          if (p.category?.toLowerCase().trim() === 'economy') {
+          if (p.category?.toLowerCase().includes('economy')) {
             return [401, 402, 403, 404].includes(parseInt(p.id));
           }
           return true;

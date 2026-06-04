@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
   // Self-cleaning deletion for local database
   if (data && data.length > 0) {
     const idsToDelete = data
-      .filter(p => p.category?.toLowerCase().trim() === 'economy' && ![401, 402, 403, 404].includes(parseInt(p.id)))
+      .filter(p => p.category?.toLowerCase().includes('economy') && ![401, 402, 403, 404].includes(parseInt(p.id)))
       .map(p => p.id);
     
     if (idsToDelete.length > 0) {
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 
   // Filter returned list
   const cleanData = (data || []).filter(p => {
-    if (p.category?.toLowerCase().trim() === 'economy') {
+    if (p.category?.toLowerCase().includes('economy')) {
       return [401, 402, 403, 404].includes(parseInt(p.id));
     }
     return true;
