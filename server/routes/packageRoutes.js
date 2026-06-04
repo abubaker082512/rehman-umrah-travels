@@ -10,7 +10,31 @@ router.get('/', async (req, res) => {
     .order('created_at', { ascending: false });
     
   if (error) return res.status(500).json({ message: error.message });
-  res.json(data || []);
+
+  // Self-cleaning deletion for local database
+  if (data && data.length > 0) {
+    const idsToDelete = data
+      .filter(p => p.category?.toLowerCase().trim() === 'economy' && ![401, 402, 403, 404].includes(parseInt(p.id)))
+      .map(p => p.id);
+    
+    if (idsToDelete.length > 0) {
+      req.supabase.from('packages').delete().in('id', idsToDelete)
+        .then(({ error: delErr }) => {
+          if (delErr) console.error('[Cleanup] Failed to delete local old economy packages:', delErr.message);
+        })
+        .catch(err => console.error('[Cleanup] Error during local deletion:', err));
+    }
+  }
+
+  // Filter returned list
+  const cleanData = (data || []).filter(p => {
+    if (p.category?.toLowerCase().trim() === 'economy') {
+      return [401, 402, 403, 404].includes(parseInt(p.id));
+    }
+    return true;
+  });
+
+  res.json(cleanData);
 });
 
 // GET single package (public)

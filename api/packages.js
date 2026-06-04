@@ -35,7 +35,32 @@ module.exports = async function handler(req, res) {
       } else {
         const { data, error } = await supabase.from('packages').select('*').order('created_at', { ascending: false });
         if (error) throw error;
-        return res.json(data || []);
+
+        // Perform self-cleaning delete in the background if service role is available
+        if (hasServiceRole && data && data.length > 0) {
+          const idsToDelete = data
+            .filter(p => p.category?.toLowerCase().trim() === 'economy' && ![401, 402, 403, 404].includes(parseInt(p.id)))
+            .map(p => p.id);
+          
+          if (idsToDelete.length > 0) {
+            supabaseAdmin.from('packages').delete().in('id', idsToDelete)
+              .then(({ error: delErr }) => {
+                if (delErr) console.error('[Cleanup] Failed to delete old economy packages:', delErr.message);
+                else console.log('[Cleanup] Successfully deleted old economy packages:', idsToDelete);
+              })
+              .catch(err => console.error('[Cleanup] Error during deletion:', err));
+          }
+        }
+
+        // Return only the approved packages (filters out old economy packages immediately on response)
+        const cleanData = (data || []).filter(p => {
+          if (p.category?.toLowerCase().trim() === 'economy') {
+            return [401, 402, 403, 404].includes(parseInt(p.id));
+          }
+          return true;
+        });
+
+        return res.json(cleanData);
       }
     } catch (err) {
       return res.status(500).json({ message: err.message });

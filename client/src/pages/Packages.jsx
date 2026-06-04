@@ -4,6 +4,11 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
 import ScrollReveal from '../components/ScrollReveal'
+import packagesHeroImg from '../assets/home-3.jpg'
+import economyPackagesImg from '../assets/economy_packages.png'
+import star3PackagesImg from '../assets/star3_packages.png'
+import star4PackagesImg from '../assets/star4_packages.png'
+import star5PackagesImg from '../assets/star5_packages.png'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''
 
@@ -112,6 +117,7 @@ const Packages = () => {
   const [selectedCategories, setSelectedCategories] = useState([])
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     const categoryParam = searchParams.get('category')
     if (categoryParam) {
       if (categoryParam === 'economy') {
@@ -196,7 +202,7 @@ const Packages = () => {
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img className="w-full h-full object-cover" src={getProxyUrl(pageMedia.packages_hero_image || "https://images.unsplash.com/photo-1572949645079-6416a599c6ae?w=1600")} alt="Makkah" />
+          <img className="w-full h-full object-cover" src={packagesHeroImg} alt="Makkah" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/80 to-transparent"></div>
         </div>
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-24 w-full">
@@ -267,8 +273,19 @@ const Packages = () => {
                   );
                 }
                 return filtered.map((pkg, i) => {
-                  const staticPkg = staticPackages[i % staticPackages.length]
-                  const image = pkg.image_url || pkg.image || staticPkg?.image
+                  const staticPkg = staticPackages.find(sp => String(sp.id) === String(pkg.id))
+                  const category = (pkg.category || staticPkg?.category || '').toLowerCase().trim()
+                  let cardImage = pkg.image_url || pkg.image || staticPkg?.image
+
+                  // Use premium local Kaaba/Masjid Nabawi graphics for packages cards to prevent failure and match Home3 style
+                  if (!cardImage || cardImage.includes('unsplash.com')) {
+                    if (category.includes('economy')) cardImage = economyPackagesImg
+                    else if (category.includes('3 star')) cardImage = star3PackagesImg
+                    else if (category.includes('4 star')) cardImage = star4PackagesImg
+                    else if (category.includes('5 star')) cardImage = star5PackagesImg
+                    else cardImage = star3PackagesImg
+                  }
+
                   const badge = pkg.badge || staticPkg?.badge || ''
                   const badgeColor = pkg.badgeColor || staticPkg?.badgeColor || 'bg-[#CD9933]'
                   const days = pkg.days || pkg.duration || staticPkg?.days || '15 Days'
@@ -284,7 +301,7 @@ const Packages = () => {
                     >
                       <div className="bg-[#013334] border border-[#CD9933]/15 hover:border-[#CD9933]/40 rounded-xl overflow-hidden flex flex-col group cursor-pointer transition-transform hover:-translate-y-1 h-full shadow-lg hover:shadow-2xl text-white">
                         <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden">
-                          <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={getProxyUrl(image)} alt={pkg.title || pkg.name} />
+                          <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 asymmetric-clip" src={getProxyUrl(cardImage)} alt={pkg.title || pkg.name} />
                           {badge && (
                             <div className={`absolute top-4 left-4 ${badgeColor} text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded shadow-md`}>{badge}</div>
                           )}
