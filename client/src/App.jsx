@@ -17,6 +17,7 @@ import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
 import InternationalTours from './pages/InternationalTours'
 import InternationalTourDetail from './pages/InternationalTourDetail'
+import LocalTourDetail from './pages/LocalTourDetail'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         {/* <Route path="/home2" element={<Home2 />} /> */}
         {/* <Route path="/home3" element={<Home3 />} /> */}
         <Route path="/local-tours" element={<LocalTours />} />
+        <Route path="/local-tour/:id" element={<LocalTourDetail />} />
         <Route path="/packages" element={<Packages />} />
         <Route path="/package/:id" element={<PackageDetail />} />
         <Route path="/admin/login" element={<AdminLogin />} />

@@ -1,50 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ScrollReveal from '../components/ScrollReveal'
 import localToursImg from '../assets/local_tours.png'
-
-const localToursData = [
-  {
-    id: 301,
-    title: 'Hunza Valley Tour',
-    subtitle: 'Karimabad, Attabad Lake, Altit & Baltit Forts, Khunjerab Border',
-    duration: '7 Days / 6 Nights',
-    price: 'PKR 65,000',
-    highlights: ['Attabad Lake Boating', 'Khunjerab Pass (China Border)', 'Altit & Baltit Forts Tour', 'Karimabad Traditional Market'],
-    description: 'Journey through the majestic Hunza Valley, featuring deep sapphire lakes, centuries-old heritage forts, and spectacular high mountain view points.'
-  },
-  {
-    id: 302,
-    title: 'Skardu & Deosai Plains Tour',
-    subtitle: 'Shangrila Resort, Cold Desert, Satpara Lake, Deosai Plains',
-    duration: '8 Days / 7 Nights',
-    price: 'PKR 78,000',
-    highlights: ['Shangrila Lake Resort', 'Deosai Plains Jeep Safari', 'Manthoka Waterfall visit', 'Katpana Cold Desert Sunset'],
-    description: 'Explore the celestial highlands of Skardu, high-altitude alpine plains of Deosai, pristine waterfalls, and unique desert sand dunes under towering peaks.'
-  },
-  {
-    id: 303,
-    title: 'Swat Valley & Kalam Tour',
-    subtitle: 'Malam Jabba, Kalam, Ushu Forest, Mahodand Lake',
-    duration: '6 Days / 5 Nights',
-    price: 'PKR 48,000',
-    highlights: ['Malam Jabba Ski Resort', 'Ushu Forest Nature Walk', 'Mahodand Lake Boating', 'Kalam Valley Jeep Safari'],
-    description: 'Discover the Switzerland of Pakistan: Swat Valley. Featuring pine-covered forests, ski chairlifts, rushing streams, and magnificent glacial lakes.'
-  },
-  {
-    id: 304,
-    title: 'Fairy Meadows & Nanga Parbat Base',
-    subtitle: 'Raikot Bridge, Fairy Meadows, Nanga Parbat Base Camp',
-    duration: '5 Days / 4 Nights',
-    price: 'PKR 55,000',
-    highlights: ['Thrilling Raikot Jeep Track', 'Fairy Meadows Trek & Camp', 'Reflection Lake Photography', 'Base Camp Trekking'],
-    description: 'Embark on a dream adventure to the legendary Fairy Meadows, camping at the foot of the massive Nanga Parbat (the Killer Mountain).'
-  }
-]
+import { LOCAL_TOURS } from './LocalTourDetail'
 
 const LocalTours = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="bg-[#001c1d] font-manrope text-white min-h-screen">
       <Navbar />
@@ -106,7 +72,7 @@ const LocalTours = () => {
 
           {/* Staggered Cards Grid with Alternating Reveal Directions */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            {localToursData.map((tour, idx) => (
+            {LOCAL_TOURS.map((tour, idx) => (
               <ScrollReveal 
                 key={tour.id} 
                 delay={(idx % 2) * 120} 
@@ -118,7 +84,7 @@ const LocalTours = () => {
                   <div className="relative h-64 sm:h-72 overflow-hidden shrink-0">
                     <img 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                      src={localToursImg} 
+                      src={tour.cardImage || localToursImg} 
                       alt={tour.title} 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#002526]/80 via-transparent to-transparent"></div>
@@ -127,7 +93,7 @@ const LocalTours = () => {
                         {tour.duration}
                       </span>
                       <h3 className="font-notoSerif text-2xl font-bold tracking-wide uppercase line-clamp-1">{tour.title}</h3>
-                      <p className="text-xs text-gray-300 font-light mt-1 line-clamp-1">{tour.subtitle}</p>
+                      <p className="text-xs text-gray-300 font-light mt-1 line-clamp-1">{tour.destinations}</p>
                     </div>
                   </div>
 
@@ -153,19 +119,27 @@ const LocalTours = () => {
                     </div>
 
                     {/* Bottom Pricing & Action */}
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-6 border-t border-white/10">
+                    <div className="flex items-center justify-between gap-4 pt-6 border-t border-white/10">
                       <div>
                         <span className="block text-[10px] text-gray-500 uppercase tracking-widest">Starting from</span>
                         <span className="text-2xl font-extrabold text-[#CD9933]">{tour.price}</span>
                       </div>
-                      <a 
-                        href={`https://wa.me/923220725064?text=Hello%20Royal%20Umrah%20%26%20Travels,%20I%20would%20like%20to%20book%20the%20${encodeURIComponent(tour.title)}.`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-[#CD9933] hover:bg-[#b08025] text-white text-center py-3.5 px-8 text-xs font-bold uppercase tracking-widest transition-all rounded-lg active:scale-95 shadow-md"
-                      >
-                        Book Now
-                      </a>
+                      <div className="flex gap-3">
+                        <Link 
+                          to={`/local-tour/${tour.id}`}
+                          className="px-5 py-2.5 border border-white/20 text-white hover:bg-white/10 font-bold text-xs uppercase tracking-widest transition-all rounded-lg text-center"
+                        >
+                          Read More
+                        </Link>
+                        <a 
+                          href={`https://wa.me/923220725064?text=Hello%20Royal%20Umrah%20%26%20Travels,%20I%20would%20like%20to%20book%20the%20${encodeURIComponent(tour.title)}.`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-5 py-2.5 bg-[#CD9933] hover:bg-[#b08025] text-white font-bold text-xs uppercase tracking-widest transition-all rounded-lg active:scale-95 shadow-md text-center"
+                        >
+                          Book Now
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>

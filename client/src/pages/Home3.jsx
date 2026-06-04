@@ -1156,7 +1156,7 @@ const Home3 = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {localTours.map((pkg, idx) => {
               const isStatic = !pkg.hasOwnProperty('image_url')
-              const img = localToursImg
+              const img = pkg.image || localToursImg
               const badge = isStatic ? pkg.badge : (pkg.category || 'FOR 1 PERSON')
               const duration = isStatic ? pkg.duration : (pkg.duration || '3 Days 2 Nights')
               const price = pkg.price
@@ -1198,7 +1198,7 @@ const Home3 = () => {
                       {/* Action Buttons */}
                       <div className="flex gap-4 mt-8 pt-6 border-t border-white/10">
                         <Link
-                          to={`/package/${pkg.id || idx + 1}`}
+                          to={`/local-tour/${pkg.id}`}
                           className="flex-1 bg-white/5 border border-white/10 hover:bg-[#CD9933] hover:border-[#CD9933] text-white hover:text-[#013334] text-center py-3 text-[10px] font-bold uppercase tracking-wider transition-all rounded-lg"
                         >
                           READ MORE
@@ -1223,7 +1223,7 @@ const Home3 = () => {
           <ScrollReveal animation="fade-down" delay={150} duration={600}>
             <div className="text-center mt-16">
               <Link
-                to="/packages"
+                to="/local-tours"
                 className="inline-block border-2 border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] px-10 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
               >
                 MORE TOURS
