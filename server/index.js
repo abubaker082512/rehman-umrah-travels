@@ -37,6 +37,9 @@ app.use('/api/auth', require('./routes/authRoutes'));
 // Packages
 app.use('/api/packages', require('./routes/packageRoutes'));
 
+// Inquiries
+app.use('/api/inquiries', require('./routes/inquiryRoutes'));
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

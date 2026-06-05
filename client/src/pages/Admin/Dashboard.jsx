@@ -16,6 +16,7 @@ const tabs = [
   { id: 'flights', label: 'Flights', icon: 'flight_takeoff' },
   { id: 'gallery', label: 'Gallery', icon: 'photo_library' },
   { id: 'blog', label: 'Blog', icon: 'article' },
+  { id: 'inquiries', label: 'Client Inquiries', icon: 'mail' },
   { id: 'page-media', label: 'Page Media', icon: 'image' },
   { id: 'cms', label: 'Content CMS', icon: 'edit_note' },
   { id: 'settings', label: 'Site Settings', icon: 'settings' },
@@ -276,6 +277,7 @@ const AdminDashboard = () => {
   const [flights, setFlights] = useState([])
   const [galleryItems, setGalleryItems] = useState([])
   const [blogPosts, setBlogPosts] = useState([])
+  const [inquiries, setInquiries] = useState([])
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
@@ -341,13 +343,14 @@ const AdminDashboard = () => {
   const fetchAll = async () => {
     setLoading(true)
     try {
-      const [pkgR, tourR, visaR, galR, blogR, flightR] = await Promise.allSettled([
+      const [pkgR, tourR, visaR, galR, blogR, flightR, inqR] = await Promise.allSettled([
         axios.get(`${API_BASE}/api/packages`),
         axios.get(`${API_BASE}/api/tours`),
         axios.get(`${API_BASE}/api/visa`),
         axios.get(`${API_BASE}/api/gallery`),
         axios.get(`${API_BASE}/api/blog`),
         axios.get(`${API_BASE}/api/flights`),
+        axios.get(`${API_BASE}/api/inquiries`, { headers: authHdr() }),
       ])
       if (pkgR.status === 'fulfilled') setPackages(Array.isArray(pkgR.value.data) ? pkgR.value.data : [])
       if (tourR.status === 'fulfilled') setTours(Array.isArray(tourR.value.data) ? tourR.value.data : [])
@@ -355,8 +358,18 @@ const AdminDashboard = () => {
       if (galR.status === 'fulfilled') setGalleryItems(Array.isArray(galR.value.data) ? galR.value.data : [])
       if (blogR.status === 'fulfilled') setBlogPosts(Array.isArray(blogR.value.data) ? blogR.value.data : [])
       if (flightR.status === 'fulfilled') setFlights(Array.isArray(flightR.value.data) ? flightR.value.data : [])
+      if (inqR.status === 'fulfilled') setInquiries(Array.isArray(inqR.value.data) ? inqR.value.data : [])
     } catch (err) { console.error('Fetch error:', err) }
     setLoading(false)
+  }
+
+  const handleDeleteInquiry = async (id) => {
+    if (!confirm('Delete this inquiry?')) return
+    try {
+      await axios.delete(`${API_BASE}/api/inquiries/${id}`, { headers: authHdr() })
+      fetchAll()
+      alert('Inquiry deleted successfully!')
+    } catch { alert('Error deleting inquiry') }
   }
 
   const fetchData = fetchAll
@@ -1057,6 +1070,77 @@ const AdminDashboard = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* Client Inquiries Tab */}
+          {activeTab === 'inquiries' && (
+            <div>
+              <div className="flex justify-between items-center mb-8">
+                <div>
+                  <h2 className="font-notoSerif text-3xl font-bold text-primary">Client Inquiries</h2>
+                  <p className="text-sm text-outline-variant mt-1">Manage all contact form submissions and requests</p>
+                </div>
+                <button
+                  onClick={fetchAll}
+                  className="flex items-center gap-2 border border-outline-variant hover:border-[#CD9933] px-4 py-2 text-xs font-bold tracking-widest uppercase transition-all rounded-lg"
+                >
+                  <span className="material-symbols-outlined text-sm">refresh</span>
+                  Refresh List
+                </button>
+              </div>
+
+              {loading ? (
+                <p className="text-on-surface-variant">Loading inquiries...</p>
+              ) : inquiries.length === 0 ? (
+                <div className="bg-surface-container-lowest p-12 rounded-xl text-center editorial-shadow">
+                  <span className="material-symbols-outlined text-6xl text-outline-variant mb-4 block">mail</span>
+                  <p className="text-on-surface-variant font-bold text-lg">No Inquiries Yet</p>
+                  <p className="text-xs text-outline mt-1">Form submissions from the homepage will appear here.</p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {inquiries.map(inq => (
+                    <div key={inq.id} className="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 editorial-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                      <div className="space-y-3 flex-1">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="bg-[#CD9933] text-white text-[10px] font-bold px-3 py-1 uppercase rounded-full tracking-wider">
+                            {inq.subject || 'General Inquiry'}
+                          </span>
+                          <span className="text-[11px] text-outline font-mono">
+                            {inq.created_at ? new Date(inq.created_at).toLocaleString() : 'N/A'}
+                          </span>
+                        </div>
+                        <h4 className="font-bold text-lg text-primary">{inq.name}</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-sm text-on-surface-variant">
+                          <p className="flex items-center gap-2">
+                            <span className="material-symbols-outlined text-sm text-[#CD9933]">phone</span>
+                            <strong>Phone:</strong> <a href={`tel:${inq.phone}`} className="hover:underline">{inq.phone}</a>
+                          </p>
+                          {inq.email && (
+                            <p className="flex items-center gap-2">
+                              <span className="material-symbols-outlined text-sm text-[#CD9933]">mail</span>
+                              <strong>Email:</strong> <a href={`mailto:${inq.email}`} className="hover:underline">{inq.email}</a>
+                            </p>
+                          )}
+                        </div>
+                        <div className="bg-[#f5f7fa] p-4 rounded-lg border border-outline-variant/10 mt-2">
+                          <p className="text-xs text-on-surface font-light leading-relaxed whitespace-pre-wrap">
+                            "{inq.message}"
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => handleDeleteInquiry(inq.id)}
+                        className="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 p-3 rounded-lg border border-red-200 transition-colors flex items-center justify-center shadow-sm"
+                        title="Delete Inquiry"
+                      >
+                        <span className="material-symbols-outlined text-lg">delete</span>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 

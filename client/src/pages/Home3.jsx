@@ -5,7 +5,7 @@ import logo from '../assets/Rehman Travel Logo.png'
 import background3 from '../assets/home-3.jpg'
 import kaabaPackages from '../assets/kaaba_packages.png'
 import toursScenic from '../assets/tours_scenic.png'
-import travelerPortrait from '../assets/hajj_umrah_travel_collage.png'
+import travelerPortrait from '../assets/global_tours_collage.png'
 import aboutImage from '../assets/about-us.jpg'
 
 // Testimonial avatars
@@ -270,15 +270,29 @@ const Home3 = () => {
 
   const handleContactSubmit = (e) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      setContactName('')
-      setContactPhone('')
-      setContactEmail('')
-      setContactSubject('Umrah Packages')
-      setContactMsg('')
-    }, 4000)
+    const payload = {
+      name: contactName,
+      phone: contactPhone,
+      email: contactEmail,
+      subject: contactSubject,
+      message: contactMsg
+    }
+    axios.post(`${API_BASE}/api/inquiries`, payload)
+      .then(() => {
+        setSubmitted(true)
+        setTimeout(() => {
+          setSubmitted(false)
+          setContactName('')
+          setContactPhone('')
+          setContactEmail('')
+          setContactSubject('Umrah Packages')
+          setContactMsg('')
+        }, 4000)
+      })
+      .catch(err => {
+        console.error('Failed to submit inquiry:', err)
+        alert('Failed to submit inquiry. Please try again.')
+      })
   }
 
   return (
