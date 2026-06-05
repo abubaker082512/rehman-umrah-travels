@@ -13,6 +13,8 @@ import tehminaPortrait from '../assets/testimonials/tehmina_hassan.png'
 import zubairPortrait from '../assets/testimonials/zubair_malik.png'
 import ayeshaPortrait from '../assets/testimonials/ayesha_siddiqui.png'
 import ahmedPortrait from '../assets/testimonials/ahmed_raza.png'
+import mohammadPortrait from '../assets/testimonials/mohammad_ali.png'
+import sabaPortrait from '../assets/testimonials/saba_khan.png'
 
 // Thailand Tour Image
 import thailandTourImg from '../assets/thailand_tour.jpg'
@@ -1265,68 +1267,8 @@ const Home3 = () => {
           </div>
 
           {/* Testimonial Cards Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Card 1 */}
-            <div className="backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl flex flex-col justify-between hover:border-[#CD9933]/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg text-left relative group">
-              <span className="material-symbols-outlined text-[#CD9933]/15 text-6xl absolute top-6 right-6 select-none font-light">format_quote</span>
-              <div>
-                <div className="flex gap-1 text-[#CD9933] mb-6">
-                  <span className="material-symbols-outlined text-base font-fill">star</span>
-                  <span className="material-symbols-outlined text-base font-fill">star</span>
-                  <span className="material-symbols-outlined text-base font-fill">star</span>
-                  <span className="material-symbols-outlined text-base font-fill">star</span>
-                  <span className="material-symbols-outlined text-base font-fill">star</span>
-                </div>
-                <p className="text-white/85 italic text-sm leading-relaxed mb-6 font-manrope font-light">
-                  "Our Turkey package was outstanding. Flight scheduling, domestic connections in Cappadocia, hotel stays, and local historical guides were perfectly taken care of. I didn't have to worry about a single detail."
-                </p>
-              </div>
-              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#CD9933]/40 shrink-0">
-                  <img
-                    alt="Tehmina Hassan portrait"
-                    className="w-full h-full object-cover"
-                    src={tehminaPortrait}
-                  />
-                </div>
-                <div>
-                  <h5 className="text-white font-bold text-xs uppercase tracking-wider font-headline">Tehmina Hassan</h5>
-                  <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase">Rawalpindi • Turkey Tour</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl flex flex-col justify-between hover:border-[#CD9933]/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg text-left relative group">
-              <span className="material-symbols-outlined text-[#CD9933]/15 text-6xl absolute top-6 right-6 select-none font-light">format_quote</span>
-              <div>
-                <div className="flex gap-1 text-[#CD9933] mb-6">
-                  <span className="material-symbols-outlined text-base font-fill">star</span>
-                  <span className="material-symbols-outlined text-base font-fill">star</span>
-                  <span className="material-symbols-outlined text-base font-fill">star</span>
-                  <span className="material-symbols-outlined text-base font-fill">star</span>
-                  <span className="material-symbols-outlined text-base font-fill">star</span>
-                </div>
-                <p className="text-white/85 italic text-sm leading-relaxed mb-6 font-manrope font-light">
-                  "Booking airline tickets and private domestic tours in Swat and Naran Valley was incredibly fast and smooth. Royal Travels operates with absolute elite professionalism. Will definitely travel with them again."
-                </p>
-              </div>
-              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#CD9933]/40 shrink-0">
-                  <img
-                    alt="Zubair Malik portrait"
-                    className="w-full h-full object-cover"
-                    src={zubairPortrait}
-                  />
-                </div>
-                <div>
-                  <h5 className="text-white font-bold text-xs uppercase tracking-wider font-headline">Zubair Malik</h5>
-                  <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase">Islamabad • Local Tours</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            {/* Card 1: Umrah Package (Ayesha Siddiqui) */}
             <div className="backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl flex flex-col justify-between hover:border-[#CD9933]/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg text-left relative group">
               <span className="material-symbols-outlined text-[#CD9933]/15 text-6xl absolute top-6 right-6 select-none font-light">format_quote</span>
               <div>
@@ -1352,6 +1294,96 @@ const Home3 = () => {
                 <div>
                   <h5 className="text-white font-bold text-xs uppercase tracking-wider font-headline">Ayesha Siddiqui</h5>
                   <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase">Lahore • Umrah Package</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: Umrah Package (Mohammad Ali) */}
+            <div className="backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl flex flex-col justify-between hover:border-[#CD9933]/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg text-left relative group">
+              <span className="material-symbols-outlined text-[#CD9933]/15 text-6xl absolute top-6 right-6 select-none font-light">format_quote</span>
+              <div>
+                <div className="flex gap-1 text-[#CD9933] mb-6">
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                </div>
+                <p className="text-white/85 italic text-sm leading-relaxed mb-6 font-manrope font-light">
+                  "The executive Umrah experience was seamless from start to finish. Private luxury transfers in Makkah and Madinah, premium 5-star hotels right in front of the Haram, and perfect coordination by the local team."
+                </p>
+              </div>
+              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#CD9933]/40 shrink-0">
+                  <img
+                    alt="Mohammad Ali portrait"
+                    className="w-full h-full object-cover"
+                    src={mohammadPortrait}
+                  />
+                </div>
+                <div>
+                  <h5 className="text-white font-bold text-xs uppercase tracking-wider font-headline">Mohammad Ali</h5>
+                  <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase">Karachi • Umrah Package</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Umrah Package (Saba Khan) */}
+            <div className="backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl flex flex-col justify-between hover:border-[#CD9933]/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg text-left relative group">
+              <span className="material-symbols-outlined text-[#CD9933]/15 text-6xl absolute top-6 right-6 select-none font-light">format_quote</span>
+              <div>
+                <div className="flex gap-1 text-[#CD9933] mb-6">
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                </div>
+                <p className="text-white/85 italic text-sm leading-relaxed mb-6 font-manrope font-light">
+                  "Very affordable economy Umrah package without compromising on cleanliness and support. The guides were incredibly helpful during the rituals, and the transportation was punctual. May Allah bless them."
+                </p>
+              </div>
+              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#CD9933]/40 shrink-0">
+                  <img
+                    alt="Saba Khan portrait"
+                    className="w-full h-full object-cover"
+                    src={sabaPortrait}
+                  />
+                </div>
+                <div>
+                  <h5 className="text-white font-bold text-xs uppercase tracking-wider font-headline">Saba Khan</h5>
+                  <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase">Peshawar • Umrah Package</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: Thailand Tour (Tehmina Hassan) */}
+            <div className="backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl flex flex-col justify-between hover:border-[#CD9933]/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1.5 shadow-lg text-left relative group">
+              <span className="material-symbols-outlined text-[#CD9933]/15 text-6xl absolute top-6 right-6 select-none font-light">format_quote</span>
+              <div>
+                <div className="flex gap-1 text-[#CD9933] mb-6">
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                  <span className="material-symbols-outlined text-base font-fill">star</span>
+                </div>
+                <p className="text-white/85 italic text-sm leading-relaxed mb-6 font-manrope font-light">
+                  "Our Thailand Splendor package was absolutely magical. Exploring the historic temples in Bangkok and then relaxing on the beautiful beaches of Phuket was a dream. Flight connections and transfers were flawless!"
+                </p>
+              </div>
+              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#CD9933]/40 shrink-0">
+                  <img
+                    alt="Tehmina Hassan portrait"
+                    className="w-full h-full object-cover"
+                    src={tehminaPortrait}
+                  />
+                </div>
+                <div>
+                  <h5 className="text-white font-bold text-xs uppercase tracking-wider font-headline">Tehmina Hassan</h5>
+                  <p className="text-[#CD9933] text-[9px] font-bold tracking-widest uppercase">Rawalpindi • Thailand Tour</p>
                 </div>
               </div>
             </div>
