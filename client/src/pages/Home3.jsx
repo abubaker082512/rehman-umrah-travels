@@ -554,35 +554,17 @@ const Home3 = () => {
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
                 <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=economy">View All</Link>
-                <div className="flex items-center gap-2">
-                  <button 
-                    onClick={() => scrollCarousel(economyRef, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Previous"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
-                  </button>
-                  <button 
-                    onClick={() => scrollCarousel(economyRef, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Next"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
-                  </button>
-                </div>
               </div>
             </div>
           </ScrollReveal>
           
           <div 
-            ref={economyRef}
-            className="flex gap-6 md:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 py-4"
           >
-            {economyPackages.slice(0, 12).map((pkg, idx) => (
+            {economyPackages.slice(0, 4).map((pkg, idx) => (
               <div 
                 key={pkg.id} 
-                className="snap-start flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+                className="w-full h-full"
               >
                 <ScrollReveal 
                   key={pkg.id} 
@@ -633,35 +615,17 @@ const Home3 = () => {
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
                 <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=3star">View All</Link>
-                <div className="flex items-center gap-2">
-                  <button 
-                    onClick={() => scrollCarousel(star3Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Previous"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
-                  </button>
-                  <button 
-                    onClick={() => scrollCarousel(star3Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Next"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
-                  </button>
-                </div>
               </div>
             </div>
           </ScrollReveal>
           
           <div 
-            ref={star3Ref}
-            className="flex gap-6 md:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 py-4"
           >
-            {star3Packages.slice(0, 12).map((pkg, idx) => (
+            {star3Packages.slice(0, 4).map((pkg, idx) => (
               <div 
                 key={pkg.id} 
-                className="snap-start flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+                className="w-full h-full"
               >
                 <ScrollReveal 
                   key={pkg.id} 
@@ -712,35 +676,17 @@ const Home3 = () => {
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
                 <Link className="text-white hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=4star">View All</Link>
-                <div className="flex items-center gap-2">
-                  <button 
-                    onClick={() => scrollCarousel(star4Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Previous"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
-                  </button>
-                  <button 
-                    onClick={() => scrollCarousel(star4Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#CD9933]/20 hover:border-[#CD9933] text-white hover:text-[#CD9933] hover:bg-[#CD9933]/10 flex items-center justify-center transition-all bg-[#013334]/45 backdrop-blur-md shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Next"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
-                  </button>
-                </div>
               </div>
             </div>
           </ScrollReveal>
           
           <div 
-            ref={star4Ref}
-            className="flex gap-6 md:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 py-4"
           >
-            {star4Packages.slice(0, 12).map((pkg, idx) => (
+            {star4Packages.slice(0, 4).map((pkg, idx) => (
               <div 
                 key={pkg.id} 
-                className="snap-start flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+                className="w-full h-full"
               >
                 <ScrollReveal 
                   key={pkg.id} 
@@ -791,35 +737,17 @@ const Home3 = () => {
               </div>
               <div className="flex items-center gap-4 mt-6 md:mt-0">
                 <Link className="text-[#013334] hover:text-[#CD9933] font-bold border-b-2 border-[#CD9933] pb-1 transition-all hover:pr-4" to="/packages?category=5star">View All</Link>
-                <div className="flex items-center gap-2">
-                  <button 
-                    onClick={() => scrollCarousel(star5Ref, 'left')} 
-                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Previous"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_back_ios_new</span>
-                  </button>
-                  <button 
-                    onClick={() => scrollCarousel(star5Ref, 'right')} 
-                    className="w-10 h-10 rounded-full border border-[#013334] bg-[#013334] text-white hover:bg-[#CD9933] hover:text-[#013334] hover:border-[#CD9933] flex items-center justify-center transition-all shadow-sm cursor-pointer select-none active:scale-95"
-                    aria-label="Next"
-                  >
-                    <span className="material-symbols-outlined text-base font-bold">arrow_forward_ios</span>
-                  </button>
-                </div>
               </div>
             </div>
           </ScrollReveal>
           
           <div 
-            ref={star5Ref}
-            className="flex gap-6 md:gap-8 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth py-4 scrollbar-none"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 py-4"
           >
-            {star5Packages.slice(0, 12).map((pkg, idx) => (
+            {star5Packages.slice(0, 4).map((pkg, idx) => (
               <div 
                 key={pkg.id} 
-                className="snap-start flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
+                className="w-full h-full"
               >
                 <ScrollReveal 
                   key={pkg.id} 
