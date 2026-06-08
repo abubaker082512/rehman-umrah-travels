@@ -6,7 +6,7 @@ import heroVideo from '../assets/hero-video.mp4'
 import kaabaPackages from '../assets/kaaba_packages.png'
 import toursScenic from '../assets/tours_scenic.png'
 import travelerPortrait from '../assets/global_tours_collage.png'
-import aboutImage from '../assets/about-us.jpg'
+import aboutImage from '../assets/about-us.png'
 
 // Testimonial avatars
 import tehminaPortrait from '../assets/testimonials/tehmina_hassan.png'
