@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import logo from '../assets/Rehman Travel Logo.png'
-import background3 from '../assets/home-3.jpg'
+import heroVideo from '../assets/hero-video.mp4'
 import kaabaPackages from '../assets/kaaba_packages.png'
 import toursScenic from '../assets/tours_scenic.png'
 import travelerPortrait from '../assets/global_tours_collage.png'
@@ -301,12 +301,15 @@ const Home3 = () => {
 
       {/* 1. Hero Section matching screenshot layout precisely */}
       <section className="relative z-20 min-h-[960px] flex flex-col justify-between overflow-visible bg-[#001c1d]">
-        {/* Background Image: Holy Kaaba at Makkah Sunset */}
+        {/* Background Video */}
         <div className="absolute inset-0 z-0">
-          <img
-            alt="Scenic view of the Holy Kaaba sunset background"
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover object-right md:object-center"
-            src={background3}
+            src={heroVideo}
           />
           {/* Sophisticated dark teal horizontal gradient matching screenshot side-split */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#001c1d] via-[#001c1d]/95 via-45% md:via-55% to-transparent"></div>
