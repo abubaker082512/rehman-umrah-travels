@@ -357,11 +357,11 @@ const Home2 = () => {
           </div>
 
           {/* Right Column Graphic Collage */}
-          <div className="relative group">
-            <div className="absolute inset-0 bg-[#CD9933] translate-x-3 translate-y-3 -z-10 group-hover:translate-x-1.5 group-hover:translate-y-1.5 transition-transform duration-300"></div>
+          <div className="relative group isolate">
+            <div className="absolute inset-0 bg-[#CD9933] translate-x-4 translate-y-4 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300 rounded-xl"></div>
             <img
               alt="Luxury traveler collage illustration mockup landscape"
-              className="w-full h-auto object-cover shadow-xl border border-gray-100"
+              className="w-full h-auto object-cover shadow-2xl border border-white/20 rounded-xl"
               src={aboutImage}
             />
           </div>

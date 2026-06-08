@@ -897,71 +897,75 @@ const Home3 = () => {
       <section className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Column Text Details */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="text-[#CD9933] font-bold text-xs uppercase tracking-widest">WHO WE ARE</span>
-              <div className="h-[1px] w-12 bg-[#CD9933]"></div>
-            </div>
-            <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
-              BEST TRAVEL AGENCY IN PAKISTAN
-            </h2>
-            <p className="text-gray-500 leading-relaxed text-sm">
-              At Royal Umrah & Travels, we treat every travel plan as a customized masterclass of spiritual fulfillment, logistics comfort, and exploration freedom. Over the years, we have built key flight alignments and hotel partnerships worldwide to deliver high-fidelity journeys that stay with you forever.
-            </p>
+          <ScrollReveal animation="fade-down" duration={800}>
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <span className="text-[#CD9933] font-bold text-xs uppercase tracking-widest">WHO WE ARE</span>
+                <div className="h-[1px] w-12 bg-[#CD9933]"></div>
+              </div>
+              <h2 className="text-[#013334] text-3xl md:text-4xl font-bold tracking-wide uppercase font-headline">
+                BEST TRAVEL AGENCY IN PAKISTAN
+              </h2>
+              <p className="text-gray-500 leading-relaxed text-sm">
+                At Royal Umrah & Travels, we treat every travel plan as a customized masterclass of spiritual fulfillment, logistics comfort, and exploration freedom. Over the years, we have built key flight alignments and hotel partnerships worldwide to deliver high-fidelity journeys that stay with you forever.
+              </p>
 
-            {/* Elegant 8-Item Double-Column List */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5 text-xs text-gray-600 font-bold uppercase tracking-wider">
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
-                <span>Economy Class Flights</span>
+              {/* Elegant 8-Item Double-Column List */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3.5 text-xs text-gray-600 font-bold uppercase tracking-wider">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
+                  <span>Economy Class Flights</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
+                  <span>3-Star Accommodations</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
+                  <span>Business Class Flights</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
+                  <span>4-Star Accommodations</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
+                  <span>First Class Flight Booking</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
+                  <span>5-Star Accommodations</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
+                  <span>Local Tour Packages</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
+                  <span>International Tour Packages</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
-                <span>3-Star Accommodations</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
-                <span>Business Class Flights</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
-                <span>4-Star Accommodations</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
-                <span>First Class Flight Booking</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
-                <span>5-Star Accommodations</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
-                <span>Local Tour Packages</span>
-              </div>
-              <div className="flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#CD9933]"></span>
-                <span>International Tour Packages</span>
-              </div>
-            </div>
 
-            <Link
-              to="/about"
-              className="inline-block bg-[#013334] hover:bg-[#CD9933] text-white px-8 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
-            >
-              READ MORE
-            </Link>
-          </div>
+              <Link
+                to="/about"
+                className="inline-block bg-[#013334] hover:bg-[#CD9933] text-white px-8 py-3.5 text-xs font-bold tracking-widest uppercase transition-colors"
+              >
+                READ MORE
+              </Link>
+            </div>
+          </ScrollReveal>
 
           {/* Right Column Graphic Collage */}
-          <div className="relative group">
-            <div className="absolute inset-0 bg-[#CD9933] translate-x-4 translate-y-4 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300 rounded-xl"></div>
-            <img
-              alt="Luxury traveler collage illustration mockup landscape"
-              className="w-full h-auto object-cover shadow-2xl border border-white/20 rounded-xl"
-              src={aboutImage}
-            />
-          </div>
+          <ScrollReveal animation="fade-down" duration={800}>
+            <div className="relative group isolate">
+              <div className="absolute inset-0 bg-[#CD9933] translate-x-4 translate-y-4 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300 rounded-xl"></div>
+              <img
+                alt="Luxury traveler collage illustration mockup landscape"
+                className="w-full h-auto object-cover shadow-2xl border border-white/20 rounded-xl"
+                src={aboutImage}
+              />
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

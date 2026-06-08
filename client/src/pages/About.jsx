@@ -75,11 +75,11 @@ const About = () => {
         {/* Company Story */}
         <section className="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-24 bg-surface-container-low">
           <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-20 items-center">
-            <div className="relative">
-              <div className="absolute -top-6 -left-6 md:-top-10 md:-left-10 w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 border-l-2 border-t-2 border-[#CD9933]/30"></div>
-              <img className="shadow-2xl relative z-10 w-full object-cover asymmetric-clip" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Architecture" />
-              <div className="absolute -bottom-6 -right-6 bg-[#CD9933] p-8 hidden md:block z-20">
-                <span className="font-notoSerif text-white text-3xl italic">Est. 1998</span>
+            <div className="relative group isolate">
+              <div className="absolute inset-0 bg-[#CD9933] translate-x-4 translate-y-4 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300 rounded-xl"></div>
+              <img className="w-full h-auto object-cover shadow-2xl border border-white/20 rounded-xl relative z-10" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Architecture" />
+              <div className="absolute -bottom-8 -right-4 bg-[#013334] text-white p-6 rounded-lg shadow-xl border border-[#CD9933]/30 hidden sm:block z-20">
+                <span className="font-notoSerif text-[#CD9933] text-xl font-extrabold uppercase tracking-wider">Est. 1998</span>
               </div>
             </div>
             <div className="space-y-8">
