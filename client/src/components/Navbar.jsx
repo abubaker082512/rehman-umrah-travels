@@ -8,6 +8,7 @@ const Navbar = ({ isVersion2 = false }) => {
 
   const links = [
     { to: '/', label: 'Home' },
+    { to: '/home4', label: 'Home 4 (Box Hero)' },
     { to: '/packages', label: 'Umrah Packages' },
     { to: '/international-tours', label: 'International Tours' },
     { to: '/local-tours', label: 'Local Tours' },
