@@ -955,18 +955,12 @@ const Home3 = () => {
 
           {/* Right Column Graphic Collage */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-[#CD9933] -translate-x-4 translate-y-4 -z-10 group-hover:-translate-x-2 group-hover:translate-y-2 transition-transform duration-300 rounded-xl"></div>
+            <div className="absolute inset-0 bg-[#CD9933] translate-x-4 translate-y-4 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300 rounded-xl"></div>
             <img
               alt="Luxury traveler collage illustration mockup landscape"
-              className="w-full aspect-square object-cover shadow-2xl border border-white/20 rounded-xl"
+              className="w-full h-auto object-cover shadow-2xl border border-white/20 rounded-xl"
               src={aboutImage}
             />
-            
-            {/* Visual badge highlight */}
-            <div className="absolute -bottom-8 -left-4 bg-[#013334] text-white p-6 rounded-lg shadow-xl border border-[#CD9933]/30 hidden sm:block">
-              <p className="text-xl font-extrabold text-[#CD9933]">20+</p>
-              <p className="text-[10px] uppercase font-bold tracking-widest text-white/85">Years Combined Experience</p>
-            </div>
           </div>
         </div>
       </section>
