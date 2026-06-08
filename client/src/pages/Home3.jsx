@@ -312,7 +312,7 @@ const Home3 = () => {
             src={heroVideo}
           />
           {/* Sophisticated dark teal horizontal gradient matching screenshot side-split */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#001c1d] via-[#001c1d]/95 via-45% md:via-55% to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#001c1d] via-[#001c1d]/95 via-25% md:via-[33%] to-transparent"></div>
         </div>
 
         {/* Hero Main Content (Split left layout) */}
