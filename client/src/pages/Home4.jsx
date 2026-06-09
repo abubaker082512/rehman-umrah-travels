@@ -315,7 +315,7 @@ const Home4 = () => {
 
         {/* Hero Main Content (Split left layout) */}
         <div className="relative z-10 container mx-auto px-6 md:px-12 pt-28 pb-12 flex-1 flex flex-col justify-center items-start text-left">
-          <div className="bg-[#001c1d]/85 backdrop-blur-md border border-white/10 p-8 md:p-12 rounded-2xl shadow-2xl max-w-2xl">
+          <div className="bg-[#001c1d]/30 backdrop-blur-md border border-white/10 p-8 md:p-12 rounded-2xl shadow-2xl max-w-2xl">
             {/* Label matching screenshot */}
             <div className="flex items-center gap-3 text-[#CD9933] font-bold text-xs uppercase tracking-[0.4em] mb-5">
               <span>Proudly Serving</span>
