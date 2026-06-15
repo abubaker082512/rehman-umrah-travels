@@ -8,7 +8,6 @@ const Navbar = ({ isVersion2 = false }) => {
 
   const links = [
     { to: '/', label: 'Home' },
-    { to: '/home4', label: 'Home 4 (Box Hero)' },
     { to: '/packages', label: 'Umrah Packages' },
     { to: '/international-tours', label: 'International Tours' },
     { to: '/local-tours', label: 'Local Tours' },
@@ -39,8 +38,8 @@ const Navbar = ({ isVersion2 = false }) => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 h-20 sm:h-24 transition-all duration-500 ease-in-out border-b ${
           isScrolled
-            ? 'bg-[#013334] border-[#CD9933]/20 shadow-[0_15px_40px_rgba(0,28,29,0.35)] text-white'
-            : 'bg-[#013334] border-transparent text-white'
+            ? 'bg-[#013334]/75 backdrop-blur-md border-[#CD9933]/20 shadow-[0_15px_40px_rgba(0,28,29,0.35)] text-white'
+            : 'bg-[#013334]/75 backdrop-blur-md border-transparent text-white'
         }`}
       >
         <div className="relative w-full h-full flex justify-between items-center px-4 sm:px-6 md:px-8 max-w-screen-2xl mx-auto">

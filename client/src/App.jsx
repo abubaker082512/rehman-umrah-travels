@@ -24,10 +24,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home3 />} />
+        <Route path="/" element={<Home4 />} />
         <Route path="/home2" element={<Home2 />} />
-        <Route path="/home3" element={<Home3 />} />
-        <Route path="/home4" element={<Home4 />} />
+        {/* <Route path="/home3" element={<Home3 />} /> */}
+        {/* <Route path="/home4" element={<Home4 />} /> */}
         <Route path="/local-tours" element={<LocalTours />} />
         <Route path="/local-tour/:id" element={<LocalTourDetail />} />
         <Route path="/packages" element={<Packages />} />

@@ -211,8 +211,6 @@ const Home2 = () => {
             <div className="flex items-center gap-6 text-xs font-bold tracking-[0.15em] text-white font-manrope">
               <Link to="/" className="hover:text-[#CD9933] transition-colors uppercase">HOME</Link>
               <Link to="/home2" className="hover:text-[#CD9933] transition-colors uppercase text-[#CD9933]">HOME 2</Link>
-              <Link to="/home3" className="hover:text-[#CD9933] transition-colors uppercase">HOME 3</Link>
-              <Link to="/home4" className="hover:text-[#CD9933] transition-colors uppercase">HOME 4</Link>
               <Link to="/flights" className="hover:text-[#CD9933] transition-colors uppercase">AIRLINE TICKETING</Link>
               <Link to="/visa-services" className="hover:text-[#CD9933] transition-colors uppercase">VISA INQUIRY</Link>
               <Link to="/about" className="hover:text-[#CD9933] transition-colors uppercase">PARTNERS</Link>
